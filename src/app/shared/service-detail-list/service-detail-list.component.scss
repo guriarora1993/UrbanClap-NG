@@ -1,0 +1,103 @@
+.header-section {
+    width: 80vw;
+    margin: auto;
+    .tutorial-section {
+      // margin-top: 20px;
+      margin: auto;
+      width: 70vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      cursor: pointer;
+      .tutorial-section-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        .main-heading {
+          font-size: 2rem;
+        }
+        .ratings-section {
+          display: flex;
+          align-items: center;
+          position: relative;
+          left: -100px;
+          span {
+            font-size: 0.8rem;
+          }
+        }
+      }
+  
+      .add-video-container {
+        video {
+          width: 500px;
+          border-radius: 5px;
+          margin-top: 20px;
+        }
+      }
+    }
+  
+    .services-list {
+      display: flex;
+      align-items: center;
+      width: 70vw;
+      margin: auto;
+      .item-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding: 10px;
+        img {
+          cursor: pointer;
+          border-radius: 5px;
+        }
+        span {
+          font-size: 0.8rem;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+  
+  .service-detail-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 530px;
+  }
+  
+  .main-container {
+    border-right: 1px solid rgb(227, 227, 227);
+  }
+  .parent-container {
+    display: flex;
+    align-items: flex-start;
+    border-top: 1px solid rgb(227, 227, 227);
+    width: 70vw;
+    margin: auto;
+  }
+  
+  .item-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+  }
+  .item-container img {
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .item-container span {
+    font-size: 0.8rem;
+    cursor: pointer;
+  }
+  .item-container .active {
+    border: 1px solid black;
+  }
+  
+  .offer-listcontainer{
+    cursor: pointer;
+  }
+  
+  

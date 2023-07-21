@@ -1,0 +1,48 @@
+.footer-main-container {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  .sub-container {
+    width: 80vw;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    .cities-list-main {
+      width: 100vw;
+      li {
+        list-style: none;
+        font-size: 0.7rem;
+        margin: 10px;
+      }
+      .others-footer-content-list{
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .cities-list {
+        opacity: 0.6;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 10px;
+      }
+    }
+  }
+  .social-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    .company-details {
+      margin-left: 80px;
+    }
+    .social-media-icons-platforms {
+      margin-left: 80px;
+    }
+    .store-icons-container {
+      margin-left: 80px;
+    }
+    .social-media-icons-platforms {
+      img {
+        padding: 5px;
+      }
+    }
+  }
+}

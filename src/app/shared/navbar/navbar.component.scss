@@ -1,0 +1,76 @@
+.main{
+    width: 100%;
+    background-color: #fff;
+     position: fixed;
+     z-index: 10;
+    .navbar-main-container{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 10px;
+        background-color: #fff;
+        z-index: 10;
+        box-shadow: 0 8px 26px 0 rgba(0,0,0,0.16);
+        animation-name: slide-in;
+        animation-duration: 0.5s;
+        .searchbar-container{
+            display: flex;
+            width: 55%;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border: 1px solid rgb(216, 217, 220);
+            border-radius: 5px;
+            height: 10px;
+            input{
+                border: none;
+                padding: 10px;
+                width: 300px;
+            }
+        }
+        .navbar-service-section{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .service-detail{
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: 5px;
+                margin-left: 10px;
+                cursor: pointer;
+                .service-detail-count{
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 30px;
+                    height: 30px;
+                    border-radius: 50%;
+                    text-align: center;
+                    background-color: rgb(247,248,250);
+                    padding: 5px;
+                    color: rgb(56,83,254)blue;
+
+                }
+            }
+            .service-detail:hover{
+                background-color: rgb(247,248,250);
+            }
+        }
+    }
+    @keyframes slide-in {
+        0% {
+          transform: translateY(-50%);
+        }
+        100% {
+          transform: translateY(0);
+        }
+      }
+}
+
+@media (max-width: 755px){
+    .main{
+        display: none;
+    }
+}

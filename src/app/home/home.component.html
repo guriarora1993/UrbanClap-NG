@@ -1,0 +1,145 @@
+<app-navbar *ngIf="isNavbarVisible" [animatioName]="animatioName"></app-navbar>
+<section id="main" *ngIf="!navigateToService">
+    <section class="main-section">
+        <div class="main-container-two">
+            <header class="header-main-container">
+                <div class="app-logo" style="cursor: pointer;margin: 10px;">
+                    <img style="width: 100px; margin-left: 30px;" src="../../assets/ap-logo.png" alt="">
+                </div>
+                <div class="header-content-list" style="margin: 10px;">
+                    <ul class="navbar-list">
+                        <li class="navbar-list-item registration">Register As a Professional </li>
+                        <li class="navbar-list-item">Help</li>
+                        <li class="navbar-list-item" (click)="toggleSidebar(loginContent)">Login/Sign up</li>
+                    </ul>
+                </div>
+            </header>
+
+            <section>
+                <div class="section1-container">
+                    <ul class="section1-list-content">
+                        <li class="section1-list-item">Home</li>
+                        <li class="section1-list-item">/</li>
+                        <li class="section1-list-item">Chandigarh</li>
+                    </ul>
+                    <span class="section-heading">Home services, on demand.</span>
+                    <div class="input-main-container">
+                        <div class="select-location" (click)="showLocationModal()">
+                            <img width="20" src="../../assets/location-icon.png" alt="">
+                            <select name="Location" id="Location" style="text-align: center; font-size: 0.6rem;">
+                                <option value="Mohali">SAS Nagar..........</option>
+                            </select>
+                        </div>
+                        <div class="input-container">
+                            <div class="search-input-container">
+                                <div class="search-input">
+                                    <img style="margin-left: 5px;" width="10" src="../../assets/search.png">
+                                    <input #searchVal (input)="getSearchVal(searchVal.value)"
+                                        placeholder="search for services" style="border: none;" class="search-input"
+                                        type="text">
+                                    <div class="close-icon-container">
+                                        <img *ngIf="searchInput" style="margin-right: 5px;"
+                                            src="../../assets/close-icon.png" alt="" width="20">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="services-options-list" style="line-height: normal;">
+                                <ul class="service-list">
+                                    <li>Women's Therapies,</li>
+                                    <li>Salon for Men,</li>
+                                    <li>Men's Therapies</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <app-location-modal *ngIf="selectLocation"></app-location-modal>
+            </section>
+        </div>
+    </section>
+    <div class="uc-services-cards-container">
+        <div class="services-cards-container">
+            <div class="service-item" (click)="toggleSidebar(sidebarContent1)">
+                <img width="25" src="../../assets/salon-for-women.png" alt="">
+                <span class="service-title">Salon for Women</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent2)">
+                <img width="25" src="../../assets/hair-skin-nails.png" alt="">
+                <span class="service-title">Hair, Skin & Nails</span>
+            </div>
+            <div class="service-item" (click)="navigate()">
+                <img width="25" src="../../assets/womens-therapies.jpeg" alt="">
+                <span class="service-title">Women Therapies</span>
+            </div>
+            <div class="service-item">
+                <img width="25" src="../../assets/salon-for-men.webp" alt="">
+                <span class="service-title">Salon For Men</span>
+            </div>
+            <div class="service-item">
+                <img width="25" src="../../assets/mens-therapies.png" alt="">
+                <span class="service-title">Men's Therapies</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent5)">
+                <img width="25" src="../../assets/repair.jpeg" alt="">
+                <span class="service-title">AC/Appliance Repair</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent3)">
+                <img width="25" src="../../assets/cleaning.png" alt="">
+                <span class="service-title">Cleaning & Pest Control</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent4)">
+                <img width="25" src="../../assets/home-repairs.jpeg" alt="">
+                <span class="service-title">Home Repairs</span>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="service-descriptions-card">
+        <div class="flex-container">
+            <div class="cards">
+                <img src="../../assets/service-description-card-1.webp" alt="" width="200">
+            </div>
+            <div class="cards">
+                <img src="../../assets/service-description-card-2.webp" alt="" width="200">
+            </div>
+            <div class="cards">
+                <img src="../../assets/service-description-card-3.webp" alt="" width="200">
+            </div>
+            <div class="cards">
+                <img src="../../assets/service-description-card-4.webp" alt="" width="200">
+            </div>
+        </div>
+    </div>
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData"></app-card-section>
+    <app-card [cardDetails]="cardDetails"></app-card>
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData2"></app-card-section>
+    <app-card [cardDetails]="cardDetails2"></app-card>
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData3"></app-card-section>
+    <app-card [cardDetails]="cardDetails3"></app-card>
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData4"></app-card-section>
+    <app-card [cardDetails]="cardDetails4"></app-card>
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData5"></app-card-section>
+    <app-card [cardDetails]="cardDetails5"></app-card>
+    <app-line></app-line>
+    <img style="width: 100%; cursor: pointer;" src="../../assets/advertisement-image.webp" alt="">
+    <app-line></app-line>
+    <img style="width: 100%; cursor: pointer;" src="../../assets/help-desk-image.webp" alt="">
+    <app-line></app-line>
+    <app-card-section [headerData]="headerData6"></app-card-section>
+    <app-card [cardDetails]="cardDetails6"></app-card>
+    <app-line></app-line>
+    <app-advertisement [adevertisementCred]="adevertisementCred"></app-advertisement>
+    <app-line></app-line>
+    <app-advertisement [adevertisementCred]="adevertisementCred2"></app-advertisement>
+    <app-line></app-line>
+    <app-advertisement [adevertisementCred]="adevertisementCred3"></app-advertisement>
+    <app-sidebar *ngIf="sidebarVisible"></app-sidebar>
+    <app-footer></app-footer>
+</section>
+<app-skelton *ngIf="navigateToService"></app-skelton>

@@ -1,0 +1,9 @@
+<div class="main-container" *ngFor="let item of adevertisementCred" [class.reverse-row]="isImageTrue">
+    <div class="content-container">
+        <img width="100" [src]="item.img" alt="">
+    </div>
+    <div class="content-container">
+        <h2>{{item.title}}</h2>
+        <p class="advertisement-sub-title">{{item.subTitle}}</p>
+    </div>
+</div>

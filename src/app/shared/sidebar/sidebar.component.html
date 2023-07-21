@@ -1,0 +1,39 @@
+<div class="sidebar" [ngClass]="{'open': sidebarVisible}" [class]="animationName">
+    <div class="main-container-sidebar">
+        <div class="sidebar-header">
+            <img (click)="closeToggleSidebar()" width="25" src="../../../assets/left-back-arrow.png" alt="">
+            <span>{{sidebarHeading}}</span>
+        </div>
+        <div style="height: 2px; background-color: #c6c2c2; width: 100%;"></div>
+        <div class="sidebar-content-main-container"  *ngIf="!loginPage">
+            <div class="sidebar-container" *ngFor="let item of sidebarContent">
+                <div class="section-left-content">
+                    <img width="50" [src]="item.img" alt="">
+                    <span>{{item.title}}</span>
+                </div>
+                <div class="section-right-content">
+                    <img width="20" src="../../../assets/arrow-icon.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="login-main-container" *ngIf="loginPage">
+            <div class="input-main-container">
+                <div [class]="loginContainer">
+                    <div class="phone-input-section" style="display: flex; align-items: center;">
+                        <img width="20" src="../../../assets/indian-flag.png" alt="">
+                        <select class="country-code">
+                            <option *ngFor="let code of countryCodes">{{ code }}</option>
+                        </select>
+                    </div>
+                    <div class="phone-input-section">
+                        <input #phoneValue (input)="phoneNumber(phoneValue.value)" class="phone-input" type="number"
+                            placeholder="Your phone number">
+                    </div>
+                </div>
+                <span [class]="errorClass" *ngIf="invalidNumber">Invalid number</span>
+            </div>
+            <button class="submit-button">Continue</button>
+        </div>
+    </div>
+</div>

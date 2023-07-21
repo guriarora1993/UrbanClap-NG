@@ -1,0 +1,11 @@
+.skelton-container{
+    animation: skelton-loading 1s linear infinite alternate;
+}
+@keyframes skelton-loading{
+    0%{
+        background-color: hsl(180, 14%, 90%);
+    }
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+}

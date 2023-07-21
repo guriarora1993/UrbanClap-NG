@@ -1,0 +1,105 @@
+<section class="header-section">
+    <div class="tutorial-section">
+        <div class="tutorial-section-content">
+            <h1 class="main-heading">Salon Prime for kids & <br> men</h1>
+            <div class="ratings-section">
+                <img src="../../../assets/star.png" alt="" width="10">
+                <span>4.87 (4.5M bookings)</span>
+            </div>
+        </div>
+        <div class="add-video-container">
+            <video width="500" src="../../../assets/1006936279-preview.mp4" autoplay="true"></video>
+        </div>
+    </div>
+    <div style="height: 4px; margin-top: 40px; background-color: rgb(237,237,237); width: 80vw;"></div>
+    <div class="services-list">
+        <div class="item-container" *ngFor="let service of serviceCardItems;  let i = index"
+            (click)="[toggleScroll(i,service.title,'.service-detail-list'),scrollToTop(i)]">
+            <img [ngClass]="{ 'active': activeIndex === i }" width="60" [src]="service.img" alt="">
+            <span>{{service.title}}</span>
+        </div>
+    </div>
+    <div class="parent-container" style="display: flex; height: 100vh;">
+        <div style=" display: flex; align-items: center; justify-content: space-between;">
+            <div class="main-container">
+                <div *ngFor="let data of demoData; let item = index" class="service-detail-list">
+                    <div class="service-detail-list-child-container">
+                        <div style="margin-top: 20px;">
+                            <span style="font-size: 0.7rem; color: rgb(101,184,192);">{{data.serviceName}}</span>
+                            <h5 style="margin-top: 5px;">{{data.serviceTitle}}</h5>
+                        </div>
+                        <div style="margin-top: 5px;">
+                            <img width="10" src="../../../assets/star.png" alt="">
+                            <span style="font-size: 0.7rem; opacity: 0.6;">4.85(815k reviews)</span>
+                        </div>
+                        <div style="display: flex; align-items: center; margin-top: 10px;">
+                            <span style="font-size: 0.6rem;">$400</span>
+                            <p style="text-decoration: line-through; opacity: 0.7; margin-left: 5px;">$559</p>
+                            <ul>
+                                <li style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;">1 hr 5 mins</li>
+                            </ul>
+                        </div>
+                        <span style="font-size: 0.8rem; opacity: 0.6;">$50 of above $ 399</span>
+                        <div class="edit-package-container"
+                            style="border-top: 3px dotted rgb(193, 188, 188); margin-top: 20px;">
+                            <ul style="margin-top: 10px;">
+                                <li class="edit-packages-list" style="font-size: 0.7rem;">Haircut <span
+                                        style="opacity: 0.5;">Haircut for men</span></li>
+                                <li class="edit-packages-list" style="font-size: 0.7rem;">Shave/beared grooming <span
+                                        style="opacity: 0.5;">Beared trimming & styling</span></li>
+                                <li class="edit-packages-list" style="font-size: 0.7rem;">Face care <span
+                                        style="opacity: 0.5;">Skin Brighting Facial</span></li>
+                            </ul>
+                            <button
+                                style="cursor: pointer; width: 150px; font-weight: bold; font-size: 0.8rem; padding: 5px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
+                                your package</button>
+                        </div>
+                    </div>
+                    <div class="card-container" style="margin-right: 50px;">
+                        <div class="image-card" style="position: relative;">
+                            <img width="80" style="border-radius: 10px;" src="../../../assets/men&kids-haircut.webp"
+                                alt="">
+                            <button
+                                style="cursor: pointer; color: rgb(226, 52, 226); border: 1px solid whitesmoke; position: absolute; width: 60px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -12px; background-color: white;">Add</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right-side-container"
+            style="margin-top: 30px ; display: flex; align-items: center; margin-left: 50px; flex-direction: column; position: relative; top: 0px;">
+            <div class="offer-listcontainer"
+                style="display: flex; align-items: flex-start; flex-direction: column; width: 250px; border: 1px solid rgb(227,227,227); padding: 5px; border-radius: 5px; margin-top: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <img src="../../../assets/notice-tag.png" width="10" alt="">
+                    <span style="font-size: 0.8rem;">Flat Rs. 50 cashback on Paytm</span>
+                </div>
+                <span style="font-size: 0.7rem; opacity: 0.5;">Flat Rs. 50 cashback on paytm</span>
+            </div>
+            <div class="offer-listcontainer"
+                style="display: flex; align-items: flex-start; flex-direction: column; width: 250px; border: 1px solid rgb(227,227,227); padding: 5px; border-radius: 5px; margin-top: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <img src="../../../assets/notice-tag.png" width="10" alt="">
+                    <span style="font-size: 0.8rem;">Flat Rs. 50 cashback on Paytm</span>
+                </div>
+                <span style="font-size: 0.7rem; opacity: 0.5;">Flat Rs. 50 cashback on paytm</span>
+            </div>
+            <div class="offer-listcontainer"
+                style="display: flex; align-items: flex-start; flex-direction: column; width: 250px; border: 1px solid rgb(227,227,227); padding: 5px; border-radius: 5px; margin-top: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <img src="../../../assets/notice-tag.png" width="10" alt="">
+                    <span style="font-size: 0.8rem;">Flat Rs. 50 cashback on Paytm</span>
+                </div>
+                <span style="font-size: 0.7rem; opacity: 0.5;">Flat Rs. 50 cashback on paytm</span>
+            </div>
+            <div class="offer-listcontainer"
+                style="display: flex; align-items: flex-start; flex-direction: column; width: 250px; border: 1px solid rgb(227,227,227); padding: 5px; border-radius: 5px; margin-top: 10px;">
+                <div style="display: flex; align-items: center;">
+                    <img src="../../../assets/notice-tag.png" width="10" alt="">
+                    <span style="font-size: 0.8rem;">Flat Rs. 50 cashback on Paytm</span>
+                </div>
+                <span style="font-size: 0.7rem; opacity: 0.5;">Flat Rs. 50 cashback on paytm</span>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,163 @@
+.sidebar {
+  width: 0;
+  height: 100vh;
+  // background-color: rgb(240, 240, 240);
+  background-color: white;
+  position: fixed;
+  top: 0;
+  right: 0;
+  animation-duration: 0.5s;
+}
+
+.sidebar.open {
+  width: 300px;
+  transform: translateX(0);
+}
+
+.toggle-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  z-index: 100;
+}
+.slide-in {
+  animation-name: slide-in;
+}
+
+.slide-out {
+  animation-name: slide-out;
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slide-out {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.main-container-sidebar {
+  .sidebar-header {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    span {
+      margin-left: 10px;
+      font-size: 0.9rem;
+    }
+  }
+
+  .sidebar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+    padding: 20px;
+    .section-left-content {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 8px;
+        font-size: 0.8rem;
+      }
+      img {
+        height: 40px;
+        width: 40px;
+        border-radius: 5px;
+      }
+    }
+  }
+  .login-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    .input-main-container {
+      margin: 30px;
+      .login-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 280px;
+        border: 1px solid #efefef;
+        .phone-input-section {
+          // border: 1px solid #efefef;
+          background-color: white;
+          border-radius: 4px;
+          padding: 2px;
+          select {
+            border: none;
+            width: 45px;
+            height: 40px;
+            border-right: 1px solid #efefef;
+          }
+          input {
+            border: none;
+            width: 180px;
+            height: 40px;
+          }
+          input::placeholder {
+            color: #bfbcbc;
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    .invalidError {
+      font-size: 0.7rem;
+    }
+
+    .invalidErrorOccur {
+      font-size: 0.7rem;
+      color: red;
+    }
+    .submit-button {
+      width: 280px;
+      height: 40px;
+      background-color: black;
+      color: white;
+      padding: 2px;
+      border-radius: 4px;
+    }
+  }
+}
+
+.login-container-error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 260px;
+  border: 1px solid red;
+  .phone-input-section {
+    // border: 1px solid #efefef;
+    background-color: white;
+    border-radius: 4px;
+    padding: 2px;
+    select {
+      border: none;
+      width: 45px;
+      height: 40px;
+      border-right: 1px solid #efefef;
+    }
+    input {
+      border: none;
+      width: 180px;
+      height: 40px;
+    }
+    input::placeholder {
+      color: #bfbcbc;
+      margin-right: 5px;
+    }
+  }
+}
