@@ -16,7 +16,6 @@ import { ServiceDetailListComponent } from './service-detail-list/service-detail
     CardComponent,
     LineComponent,
     AdvertisementComponent,
-    LocationModalComponent,
     SidebarComponent,
     FooterComponent,
     SkeltonComponent,

@@ -1,20 +1,16 @@
-// #main{
-//   background: linear-gradient(
-//       180deg,
-//       rgba(0, 0, 0, 0.16),
-//       rgba(0, 0, 0, 0.8)
-//     );
-// }
+* {
+  overflow: hidden;
+}
 .main-section {
   background-image: url(../../assets/1615375782838-f890f8.webp);
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
-  height: 60.8vh;
+  height: 64.7vh;
   width: 100vw;
   .main-container-two {
     width: 100vw;
-    height: 60.8vh;
+    height: 64.7vh;
     background: linear-gradient(
       180deg,
       rgba(0, 0, 0, 0.16),
@@ -32,7 +28,7 @@
     .navbar-list-item {
       list-style: none;
       color: #ffffffe3;
-      font-size: 0.7rem;
+      font-size: 0.8rem;
       padding: 10px;
       cursor: pointer;
     }
@@ -44,7 +40,7 @@
 
 .section1-container {
   margin: auto;
-  margin-top: 65px;
+  margin-top: 85px;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -53,10 +49,8 @@
   .section1-list-content {
     display: flex;
     align-items: center;
-    margin-top: 9px;
-    color: rgb(255,255,255);
     .section1-list-item {
-      color: rgb(255,255,255);
+      color: #ffffffba;
       font-size: 0.6rem;
       padding: 2px;
       list-style: none;
@@ -64,11 +58,10 @@
     }
   }
   .section-heading {
-    font-size: 2.3rem;
+    font-size: 2.4rem;
     color: white;
     text-align: center;
-    margin-top: 15px;
-    // margin-bottom: 25px;
+    margin-bottom: 25px;
   }
   @media (max-width: 480px) {
     .section-heading {
@@ -97,7 +90,6 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin-top: 25px;
     .search-input-container {
       display: flex;
       align-items: center;
@@ -112,7 +104,7 @@
       align-items: center;
       justify-content: space-around;
       padding: 6.5px;
-      width: 420px;
+      width: 455px;
       border-radius: 4px;
       ::placeholder {
         color: grey;
@@ -148,7 +140,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      height: 41.5px;
+      height: 46px;
       select {
         margin-right: 6px;
         border: none;
@@ -185,7 +177,7 @@
         margin-top: 5px;
         list-style: none;
         font-size: 0.6rem;
-        color: rgb(255,255,255);
+        color: white;
         text-decoration: underline;
         padding: 2px;
         cursor: pointer;
@@ -216,17 +208,18 @@
 
 .uc-services-cards-container {
   position: relative;
-  top: -55px;
+  top: -75px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 40%;
+  width: 43%;
   border-radius: 4px;
   box-shadow: 0 8px 26px 0 rgba(0, 0, 0, 0.08);
   background-color: #ffffff;
   margin: auto;
-  padding: 20px;
+  margin-top: 30px;
+  padding: 30px;
 }
 
 .services-cards-container {
@@ -253,9 +246,9 @@
 
 .service-item:hover {
   background-color: rgb(249, 247, 245);
+  border-radius: 5px;
 }
 
-/* Media Queries */
 @media screen and (max-width: 1040px) {
   .uc-services-cards-container {
     width: 50%;
@@ -294,8 +287,6 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 
 .flex-container > div {
@@ -313,4 +304,27 @@
   transform: scale(1.1);
 }
 
+.tryClass {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  transition-property: opacity;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-name: b_g08b;
+  z-index: 10;
+  animation-duration: 0.25s;
+  transition-duration: 0.25s;
+}
 
+.section1-container {
+  .section1-list-content,
+  .section-heading,
+  .input-main-container {
+    padding: 7px;
+  }
+}

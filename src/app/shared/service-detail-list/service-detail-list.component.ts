@@ -3,14 +3,58 @@ import { Component, ElementRef } from '@angular/core';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
-  styleUrls: ['./service-detail-list.component.scss']
+  styleUrls: ['./service-detail-list.component.scss'],
 })
 export class ServiceDetailListComponent {
-
+  public cartPresent: boolean = false;
+  public addCart: boolean = true;
+  public counterValue: number = 1;
+  public emptyCart: boolean = true
   constructor(private elementRef: ElementRef) {}
 
   ngOnInit(): void {
-      console.log("Enter in service-detail")
+  }
+
+  buttons = [
+    {
+      title: '20% off on Kotak Silk cards',
+      img: '../../../assets/percentage-icon.png',
+    },
+    {
+      title: '20% off on Kotak Silk cards',
+      img: '../../../assets/percentage-icon.png',
+    },
+    {
+      title: '20% off on Kotak Silk cards',
+      img: '../../../assets/percentage-icon.png',
+    },
+    {
+      title: '20% off on Kotak Silk cards',
+      img: '../../../assets/percentage-icon.png',
+    },
+  ];
+
+  public showContent: boolean = false;
+
+  public toggleAccordion() {
+    this.showContent = !this.showContent;
+  }
+  public increment() {
+    if (this.counterValue < 3) {
+      this.counterValue++;
+    } else {
+      alert('limited');
+    }
+  }
+
+  public decrement() {
+    if (this.counterValue > 1) {
+      this.counterValue--;
+    } else {
+      this.addCart = true;
+      this.cartPresent = false;
+      this.emptyCart = true
+    }
   }
   public demoData = [
     {
@@ -86,18 +130,26 @@ export class ServiceDetailListComponent {
 
   public testData = [
     {
-      name:"sachin",
-      age: 22
+      name: 'sachin',
+      age: 22,
     },
     {
-      name:"sourav",
-      age: 22
-    },{
-      name:"Jashan",
-      age: 22
-    },{
-      name:"lalit",
-      age: 22
+      name: 'sourav',
+      age: 22,
     },
-  ]
+    {
+      name: 'Jashan',
+      age: 22,
+    },
+    {
+      name: 'lalit',
+      age: 22,
+    },
+  ];
+
+  public addCartList() {
+    this.cartPresent = !this.cartPresent;
+    this.addCart = !this.addCart;
+    this.emptyCart = !this.emptyCart
+  }
 }

@@ -1,4 +1,10 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -7,6 +13,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   @Input() animatioName: any;
+  @ViewChild('search') search: any;
   ngOnInit() {
     console.log('animation name ', this.animatioName);
   }
@@ -17,5 +24,9 @@ export class NavbarComponent implements OnInit {
 
   public scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  public clearInput() {
+    this.search.nativeElement.value = '';
   }
 }

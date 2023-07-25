@@ -5,7 +5,7 @@
                 <img width="10" src="../../../assets/search.png" alt="">
                 <input #search (input)="getInput(search.value)" type="text" class="search-input">
             </div>
-            <div *ngIf="inputClear">
+            <div *ngIf="inputClear" (click)="clearInput()">
                 <img width="20" src="../../../assets/close-icon.png" alt="">
             </div>
         </div>

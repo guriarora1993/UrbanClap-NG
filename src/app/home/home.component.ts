@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { SidebarService } from '../services/sidebar.service';
 import { Router } from '@angular/router';
 @Component({
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
+  @ViewChild("searchVal") searchVal: any
   public selectLocation: boolean = false;
   public sidebarVisible!: boolean;
   public searchInput: boolean = false;
@@ -323,5 +324,9 @@ export class HomeComponent {
       this.navigateToService = false;
       this.router.navigate(['service-detail-list']);
     }, 2000);
+  }
+
+  public clearInput(){
+    this.searchVal.nativeElement.value = ""
   }
 }

@@ -1,5 +1,4 @@
 .sidebar {
-  width: 0;
   height: 100vh;
   // background-color: rgb(240, 240, 240);
   background-color: white;
@@ -10,8 +9,9 @@
 }
 
 .sidebar.open {
-  width: 300px;
+  width: 273px;
   transform: translateX(0);
+  background-color: rgb(240,240,240);
 }
 
 .toggle-button {
@@ -64,6 +64,7 @@
     justify-content: space-between;
     background-color: white;
     padding: 20px;
+    margin-top: 2px;
     .section-left-content {
       display: flex;
       align-items: center;
@@ -89,7 +90,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 280px;
+        width: 270px;
         border: 1px solid #efefef;
         .phone-input-section {
           // border: 1px solid #efefef;
@@ -123,7 +124,7 @@
       color: red;
     }
     .submit-button {
-      width: 280px;
+      width: 255px;
       height: 40px;
       background-color: black;
       color: white;
@@ -160,4 +161,4 @@
       margin-right: 5px;
     }
   }
-}
+} 

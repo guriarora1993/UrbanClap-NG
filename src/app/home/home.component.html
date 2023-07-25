@@ -37,7 +37,7 @@
                                     <input #searchVal (input)="getSearchVal(searchVal.value)"
                                         placeholder="search for services" style="border: none;" class="search-input"
                                         type="text">
-                                    <div class="close-icon-container">
+                                    <div class="close-icon-container" (click)="clearInput()">
                                         <img *ngIf="searchInput" style="margin-right: 5px;"
                                             src="../../assets/close-icon.png" alt="" width="20">
                                     </div>
@@ -111,7 +111,7 @@
             </div>
         </div>
     </div>
-    <app-line></app-line>
+     <app-line></app-line>
     <app-card-section [headerData]="headerData"></app-card-section>
     <app-card [cardDetails]="cardDetails"></app-card>
     <app-line></app-line>
