@@ -1,4 +1,4 @@
-<section class="header-section">
+<section class="header-section" *ngIf="!dataLoading">
     <div class="tutorial-section">
         <div class="tutorial-section-content">
             <h1 class="main-heading">Salon Prime for kids & <br> men</h1>
@@ -25,7 +25,8 @@
                 <div *ngFor="let data of demoData; let item = index" class="service-detail-list">
                     <div class="service-detail-list-child-container">
                         <div style="margin-top: 20px;">
-                            <span style="font-size: 0.7rem; color: rgb(101,184,192);">{{data.serviceName}}</span>
+                            <span
+                                style="font-size: 0.7rem; color: rgb(101,184,192); background-color: rgb(230,249,249);border-radius: 5px; padding: 5px;">{{data.serviceName}}</span>
                             <h5 style="margin-top: 5px;">{{data.serviceTitle}}</h5>
                         </div>
                         <div style="margin-top: 5px;">
@@ -33,13 +34,12 @@
                             <span style="font-size: 0.7rem; opacity: 0.6;">4.85(815k reviews)</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-top: 10px;">
-                            <span style="font-size: 0.6rem;">$400</span>
-                            <p style="text-decoration: line-through; opacity: 0.7; margin-left: 5px;">$559</p>
+                            <span style="font-size: 0.6rem;">₹400</span>
                             <ul>
                                 <li style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;">1 hr 5 mins</li>
                             </ul>
                         </div>
-                        <span style="font-size: 0.8rem; opacity: 0.6;">$50 of above $ 399</span>
+                        <span style="font-size: 0.8rem; opacity: 0.6;">₹50 of above 399</span>
                         <div class="edit-package-container"
                             style="border-top: 3px dotted rgb(193, 188, 188); margin-top: 20px;">
                             <ul style="margin-top: 10px;">
@@ -51,7 +51,7 @@
                                         style="opacity: 0.5;">Skin Brighting Facial</span></li>
                             </ul>
                             <button
-                                style="cursor: pointer; width: 150px; font-weight: bold; font-size: 0.8rem; padding: 5px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
+                                style="cursor: pointer; width: 120px; font-weight: bold; font-size: 0.6rem; padding: 5px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
                                 your package</button>
                         </div>
                     </div>
@@ -83,25 +83,26 @@
                     <img src="../../../assets/shoping-cart.png" width="50" alt="">
                     <span>No items in cart</span>
                 </div>
-
                 <div class="selected-cart-item-list-container" *ngIf="cartPresent">
                     <h4>Cart</h4>
                     <div class="item-list"
                         style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
                         <span style="color: black;">selected item</span>
                         <div class="add-cart-button"
-                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231);width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: rgb(245,242,253);">
-                            <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
+                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
+                            <span (click)="decrement()" style="color: rgb(121,79,231);"
+                                class="cart-counter">-</span><span style="color: rgb(121,79,231); margin-left: 5px;"
                                 class="cart-counter">{{counterValue}}</span><span (click)="increment()"
-                                style=" margin-left: 5px;" class="cart-counter">+</span>
+                                style=" margin-left: 5px;color: rgb(121,79,231);" class="cart-counter">+</span>
+                            <span class="progress-bar"></span>
                         </div>
                         <span>cost</span>
                     </div>
                     <app-line></app-line>
                     <div class="view-cart-button-container"
                         style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                        <div class="view-cart-button">
-                            <span>$100</span>
+                        <div class="view-cart-button" (click)="viewCartDetail()">
+                            <span>₹100</span>
                             <span>View Cart</span>
                         </div>
                     </div>
@@ -119,7 +120,8 @@
                     </div>
                 </div>
                 <div class="accordion-container">
-                    <button style="background-color: white; font-weight: bold; font-size: 0.7rem; color: rgb(121,79,231);"
+                    <button
+                        style="background-color: white; font-weight: bold; font-size: 0.7rem; color: rgb(121,79,231);"
                         (click)="toggleAccordion()" class="accordion-button">{{ showContent ? 'View More Offers' :
                         'View More Offers' }}</button>
                     <div *ngIf="showContent" class="accordion-content">
@@ -140,3 +142,4 @@
         </div>
     </div>
 </section>
+<app-skelton *ngIf="dataLoading"></app-skelton>

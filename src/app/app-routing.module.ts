@@ -2,12 +2,17 @@ import { ServiceDetailListComponent } from './shared/service-detail-list/service
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
+import { ViewCartComponent } from './home/view-cart/view-cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'service-detail-list',
     component: ServiceDetailListComponent
+  },
+  {
+    path:'view-cart',
+    component: ViewCartComponent
   },
   {
     path: 'home',

@@ -1,0 +1,99 @@
+<div class="uc-view-cart-main-container">
+    <div class="header-section">
+        <img () src="../../../assets/arrow.png" width="15" alt="">
+        <span>Summary</span>
+    </div>
+    <div style="height: 2px; background-color: #f1f1f1; width: 100%; margin-top: 5px;"></div>
+    <div class="empty-cart-screen-main-content" *ngIf="emptyCart">
+        <img src="../../../assets/shoping-cart.png" alt="">
+        <div class="empty-cart-screen-text-container">
+            <h4>Hey, it feels so empty here</h4>
+            <span>Lets add some services</span>
+            <button>Explore services</button>
+        </div>
+    </div>
+    <div class="section-main-container" *ngIf="!emptyCart">
+        <div style="width: 60%;">
+            <div class="selected-cart-information-container">
+                <div class="selected-cart-information-header">
+                    <span style="font-size: 0.7rem;margin-top: 10px;">Full body Indulhence</span>
+                    <div class="right-content">
+                        <div class="add-cart-button"
+                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
+                            <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
+                                class="cart-counter">{{counterValue}}</span><span (click)="increment()"
+                                style=" margin-left: 5px;" class="cart-counter">+</span>
+                            <span class="progress-bar"></span>
+                        </div>
+                        <span style="font-size: 0.7rem;">₹400</span>
+                    </div>
+                </div>
+            </div>
+            <div style="width: 32vw; border: 1px dotted rgb(227, 223, 223); margin-top: 20px;"></div>
+            <div class="cart-service-list">
+                <ul style="margin: 15px;">
+                    <li class="list-item">Threading: Eyebrow x1</li>
+                    <li class="list-item">Pedicure: Elysian Chocolate & Vanila x1</li>
+                    <li class="list-item">Facial: Elysian firming wine glow x1</li>
+                    <li class="list-item">Waxing: Full arms + full legs + under-arms</li>
+                </ul>
+                <button
+                    style="color: rgb(82, 81, 81); cursor: pointer; width: 100px; font-weight: bold; font-size: 0.6rem; padding: 8px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
+                    package</button>
+            </div>
+            <div style="height: 2px; background-color: #f1f1f1; width: 32vw; height: 4px; margin-top: 20px;"></div>
+            <div class="frequently-cards-container">
+                <span>Frequently added together</span>
+                <app-frequent-cards></app-frequent-cards>
+            </div>
+        </div>
+        <div class="right-section-container">
+            <span>Payment summary</span>
+            <div class="item-amount-description">
+                <span style="font-size: 0.7rem;">Item total</span>
+                <span style="font-size: 0.6rem;">₹400</span>
+            </div>
+            <div class="item-amount-description">
+                <span style="font-size: 0.7rem; border-bottom: 2px dotted #bdbcbc;">Taxes and free</span>
+                <span style="font-size: 0.6rem;">₹400</span>
+            </div>
+            <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-top: 15px;"></div>
+            <div class="item-amount-description">
+                <span style="font-size: 0.7rem;">Total</span>
+                <span style="font-size: 0.6rem;">₹0</span>
+            </div>
+            <div style="height: 3px; background-color: rgb(237,237,237); width: 100%; margin-top: 15px;"></div>
+            <div class="service-prefrence-container">
+                <span style="font-weight: 600;">Service Preference</span>
+                <div style="display: flex;
+               align-items: center; margin-top: 20px;">
+                    <input type="checkbox" id="check"> <label for="check"><span
+                            style="font-size: 0.7rem; margin-left: 10px;display: flex; align-items: center; justify-content: center;">Avoid
+                            calling before
+                            reaching the
+                            location</span></label>
+                </div>
+
+            </div>
+            <div style="height: 3px; background-color: rgb(237,237,237); width: 100%; margin-top: 25px;"></div>
+
+            <div class="service-preference-bottom-section">
+
+                <div class="percentage-icon">
+                    <img src="../../../assets/percentage-icon.png" width="20" alt="">
+                </div>
+                <div style="display: flex; align-items: flex-start; flex-direction: column;margin-left: 10px;">
+                    <span style="font-size: 0.7rem;">Coupons and offers</span>
+                    <span style="font-size: 0.7rem;margin-top: 10px;">Login/Sign up to view offers</span>
+                </div>
+            </div>
+            <div style="height: 3px; background-color: rgb(237,237,237); width: 100%; margin-top: 25px;"></div>
+            <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-bottom: 10px;"></div>
+            <div style="bottom: 10px; display: flex; align-items: center; justify-content: center;">
+                <button
+                    style="background-color: rgb(110,66,229); width: 330px; border-radius: 5px;margin-top: 230px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 0.7rem;">Login/Sign
+                    up to proceed</button>
+            </div>
+        </div>
+    </div>
+</div>

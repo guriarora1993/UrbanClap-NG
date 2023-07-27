@@ -1,5 +1,5 @@
 import { Component, ElementRef } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
@@ -9,8 +9,12 @@ export class ServiceDetailListComponent {
   public cartPresent: boolean = false;
   public addCart: boolean = true;
   public counterValue: number = 1;
-  public emptyCart: boolean = true
-  constructor(private elementRef: ElementRef) {}
+  public emptyCart: boolean = true;
+  public dataLoading: boolean = false
+  constructor(
+    private elementRef: ElementRef,
+    private router: Router
+    ) {}
 
   ngOnInit(): void {
   }
@@ -51,6 +55,7 @@ export class ServiceDetailListComponent {
     if (this.counterValue > 1) {
       this.counterValue--;
     } else {
+      console.log("else")
       this.addCart = true;
       this.cartPresent = false;
       this.emptyCart = true
@@ -151,5 +156,15 @@ export class ServiceDetailListComponent {
     this.cartPresent = !this.cartPresent;
     this.addCart = !this.addCart;
     this.emptyCart = !this.emptyCart
+  }
+
+  public viewCartDetail(){
+    this.dataLoading = true
+   setTimeout(()=>{
+    if(this.counterValue != 0){
+      this.router.navigate(["/view-cart"])
+    }
+    this.dataLoading = false
+   },2000)
   }
 }

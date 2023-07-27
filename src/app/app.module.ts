@@ -5,16 +5,25 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SharedModule } from './shared/shared.module';
+import { ViewCartComponent } from './home/view-cart/view-cart.component';
+import { FrequentCardsComponent } from './shared/frequent-cards/frequent-cards.component';
+import { AppStoreModule } from './state/app.store';
+import { appReducer } from '../app/state/app.reducer';
+import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
+    ViewCartComponent,
+    FrequentCardsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    AppStoreModule,
+    StoreModule.forRoot({ counter: appReducer })
   ],
   providers: [],
   bootstrap: [AppComponent]

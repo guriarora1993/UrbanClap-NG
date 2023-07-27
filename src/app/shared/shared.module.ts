@@ -9,6 +9,8 @@ import { SidebarComponent } from '../shared/sidebar/sidebar.component';
 import { FooterComponent } from './footer/footer.component';
 import { SkeltonComponent } from './skelton/skelton.component';
 import { ServiceDetailListComponent } from './service-detail-list/service-detail-list.component';
+import { CartButtonComponent } from './cart-button/cart-button.component';
+// import { FrequentCardsComponent } from './frequent-cards/frequent-cards.component';
 @NgModule({
   declarations: [
     LocationModalComponent,
@@ -20,6 +22,8 @@ import { ServiceDetailListComponent } from './service-detail-list/service-detail
     FooterComponent,
     SkeltonComponent,
     ServiceDetailListComponent,
+    CartButtonComponent,
+    // FrequentCardsComponent,
   ],
   imports: [CommonModule],
   exports: [

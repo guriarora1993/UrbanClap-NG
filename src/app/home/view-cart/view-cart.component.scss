@@ -1,0 +1,114 @@
+.section-main-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 1080px) {
+  .section-main-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+}
+.uc-view-cart-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0px 240px 0px 240px;
+  flex-wrap: wrap;
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    span {
+      margin: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .selected-cart-information-container {
+    .selected-cart-information-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      .right-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        margin-right: 80px;
+        margin-top: 10px;
+        span {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+  .cart-service-list {
+    .list-item {
+      font-size: 0.6rem;
+      padding: 5px;
+      color: rgb(120, 120, 120);
+    }
+  }
+
+  .frequently-cards-container {
+    margin-top: 20px;
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .right-section-container {
+    width: 40%;
+    margin-top: 15px;
+    .item-amount-description {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+  }
+}
+
+.add-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.service-preference-bottom-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.empty-cart-screen-main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .empty-cart-screen-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    span {
+      font-size: 0.7rem;
+      margin-top: 10px;
+    }
+    button {
+      color: rgb(121, 79, 231);
+      background-color: white;
+      border: 1px solid rgb(218, 217, 217);
+      font-size: 0.7rem;
+      padding: 5px;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+  }
+}
