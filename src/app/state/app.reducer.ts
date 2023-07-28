@@ -1,16 +1,33 @@
-// app.reducer.ts
+import { createReducer, on, Action } from '@ngrx/store';
+import { addCart, removeCart, reset } from './app.actions';
 
-import { Action, createReducer, on } from '@ngrx/store';
-import { increment, decrement } from '../state/app.actions';
+export interface AppState {
+  count: number;
+}
 
-export const initialState = 0;
+const initialState: AppState = {
+  count: parseInt(localStorage.getItem('counterState')!, 10) || 1,
+};
 
-const _appReducer = createReducer(
+const _serviceCartsReducer = createReducer(
   initialState,
-  on(increment, state => state + 1),
-  on(decrement, state => state - 1)
+  on(addCart, (state) => {
+    const count = state.count + 1;
+    localStorage.setItem('counterState', count.toString());
+    return { count };
+  }),
+  on(removeCart, (state) => {
+    const count = state.count - 1;
+    localStorage.setItem('counterState', count.toString());
+    return { count };
+  }),
+  on(reset, () => {
+    const count = 0;
+    localStorage.setItem('counterState', count.toString());
+    return { count };
+  })
 );
 
-export function appReducer(state: number | undefined, action: Action) {
-  return _appReducer(state, action);
+export function serviceCartsReducer(state: AppState | undefined, action: Action) {
+  return _serviceCartsReducer(state, action);
 }

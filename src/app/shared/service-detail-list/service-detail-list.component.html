@@ -67,7 +67,7 @@
                             <div class="add-cart-button" *ngIf="cartPresent"
                                 style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
                                 <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
-                                    class="cart-counter">{{counterValue}}</span><span (click)="increment()"
+                                    class="cart-counter">{{ addedCartsCount | async }}</span><span (click)="increment()"
                                     style=" margin-left: 5px;" class="cart-counter">+</span>
                                 <span class="progress-bar"></span>
                             </div>
@@ -92,7 +92,7 @@
                             style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
                             <span (click)="decrement()" style="color: rgb(121,79,231);"
                                 class="cart-counter">-</span><span style="color: rgb(121,79,231); margin-left: 5px;"
-                                class="cart-counter">{{counterValue}}</span><span (click)="increment()"
+                                class="cart-counter">{{ addedCartsCount | async }}</span><span (click)="increment()"
                                 style=" margin-left: 5px;color: rgb(121,79,231);" class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>

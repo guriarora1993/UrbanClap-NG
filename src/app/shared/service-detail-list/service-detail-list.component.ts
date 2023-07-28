@@ -1,5 +1,9 @@
 import { Component, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { addCart, removeCart, reset } from '@app/state/app.actions';
+import { AppState } from '@app/state/app.reducer';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
@@ -10,14 +14,19 @@ export class ServiceDetailListComponent {
   public addCart: boolean = true;
   public counterValue: number = 1;
   public emptyCart: boolean = true;
-  public dataLoading: boolean = false
+  public dataLoading: boolean = false;
+  public addedCartsCount: Observable<number>;
   constructor(
     private elementRef: ElementRef,
-    private router: Router
-    ) {}
-
-  ngOnInit(): void {
+    private router: Router,
+    private store: Store<{ app: AppState }>
+  ) {
+    this.addedCartsCount = this.store.select(
+      (state: { app: AppState }) => state.app.count
+    );
   }
+
+  ngOnInit(): void {}
 
   buttons = [
     {
@@ -45,21 +54,27 @@ export class ServiceDetailListComponent {
   }
   public increment() {
     if (this.counterValue < 3) {
-      this.counterValue++;
+      this.store.dispatch(addCart());
     } else {
       alert('limited');
     }
   }
 
   public decrement() {
-    if (this.counterValue > 1) {
-      this.counterValue--;
-    } else {
-      console.log("else")
-      this.addCart = true;
-      this.cartPresent = false;
-      this.emptyCart = true
-    }
+    this.store.dispatch(removeCart());
+    this.addedCartsCount.subscribe((data) => {
+      const cartsCount = data;
+      if (cartsCount >= 1) {
+        /*
+        Option for implement something if card item is greater then 0
+        */
+      } else {
+        this.addCart = true;
+        this.cartPresent = false;
+        this.emptyCart = true;
+        this.store.dispatch(reset());
+      }
+    });
   }
   public demoData = [
     {
@@ -155,16 +170,16 @@ export class ServiceDetailListComponent {
   public addCartList() {
     this.cartPresent = !this.cartPresent;
     this.addCart = !this.addCart;
-    this.emptyCart = !this.emptyCart
+    this.emptyCart = !this.emptyCart;
   }
 
-  public viewCartDetail(){
-    this.dataLoading = true
-   setTimeout(()=>{
-    if(this.counterValue != 0){
-      this.router.navigate(["/view-cart"])
-    }
-    this.dataLoading = false
-   },2000)
+  public viewCartDetail() {
+    this.dataLoading = true;
+    setTimeout(() => {
+      if (this.counterValue != 0) {
+        this.router.navigate(['/view-cart']);
+      }
+      this.dataLoading = false;
+    }, 2000);
   }
 }

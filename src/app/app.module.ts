@@ -8,7 +8,6 @@ import { SharedModule } from './shared/shared.module';
 import { ViewCartComponent } from './home/view-cart/view-cart.component';
 import { FrequentCardsComponent } from './shared/frequent-cards/frequent-cards.component';
 import { AppStoreModule } from './state/app.store';
-import { appReducer } from '../app/state/app.reducer';
 import { StoreModule } from '@ngrx/store';
 @NgModule({
   declarations: [
@@ -16,16 +15,10 @@ import { StoreModule } from '@ngrx/store';
     NavbarComponent,
     HomeComponent,
     ViewCartComponent,
-    FrequentCardsComponent
+    FrequentCardsComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    AppStoreModule,
-    StoreModule.forRoot({ counter: appReducer })
-  ],
+  imports: [BrowserModule, AppRoutingModule, SharedModule, AppStoreModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

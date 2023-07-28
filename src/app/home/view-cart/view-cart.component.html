@@ -1,6 +1,6 @@
 <div class="uc-view-cart-main-container">
     <div class="header-section">
-        <img () src="../../../assets/arrow.png" width="15" alt="">
+        <img src="../../../assets/arrow.png" width="15" alt="">
         <span>Summary</span>
     </div>
     <div style="height: 2px; background-color: #f1f1f1; width: 100%; margin-top: 5px;"></div>
@@ -21,7 +21,7 @@
                         <div class="add-cart-button"
                             style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
                             <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
-                                class="cart-counter">{{counterValue}}</span><span (click)="increment()"
+                                class="cart-counter">{{ (addedCartsCount | async) }}</span><span (click)="increment()"
                                 style=" margin-left: 5px;" class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>
