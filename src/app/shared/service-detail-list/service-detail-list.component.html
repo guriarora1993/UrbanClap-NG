@@ -22,7 +22,7 @@
     <div class="parent-container" style="display: flex;">
         <div style=" display: flex; align-items: center; justify-content: space-between;">
             <div class="main-container">
-                <div *ngFor="let data of demoData; let item = index" class="service-detail-list">
+                <div *ngFor="let data of demoData; let i = index" class="service-detail-list">
                     <div class="service-detail-list-child-container">
                         <div style="margin-top: 20px;">
                             <span
@@ -31,15 +31,14 @@
                         </div>
                         <div style="margin-top: 5px;">
                             <img width="10" src="../../../assets/star.png" alt="">
-                            <span style="font-size: 0.7rem; opacity: 0.6;">4.85(815k reviews)</span>
+                            <span style="font-size: 0.7rem; opacity: 0.6;">{{data.reviews}}</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-top: 10px;">
-                            <span style="font-size: 0.6rem;">₹400</span>
+                            <span style="font-size: 0.6rem;">{{data.serviceAmount}}</span>
                             <ul>
                                 <li style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;">1 hr 5 mins</li>
                             </ul>
                         </div>
-                        <span style="font-size: 0.8rem; opacity: 0.6;">₹50 of above 399</span>
                         <div class="edit-package-container"
                             style="border-top: 3px dotted rgb(193, 188, 188); margin-top: 20px;">
                             <ul style="margin-top: 10px;">
@@ -57,18 +56,18 @@
                     </div>
                     <div class="card-container" style="margin-right: 50px;">
                         <div class="image-card" style="position: relative;">
-                            <img width="80" style="border-radius: 10px;" src="../../../assets/men&kids-haircut.webp"
-                                alt="">
-                            <div class="add-cart-button" *ngIf="addCart" (click)="addCartList()"
+                            <img width="80" style="border-radius: 10px;" [src]="data.serviceImage" alt="">
+                            <div class="add-cart-button" *ngIf="data.showAddCartButton" (click)="addCartList(data)"
                                 style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
                                 Add
                                 <span class="progress-bar"></span>
                             </div>
-                            <div class="add-cart-button" *ngIf="cartPresent"
+                            <div class="add-cart-button" *ngIf="!data.showAddCartButton"
                                 style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                                <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
-                                    class="cart-counter">{{ addedCartsCount | async }}</span><span (click)="increment()"
-                                    style=" margin-left: 5px;" class="cart-counter">+</span>
+                                <span (click)="decrement(data.cartCount,i)" class="cart-counter">-</span><span
+                                    style="margin-left: 5px;" class="cart-counter">{{ data.cartCount
+                                    }}</span><span (click)="increment(data,i)" style=" margin-left: 5px;"
+                                    class="cart-counter">+</span>
                                 <span class="progress-bar"></span>
                             </div>
                         </div>
@@ -76,70 +75,81 @@
                 </div>
             </div>
         </div>
-        <div class="right-side-container"
-            style="margin-top: 30px ; display: flex; align-items: center; margin-left: 50px; flex-direction: column; position: sticky; top: 0px;">
-            <div class="empty-cart-container">
-                <div class="empty-cart-container-2" *ngIf="emptyCart">
-                    <img src="../../../assets/shoping-cart.png" width="50" alt="">
-                    <span>No items in cart</span>
-                </div>
-                <div class="selected-cart-item-list-container" *ngIf="cartPresent">
-                    <h4>Cart</h4>
-                    <div class="item-list"
-                        style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
-                        <span style="color: black;">selected item</span>
-                        <div class="add-cart-button"
-                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
-                            <span (click)="decrement()" style="color: rgb(121,79,231);"
-                                class="cart-counter">-</span><span style="color: rgb(121,79,231); margin-left: 5px;"
-                                class="cart-counter">{{ addedCartsCount | async }}</span><span (click)="increment()"
-                                style=" margin-left: 5px;color: rgb(121,79,231);" class="cart-counter">+</span>
-                            <span class="progress-bar"></span>
-                        </div>
-                        <span>cost</span>
+        <ng-container *ngFor="let data of demoData; let i = index">
+            <div class="right-side-container" *ngIf="i < 1"
+                style="margin-top: 30px ; display: flex; align-items: center; margin-left: 50px; flex-direction: column; position: sticky; top: 0px;">
+                <div class="empty-cart-container">
+                    <div class="empty-cart-container-2" *ngIf="data.showAddCartButton">
+                        <img src="../../../assets/shoping-cart.png" width="50" alt="">
+                        <span>No items in cart</span>
                     </div>
-                    <app-line></app-line>
-                    <div class="view-cart-button-container"
-                        style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                        <div class="view-cart-button" (click)="viewCartDetail()">
-                            <span>₹100</span>
-                            <span>View Cart</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="offer-list-container">
-
-                <div class="offer-list-child-container">
-                    <div class="percentage-icon-container">
-                        <img src="../../../assets/percentage-icon.png" width="25" alt="">
-                    </div>
-                    <div class="offer-list-text-container">
-                        <span class="main-content">20% off on Kotak Silk cards</span>
-                        <span style="font-size: 0.6rem; color: rgb(165, 163, 163);">20% off up to INR 350</span>
-                    </div>
-                </div>
-                <div class="accordion-container">
-                    <button
-                        style="background-color: white; font-weight: bold; font-size: 0.7rem; color: rgb(121,79,231);"
-                        (click)="toggleAccordion()" class="accordion-button">{{ showContent ? 'View More Offers' :
-                        'View More Offers' }}</button>
-                    <div *ngIf="showContent" class="accordion-content">
-                        <div class="accordion-item">
-                            <div *ngFor="let data of buttons" class="offer-list-child-container">
-                                <div class="percentage-icon-container">
-                                    <img [src]="data.img" width="25" alt="">
+                    <div class="selected-cart-item-list-container" *ngIf="!data.showAddCartButton">
+                        <h4>Cart</h4>
+                        <ng-container *ngFor="let service of selectedServices; let item = index">
+                            <div class="item-list"
+                                style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
+                                <span style="color: black; width: 150px;">{{service.serviceTitle}}</span>
+                                <div class="add-cart-button"
+                                    style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
+                                    <span (click)="decrement(data.cartCount,i)" style="color: rgb(121,79,231);"
+                                        class="cart-counter">-</span><span
+                                        style="color: rgb(121,79,231); margin-left: 5px;"
+                                        class="cart-counter">{{service.cartCount}}</span><span
+                                        (click)="increment(data.cartCount,i)"
+                                        style=" margin-left: 5px;color: rgb(121,79,231);" class="cart-counter">+</span>
+                                    <span class="progress-bar"></span>
                                 </div>
-                                <div class="offer-list-text-container">
-                                    <span class="main-content">{{data.title}}</span>
-                                    <span style="font-size: 0.6rem; color: rgb(165, 163, 163);">{{data.title}}</span>
+                                <span style="margin-left: 10px;">{{service.serviceAmount}}</span>
+                            </div>
+                        </ng-container>
+                        <app-line></app-line>
+                        <div class="view-cart-button-container"
+                            style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
+                            <div class="view-cart-button" (click)="viewCartDetail()">
+                                <span>₹100</span>
+                                <span>View Cart</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="offer-list-container">
+
+                    <div class="offer-list-child-container">
+                        <div class="percentage-icon-container">
+                            <img src="../../../assets/percentage-icon.png" width="25" alt="">
+                        </div>
+                        <div class="offer-list-text-container">
+                            <span class="main-content">20% off on Kotak Silk cards</span>
+                            <span style="font-size: 0.6rem; color: rgb(165, 163, 163);">20% off up to INR 350</span>
+                        </div>
+                    </div>
+                    <div class="accordion-container">
+                        <button
+                            style="background-color: white; font-weight: bold; font-size: 0.7rem; color: rgb(121,79,231);"
+                            (click)="toggleAccordion()" class="accordion-button">{{ showContent ? 'View More Offers' :
+                            'View More Offers' }}</button>
+                        <div *ngIf="showContent" class="accordion-content">
+                            <div class="accordion-item">
+                                <div *ngFor="let data of buttons" class="offer-list-child-container">
+                                    <div class="percentage-icon-container">
+                                        <img [src]="data.img" width="25" alt="">
+                                    </div>
+                                    <div class="offer-list-text-container">
+                                        <span class="main-content">{{data.title}}</span>
+                                        <span
+                                            style="font-size: 0.6rem; color: rgb(165, 163, 163);">{{data.title}}</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+    </div>
+    <div class="toast" [ngClass]="{ 'show': cartLimitOver }">
+        <span>{{ message }}</span>
     </div>
 </section>
 <app-skelton *ngIf="dataLoading"></app-skelton>

@@ -4,6 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class LoaderService {
+  public toasterValue: string = ""
 
   constructor() { }
+
+  public showToaster(value: string){
+    this.toasterValue = value
+  }
+
 }

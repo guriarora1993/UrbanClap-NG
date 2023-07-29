@@ -22,7 +22,7 @@ const _serviceCartsReducer = createReducer(
     return { count };
   }),
   on(reset, () => {
-    const count = 0;
+    const count = 1;
     localStorage.setItem('counterState', count.toString());
     return { count };
   })
