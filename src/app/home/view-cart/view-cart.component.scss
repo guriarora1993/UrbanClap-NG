@@ -112,3 +112,21 @@
     }
   }
 }
+
+.toast {
+  width: auto;
+  position: fixed;
+  top: -100px; /* Start from the top, just outside the screen */
+  right: 40%; /* Start from the right side, 20px from the right edge */
+  background-color: rgb(179, 35, 6);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: opacity 0.3s, top 1s;
+}
+
+.toast.show {
+  top: 20px; /* Slide in to 20px from the top */
+  opacity: 1;
+}

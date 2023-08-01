@@ -1,6 +1,6 @@
 <div class="uc-view-cart-main-container">
     <div class="header-section">
-        <img src="../../../assets/arrow.png" width="15" alt="">
+        <img (click)="navigateToComponent()" src="../../../assets/arrow.png" width="15" alt="">
         <span>Summary</span>
     </div>
     <div style="height: 2px; background-color: #f1f1f1; width: 100%; margin-top: 5px;"></div>
@@ -9,27 +9,27 @@
         <div class="empty-cart-screen-text-container">
             <h4>Hey, it feels so empty here</h4>
             <span>Lets add some services</span>
-            <button>Explore services</button>
+            <button (click)="navigateToComponent()">Explore services</button>
         </div>
     </div>
     <div class="section-main-container" *ngIf="!emptyCart">
         <div style="width: 60%;">
-            <div class="selected-cart-information-container">
+            <div class="selected-cart-information-container" *ngFor="let item of cartList; let i = index">
                 <div class="selected-cart-information-header">
-                    <span style="font-size: 0.7rem;margin-top: 10px;">Full body Indulhence</span>
+                    <span style="font-size: 0.7rem;margin-top: 10px;">{{item.serviceTitle}}</span>
                     <div class="right-content">
                         <div class="add-cart-button"
-                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                            <span (click)="decrement()" class="cart-counter">-</span><span style="margin-left: 5px;"
-                                class="cart-counter">{{ (addedCartsCount | async) }}</span><span (click)="increment()"
-                                style=" margin-left: 5px;" class="cart-counter">+</span>
+                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 60px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
+                            <span (click)="decrement(item,i)" class="cart-counter" style="font-size: 15px;">-</span><span
+                                style="margin-left: 5px; font-size: 15px;" class="cart-counter">{{item.cartCount}}</span><span
+                                (click)="increment(item,i)" style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>
-                        <span style="font-size: 0.7rem;">₹400</span>
+                        <span style="font-size: 0.8rem;">₹{{item.serviceAmount}}</span>
                     </div>
                 </div>
             </div>
-            <div style="width: 32vw; border: 1px dotted rgb(227, 223, 223); margin-top: 20px;"></div>
+            <!-- <div style="width: 32vw; border: 1px dotted rgb(227, 223, 223); margin-top: 20px;"></div>
             <div class="cart-service-list">
                 <ul style="margin: 15px;">
                     <li class="list-item">Threading: Eyebrow x1</li>
@@ -40,7 +40,7 @@
                 <button
                     style="color: rgb(82, 81, 81); cursor: pointer; width: 100px; font-weight: bold; font-size: 0.6rem; padding: 8px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
                     package</button>
-            </div>
+            </div> -->
             <div style="height: 2px; background-color: #f1f1f1; width: 32vw; height: 4px; margin-top: 20px;"></div>
             <div class="frequently-cards-container">
                 <span>Frequently added together</span>
@@ -50,17 +50,17 @@
         <div class="right-section-container">
             <span>Payment summary</span>
             <div class="item-amount-description">
-                <span style="font-size: 0.7rem;">Item total</span>
-                <span style="font-size: 0.6rem;">₹400</span>
+                <span style="font-size: 0.9rem;">Item total</span>
+                <span style="font-size: 0.8rem;">₹{{totalAmount}}</span>
             </div>
             <div class="item-amount-description">
-                <span style="font-size: 0.7rem; border-bottom: 2px dotted #bdbcbc;">Taxes and free</span>
-                <span style="font-size: 0.6rem;">₹400</span>
+                <span style="font-size: 0.9rem; border-bottom: 2px dotted #bdbcbc;">Taxes and free</span>
+                <span style="font-size: 0.8rem;">₹{{taxOnService}}</span>
             </div>
             <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-top: 15px;"></div>
             <div class="item-amount-description">
-                <span style="font-size: 0.7rem;">Total</span>
-                <span style="font-size: 0.6rem;">₹0</span>
+                <span style="font-size: 1rem; font-weight: bold;">Total</span>
+                <span style="font-size: 0.8rem; font-weight: bold;">₹{{grandTotal}}</span>
             </div>
             <div style="height: 3px; background-color: rgb(237,237,237); width: 100%; margin-top: 15px;"></div>
             <div class="service-prefrence-container">
@@ -96,4 +96,7 @@
             </div>
         </div>
     </div>
+</div>
+<div class="toast" [ngClass]="{ 'show': cartLimitOver }">
+    <span>{{ message }}</span>
 </div>

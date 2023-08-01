@@ -1,10 +1,9 @@
 import { Component, ElementRef } from '@angular/core';
-import { Router } from '@angular/router';
-import { addCart, removeCart, reset } from '@app/state/app.actions';
+import { NavigationExtras, Router } from '@angular/router';
+import { LoaderService } from '@app/services/loader.service';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
-import { Observable, count } from 'rxjs';
-import { LoaderService } from '@app/services/loader.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
@@ -21,6 +20,8 @@ export class ServiceDetailListComponent {
   public isSpanDisabled: boolean = false;
   public message: string = "You can't add anymore of this item";
   public selectedServices: any[] = [];
+  public totalAmountOfService: number = 0;
+  // public selectedServicesNew: any;
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -60,17 +61,56 @@ export class ServiceDetailListComponent {
   }
 
   public increment(item: any, index: number) {
+    // this.demoData[index].showAddCartButton = true;
     const cartCountLimit = 3;
-
     if (this.demoData[index].cartCount < cartCountLimit) {
       this.demoData[index].cartCount++;
-
-      // Check if the item already exists in selectedServices array
-      const itemExists = this.selectedServices.some((service) => {
+      this.demoData[index].showAddCartButton = false;
+      const itemExists = this.demoData2.some((service) => {
         return JSON.stringify(service) === JSON.stringify(item);
       });
       if (!itemExists) {
-        this.selectedServices.push(item);
+        for (let index = 0; index < this.demoData.length; index++) {
+          const itemAmount =
+            this.demoData[index].serviceAmount * this.demoData[index].cartCount;
+          if (this.demoData[index].cartCount > 0) {
+            const updatedItem = {
+              ...this.demoData[index],
+              serviceAmount: itemAmount,
+            };
+            this.selectedServices.push(updatedItem);
+            const uniqueServices = this.selectedServices.reduce(
+              (acc: any[], curr: any) => {
+                const existingServiceIndex = acc.findIndex(
+                  (item) => item.serviceName === curr.serviceName
+                );
+                if (existingServiceIndex !== -1) {
+                  if (curr.cartCount > acc[existingServiceIndex].cartCount) {
+                    acc.splice(existingServiceIndex, 1, curr);
+                  }
+                } else {
+                  acc.push(curr);
+                }
+                return acc;
+              },
+              []
+            );
+            this.selectedServices = uniqueServices;
+            const serviceAmountValues = this.selectedServices.map(
+              (item) => item.serviceAmount
+            );
+
+            // Calculate the sum of serviceAmount values using reduce
+            const totalAmount = serviceAmountValues.reduce(
+              (accumulator, currentValue) => {
+                return accumulator + currentValue;
+              },
+              0
+            );
+
+            this.totalAmountOfService = totalAmount;
+          }
+        }
       } else {
       }
     } else {
@@ -79,66 +119,195 @@ export class ServiceDetailListComponent {
   }
 
   public decrement(item: any, index: number) {
-    item > 1
-      ? this.demoData[index].cartCount--
-      : (this.demoData[index].showAddCartButton = true);
+    const cartCountLimit = 0;
+    this.demoData[index].showAddCartButton = true;
+    if (this.demoData[index].cartCount > cartCountLimit) {
+      this.demoData[index].cartCount--;
+      if (this.demoData[index].cartCount < 1) {
+        this.demoData[index].showAddCartButton = true;
+      } else {
+        this.demoData[index].showAddCartButton = false;
+      }
+      const idx = this.selectedServices.findIndex(
+        (el: any) => item.serviceTitle === el.serviceTitle
+      );
+      if (idx != -1) {
+        if (this.demoData[index].cartCount == 0) {
+          this.selectedServices.splice(idx, 1);
+        } else {
+          this.selectedServices[idx].cartCount = this.demoData[index].cartCount;
+          this.selectedServices[idx].serviceAmount =
+            item.serviceAmount - this.demoData[index].serviceAmount;
+        }
+      }
+      const serviceAmountValues = this.selectedServices.map(
+        (item) => item.serviceAmount
+      );
+
+      // Calculate the sum of serviceAmount values using reduce
+      const totalAmount = serviceAmountValues.reduce(
+        (accumulator, currentValue) => {
+          return accumulator - currentValue;
+        },
+        0
+      );
+      this.totalAmountOfService = totalAmount;
+    } else {
+      this.demoData[index].showAddCartButton = true;
+    }
+  }
+
+  public decrementSelectedServices(item: any, index: number) {
+    const cartCountLimit = 0;
+    this.demoData[index].showAddCartButton = true;
+    if (this.demoData[index].cartCount > cartCountLimit) {
+      this.demoData[index].cartCount--;
+      if (this.demoData[index].cartCount < 1) {
+        this.demoData[index].showAddCartButton = true;
+      } else {
+        this.demoData[index].showAddCartButton = false;
+      }
+      const idx = this.selectedServices.findIndex(
+        (el: any) => item.serviceTitle === el.serviceTitle
+      );
+      if (idx != -1) {
+        if (this.demoData[index].cartCount == 0) {
+          this.selectedServices.splice(idx, 1);
+        } else {
+          this.selectedServices[idx].cartCount = this.demoData[index].cartCount;
+          this.selectedServices[idx].serviceAmount =
+            this.demoData[index].cartCount * item.serviceAmount;
+        }
+      }
+      const serviceAmountValues = this.selectedServices.map(
+        (item) => item.serviceAmount
+      );
+
+      // Calculate the sum of serviceAmount values using reduce
+      const totalAmount = serviceAmountValues.reduce(
+        (accumulator, currentValue) => {
+          return accumulator - currentValue;
+        },
+        0
+      );
+      this.totalAmountOfService = totalAmount;
+    } else {
+      this.demoData[index].showAddCartButton = true;
+    }
   }
   public demoData = [
     {
       serviceName: 'Packages',
       serviceTitle: 'Combo + Beared grooming + Relaxing head massage',
       reviews: '1.85(85k reviews)',
-      serviceAmount: '₹400',
+      serviceAmount: 400,
       serviceImage: '../../../assets/packages.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
     {
       serviceName: 'Mens/Kids haircut',
       serviceTitle: 'Haircut + Beared grooming + Relaxing head massage',
       reviews: '2.85(5k reviews)',
-      serviceAmount: '₹500',
+      serviceAmount: 500,
       serviceImage: '../../../assets/men&kids-haircut.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
     {
       serviceName: 'Face care',
       serviceTitle: 'Facial + Makeup + Relaxing face massage',
       reviews: '0.85(85k reviews)',
-      serviceAmount: '₹300',
+      serviceAmount: 300,
       serviceImage: '../../../assets/face-care.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
     {
       serviceName: 'Shave/beared',
       serviceTitle: 'Facial + Makeup + Relaxing face massage',
       reviews: '9.85(80k reviews)',
-      serviceAmount: '₹600',
+      serviceAmount: 600,
       serviceImage: '../../../assets/shaved-beared.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
     {
       serviceName: 'Hair colour',
       serviceTitle: 'Smooth + colouring + Relaxing head massage',
       reviews: '41.85(812k reviews)',
-      serviceAmount: '₹800',
+      serviceAmount: 800,
       serviceImage: '../../../assets/hair-color.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
     {
       serviceName: 'Massage',
       serviceTitle: 'Smooth + colouring + Relaxing head massage',
       reviews: '400.85(811k reviews)',
-      serviceAmount: '₹200',
+      serviceAmount: 200,
       serviceImage: '../../../assets/massage.webp',
       showAddCartButton: true,
-      cartCount: 1,
+      cartCount: 0,
     },
   ];
+  public demoData2 = [
+    {
+      serviceName: 'Packages',
+      serviceTitle: 'Combo + Beared grooming + Relaxing head massage',
+      reviews: '1.85(85k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/packages.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+    {
+      serviceName: 'Mens/Kids haircut',
+      serviceTitle: 'Haircut + Beared grooming + Relaxing head massage',
+      reviews: '2.85(5k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/men&kids-haircut.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+    {
+      serviceName: 'Face care',
+      serviceTitle: 'Facial + Makeup + Relaxing face massage',
+      reviews: '0.85(85k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/face-care.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+    {
+      serviceName: 'Shave/beared',
+      serviceTitle: 'Facial + Makeup + Relaxing face massage',
+      reviews: '9.85(80k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/shaved-beared.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+    {
+      serviceName: 'Hair colour',
+      serviceTitle: 'Smooth + colouring + Relaxing head massage',
+      reviews: '41.85(812k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/hair-color.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+    {
+      serviceName: 'Massage',
+      serviceTitle: 'Smooth + colouring + Relaxing head massage',
+      reviews: '400.85(811k reviews)',
+      serviceAmount: 100,
+      serviceImage: '../../../assets/massage.webp',
+      showAddCartButton: true,
+      cartCount: 0,
+    },
+  ];
+  // ₹
   public activeIndex: number = -1;
   public toggleScroll(index: number, serviceTitle: string, divId: any) {
     const element = this.elementRef.nativeElement.querySelector(divId);
@@ -185,12 +354,10 @@ export class ServiceDetailListComponent {
     }, 0);
   }
 
-  public addCartList(item: any) {
-    item.showAddCartButton = false;
-  }
-
-  public viewCartDetail() {
+  public viewCartDetail(cartList: any, totalAmount: number) {
     this.dataLoading = true;
+    localStorage.setItem('cartList', JSON.stringify(cartList));
+    localStorage.setItem('totalAmount', totalAmount.toString());
     setTimeout(() => {
       if (this.counterValue != 0) {
         this.router.navigate(['/view-cart']);

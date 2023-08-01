@@ -57,17 +57,18 @@
                     <div class="card-container" style="margin-right: 50px;">
                         <div class="image-card" style="position: relative;">
                             <img width="80" style="border-radius: 10px;" [src]="data.serviceImage" alt="">
-                            <div class="add-cart-button" *ngIf="data.showAddCartButton" (click)="addCartList(data)"
+                            <div class="add-cart-button" *ngIf="data.showAddCartButton" (click)="increment(data,i)"
                                 style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
                                 Add
                                 <span class="progress-bar"></span>
                             </div>
                             <div class="add-cart-button" *ngIf="!data.showAddCartButton"
                                 style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                                <span (click)="decrement(data.cartCount,i)" class="cart-counter">-</span><span
-                                    style="margin-left: 5px;" class="cart-counter">{{ data.cartCount
-                                    }}</span><span (click)="increment(data,i)" style=" margin-left: 5px;"
-                                    class="cart-counter">+</span>
+                                <span (click)="decrementSelectedServices(data,i)" class="cart-counter"
+                                    style="font-size: 15px;">-</span><span style="margin-left: 5px; font-size: 15px;"
+                                    class="cart-counter">{{ data.cartCount
+                                    }}</span><span (click)="increment(data,i)"
+                                    style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
                                 <span class="progress-bar"></span>
                             </div>
                         </div>
@@ -75,15 +76,15 @@
                 </div>
             </div>
         </div>
-        <ng-container *ngFor="let data of demoData; let i = index">
-            <div class="right-side-container" *ngIf="i < 1"
+        <ng-container>
+            <div class="right-side-container"
                 style="margin-top: 30px ; display: flex; align-items: center; margin-left: 50px; flex-direction: column; position: sticky; top: 0px;">
                 <div class="empty-cart-container">
-                    <div class="empty-cart-container-2" *ngIf="data.showAddCartButton">
+                    <div class="empty-cart-container-2" *ngIf="selectedServices.length<=0">
                         <img src="../../../assets/shoping-cart.png" width="50" alt="">
                         <span>No items in cart</span>
                     </div>
-                    <div class="selected-cart-item-list-container" *ngIf="!data.showAddCartButton">
+                    <div class="selected-cart-item-list-container" *ngIf="selectedServices.length>0">
                         <h4>Cart</h4>
                         <ng-container *ngFor="let service of selectedServices; let item = index">
                             <div class="item-list"
@@ -91,22 +92,25 @@
                                 <span style="color: black; width: 150px;">{{service.serviceTitle}}</span>
                                 <div class="add-cart-button"
                                     style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
-                                    <span (click)="decrement(data.cartCount,i)" style="color: rgb(121,79,231);"
+                                    <span (click)="decrement(service,item)"
+                                        style="color: rgb(121,79,231); font-size: 15px;"
                                         class="cart-counter">-</span><span
-                                        style="color: rgb(121,79,231); margin-left: 5px;"
+                                        style="color: rgb(121,79,231); margin-left: 5px; font-size: 15px;"
                                         class="cart-counter">{{service.cartCount}}</span><span
-                                        (click)="increment(data.cartCount,i)"
-                                        style=" margin-left: 5px;color: rgb(121,79,231);" class="cart-counter">+</span>
+                                        (click)="increment(service,item)"
+                                        style=" margin-left: 5px;color: rgb(121,79,231); font-size: 15px;"
+                                        class="cart-counter">+</span>
                                     <span class="progress-bar"></span>
                                 </div>
-                                <span style="margin-left: 10px;">{{service.serviceAmount}}</span>
+                                <span style="margin-left: 10px;">₹{{service.serviceAmount}}</span>
                             </div>
                         </ng-container>
                         <app-line></app-line>
                         <div class="view-cart-button-container"
                             style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                            <div class="view-cart-button" (click)="viewCartDetail()">
-                                <span>₹100</span>
+                            <div class="view-cart-button"
+                                (click)="viewCartDetail(selectedServices,totalAmountOfService)">
+                                <span>₹{{totalAmountOfService}}</span>
                                 <span>View Cart</span>
                             </div>
                         </div>
@@ -147,6 +151,7 @@
                 </div>
             </div>
         </ng-container>
+
     </div>
     <div class="toast" [ngClass]="{ 'show': cartLimitOver }">
         <span>{{ message }}</span>

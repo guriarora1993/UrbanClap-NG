@@ -2,7 +2,7 @@
     <div class="sidebar" [ngClass]="{'open': sidebarVisible}" [class]="animationName">
         <div class="main-container-sidebar">
             <div class="sidebar-header">
-                <img (click)="closeToggleSidebar()" width="15" src="../../../assets/arrow.png" alt="">
+                <img style="cursor: pointer;" (click)="closeToggleSidebar()" width="15" src="../../../assets/arrow.png" alt="">
                 <span style="font-size: 0.8rem;">{{sidebarHeading}}</span>
             </div>
             <div style="margin-top: 2px;" class="sidebar-content-main-container"  *ngIf="!loginPage">
@@ -12,7 +12,7 @@
                         <span>{{item.title}}</span>
                     </div>
                     <div class="section-right-content">
-                        <img width="20" src="../../../assets/arrow-icon.png" alt="">
+                        <img style="cursor: pointer;" width="20" src="../../../assets/arrow-icon.png" alt="">
                     </div>
                 </div>
             </div>
