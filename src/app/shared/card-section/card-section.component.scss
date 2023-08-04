@@ -5,9 +5,19 @@
   justify-content: center;
   flex-direction: column;
 
+  .heading{
+    font-size: 32px;
+    line-height: 48px;
+    margin: 0;
+    color: #212121;
+    font-weight: bold;
+  }
+
   .sub-heading {
-    font-size: 0.8rem;
-    margin-top: 10px;
-    color: rgb(130, 129, 129);
+    font-size: 18px;
+    line-height: 28px;
+    margin: 4px 0 0 0;
+    display: block;
+    color: rgb(171,171,171);
   }
 }

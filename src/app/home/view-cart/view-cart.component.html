@@ -16,7 +16,7 @@
         <div style="width: 60%;">
             <div class="selected-cart-information-container" *ngFor="let item of cartList; let i = index">
                 <div class="selected-cart-information-header">
-                    <span style="font-size: 0.7rem;margin-top: 10px;">{{item.serviceTitle}}</span>
+                    <div style="width: 250px;"><span style="font-size: 0.7rem;margin-top: 10px;">{{item.serviceTitle}}</span></div>
                     <div class="right-content">
                         <div class="add-cart-button"
                             style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 60px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
@@ -25,7 +25,9 @@
                                 (click)="increment(item,i)" style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>
+                       <div style="width: 100px;">
                         <span style="font-size: 0.8rem;">₹{{item.serviceAmount}}</span>
+                       </div>
                     </div>
                 </div>
             </div>
@@ -91,7 +93,7 @@
             <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-bottom: 10px;"></div>
             <div style="bottom: 10px; display: flex; align-items: center; justify-content: center;">
                 <button
-                    style="background-color: rgb(110,66,229); width: 330px; border-radius: 5px;margin-top: 230px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 0.7rem;">Login/Sign
+                    style="background-color: rgb(110,66,229); width: 330px; border-radius: 5px;margin-bottom: 10px; margin-top: 230px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 0.7rem;">Login/Sign
                     up to proceed</button>
             </div>
         </div>

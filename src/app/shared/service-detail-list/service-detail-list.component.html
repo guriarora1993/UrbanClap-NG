@@ -1,160 +1,492 @@
 <section class="header-section" *ngIf="!dataLoading">
-    <div class="tutorial-section">
+  <app-header></app-header>
+  <div class="container" style="margin-top: 20px">
+    <div class="row">
+      <div class="col-md-4">
         <div class="tutorial-section-content">
-            <h1 class="main-heading">Salon Prime for kids & <br> men</h1>
-            <div class="ratings-section">
-                <img src="../../../assets/star.png" alt="" width="10">
-                <span>4.87 (4.5M bookings)</span>
+          <h1 class="main-heading">{{screenName}}</h1>
+          <div class="ratings-section">
+            <img src="../../../assets/star.png" alt="" width="10" />
+            <span>4.87 (4.5M bookings)</span>
+          </div>
+          <div class="container guide-button-container">
+            <div class="child-container">
+              <img src="../../../assets/search.png" width="15" alt="" />
+              <span>Massage Guide</span>
             </div>
+            <img src="../../../assets/arrow-icon.png" width="15" alt="" />
+          </div>
         </div>
-        <div class="add-video-container">
-            <video width="500" src="../../../assets/1006936279-preview.mp4" autoplay="true"></video>
-        </div>
-    </div>
-    <div style="height: 4px; margin-top: 40px; background-color: rgb(237,237,237); width: 80vw;"></div>
-    <div class="services-list">
-        <div class="item-container" *ngFor="let service of serviceCardItems;  let i = index"
-            (click)="[toggleScroll(i,service.title,'.service-detail-list'),scrollToTop(i)]">
-            <img [ngClass]="{ 'active': activeIndex === i }" width="60" [src]="service.img" alt="">
-            <span>{{service.title}}</span>
-        </div>
-    </div>
-    <div class="parent-container" style="display: flex;">
-        <div style=" display: flex; align-items: center; justify-content: space-between;">
-            <div class="main-container">
-                <div *ngFor="let data of demoData; let i = index" class="service-detail-list">
-                    <div class="service-detail-list-child-container">
-                        <div style="margin-top: 20px;">
-                            <span
-                                style="font-size: 0.7rem; color: rgb(101,184,192); background-color: rgb(230,249,249);border-radius: 5px; padding: 5px;">{{data.serviceName}}</span>
-                            <h5 style="margin-top: 5px;">{{data.serviceTitle}}</h5>
-                        </div>
-                        <div style="margin-top: 5px;">
-                            <img width="10" src="../../../assets/star.png" alt="">
-                            <span style="font-size: 0.7rem; opacity: 0.6;">{{data.reviews}}</span>
-                        </div>
-                        <div style="display: flex; align-items: center; margin-top: 10px;">
-                            <span style="font-size: 0.6rem;">{{data.serviceAmount}}</span>
-                            <ul>
-                                <li style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;">1 hr 5 mins</li>
-                            </ul>
-                        </div>
-                        <div class="edit-package-container"
-                            style="border-top: 3px dotted rgb(193, 188, 188); margin-top: 20px;">
-                            <ul style="margin-top: 10px;">
-                                <li class="edit-packages-list" style="font-size: 0.7rem;">Haircut <span
-                                        style="opacity: 0.5;">Haircut for men</span></li>
-                                <li class="edit-packages-list" style="font-size: 0.7rem;">Shave/beared grooming <span
-                                        style="opacity: 0.5;">Beared trimming & styling</span></li>
-                                <li class="edit-packages-list" style="font-size: 0.7rem;">Face care <span
-                                        style="opacity: 0.5;">Skin Brighting Facial</span></li>
-                            </ul>
-                            <button
-                                style="cursor: pointer; width: 120px; font-weight: bold; font-size: 0.6rem; padding: 5px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
-                                your package</button>
-                        </div>
-                    </div>
-                    <div class="card-container" style="margin-right: 50px;">
-                        <div class="image-card" style="position: relative;">
-                            <img width="80" style="border-radius: 10px;" [src]="data.serviceImage" alt="">
-                            <div class="add-cart-button" *ngIf="data.showAddCartButton" (click)="increment(data,i)"
-                                style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                                Add
-                                <span class="progress-bar"></span>
-                            </div>
-                            <div class="add-cart-button" *ngIf="!data.showAddCartButton"
-                                style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); position: absolute; width: 50px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                                <span (click)="decrementSelectedServices(data,i)" class="cart-counter"
-                                    style="font-size: 15px;">-</span><span style="margin-left: 5px; font-size: 15px;"
-                                    class="cart-counter">{{ data.cartCount
-                                    }}</span><span (click)="increment(data,i)"
-                                    style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
-                                <span class="progress-bar"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div
+          class="container"
+          style="
+            border: 1px solid rgb(227, 227, 227);
+            margin-top: 20px;
+            border-radius: 10px;
+            position: sticky;
+            top: 20px;
+          "
+        >
+          <div class="row">
+            <div class="service-carts-heading">
+              <span>Select a service</span>
+              <div>
+                <div
+                  style="
+                    width: 160px;
+                    height: 1px;
+                    background-color: rgb(228, 225, 225);
+                  "
+                ></div>
+              </div>
             </div>
-        </div>
-        <ng-container>
-            <div class="right-side-container"
-                style="margin-top: 30px ; display: flex; align-items: center; margin-left: 50px; flex-direction: column; position: sticky; top: 0px;">
-                <div class="empty-cart-container">
-                    <div class="empty-cart-container-2" *ngIf="selectedServices.length<=0">
-                        <img src="../../../assets/shoping-cart.png" width="50" alt="">
-                        <span>No items in cart</span>
-                    </div>
-                    <div class="selected-cart-item-list-container" *ngIf="selectedServices.length>0">
-                        <h4>Cart</h4>
-                        <ng-container *ngFor="let service of selectedServices; let item = index">
-                            <div class="item-list"
-                                style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
-                                <span style="color: black; width: 150px;">{{service.serviceTitle}}</span>
-                                <div class="add-cart-button"
-                                    style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 50px; padding: 5px;  border-radius: 5px; background-color: white;">
-                                    <span (click)="decrement(service,item)"
-                                        style="color: rgb(121,79,231); font-size: 15px;"
-                                        class="cart-counter">-</span><span
-                                        style="color: rgb(121,79,231); margin-left: 5px; font-size: 15px;"
-                                        class="cart-counter">{{service.cartCount}}</span><span
-                                        (click)="increment(service,item)"
-                                        style=" margin-left: 5px;color: rgb(121,79,231); font-size: 15px;"
-                                        class="cart-counter">+</span>
-                                    <span class="progress-bar"></span>
-                                </div>
-                                <span style="margin-left: 10px;">₹{{service.serviceAmount}}</span>
-                            </div>
-                        </ng-container>
-                        <app-line></app-line>
-                        <div class="view-cart-button-container"
-                            style="display: flex; align-items: center; justify-content: center; margin-top: 10px;">
-                            <div class="view-cart-button"
-                                (click)="viewCartDetail(selectedServices,totalAmountOfService)">
-                                <span>₹{{totalAmountOfService}}</span>
-                                <span>View Cart</span>
-                            </div>
-                        </div>
-                    </div>
-
+            <div
+              class="col-md-4"
+              *ngFor="let service of serviceCardItems; let i = index"
+            >
+              <div class="card mb-3 border-0">
+                <div class="card-body">
+                  <div
+                    class="item-container m-0 mx-2"
+                    (click)="
+                      [
+                        toggleScroll(i, service.title, '.service-detail-list'),
+                        scrollToTop(i)
+                      ]
+                    "
+                  >
+                    <img
+                      [ngClass]="{ active: activeIndex === i }"
+                      width="60"
+                      [src]="service.img"
+                      alt=""
+                    />
+                    <span>{{ service.title }}</span>
+                  </div>
                 </div>
-                <div class="offer-list-container">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div>
+          <video #videoPlayer [muted]="true" (click)="playPause()">
+            <source
+              src="https://content.urbanclap.com/videos/growth/luminosity/1655358691204-89c4a7/1655358691204-89c4a7.mp4"
+              type="video/mp4"
+              type="video/mp4"
+            />
+            Your browser does not support the video tag.
+          </video>
+        </div>
 
-                    <div class="offer-list-child-container">
+        <div class="progress-container">
+          <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+        </div>
+        <div
+          class="parent-container"
+          style="
+            display: flex;
+            border-top: 1px solid rgb(237, 237, 237);
+            border-left: 1px solid rgb(237, 237, 237);
+            margin-top: 30px;
+          "
+        >
+          <div
+            style="
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 0px 0px 0px 20px;
+            "
+          >
+            <div class="main-container" style="margin-top: 30px">
+              <span class="list-heading">Packages</span>
+              <div
+                *ngFor="let data of demoData; let i = index"
+                class="row service-detail-list"
+              >
+                <div class="col-md-6 service-detail-list-child-container">
+                  <div style="margin-top: 20px">
+                    <span
+                      style="
+                        font-size: 12px;
+                        font-weight: 600;
+                        color: rgb(6, 153, 163);
+                        text-transform: uppercase;
+                        background-color: rgb(230, 249, 249);
+                        border-radius: 5px;
+                        padding: 5px;
+                      "
+                      >{{ data.serviceName }}</span
+                    ><br />
+                    <span
+                      style="
+                        margin-top: 5px;
+                        font-size: 16px;
+                        font-weight: 700;
+                        color: rgb(15, 15, 15);
+                      "
+                      >{{ data.serviceTitle }}</span
+                    >
+                  </div>
+                  <div style="margin-top: 5px">
+                    <img width="10" src="../../../assets/star.png" alt="" />
+                    <span style="font-size: 12px; opacity: 0.6">{{
+                      data.reviews
+                    }}</span>
+                  </div>
+                  <div
+                    style="display: flex; align-items: center; margin-top: 10px"
+                  >
+                    <span style="font-size: 12px; font-weight: 700">{{
+                      data.serviceAmount
+                    }}</span>
+
+                    <span
+                      style="
+                        font-size: 12px;
+                        font-weight: 400;
+                        opacity: 0.6;
+                        margin-left: 5px;
+                      "
+                      >1 hr 5 mins</span
+                    >
+                  </div>
+                  <div
+                    class="edit-package-container"
+                    style="
+                      border-top: 3px dotted rgb(193, 188, 188);
+                      margin-top: 20px;
+                    "
+                  >
+                    <ul style="margin-top: 10px">
+                      <li
+                        class="edit-packages-list"
+                        style="font-size: 12px; font-weight: 700"
+                      >
+                        Haircut
+                        <span
+                          style="
+                            opacity: 0.5;
+                            font-size: 12px;
+                            line-height: 16px;
+                            font-weight: 400;
+                          "
+                          >Haircut for men</span
+                        >
+                      </li>
+                      <li
+                        class="edit-packages-list"
+                        style="font-size: 12px; font-weight: 700"
+                      >
+                        Shave/beared grooming
+                        <span
+                          style="
+                            opacity: 0.5;
+                            font-size: 12px;
+                            font-weight: 400;
+                          "
+                          >Beared trimming & styling</span
+                        >
+                      </li>
+                      <li
+                        class="edit-packages-list"
+                        style="font-size: 12px; font-weight: 700"
+                      >
+                        Face care
+                        <span
+                          style="
+                            opacity: 0.5;
+                            font-size: 12px;
+                            font-weight: 400;
+                          "
+                          >Skin Brighting Facial</span
+                        >
+                      </li>
+                    </ul>
+                    <button
+                      style="
+                        cursor: pointer;
+                        width: 150px;
+                        padding: 5px;
+                        font-weight: bold;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 20px;
+                        color: rgb(15, 15, 15);
+                        padding: 5px;
+                        border: 1px solid rgb(193, 188, 188);
+                        border-radius: 5px;
+                        background-color: white;
+                        margin-top: 10px;
+                      "
+                    >
+                      Edit your package
+                    </button>
+                  </div>
+                </div>
+                <div class="col-md-4 card-container">
+                  <div class="image-card" style="position: relative">
+                    <div style="width: 120px; border-radius: 10px">
+                      <img
+                        style="
+                          border-radius: 10px;
+                          width: 100%;
+                          height: 100%;
+                          object-fit: contain;
+                        "
+                        [src]="data.serviceImage"
+                        alt=""
+                      />
+                    </div>
+                    <div
+                      class="add-cart-button"
+                      *ngIf="data.showAddCartButton"
+                      (click)="increment(data, i)"
+                      style="
+                        cursor: pointer;
+                        color: rgb(121, 79, 231);
+                        font-size: 14px;
+                        font-weight: 600;
+                        border: 1px solid rgb(121, 79, 231);
+                        position: absolute;
+                        width: 70px;
+                        padding: 5px;
+                        border-radius: 5px;
+                        left: 25px;
+                        bottom: -10px;
+                        background-color: white;
+                      "
+                    >
+                      Add
+                      <span *ngIf="changeValue" class="progress-bar"></span>
+                    </div>
+                    <div
+                      class="add-cart-button"
+                      *ngIf="!data.showAddCartButton"
+                      style="
+                        cursor: pointer;
+                        color: rgb(121, 79, 231);
+                        border: 1px solid rgb(121, 79, 231);
+                        position: absolute;
+                        width: 70px;
+                        padding: 5px;
+                        border-radius: 5px;
+                        left: 25px;
+                        bottom: -10px;
+                        background-color: white;
+                      "
+                    >
+                      <span
+                        (click)="decrementSelectedServices(data, i)"
+                        class="cart-counter"
+                        style="font-size: 15px"
+                        >-</span
+                      ><span
+                        style="margin-left: 5px; font-size: 15px"
+                        class="cart-counter"
+                        >{{ data.cartCount }}</span
+                      ><span
+                        (click)="increment(data, i)"
+                        style="margin-left: 5px; font-size: 15px"
+                        class="cart-counter"
+                        >+</span
+                      >
+                      <span *ngIf="changeValue" class="progress-bar"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <ng-container>
+            <div
+              class="right-side-container"
+              style="
+                margin-top: 30px;
+                display: flex;
+                align-items: center;
+                margin-left: 50px;
+                flex-direction: column;
+                position: sticky;
+                top: 0px;
+              "
+            >
+              <div class="empty-cart-container">
+                <div
+                  class="empty-cart-container-2"
+                  *ngIf="selectedServices.length <= 0"
+                >
+                  <img
+                    src="../../../assets/shoping-cart.png"
+                    width="50"
+                    alt=""
+                  />
+                  <span style="font-size: 14px; font-weight: 400"
+                    >No items in cart</span
+                  >
+                </div>
+                <div
+                  class="selected-cart-item-list-container"
+                  *ngIf="selectedServices.length > 0"
+                >
+                  <h4>Cart</h4>
+                  <ng-container
+                    *ngFor="let service of selectedServices; let item = index"
+                  >
+                    <div
+                      class="item-list"
+                      style="
+                        display: flex;
+                        align-items: center;
+                        margin-top: 15px;
+                      "
+                    >
+                      <div style="width: 100px">
+                        <span style="color: black; width: 150px">{{
+                          service.serviceTitle
+                        }}</span>
+                      </div>
+                      <div
+                        class="add-cart-button"
+                        style="
+                          cursor: pointer;
+                          color: rgb(121, 79, 231);
+                          border: 1px solid rgb(121, 79, 231);
+                          width: 50px;
+                          padding: 5px;
+                          border-radius: 5px;
+                          background-color: white;
+                        "
+                      >
+                        <span
+                          (click)="decrement(service, item)"
+                          style="color: rgb(121, 79, 231); font-size: 15px"
+                          class="cart-counter"
+                          >-</span
+                        ><span
+                          style="
+                            color: rgb(121, 79, 231);
+                            margin-left: 5px;
+                            font-size: 15px;
+                          "
+                          class="cart-counter"
+                          >{{ service.cartCount }}</span
+                        ><span
+                          (click)="increment(service, item)"
+                          style="
+                            margin-left: 5px;
+                            color: rgb(121, 79, 231);
+                            font-size: 15px;
+                          "
+                          class="cart-counter"
+                          >+</span
+                        >
+                      </div>
+
+                      <div style="width: 50px">
+                        <span style="margin-left: 10px"
+                          >₹{{ service.serviceAmount }}</span
+                        >
+                      </div>
+                    </div>
+                  </ng-container>
+                  <app-line></app-line>
+                  <div
+                    class="view-cart-button-container"
+                    style="
+                      display: flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin-top: 10px;
+                    "
+                  >
+                    <div
+                      class="view-cart-button"
+                      (click)="
+                        viewCartDetail(selectedServices, totalAmountOfService)
+                      "
+                    >
+                      <span>₹{{ totalAmountOfService }}</span>
+                      <span>View Cart</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="offer-list-container">
+                <div class="offer-list-child-container">
+                  <div class="percentage-icon-container">
+                    <img
+                      src="../../../assets/percentage-icon.png"
+                      width="25"
+                      alt=""
+                    />
+                  </div>
+                  <div class="offer-list-text-container">
+                    <span class="main-content"
+                      >20% off on Kotak Silk cards</span
+                    >
+                    <span style="font-size: 0.6rem; color: rgb(165, 163, 163)"
+                      >20% off up to INR 350</span
+                    >
+                  </div>
+                </div>
+                <div class="accordion-container">
+                  <button
+                    style="
+                      background-color: white;
+                      font-weight: bold;
+                      font-size: 0.7rem;
+                      color: rgb(121, 79, 231);
+                      display: flex;
+                      align-items: center;
+                    "
+                    (click)="toggleAccordion()"
+                    class="accordion-button"
+                  >
+                    {{ showContent ? "ViewMoreOffers" : "View More Offers" }}
+                    <img
+                      src="../../../assets/accordian-close.png"
+                      width="15"
+                      style="margin-left: 5px"
+                      [ngStyle]="{
+                        transform: 'rotate(' + rotationAngle + 'deg)'
+                      }"
+                      alt=""
+                    />
+                  </button>
+                  <div *ngIf="showContent" class="accordion-content">
+                    <div class="accordion-item">
+                      <div
+                        *ngFor="let data of buttons"
+                        class="offer-list-child-container"
+                      >
                         <div class="percentage-icon-container">
-                            <img src="../../../assets/percentage-icon.png" width="25" alt="">
+                          <img [src]="data.img" width="25" alt="" />
                         </div>
                         <div class="offer-list-text-container">
-                            <span class="main-content">20% off on Kotak Silk cards</span>
-                            <span style="font-size: 0.6rem; color: rgb(165, 163, 163);">20% off up to INR 350</span>
+                          <span class="main-content">{{ data.title }}</span>
+                          <span
+                            style="font-size: 0.6rem; color: rgb(165, 163, 163)"
+                            >{{ data.title }}</span
+                          >
                         </div>
+                      </div>
                     </div>
-                    <div class="accordion-container">
-                        <button
-                            style="background-color: white; font-weight: bold; font-size: 0.7rem; color: rgb(121,79,231);"
-                            (click)="toggleAccordion()" class="accordion-button">{{ showContent ? 'View More Offers' :
-                            'View More Offers' }}</button>
-                        <div *ngIf="showContent" class="accordion-content">
-                            <div class="accordion-item">
-                                <div *ngFor="let data of buttons" class="offer-list-child-container">
-                                    <div class="percentage-icon-container">
-                                        <img [src]="data.img" width="25" alt="">
-                                    </div>
-                                    <div class="offer-list-text-container">
-                                        <span class="main-content">{{data.title}}</span>
-                                        <span
-                                            style="font-size: 0.6rem; color: rgb(165, 163, 163);">{{data.title}}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </ng-container>
-
+          </ng-container>
+        </div>
+      </div>
     </div>
-    <div class="toast" [ngClass]="{ 'show': cartLimitOver }">
-        <span>{{ message }}</span>
-    </div>
+  </div>
+  <div class="toast" [ngClass]="{ show: cartLimitOver }">
+    <span>{{ message }}</span>
+  </div>
 </section>
+<app-footer [homeScreen]="isHome"></app-footer>
 <app-skelton *ngIf="dataLoading"></app-skelton>

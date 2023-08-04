@@ -1,14 +1,17 @@
-<div class="tryClass">
+<div class="parent-container" *ngIf="!navigateToService">
     <div class="sidebar" [ngClass]="{'open': sidebarVisible}" [class]="animationName">
         <div class="main-container-sidebar">
             <div class="sidebar-header">
-                <img style="cursor: pointer;" (click)="closeToggleSidebar()" width="15" src="../../../assets/arrow.png" alt="">
-                <span style="font-size: 0.8rem;">{{sidebarHeading}}</span>
+                <img *ngIf="!loginPage" style="cursor: pointer; font-size: 16px; margin-left: 16px;"
+                    (click)="closeToggleSidebar()" width="15" src="../../../assets/arrow.png" alt="">
+                <img *ngIf="loginPage" style="cursor: pointer; font-size: 16px; margin-left: 16px;"
+                    (click)="closeToggleSidebar()" width="15" src="../../../assets/icons8-close-480.png" alt="">
+                <span style="font-size: 16px; margin-left: 16px;">{{sidebarHeading}}</span>
             </div>
-            <div style="margin-top: 2px;" class="sidebar-content-main-container"  *ngIf="!loginPage">
-                <div class="sidebar-container" *ngFor="let item of sidebarContent">
+            <div style="margin-top: 2px;" class="sidebar-content-main-container" *ngIf="!loginPage">
+                <div class="sidebar-container" *ngFor="let item of sidebarContent" (click)="navigateTo('Urban-Clap')">
                     <div class="section-left-content">
-                        <img width="50" [src]="item.img" alt="">
+                        <img width="100" [src]="item.img" alt="">
                         <span>{{item.title}}</span>
                     </div>
                     <div class="section-right-content">
@@ -16,13 +19,14 @@
                     </div>
                 </div>
             </div>
-    
+
             <div class="login-main-container" *ngIf="loginPage">
                 <div class="input-main-container">
                     <div [class]="loginContainer">
                         <div class="phone-input-section" style="display: flex; align-items: center;">
-                            <img width="20" src="../../../assets/indian-flag.png" alt="">
-                            <select class="country-code">
+                            <img width="25" style="margin:0px 8px 0px 8px;" src="../../../assets/indian-flag.png"
+                                alt="">
+                            <select class="country-code" style="margin-right: 8px;">
                                 <option *ngFor="let code of countryCodes">{{ code }}</option>
                             </select>
                         </div>
@@ -38,3 +42,4 @@
         </div>
     </div>
 </div>
+<app-skelton *ngIf="navigateToService"></app-skelton>

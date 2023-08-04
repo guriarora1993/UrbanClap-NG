@@ -99,6 +99,7 @@ export class ViewCartComponent {
         this.cartList[index].serviceAmount + this.demoData[index].serviceAmount;
       this.cartList[index].serviceAmount = test;
     }
+    console.log(this.cartList)
   }
 
   public decrement(item: any, index: number) {

@@ -10,12 +10,25 @@
       width: 100vw;
       li {
         list-style: none;
-        font-size: 0.7rem;
         margin: 10px;
       }
-      .others-footer-content-list{
+      li {
+        margin-right: 32px;
+        font-size: 14px;
+        line-height: 36px;
+        opacity: 0.8;
+        transition: opacity 0.2s;
+      }
+      .others-footer-content-list {
         display: flex;
         flex-wrap: wrap;
+        li {
+          margin-right: 32px;
+          font-size: 14px;
+          line-height: 36px;
+          opacity: 0.8;
+          transition: opacity 0.2s;
+        }
       }
       .cities-list {
         opacity: 0.6;
@@ -38,6 +51,12 @@
     }
     .store-icons-container {
       margin-left: 80px;
+      width: 144px;
+      height: 48px;
+    }
+    .app-store-icons-container {
+      width: 144px;
+      height: 48px;
     }
     .social-media-icons-platforms {
       img {
@@ -45,4 +64,28 @@
       }
     }
   }
+}
+
+.text-dark {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(84, 84, 84);
+  text-transform: none;
+}
+
+.headings {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 28px;
+  color: rgb(15, 15, 15);
+}
+
+.container-fluid {
+  margin: 0 -15px;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
 }

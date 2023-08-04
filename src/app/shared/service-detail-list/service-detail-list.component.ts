@@ -1,15 +1,17 @@
-import { Component, ElementRef } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoaderService } from '@app/services/loader.service';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
   styleUrls: ['./service-detail-list.component.scss'],
 })
 export class ServiceDetailListComponent {
+  @Input() screenName: any;
   public cartPresent: boolean = false;
   public addCart: boolean = true;
   public counterValue: number = 1;
@@ -21,19 +23,59 @@ export class ServiceDetailListComponent {
   public message: string = "You can't add anymore of this item";
   public selectedServices: any[] = [];
   public totalAmountOfService: number = 0;
+  public rotationAngle: number = 180;
+  public changeValue: boolean = false;
+  public isHome: boolean = false;
   // public selectedServicesNew: any;
   constructor(
     private elementRef: ElementRef,
     private router: Router,
     private store: Store<{ app: AppState }>,
-    private toaster: LoaderService
+    private toaster: LoaderService,
+    private route: ActivatedRoute,
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
     );
   }
 
-  ngOnInit(): void {}
+  @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+  progressPercentage: number = 0;
+
+  ngOnInit(): void {
+
+    this.route.queryParams.subscribe(params => {
+      const value = params['key'];
+      this.screenName = value
+    });
+  }
+
+  ngAfterViewInit(): void {
+    this.initVideo();
+  }
+
+  initVideo() {
+    const video = this.videoPlayer.nativeElement;
+    video.addEventListener('timeupdate', () => {
+      this.updateProgress();
+    });
+  }
+
+  playPause() {
+    const video = this.videoPlayer.nativeElement;
+    if (video.paused) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+
+  updateProgress() {
+    const video = this.videoPlayer.nativeElement;
+    if (video) {
+      this.progressPercentage = (video.currentTime / video.duration) * 100;
+    }
+  }
 
   buttons = [
     {
@@ -58,9 +100,14 @@ export class ServiceDetailListComponent {
 
   public toggleAccordion() {
     this.showContent = !this.showContent;
+    this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
   }
 
   public increment(item: any, index: number) {
+    this.changeValue = true;
+    setTimeout(() => {
+      this.changeValue = false;
+    }, 1000);
     // this.demoData[index].showAddCartButton = true;
     const cartCountLimit = 3;
     if (this.demoData[index].cartCount < cartCountLimit) {
@@ -119,6 +166,10 @@ export class ServiceDetailListComponent {
   }
 
   public decrement(item: any, index: number) {
+    this.changeValue = true;
+    setTimeout(() => {
+      this.changeValue = false;
+    }, 1000);
     const cartCountLimit = 0;
     this.demoData[index].showAddCartButton = true;
     if (this.demoData[index].cartCount > cartCountLimit) {
@@ -158,6 +209,10 @@ export class ServiceDetailListComponent {
   }
 
   public decrementSelectedServices(item: any, index: number) {
+    this.changeValue = true;
+    setTimeout(() => {
+      this.changeValue = false;
+    }, 1000);
     const cartCountLimit = 0;
     this.demoData[index].showAddCartButton = true;
     if (this.demoData[index].cartCount > cartCountLimit) {
@@ -234,7 +289,7 @@ export class ServiceDetailListComponent {
     },
     {
       serviceName: 'Hair colour',
-      serviceTitle: 'Smooth + colouring + Relaxing head massage',
+      serviceTitle: 'Smooth + colouring + Beared setting',
       reviews: '41.85(812k reviews)',
       serviceAmount: 800,
       serviceImage: '../../../assets/hair-color.webp',

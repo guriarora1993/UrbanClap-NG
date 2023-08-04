@@ -10,6 +10,7 @@ import { FooterComponent } from './footer/footer.component';
 import { SkeltonComponent } from './skelton/skelton.component';
 import { ServiceDetailListComponent } from './service-detail-list/service-detail-list.component';
 import { CartButtonComponent } from './cart-button/cart-button.component';
+import { HeaderComponent } from './header/header.component';
 // import { FrequentCardsComponent } from './frequent-cards/frequent-cards.component';
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { CartButtonComponent } from './cart-button/cart-button.component';
     SkeltonComponent,
     ServiceDetailListComponent,
     CartButtonComponent,
+    HeaderComponent,
     // FrequentCardsComponent,
   ],
   imports: [CommonModule],
@@ -37,6 +39,7 @@ import { CartButtonComponent } from './cart-button/cart-button.component';
     FooterComponent,
     SkeltonComponent,
     ServiceDetailListComponent,
+    HeaderComponent
   ],
 })
 export class SharedModule {}

@@ -1,5 +1,5 @@
 .sidebar {
-  height: 100vh;
+  height: 100%;
   // background-color: rgb(240, 240, 240);
   background-color: white;
   position: fixed;
@@ -9,9 +9,9 @@
 }
 
 .sidebar.open {
-  width: 273px;
+  width: 345px;
   transform: translateX(0);
-  background-color: rgb(240, 240, 240);
+  background-color: #fff;
 }
 
 .toggle-button {
@@ -50,11 +50,14 @@
   .sidebar-header {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     background-color: white;
-    padding: 10px;
+    height: 56px;
+    padding: 0;
+    border-bottom: 4px solid #f0f0f0;
     span {
       margin-left: 10px;
-      font-size: 0.9rem;
+      font-size: 14px;
     }
   }
 
@@ -70,13 +73,14 @@
       display: flex;
       align-items: center;
       span {
-        margin-left: 8px;
-        font-size: 0.8rem;
+        margin-left: 10px;
+        font-size: 14px;
       }
       img {
-        height: 40px;
-        width: 40px;
+        height: 50px;
+        width: 50px;
         border-radius: 5px;
+        object-fit: contain;
       }
     }
   }
@@ -89,78 +93,120 @@
       margin: 30px;
       .login-container {
         display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 270px;
-        border: 1px solid #efefef;
+        border: 1px solid #e2e2e2;
+        height: 56px;
+        border-radius: 4px;
+        padding: 0;
+        box-sizing: border-box;
+        width: 315px;
+        background-color: #fff;
         .phone-input-section {
-          // border: 1px solid #efefef;
           background-color: white;
-          // border-radius: 4px;
-          padding: 2px;
+          height: 100%;
+          margin: 0 !important;
+          border-radius: 4px;
           select {
+            height: 100%;
+            box-sizing: border-box;
             border: none;
-            width: 45px;
-            height: 40px;
-            border-right: 1px solid #efefef;
+            border-right: 1px solid #e2e2e2;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            margin-right: 8px;
           }
           input {
+            height: 100%;
             border: none;
-            width: 180px;
-            height: 40px;
           }
           input::placeholder {
             color: #bfbcbc;
             margin-right: 5px;
+            font-size: 16px;
           }
         }
       }
     }
     .invalidError {
-      font-size: 0.7rem;
+      font-size: 14px;
     }
 
     .invalidErrorOccur {
-      font-size: 0.7rem;
+      font-size: 14px;
       color: red;
     }
     .submit-button {
-      width: 255px;
-      height: 40px;
+      width: 315px;
+      height: 48px;
       background-color: black;
       color: white;
       padding: 2px;
       border-radius: 4px;
       cursor: pointer;
+      font-size: 16px;
     }
   }
 }
 
+.parent-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
+}
+
+.loginContainer {
+  width: 100%;
+}
+
 .login-container-error {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 260px;
   border: 1px solid red;
+  height: 56px;
+  border-radius: 4px;
+  padding: 0;
+  box-sizing: border-box;
+  width: 315px;
+  background-color: #fff;
   .phone-input-section {
-    // border: 1px solid #efefef;
     background-color: white;
+    height: 100%;
+    margin: 0 !important;
     border-radius: 4px;
-    padding: 2px;
     select {
+      height: 100%;
+      box-sizing: border-box;
       border: none;
-      width: 45px;
-      height: 40px;
-      border-right: 1px solid #efefef;
+      border-right: 1px solid #e2e2e2;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-right: 8px;
     }
     input {
+      height: 100%;
       border: none;
-      width: 180px;
-      height: 40px;
     }
     input::placeholder {
       color: #bfbcbc;
       margin-right: 5px;
+      font-size: 16px;
     }
   }
+}
+.parent-container {
+  background-color: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 10;
 }

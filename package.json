@@ -25,10 +25,12 @@
     "@ngrx/store": "^16.1.0",
     "@ngrx/store-devtools": "^16.1.0",
     "autoprefixer": "^10.4.14",
+    "bootstrap": "^5.3.1",
+    "jquery": "^3.7.0",
     "ngx-spinner": "^16.0.2",
+    "popper.js": "^1.16.1",
     "postcss": "^8.4.27",
     "rxjs": "~7.8.0",
-    "tailwindcss": "^3.3.3",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.0"
   },

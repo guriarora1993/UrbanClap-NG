@@ -10,28 +10,10 @@
     justify-content: space-between;
     flex-wrap: wrap;
     cursor: pointer;
-    .tutorial-section-content {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-direction: column;
-      .main-heading {
-        font-size: 2rem;
-      }
-      .ratings-section {
-        display: flex;
-        align-items: center;
-        position: relative;
-        left: -100px;
-        span {
-          font-size: 0.8rem;
-        }
-      }
-    }
 
     .add-video-container {
       video {
-        width: 500px;
+        width: 800px;
         border-radius: 5px;
         margin-top: 20px;
       }
@@ -41,7 +23,6 @@
   .services-list {
     display: flex;
     align-items: center;
-    width: 70vw;
     margin: auto;
     .item-container {
       display: flex;
@@ -62,13 +43,13 @@
 
 .service-detail-list {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  width: 530px;
+  width: 450px;
 }
 
 .main-container {
   border-right: 1px solid rgb(227, 227, 227);
+  width: 450px;
 }
 .parent-container {
   display: flex;
@@ -89,7 +70,10 @@
   border-radius: 5px;
 }
 .item-container span {
-  font-size: 0.8rem;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  text-align: center;
   cursor: pointer;
 }
 .item-container .active {
@@ -118,7 +102,7 @@
   justify-content: center;
   border: 1px solid rgb(194, 192, 192);
   border-radius: 5px;
-  width: 250px;
+  width: 300px;
   height: 100%;
   padding: 10px;
   margin-top: 15px;
@@ -139,7 +123,7 @@
   margin-top: 10px;
   border: 1px solid rgb(194, 192, 192);
   border-radius: 5px;
-  width: 265px;
+  width: 300px;
   height: auto;
   .percentage-icon-container {
     width: 40px;
@@ -277,4 +261,83 @@
 .toast.show {
   top: 20px; /* Slide in to 20px from the top */
   opacity: 1;
+}
+
+.tutorial-section-content {
+  .main-heading {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 48px;
+  }
+  .ratings-section {
+    left: 0;
+    span {
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.guide-button-container {
+  width: 100%;
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 10px;
+  background-color: rgb(245, 245, 245);
+  margin-top: 10px;
+
+  .child-container {
+    display: flex;
+    align-items: center;
+    span {
+      font-size: 12px;
+      margin-left: 10px;
+    }
+  }
+}
+
+video {
+  width: 830px;
+  height: 530px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.progress-container {
+  position: absolute;
+  width: 53%;
+  top: 590px;
+  height: 4px;
+  border-radius: 10px;
+  background-color: #f0f0f0ab;
+  margin-top: 10px;
+  margin: 0px 200px 0 10px;
+  left: 550px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.service-carts-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 20px;
+  span {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 16px;
+    color: rgb(117, 117, 117);
+  }
+}
+
+.list-heading {
+  color: rgb(15, 15, 15);
+  font-size: 28px;
+  line-height: 40px;
+  font-weight: 700;
 }

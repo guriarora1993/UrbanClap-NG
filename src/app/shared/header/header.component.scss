@@ -1,0 +1,52 @@
+video {
+  width: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+}
+
+.progress-container {
+  position: absolute;
+  width: 45%;
+  top: 350px;
+  height: 7px;
+  border-radius: 10px;
+  background-color: #f0f0f0;
+  margin-top: 10px;
+  margin: 0px 200px 0 10px;
+  left: 300px;
+}
+
+.progress-bar {
+  height: 100%;
+  border-radius: 10px;
+  background-color: #007bff;
+}
+
+.navbar-container {
+  background-color: rgb(255, 255, 255);
+  position: sticky;
+  border-bottom: 1px solid rgb(222, 226, 230);
+}
+.custom-input {
+  width: 350px;
+  padding: 15px;
+  font-size: 14px;
+  transition: box-shadow 0.3s ease-in-out;
+  box-shadow: none;
+  border: none;
+}
+
+.custom-input:focus {
+  box-shadow: none;
+}
+
+.search-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(222, 226, 230);
+  justify-content: space-around;
+  border-radius: 4px;
+  img {
+    margin-left: 10px;
+  }
+}

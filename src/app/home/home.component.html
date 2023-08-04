@@ -3,37 +3,66 @@
     <section class="main-section">
         <div class="main-container-two">
             <header class="header-main-container">
-                <div class="app-logo" style="cursor: pointer;margin: 10px;">
-                    <img style="width: 100px; margin-left: 30px;" src="../../assets/ap-logo.png" alt="">
+                <div class="app-logo" style="cursor: pointer; margin: 11px 0px 0px 86px;">
+                    <img style="width: 132px; height: 39px; margin-left: 30px;" src="../../assets/ap-logo.png" alt="">
                 </div>
-                <div class="header-content-list" style="margin: 10px;">
+                <div class="header-content-list" style=" margin: 5px 135px 0px 0px ;">
                     <ul class="navbar-list">
-                        <li class="navbar-list-item registration">Register As a Professional </li>
-                        <li class="navbar-list-item">Help</li>
-                        <li class="navbar-list-item" (click)="toggleSidebar(loginContent)">Login/Sign up</li>
+                        <li class="navbar-list-item registration">Register As A Professional </li>
+                        <li class="navbar-list-item help">Help</li>
+                        <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)">Login/Sign up</li>
                     </ul>
                 </div>
             </header>
+            <!-- <nav class="navbar navbar-expand-md" id="navbar-container">
+                <div class="container-fluid">
+                    <div class="app-logo" style="cursor: pointer; margin: 11px 0px 0px 86px;">
+                        <img style="width: 132px; height: 39px; margin-left: 30px;" src="../../assets/ap-logo.png"
+                            alt="">
+                    </div>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
+                        <form class="d-flex">
+                            <div class="header-content-list" style=" margin: 5px 135px 0px 0px ;">
+                                <ul class="navbar-list">
+                                    <li class="navbar-list-item registration">Register As A Professional </li>
+                                    <li class="navbar-list-item help">Help</li>
+                                    <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)">Login/Sign
+                                        up</li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </nav> -->
 
             <section>
                 <div class="section1-container">
-                    <ul class="section1-list-content">
-                        <li class="section1-list-item">Home</li>
-                        <li class="section1-list-item">/</li>
-                        <li class="section1-list-item">Chandigarh</li>
-                    </ul>
-                    <span class="section-heading">Home services, on demand.</span>
+                    <div>
+                        <ul class="section1-list-content">
+                            <li class="section1-list-item">Home</li>
+                            <li class="section1-list-item">/</li>
+                            <li class="section1-list-item">Chandigarh</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <span class="section-heading">Home services, on demand.</span>
+                    </div>
                     <div class="input-main-container">
                         <div class="select-location" (click)="showLocationModal()">
-                            <img width="20" src="../../assets/location-icon.png" alt="">
-                            <select name="Location" id="Location" style="text-align: center; font-size: 0.6rem;">
+                            <img width="30" src="../../assets/location-icon.png" alt="">
+                            <img width="30" src="../../assets/indian-flag.png" alt="">
+                            <select name="Location" id="Location" style="text-align: center; font-size: 14px;">
                                 <option value="Mohali">SAS Nagar..........</option>
                             </select>
                         </div>
                         <div class="input-container">
                             <div class="search-input-container">
                                 <div class="search-input">
-                                    <img style="margin-left: 5px;" width="10" src="../../assets/search.png">
+                                    <img style="margin-left: 5px;" width="15" src="../../assets/search.png">
                                     <input #searchVal (input)="getSearchVal(searchVal.value)"
                                         placeholder="search for services" style="border: none;" class="search-input"
                                         type="text">
@@ -59,37 +88,58 @@
     </section>
     <div class="uc-services-cards-container">
         <div class="services-cards-container">
-            <div class="service-item" (click)="toggleSidebar(sidebarContent1)">
-                <img width="25" src="../../assets/salon-for-women.png" alt="">
-                <span class="service-title">Salon for Women</span>
+            <div class="services-cards-container-child">
+                <div class="service-item" (click)="toggleSidebar(sidebarContent1)">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/salon-for-women.png" alt="">
+                    </div>
+                    <span class="service-title">Salon for Women</span>
+                </div>
+                <div class="service-item" (click)="toggleSidebar(sidebarContent2)">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/hair-skin-nails.png" alt="">
+                    </div>
+                    <span class="service-title">Hair, Skin & Nails</span>
+                </div>
+                <div class="service-item" (click)="navigate('Women Therapies')">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/womens-therapies.jpeg" alt="">
+                    </div>
+                    <span class="service-title">Women Therapies</span>
+                </div>
+                <div class="service-item" (click)="navigate('Salon For Men')">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/salon-for-men.webp" alt="">
+                    </div>
+                    <span class="service-title">Salon For Men</span>
+                </div>
             </div>
-            <div class="service-item" (click)="toggleSidebar(sidebarContent2)">
-                <img width="25" src="../../assets/hair-skin-nails.png" alt="">
-                <span class="service-title">Hair, Skin & Nails</span>
-            </div>
-            <div class="service-item" (click)="navigate()">
-                <img width="25" src="../../assets/womens-therapies.jpeg" alt="">
-                <span class="service-title">Women Therapies</span>
-            </div>
-            <div class="service-item">
-                <img width="25" src="../../assets/salon-for-men.webp" alt="">
-                <span class="service-title">Salon For Men</span>
-            </div>
-            <div class="service-item">
-                <img width="25" src="../../assets/mens-therapies.png" alt="">
-                <span class="service-title">Men's Therapies</span>
-            </div>
-            <div class="service-item" (click)="toggleSidebar(sidebarContent5)">
-                <img width="25" src="../../assets/repair.jpeg" alt="">
-                <span class="service-title">AC/Appliance Repair</span>
-            </div>
-            <div class="service-item" (click)="toggleSidebar(sidebarContent3)">
-                <img width="25" src="../../assets/cleaning.png" alt="">
-                <span class="service-title">Cleaning & Pest Control</span>
-            </div>
-            <div class="service-item" (click)="toggleSidebar(sidebarContent4)">
-                <img width="25" src="../../assets/home-repairs.jpeg" alt="">
-                <span class="service-title">Home Repairs</span>
+            <div class="services-cards-container-child">
+
+                <div class="service-item" (click)="navigate('Men Therapies')">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/mens-therapies.png" alt="">
+                    </div>
+                    <span class="service-title">Men's Therapies</span>
+                </div>
+                <div class="service-item" (click)="toggleSidebar(sidebarContent5)">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/repair.jpeg" alt="">
+                    </div>
+                    <span class="service-title">AC/Appliance Repair</span>
+                </div>
+                <div class="service-item" (click)="toggleSidebar(sidebarContent3)">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/cleaning.png" alt="">
+                    </div>
+                    <span class="service-title">Cleaning & Pest Control</span>
+                </div>
+                <div class="service-item" (click)="toggleSidebar(sidebarContent4)">
+                    <div class="service-image-container">
+                        <img width="25" src="../../assets/home-repairs.jpeg" alt="">
+                    </div>
+                    <span class="service-title">Home Repairs</span>
+                </div>
             </div>
 
         </div>
@@ -111,7 +161,7 @@
             </div>
         </div>
     </div>
-     <app-line></app-line>
+    <app-line></app-line>
     <app-card-section [headerData]="headerData"></app-card-section>
     <app-card [cardDetails]="cardDetails"></app-card>
     <app-line></app-line>
@@ -134,12 +184,19 @@
     <app-card-section [headerData]="headerData6"></app-card-section>
     <app-card [cardDetails]="cardDetails6"></app-card>
     <app-line></app-line>
-    <app-advertisement [adevertisementCred]="adevertisementCred"></app-advertisement>
+    <div>
+        <img src="../../assets/advertisement1.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+    </div>
     <app-line></app-line>
-    <app-advertisement [adevertisementCred]="adevertisementCred2"></app-advertisement>
+    <div>
+        <img src="../../assets/advertisement2.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+    </div>
     <app-line></app-line>
-    <app-advertisement [adevertisementCred]="adevertisementCred3"></app-advertisement>
+    <div>
+        <img src="../../assets/advertisement3.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="">
+    </div>
     <app-sidebar *ngIf="sidebarVisible"></app-sidebar>
-    <app-footer></app-footer>
 </section>
+<!-- <app-advertisement [adevertisementCred]="adevertisementCred"></app-advertisement>-->
+<app-footer [homeScreen]="isHome"></app-footer>
 <app-skelton *ngIf="navigateToService"></app-skelton>

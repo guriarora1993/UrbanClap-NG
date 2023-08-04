@@ -28,6 +28,11 @@ const routes: Routes = [
     loadChildren: () =>
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
+  {
+    path: 'header',
+    loadChildren: () =>
+      import('./shared/shared.module').then((m) => m.SharedModule),
+  },
 ];
 
 @NgModule({

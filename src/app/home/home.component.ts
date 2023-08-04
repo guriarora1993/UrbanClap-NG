@@ -7,11 +7,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  @ViewChild("searchVal") searchVal: any
+  @ViewChild('searchVal') searchVal: any;
   public selectLocation: boolean = false;
   public sidebarVisible!: boolean;
   public searchInput: boolean = false;
   public navigateToService: boolean = false;
+  public isHome: boolean = true;
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -318,15 +319,17 @@ export class HomeComponent {
     this.selectLocation = !this.selectLocation;
   }
 
-  public navigate() {
+  public navigate(value: string) {
     this.navigateToService = true;
     setTimeout(() => {
       this.navigateToService = false;
-      this.router.navigate(['service-detail-list']);
+      this.router.navigate(['service-detail-list'], {
+        queryParams: { key: value },
+      });
     }, 2000);
   }
 
-  public clearInput(){
-    this.searchVal.nativeElement.value = ""
+  public clearInput() {
+    this.searchVal.nativeElement.value = '';
   }
 }
