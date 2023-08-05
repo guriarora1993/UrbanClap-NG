@@ -17,50 +17,34 @@
             <img src="../../../assets/arrow-icon.png" width="15" alt="" />
           </div>
         </div>
-        <div
-          class="container"
-          style="
+        <div class="container" style="
             border: 1px solid rgb(227, 227, 227);
             margin-top: 20px;
             border-radius: 10px;
             position: sticky;
             top: 20px;
-          "
-        >
+          ">
           <div class="row">
             <div class="service-carts-heading">
               <span>Select a service</span>
               <div>
-                <div
-                  style="
+                <div style="
                     width: 160px;
                     height: 1px;
                     background-color: rgb(228, 225, 225);
-                  "
-                ></div>
+                  "></div>
               </div>
             </div>
-            <div
-              class="col-md-4"
-              *ngFor="let service of serviceCardItems; let i = index"
-            >
+            <div class="col-md-4" *ngFor="let service of serviceCardItems; let i = index">
               <div class="card mb-3 border-0">
                 <div class="card-body">
-                  <div
-                    class="item-container m-0 mx-2"
-                    (click)="
+                  <div class="item-container m-0 mx-2" (click)="
                       [
                         toggleScroll(i, service.title, '.service-detail-list'),
                         scrollToTop(i)
                       ]
-                    "
-                  >
-                    <img
-                      [ngClass]="{ active: activeIndex === i }"
-                      width="60"
-                      [src]="service.img"
-                      alt=""
-                    />
+                    ">
+                    <img [ngClass]="{ active: activeIndex === i }" width="60" [src]="service.img" alt="" />
                     <span>{{ service.title }}</span>
                   </div>
                 </div>
@@ -70,47 +54,36 @@
         </div>
       </div>
       <div class="col-md-8">
-        <div>
-          <video #videoPlayer [muted]="true" (click)="playPause()">
+        <div style="position: relative;">
+          <video #videoPlayer [muted]="true" autoplay="true" (click)="playPause()">
             <source
               src="https://content.urbanclap.com/videos/growth/luminosity/1655358691204-89c4a7/1655358691204-89c4a7.mp4"
-              type="video/mp4"
-              type="video/mp4"
-            />
+              type="video/mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
+          <div class="progress-container">
+            <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+          </div>
         </div>
 
-        <div class="progress-container">
-          <div class="progress-bar" [style.width.%]="progressPercentage"></div>
-        </div>
-        <div
-          class="parent-container"
-          style="
+        <div class="parent-container" style="
             display: flex;
             border-top: 1px solid rgb(237, 237, 237);
             border-left: 1px solid rgb(237, 237, 237);
             margin-top: 30px;
-          "
-        >
-          <div
-            style="
+          ">
+          <div style="
               display: flex;
               align-items: center;
               justify-content: space-between;
               padding: 0px 0px 0px 20px;
-            "
-          >
+            ">
             <div class="main-container" style="margin-top: 30px">
               <span class="list-heading">Packages</span>
-              <div
-                *ngFor="let data of demoData; let i = index"
-                class="row service-detail-list"
-              >
+              <div *ngFor="let data of demoData; let i = index" class="row service-detail-list">
                 <div class="col-md-6 service-detail-list-child-container">
                   <div style="margin-top: 20px">
-                    <span
-                      style="
+                    <span style="
                         font-size: 12px;
                         font-weight: 600;
                         color: rgb(6, 153, 163);
@@ -118,96 +91,64 @@
                         background-color: rgb(230, 249, 249);
                         border-radius: 5px;
                         padding: 5px;
-                      "
-                      >{{ data.serviceName }}</span
-                    ><br />
-                    <span
-                      style="
+                      ">{{ data.serviceName }}</span><br />
+                    <span style="
                         margin-top: 5px;
                         font-size: 16px;
                         font-weight: 700;
                         color: rgb(15, 15, 15);
-                      "
-                      >{{ data.serviceTitle }}</span
-                    >
+                      ">{{ data.serviceTitle }}</span>
                   </div>
                   <div style="margin-top: 5px">
                     <img width="10" src="../../../assets/star.png" alt="" />
                     <span style="font-size: 12px; opacity: 0.6">{{
                       data.reviews
-                    }}</span>
+                      }}</span>
                   </div>
-                  <div
-                    style="display: flex; align-items: center; margin-top: 10px"
-                  >
+                  <div style="display: flex; align-items: center; margin-top: 10px">
                     <span style="font-size: 12px; font-weight: 700">{{
                       data.serviceAmount
-                    }}</span>
+                      }}</span>
 
-                    <span
-                      style="
+                    <span style="
                         font-size: 12px;
                         font-weight: 400;
                         opacity: 0.6;
                         margin-left: 5px;
-                      "
-                      >1 hr 5 mins</span
-                    >
+                      ">1 hr 5 mins</span>
                   </div>
-                  <div
-                    class="edit-package-container"
-                    style="
+                  <div class="edit-package-container" style="
                       border-top: 3px dotted rgb(193, 188, 188);
                       margin-top: 20px;
-                    "
-                  >
+                    ">
                     <ul style="margin-top: 10px">
-                      <li
-                        class="edit-packages-list"
-                        style="font-size: 12px; font-weight: 700"
-                      >
+                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
                         Haircut
-                        <span
-                          style="
+                        <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             line-height: 16px;
                             font-weight: 400;
-                          "
-                          >Haircut for men</span
-                        >
+                          ">Haircut for men</span>
                       </li>
-                      <li
-                        class="edit-packages-list"
-                        style="font-size: 12px; font-weight: 700"
-                      >
+                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
                         Shave/beared grooming
-                        <span
-                          style="
+                        <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             font-weight: 400;
-                          "
-                          >Beared trimming & styling</span
-                        >
+                          ">Beared trimming & styling</span>
                       </li>
-                      <li
-                        class="edit-packages-list"
-                        style="font-size: 12px; font-weight: 700"
-                      >
+                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
                         Face care
-                        <span
-                          style="
+                        <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             font-weight: 400;
-                          "
-                          >Skin Brighting Facial</span
-                        >
+                          ">Skin Brighting Facial</span>
                       </li>
                     </ul>
-                    <button
-                      style="
+                    <button style="
                         cursor: pointer;
                         width: 150px;
                         padding: 5px;
@@ -221,8 +162,7 @@
                         border-radius: 5px;
                         background-color: white;
                         margin-top: 10px;
-                      "
-                    >
+                      ">
                       Edit your package
                     </button>
                   </div>
@@ -230,22 +170,14 @@
                 <div class="col-md-4 card-container">
                   <div class="image-card" style="position: relative">
                     <div style="width: 120px; border-radius: 10px">
-                      <img
-                        style="
+                      <img style="
                           border-radius: 10px;
                           width: 100%;
                           height: 100%;
                           object-fit: contain;
-                        "
-                        [src]="data.serviceImage"
-                        alt=""
-                      />
+                        " [src]="data.serviceImage" alt="" />
                     </div>
-                    <div
-                      class="add-cart-button"
-                      *ngIf="data.showAddCartButton"
-                      (click)="increment(data, i)"
-                      style="
+                    <div class="add-cart-button" *ngIf="data.showAddCartButton" (click)="increment(data, i)" style="
                         cursor: pointer;
                         color: rgb(121, 79, 231);
                         font-size: 14px;
@@ -258,15 +190,11 @@
                         left: 25px;
                         bottom: -10px;
                         background-color: white;
-                      "
-                    >
+                      ">
                       Add
                       <span *ngIf="changeValue" class="progress-bar"></span>
                     </div>
-                    <div
-                      class="add-cart-button"
-                      *ngIf="!data.showAddCartButton"
-                      style="
+                    <div class="add-cart-button" *ngIf="!data.showAddCartButton" style="
                         cursor: pointer;
                         color: rgb(121, 79, 231);
                         border: 1px solid rgb(121, 79, 231);
@@ -277,23 +205,11 @@
                         left: 25px;
                         bottom: -10px;
                         background-color: white;
-                      "
-                    >
-                      <span
-                        (click)="decrementSelectedServices(data, i)"
-                        class="cart-counter"
-                        style="font-size: 15px"
-                        >-</span
-                      ><span
-                        style="margin-left: 5px; font-size: 15px"
-                        class="cart-counter"
-                        >{{ data.cartCount }}</span
-                      ><span
-                        (click)="increment(data, i)"
-                        style="margin-left: 5px; font-size: 15px"
-                        class="cart-counter"
-                        >+</span
-                      >
+                      ">
+                      <span (click)="decrementSelectedServices(data, i)" class="cart-counter"
+                        style="font-size: 15px">-</span><span style="margin-left: 5px; font-size: 15px"
+                        class="cart-counter">{{ data.cartCount }}</span><span (click)="increment(data, i)"
+                        style="margin-left: 5px; font-size: 15px" class="cart-counter">+</span>
                       <span *ngIf="changeValue" class="progress-bar"></span>
                     </div>
                   </div>
@@ -302,9 +218,7 @@
             </div>
           </div>
           <ng-container>
-            <div
-              class="right-side-container"
-              style="
+            <div class="right-side-container" style="
                 margin-top: 30px;
                 display: flex;
                 align-items: center;
@@ -312,46 +226,26 @@
                 flex-direction: column;
                 position: sticky;
                 top: 0px;
-              "
-            >
+              ">
               <div class="empty-cart-container">
-                <div
-                  class="empty-cart-container-2"
-                  *ngIf="selectedServices.length <= 0"
-                >
-                  <img
-                    src="../../../assets/shoping-cart.png"
-                    width="50"
-                    alt=""
-                  />
-                  <span style="font-size: 14px; font-weight: 400"
-                    >No items in cart</span
-                  >
+                <div class="empty-cart-container-2" *ngIf="selectedServices.length <= 0">
+                  <img src="../../../assets/shoping-cart.png" width="50" alt="" />
+                  <span style="font-size: 14px; font-weight: 400">No items in cart</span>
                 </div>
-                <div
-                  class="selected-cart-item-list-container"
-                  *ngIf="selectedServices.length > 0"
-                >
+                <div class="selected-cart-item-list-container" *ngIf="selectedServices.length > 0">
                   <h4>Cart</h4>
-                  <ng-container
-                    *ngFor="let service of selectedServices; let item = index"
-                  >
-                    <div
-                      class="item-list"
-                      style="
+                  <ng-container *ngFor="let service of selectedServices; let item = index">
+                    <div class="item-list" style="
                         display: flex;
                         align-items: center;
                         margin-top: 15px;
-                      "
-                    >
+                      ">
                       <div style="width: 100px">
                         <span style="color: black; width: 150px">{{
                           service.serviceTitle
-                        }}</span>
+                          }}</span>
                       </div>
-                      <div
-                        class="add-cart-button"
-                        style="
+                      <div class="add-cart-button" style="
                           cursor: pointer;
                           color: rgb(121, 79, 231);
                           border: 1px solid rgb(121, 79, 231);
@@ -359,56 +253,35 @@
                           padding: 5px;
                           border-radius: 5px;
                           background-color: white;
-                        "
-                      >
-                        <span
-                          (click)="decrement(service, item)"
-                          style="color: rgb(121, 79, 231); font-size: 15px"
-                          class="cart-counter"
-                          >-</span
-                        ><span
-                          style="
+                        ">
+                        <span (click)="decrement(service, item)" style="color: rgb(121, 79, 231); font-size: 15px"
+                          class="cart-counter">-</span><span style="
                             color: rgb(121, 79, 231);
                             margin-left: 5px;
                             font-size: 15px;
-                          "
-                          class="cart-counter"
-                          >{{ service.cartCount }}</span
-                        ><span
-                          (click)="increment(service, item)"
+                          " class="cart-counter">{{ service.cartCount }}</span><span (click)="increment(service, item)"
                           style="
                             margin-left: 5px;
                             color: rgb(121, 79, 231);
                             font-size: 15px;
-                          "
-                          class="cart-counter"
-                          >+</span
-                        >
+                          " class="cart-counter">+</span>
                       </div>
 
                       <div style="width: 50px">
-                        <span style="margin-left: 10px"
-                          >₹{{ service.serviceAmount }}</span
-                        >
+                        <span style="margin-left: 10px">₹{{ service.serviceAmount }}</span>
                       </div>
                     </div>
                   </ng-container>
                   <app-line></app-line>
-                  <div
-                    class="view-cart-button-container"
-                    style="
+                  <div class="view-cart-button-container" style="
                       display: flex;
                       align-items: center;
                       justify-content: center;
                       margin-top: 10px;
-                    "
-                  >
-                    <div
-                      class="view-cart-button"
-                      (click)="
+                    ">
+                    <div class="view-cart-button" (click)="
                         viewCartDetail(selectedServices, totalAmountOfService)
-                      "
-                    >
+                      ">
                       <span>₹{{ totalAmountOfService }}</span>
                       <span>View Cart</span>
                     </div>
@@ -418,60 +291,36 @@
               <div class="offer-list-container">
                 <div class="offer-list-child-container">
                   <div class="percentage-icon-container">
-                    <img
-                      src="../../../assets/percentage-icon.png"
-                      width="25"
-                      alt=""
-                    />
+                    <img src="../../../assets/percentage-icon.png" width="25" alt="" />
                   </div>
                   <div class="offer-list-text-container">
-                    <span class="main-content"
-                      >20% off on Kotak Silk cards</span
-                    >
-                    <span style="font-size: 0.6rem; color: rgb(165, 163, 163)"
-                      >20% off up to INR 350</span
-                    >
+                    <span class="main-content">20% off on Kotak Silk cards</span>
+                    <span style="font-size: 0.6rem; color: rgb(165, 163, 163)">20% off up to INR 350</span>
                   </div>
                 </div>
                 <div class="accordion-container">
-                  <button
-                    style="
+                  <button style="
                       background-color: white;
                       font-weight: bold;
                       font-size: 0.7rem;
                       color: rgb(121, 79, 231);
                       display: flex;
                       align-items: center;
-                    "
-                    (click)="toggleAccordion()"
-                    class="accordion-button"
-                  >
+                    " (click)="toggleAccordion()" class="accordion-button">
                     {{ showContent ? "ViewMoreOffers" : "View More Offers" }}
-                    <img
-                      src="../../../assets/accordian-close.png"
-                      width="15"
-                      style="margin-left: 5px"
-                      [ngStyle]="{
+                    <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
                         transform: 'rotate(' + rotationAngle + 'deg)'
-                      }"
-                      alt=""
-                    />
+                      }" alt="" />
                   </button>
                   <div *ngIf="showContent" class="accordion-content">
                     <div class="accordion-item">
-                      <div
-                        *ngFor="let data of buttons"
-                        class="offer-list-child-container"
-                      >
+                      <div *ngFor="let data of buttons" class="offer-list-child-container">
                         <div class="percentage-icon-container">
                           <img [src]="data.img" width="25" alt="" />
                         </div>
                         <div class="offer-list-text-container">
                           <span class="main-content">{{ data.title }}</span>
-                          <span
-                            style="font-size: 0.6rem; color: rgb(165, 163, 163)"
-                            >{{ data.title }}</span
-                          >
+                          <span style="font-size: 0.6rem; color: rgb(165, 163, 163)">{{ data.title }}</span>
                         </div>
                       </div>
                     </div>
@@ -488,5 +337,112 @@
     <span>{{ message }}</span>
   </div>
 </section>
-<app-footer [homeScreen]="isHome"></app-footer>
+<div class="container-fluid mt-1">
+  <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245,245,245)">
+    <div class="container p-4 pb-0">
+      <section class="">
+        <div class="app-logo" style="margin:0px 0px 35px 35px;">
+          <img src="../../../assets/app-logo-footer.webp" alt="">
+        </div>
+        <div class="row">
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="headings mb-4 font-weight-bold">Company</h6>
+            <p>
+              <a class="text-dark">About us</a>
+            </p>
+            <p>
+              <a class="text-dark">Terms & conditions</a>
+            </p>
+            <p>
+              <a class="text-dark">Privacy policy</a>
+            </p>
+            <p>
+              <a class="text-dark">Anti-discrimication policy</a>
+            </p>
+            <p>
+              <a class="text-dark">UC impact</a>
+            </p>
+            <p>
+              <a class="text-dark">Carrers</a>
+            </p>
+          </div>
+
+          <hr class="w-100 clearfix d-md-none" />
+
+          <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="headings mb-4 font-weight-bold">For customers</h6>
+            <p>
+              <a class="text-dark">UC reviews</a>
+            </p>
+            <p>
+              <a class="text-dark">Categories near you</a>
+            </p>
+            <p>
+              <a class="text-dark">Blog</a>
+            </p>
+            <p>
+              <a class="text-dark">Contact us</a>
+            </p>
+          </div>
+          <hr class="w-100 clearfix d-md-none" />
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+            <h6 class="headings mb-4 font-weight-bold">
+              For Partners
+            </h6>
+            <p>
+              <a class="text-dark">Register as a professional</a>
+            </p>
+          </div>
+          <hr class="w-100 clearfix d-md-none" />
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3"
+            style="display: flex; align-items: center; flex-direction: column;">
+            <h6 class="headings mb-4 font-weight-bold">Social links</h6>
+            <div class="d-flex align-items-center">
+              <div
+                style="margin: 0px 0px 0px 0px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                <img src="../../../assets/twitter.png" style="width: 100%; object-fit: contain; border-radius: 50%;"
+                  alt="">
+              </div>
+              <div
+                style="margin: 0px 0px 0px 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                <img src="../../../assets/twitter.png" style="width: 100%; object-fit: contain; border-radius: 50%;"
+                  alt="">
+              </div>
+              <div
+                style="margin: 0px 0px 0px 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                <img src="../../../assets/twitter.png" style="width: 100%; object-fit: contain; border-radius: 50%;"
+                  alt="">
+              </div>
+              <div
+                style="margin: 0px 0px 0px 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                <img src="../../../assets/twitter.png" style="width: 100%; object-fit: contain; border-radius: 50%;"
+                  alt="">
+              </div>
+
+            </div>
+            <div style="width: 120px; height: 40px;" class="mt-3">
+              <img style="width: 100%; height: 100%; object-fit: cover;" src="../../../assets/app-store-icon.png"
+                alt="">
+            </div>
+            <div style="width: 120px; height: 40px;" class="mt-3">
+              <img style="width: 100%; height: 100%; object-fit: cover;" src="../../../assets/google-play-icon.png"
+                alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+      <hr class="my-3">
+      <section class="p-3 pt-0">
+        <div class="row d-flex align-items-center">
+          <div class="col-md-7 col-lg-8 text-center text-md-start">
+            <div class="p-3">
+              © 2020 Copyright:
+              <a class="text-dark" href="#">RedSky.com</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </footer>
+</div>
 <app-skelton *ngIf="dataLoading"></app-skelton>

@@ -11,7 +11,10 @@
 .sidebar.open {
   width: 345px;
   transform: translateX(0);
-  background-color: #fff;
+  background-color: rgb(240, 240, 240);
+  height: 100%;
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .toggle-button {
@@ -54,7 +57,7 @@
     background-color: white;
     height: 56px;
     padding: 0;
-    border-bottom: 4px solid #f0f0f0;
+    border-bottom: 2px solid #f0f0f0;
     span {
       margin-left: 10px;
       font-size: 14px;
@@ -66,12 +69,11 @@
     align-items: center;
     justify-content: space-between;
     background-color: white;
-    padding: 20px;
-    margin-top: 2px;
     cursor: pointer;
     .section-left-content {
       display: flex;
       align-items: center;
+      margin-left: 15px;
       span {
         margin-left: 10px;
         font-size: 14px;
@@ -83,6 +85,9 @@
         object-fit: contain;
       }
     }
+  }
+  .sidebar-content-main-container :hover {
+    background-color: rgb(237, 236, 236);
   }
   .login-main-container {
     display: flex;
@@ -209,4 +214,23 @@
   left: 0;
   top: 0;
   z-index: 10;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+  display: none;
+}
+
+.section-right-content {
+  font-size: 14px;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #f0f0f0;
+  height: 80px;
+  justify-content: space-between;
+  margin-left: 15px;
+  span {
+    font-size: 14px;
+  }
 }

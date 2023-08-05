@@ -1,5 +1,5 @@
-<nav class="navbar navbar-expand-md" id="navbar-container"
-  style="position: sticky;border-bottom: 1px solid rgb(237,237,237);">
+<nav class="navbar navbar-expand-sm" id="navbar-container"
+  style="position: sticky;border-bottom: 2px solid rgb(237,237,237);">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">
       <img style="width: 132px; height: 39px;" src="../../../assets/app-logo-dark.webp" alt="Logo">
@@ -8,20 +8,21 @@
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse d-flex justify-content-center" id="navbarNav">
-      <form class="d-flex">
-        <select style="width: 200px; padding: 15px; font-size: 14px; border: 1px solid rgb(222,226,230);"
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <div id="select-container" style=" width: 200px; margin-right: 10px;">
+        <select
+          style="width: 100%; padding: 15px; font-size: 14px; border: 1px solid rgb(222,226,230);margin-top: 10px;"
           class="form-select me-2 custom-input" aria-label="Search">
-          <option selected>State</option>
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
+          <option selected>Chandigarh</option>
+          <option value="option1">Mohali</option>
+          <option value="option2">Nalagarh</option>
+          <option value="option3">Kharar</option>
         </select>
-      </form>
+      </div>
       <div class="search-input-container">
         <img src="../../../assets/search.png" width="15" alt="">
-        <input class="form-control me-2 custom-input" style="width: 350px; padding: 15px; font-size: 14px;"
-          type="search" placeholder="Search in Spa for Women" aria-label="Search">
+        <input class="form-control me-2 custom-input" style="width: 100%; padding: 15px; font-size: 14px;" type="search"
+          placeholder="Search in Spa for Women" aria-label="Search">
       </div>
 
     </div>

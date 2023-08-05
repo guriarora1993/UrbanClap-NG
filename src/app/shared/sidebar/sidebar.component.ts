@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { Router } from '@angular/router';
+import { HomeComponent } from '@app/home/home.component';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -17,7 +18,11 @@ export class SidebarComponent {
   public loginPage: boolean = false;
   public navigateToService: Boolean = false;
 
-  constructor(private sidebarService: SidebarService, private router: Router) {}
+  constructor(
+    private sidebarService: SidebarService,
+    private router: Router,
+    private home: HomeComponent
+  ) {}
 
   ngOnInit() {
     this.sidebarService.getSidebarVisible().subscribe((visible) => {
@@ -54,12 +59,12 @@ export class SidebarComponent {
   countryCodes: string[] = ['+91', '+44', '+61', '+91', '+86'];
 
   public navigateTo(value: string) {
-    this.navigateToService = true;
-    // setTimeout(() => {
-    //   // this.navigateToService = false;
-    //   this.router.navigate(['service-detail-list'], {
-    //     queryParams: { key: value },
-    //   });
-    // }, 2000);
+    this.home.navigateToService = true;
+    setTimeout(() => {
+      this.navigateToService = false;
+      this.router.navigate(['service-detail-list'], {
+        queryParams: { key: value },
+      });
+    }, 2000);
   }
 }

@@ -1,9 +1,10 @@
 <div class="main">
     <div class="navbar-main-container">
         <div class="searchbar-container">
-            <div>
-                <img width="10" src="../../../assets/search.png" alt="">
-                <input #search (input)="getInput(search.value)" type="text" class="search-input">
+            <div style="display: flex; align-items: center; opacity: 0.6;">
+                <img width="15" src="../../../assets/search.png" alt="">
+                <input #search (input)="getInput(search.value)" type="text" class="search-input"
+                    placeholder="Search for services">
             </div>
             <div *ngIf="inputClear" (click)="clearInput()">
                 <img width="20" src="../../../assets/close-icon.png" alt="">
@@ -12,19 +13,19 @@
 
         <div class="navbar-service-section">
             <div class="service-detail">
-                <img width="25" src="../../../assets/womens-therapies.jpeg" alt="">
+                <img width="30" src="../../../assets/womens-therapies.jpeg" alt="">
                 <span style="font-size: 0.7rem;">Women's</span>
             </div>
             <div class="service-detail">
-                <img width="25" src="../../../assets/salon-for-men.webp" alt="">
-                <span style="font-size: 0.7rem;">Men's</span>
+                <img width="30" src="../../../assets/salon-for-men.webp" alt="">
+                <span style="font-size: 0.7rem;">Salon for Men</span>
             </div>
             <div class="service-detail">
-                <img width="25" src="../../../assets/mens-therapies.png" alt="">
-                <span style="font-size: 0.7rem;">Men's</span>
+                <img width="30" src="../../../assets/mens-therapies.png" alt="">
+                <span style="font-size: 0.7rem;">Men's Therapies</span>
             </div>
             <div class="service-detail" (click)="scrollToTop()">
-                <span class="service-detail-count" style="font-size: 1rem;font-weight: bold;">+5</span>
+                <span class="service-detail-count" style="font-size: 18px;color: rgb(48,79,254);">+3</span>
             </div>
         </div>
     </div>

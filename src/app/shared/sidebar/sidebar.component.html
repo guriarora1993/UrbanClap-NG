@@ -12,10 +12,11 @@
                 <div class="sidebar-container" *ngFor="let item of sidebarContent" (click)="navigateTo('Urban-Clap')">
                     <div class="section-left-content">
                         <img width="100" [src]="item.img" alt="">
-                        <span>{{item.title}}</span>
                     </div>
                     <div class="section-right-content">
-                        <img style="cursor: pointer;" width="20" src="../../../assets/arrow-icon.png" alt="">
+                        <span>{{item.title}}</span>
+                        <img style="cursor: pointer;margin-right: 15px;" width="20" src="../../../assets/arrow-icon.png"
+                            alt="">
                     </div>
                 </div>
             </div>
