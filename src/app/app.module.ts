@@ -9,6 +9,7 @@ import { ViewCartComponent } from './home/view-cart/view-cart.component';
 import { FrequentCardsComponent } from './shared/frequent-cards/frequent-cards.component';
 import { AppStoreModule } from './state/app.store';
 import { StoreModule } from '@ngrx/store';
+import { HelpComponent } from './home/help/help.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { StoreModule } from '@ngrx/store';
     HomeComponent,
     ViewCartComponent,
     FrequentCardsComponent,
+    HelpComponent
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, AppStoreModule],
   providers: [],

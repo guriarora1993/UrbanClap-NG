@@ -3,15 +3,18 @@
     <section class="main-section">
         <div class="main-container-two">
             <header class="header-main-container">
-                <div class="app-logo" style="cursor: pointer; margin: 11px 0px 0px 86px;">
-                    <img style="width: 132px; height: 39px; margin-left: 30px;" src="../../assets/ap-logo.png" alt="">
-                </div>
-                <div class="header-content-list" style=" margin: 5px 135px 0px 0px ;">
-                    <ul class="navbar-list">
-                        <li class="navbar-list-item registration">Register As A Professional </li>
-                        <li class="navbar-list-item help">Help</li>
-                        <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)">Login/Sign up</li>
-                    </ul>
+                <div class="navbar_container">
+                    <div class="app-logo">
+                        <img style="width: 132px; height: 39px;" src="../../assets/ap-logo.png" alt="">
+                    </div>
+                    <div class="header-content-list">
+                        <ul class="navbar-list">
+                            <li class="navbar-list-item registration">Register As A Professional </li>
+                            <li class="navbar-list-item help">Help</li>
+                            <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)">Login / Sign up
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </header>
             <section>
@@ -28,10 +31,10 @@
                     </div>
                     <div class="input-main-container">
                         <div class="select-location" (click)="showLocationModal()">
-                            <img width="30" src="../../assets/location-icon.png" alt="">
-                            <img width="30" src="../../assets/indian-flag.png" alt="">
+                            <img width="25" src="../../assets/location-icon.png" alt="">
+                            <img width="25" src="../../assets/indian-flag.png" alt="">
                             <select name="Location" id="Location" style="text-align: center; font-size: 14px;">
-                                <option value="Mohali">SAS Nagar..........</option>
+                                <option value="Mohali">Phase 1, Sector</option>
                             </select>
                         </div>
                         <div class="input-container">
@@ -39,19 +42,20 @@
                                 <div class="search-input">
                                     <img style="margin-left: 5px;" width="15" src="../../assets/search.png">
                                     <input #searchVal (input)="getSearchVal(searchVal.value)"
-                                        placeholder="search for services" style="border: none;" class="search-input"
+                                        placeholder="Search for services" style="border: none;" class="search-input"
                                         type="text">
                                     <div class="close-icon-container" (click)="clearInput()">
-                                        <img *ngIf="searchInput" style="margin-right: 5px;"
+                                        <img *ngIf="searchInput" style="margin-right: 15px;"
                                             src="../../assets/close-icon.png" alt="" width="20">
                                     </div>
                                 </div>
                             </div>
                             <div class="services-options-list" style="line-height: normal;">
                                 <ul class="service-list">
-                                    <li>Women's Therapies,</li>
-                                    <li>Salon for Men,</li>
-                                    <li>Men's Therapies</li>
+                                    <li style="text-decoration: none;">Women's Therapies,</li>
+                                    <li style="text-decoration: none;">Salon for Men,</li>
+                                    <li style="text-decoration: none;">Men's Therapies<sup
+                                            style="margin-left: 3px;font-size: 12px;">etc</sup></li>
                                 </ul>
                             </div>
                         </div>
@@ -61,103 +65,99 @@
             </section>
         </div>
     </section>
-    <div class="uc-services-cards-container">
-        <div class="services-cards-container">
-            <div class="services-cards-container-child">
-                <div class="service-item" (click)="toggleSidebar(sidebarContent1)">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/salon-for-women.png" alt="">
-                    </div>
-                    <span class="service-title">Salon for Women</span>
+    <div class="container d-flex flex-md-column justify-content-center align-items-center uc-services-cards-container">
+        <div class="row">
+            <div class="service-item" (click)="toggleSidebar(sidebarContent1)">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/salon-for-women.png" alt="">
                 </div>
-                <div class="service-item" (click)="toggleSidebar(sidebarContent2)">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/hair-skin-nails.png" alt="">
-                    </div>
-                    <span class="service-title">Hair, Skin & Nails</span>
-                </div>
-                <div class="service-item" (click)="navigate('Women Therapies')">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/womens-therapies.jpeg" alt="">
-                    </div>
-                    <span class="service-title">Women Therapies</span>
-                </div>
-                <div class="service-item" (click)="navigate('Salon For Men')">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/salon-for-men.webp" alt="">
-                    </div>
-                    <span class="service-title">Salon For Men</span>
-                </div>
+                <span class="service-title">Salon for Women</span>
             </div>
-            <div class="services-cards-container-child">
-
-                <div class="service-item" (click)="navigate('Men Therapies')">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/mens-therapies.png" alt="">
-                    </div>
-                    <span class="service-title">Men's Therapies</span>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent2)">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/hair-skin-nails.png" alt="">
                 </div>
-                <div class="service-item" (click)="toggleSidebar(sidebarContent5)">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/repair.jpeg" alt="">
-                    </div>
-                    <span class="service-title">AC/Appliance Repair</span>
-                </div>
-                <div class="service-item" (click)="toggleSidebar(sidebarContent3)">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/cleaning.png" alt="">
-                    </div>
-                    <span class="service-title">Cleaning & Pest Control</span>
-                </div>
-                <div class="service-item" (click)="toggleSidebar(sidebarContent4)">
-                    <div class="service-image-container">
-                        <img width="25" src="../../assets/home-repairs.jpeg" alt="">
-                    </div>
-                    <span class="service-title">Home Repairs</span>
-                </div>
+                <span class="service-title">Hair, Skin & Nails</span>
             </div>
-
+            <div class="service-item" (click)="navigate('Women Therapies')">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/womens-therapies.jpeg" alt="">
+                </div>
+                <span class="service-title">Women Therapies</span>
+            </div>
+            <div class="service-item" (click)="navigate('Salon For Men')">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/salon-for-men.webp" alt="">
+                </div>
+                <span class="service-title">Salon For Men</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="service-item" (click)="navigate('Men Therapies')">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/mens-therapies.png" alt="">
+                </div>
+                <span class="service-title">Men's Therapies</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent5)">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/repair.jpeg" alt="">
+                </div>
+                <span class="service-title">AC/Appliance Repair</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent3)">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/cleaning.png" alt="">
+                </div>
+                <span class="service-title">Cleaning & Pest</span>
+            </div>
+            <div class="service-item" (click)="toggleSidebar(sidebarContent4)">
+                <div class="service-image-container">
+                    <img width="25" src="../../assets/home-repairs.jpeg" alt="">
+                </div>
+                <span class="service-title">Home Repairs</span>
+            </div>
         </div>
     </div>
-
     <div class="service-descriptions-card">
         <div class="flex-container">
-            <div class="cards">
+            <div (click)="navigate('Women Therapies')" class="cards">
                 <img src="../../assets/service-description-card-1.webp" alt="" width="200">
             </div>
-            <div class="cards">
+            <div (click)="navigate('Cleaning & Repairing')" class="cards">
                 <img src="../../assets/service-description-card-2.webp" alt="" width="200">
             </div>
-            <div class="cards">
+            <div (click)="navigate('Massage Therapies')" class="cards">
                 <img src="../../assets/service-description-card-3.webp" alt="" width="200">
             </div>
-            <div class="cards">
+            <div (click)="navigate('Men Therapies')" class="cards">
                 <img src="../../assets/service-description-card-4.webp" alt="" width="200">
             </div>
         </div>
     </div>
     <app-line></app-line>
     <app-card-section [headerData]="headerData"></app-card-section>
-    <app-card [cardDetails]="cardDetails"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails"></app-card>
     <app-line></app-line>
     <app-card-section [headerData]="headerData2"></app-card-section>
-    <app-card [cardDetails]="cardDetails2"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails2"></app-card>
     <app-line></app-line>
     <app-card-section [headerData]="headerData3"></app-card-section>
-    <app-card [cardDetails]="cardDetails3"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails3"></app-card>
     <app-line></app-line>
     <app-card-section [headerData]="headerData4"></app-card-section>
-    <app-card [cardDetails]="cardDetails4"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails4"></app-card>
     <app-line></app-line>
     <app-card-section [headerData]="headerData5"></app-card-section>
-    <app-card [cardDetails]="cardDetails5"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails5"></app-card>
     <app-line></app-line>
-    <img style="width: 100%; cursor: pointer;" src="../../assets/advertisement-image.webp" alt="">
+    <img (click)="navigate('Cards')" style="margin-top: 60px; width: 100%; cursor: pointer;"
+        src="../../assets/advertisement-image.webp" alt="">
     <app-line></app-line>
     <img style="width: 100%; cursor: pointer;" src="../../assets/help-desk-image.webp" alt="">
     <app-line></app-line>
     <app-card-section [headerData]="headerData6"></app-card-section>
-    <app-card [cardDetails]="cardDetails6"></app-card>
+    <app-card (click)="navigate('Cards')" [cardDetails]="cardDetails6"></app-card>
     <app-line></app-line>
     <div>
         <img src="../../assets/advertisement1.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="">

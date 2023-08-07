@@ -32,7 +32,7 @@ export class ServiceDetailListComponent {
     private router: Router,
     private store: Store<{ app: AppState }>,
     private toaster: LoaderService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -43,15 +43,17 @@ export class ServiceDetailListComponent {
   progressPercentage: number = 0;
 
   ngOnInit(): void {
-
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       const value = params['key'];
-      this.screenName = value
+      this.screenName = value;
     });
   }
 
-  ngAfterViewInit(): void {
-    this.initVideo();
+  ngAfterViewInit() {
+    this.updateProgress();
+    this.videoPlayer.nativeElement.addEventListener('timeupdate', () =>
+      this.updateProgressSmoothly()
+    );
   }
 
   initVideo() {
@@ -74,6 +76,27 @@ export class ServiceDetailListComponent {
     const video = this.videoPlayer.nativeElement;
     if (video) {
       this.progressPercentage = (video.currentTime / video.duration) * 100;
+    }
+  }
+
+  updateProgressSmoothly() {
+    const video = this.videoPlayer.nativeElement;
+    if (video) {
+      const newProgress = (video.currentTime / video.duration) * 100;
+      const smoothnessFactor = 0.1; // Adjust this value for desired smoothness
+
+      const animate = () => {
+        this.progressPercentage +=
+          (newProgress - this.progressPercentage) * smoothnessFactor;
+
+        if (Math.abs(this.progressPercentage - newProgress) > 0.1) {
+          requestAnimationFrame(animate);
+        } else {
+          this.progressPercentage = newProgress;
+        }
+      };
+
+      requestAnimationFrame(animate);
     }
   }
 

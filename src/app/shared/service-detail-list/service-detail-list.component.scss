@@ -107,14 +107,22 @@
   padding: 10px;
   margin-top: 15px;
   span {
-    font-size: 0.7rem;
+    font-size: 14px;
     color: rgb(194, 192, 192);
+    font-weight: 400;
   }
 }
 
 .offer-list-container {
   .offer-list-child-container {
     width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+  }
+  .offer-list-child-container-content {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -141,8 +149,8 @@
     justify-content: space-around;
     flex-direction: column;
     .main-content {
-      font-size: 0.6rem;
-      font-weight: bold;
+      font-size: 14px;
+      font-weight: 600;
     }
   }
 }
@@ -185,14 +193,14 @@
 }
 
 .view-cart-button {
-  width: 300px;
-  height: 30px;
+  width: 100%;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: rgb(110, 66, 229);
   border-radius: 5px;
-  padding: 5px;
+  padding: 8px;
 }
 
 /* Add your desired styles here */
@@ -202,7 +210,7 @@
 }
 
 .accordion-item {
-  width: 250px;
+  width: 100%;
 }
 
 .accordion-button {
@@ -286,6 +294,7 @@
   border-radius: 10px;
   background-color: rgb(245, 245, 245);
   margin-top: 10px;
+  cursor: pointer;
 
   .child-container {
     display: flex;
@@ -302,6 +311,7 @@ video {
   height: 530px;
   object-fit: cover;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 @media (max-width: 1360px) {
@@ -315,19 +325,23 @@ video {
 
 .progress-container {
   position: absolute;
-  width: 100%;
-  bottom: 20px;
-  height: 4px;
-  border-radius: 10px;
+  bottom: 16px;
+  width: 800px;
+  left: 15px;
+  margin: auto;
+  height: 8px;
+  z-index: 2;
+  font-size: 10px;
   background-color: #f0f0f0ab;
+  border-radius: 10px;
 }
 
 .progress-bar {
   height: 100%;
   border-radius: 10px;
-  background-color: red;
+  background-color: white;
+  transition: width 0.1s ease-in-out;
 }
-
 .service-carts-heading {
   display: flex;
   align-items: center;
@@ -346,4 +360,20 @@ video {
   font-size: 28px;
   line-height: 40px;
   font-weight: 700;
+}
+
+// @media (max-width: 132px){
+//   .parent-container{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     background-color: red;
+//   }
+// }
+
+.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
