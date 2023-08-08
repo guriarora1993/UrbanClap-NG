@@ -84,41 +84,41 @@ export class HomeComponent {
   public cardDetails: any = [
     {
       image: '../../assets/salon-prime.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Salon Prime For Kids and Mens',
+      subHeading: 'Haircut at ₹199',
     },
     {
       image: '../../assets/salon-prime-women.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Salon Prime',
+      subHeading: 'Up to 50% Off',
     },
     {
       image: '../../assets/massage-men.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Massage For Men',
+      subHeading: 'Free head massage',
     },
     {
       image: '../../assets/cleaning.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Bathroom & Kitchen Cleaning',
+      subHeading: '',
     },
   ];
 
   public cardDetails2: any = [
     {
       image: '../../assets/giser.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Geyser Repair',
+      subHeading: '',
     },
     {
       image: '../../assets/washing-machine.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Water Purifier Repair',
+      subHeading: 'Up to 45% Off',
     },
     {
       image: '../../assets/ro.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Washing Machine Repair',
+      subHeading: '',
     },
   ];
 
@@ -126,7 +126,7 @@ export class HomeComponent {
     {
       image: '../../assets/salon-luxe.webp',
       heading: 'Saloon-Luxe',
-      subHeading: 'Sub-heading',
+      subHeading: 'Free Waxing',
     },
   ];
 
@@ -151,23 +151,23 @@ export class HomeComponent {
   public cardDetails5: any = [
     {
       image: '../../assets/salon-prime.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Salon Prime For Kids and Mens',
+      subHeading: 'Haircut at ₹199',
     },
     {
       image: '../../assets/salon-prime-women.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Salon Prime',
+      subHeading: 'Up to 50% Off',
     },
     {
       image: '../../assets/massage-men.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Massage For Men',
+      subHeading: 'Free head massage',
     },
     {
       image: '../../assets/cleaning.webp',
-      heading: 'Main-hedaing',
-      subHeading: 'Sub-heading',
+      heading: 'Bathroom & Kitchen Cleaning',
+      subHeading: '',
     },
   ];
 

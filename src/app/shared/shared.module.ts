@@ -11,6 +11,7 @@ import { SkeltonComponent } from './skelton/skelton.component';
 import { ServiceDetailListComponent } from './service-detail-list/service-detail-list.component';
 import { CartButtonComponent } from './cart-button/cart-button.component';
 import { HeaderComponent } from './header/header.component';
+import { ModalComponent } from './modal/modal.component';
 // import { FrequentCardsComponent } from './frequent-cards/frequent-cards.component';
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HeaderComponent } from './header/header.component';
     ServiceDetailListComponent,
     CartButtonComponent,
     HeaderComponent,
+    ModalComponent,
     // FrequentCardsComponent,
   ],
   imports: [CommonModule],
@@ -39,7 +41,7 @@ import { HeaderComponent } from './header/header.component';
     FooterComponent,
     SkeltonComponent,
     ServiceDetailListComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
 })
 export class SharedModule {}

@@ -26,6 +26,7 @@ export class ServiceDetailListComponent {
   public rotationAngle: number = 180;
   public changeValue: boolean = false;
   public isHome: boolean = false;
+  public videoComplete: boolean = false;
   // public selectedServicesNew: any;
   constructor(
     private elementRef: ElementRef,
@@ -93,6 +94,12 @@ export class ServiceDetailListComponent {
           requestAnimationFrame(animate);
         } else {
           this.progressPercentage = newProgress;
+          if (this.progressPercentage >= 100) {
+            this.videoComplete = true
+          }
+          else{
+            this.videoComplete = false
+          }
         }
       };
 

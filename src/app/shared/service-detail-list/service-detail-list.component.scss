@@ -1,3 +1,6 @@
+* {
+  text-decoration: none;
+}
 .header-section {
   width: 80vw;
   margin: auto;
@@ -50,12 +53,13 @@
 .main-container {
   border-right: 1px solid rgb(227, 227, 227);
   width: 450px;
+  padding-bottom: 10px;
 }
 .parent-container {
+  width: 100%;
   display: flex;
   align-items: flex-start;
   border-top: 1px solid rgb(227, 227, 227);
-  width: 70vw;
   margin: auto;
 }
 
@@ -114,6 +118,8 @@
 }
 
 .offer-list-container {
+  padding: 10px;
+  margin-bottom: 10px;
   .offer-list-child-container {
     width: 90%;
     display: flex;
@@ -376,4 +382,8 @@ video {
   margin-right: 0;
   padding-left: 0;
   padding-right: 0;
+}
+
+.text-dark {
+  font-size: 14px;
 }

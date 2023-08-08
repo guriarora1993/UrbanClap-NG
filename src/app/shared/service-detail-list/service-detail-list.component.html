@@ -55,6 +55,8 @@
       </div>
       <div class="col-md-8">
         <div style="position: relative;">
+          <img *ngIf="videoComplete" src="../../../assets/play-video.png" width="100"
+            style="position: absolute;top: 200px;left: 370px;" alt="">
           <video #videoPlayer [muted]="true" autoplay="true" (click)="playPause()">
             <source
               src="https://content.urbanclap.com/videos/growth/luminosity/1655358691204-89c4a7/1655358691204-89c4a7.mp4"
@@ -70,6 +72,7 @@
             display: flex;
             border-top: 1px solid rgb(237, 237, 237);
             border-left: 1px solid rgb(237, 237, 237);
+            border-bottom: 1px solid rgb(227, 227, 227);
             margin-top: 30px;
           ">
           <div style="
@@ -78,7 +81,7 @@
               justify-content: space-between;
               padding: 0px 0px 0px 20px;
             ">
-            <div class="main-container" style="margin-top: 30px">
+            <div class="main-container" style="padding: 15px">
               <span class="list-heading">Packages</span>
               <div *ngFor="let data of demoData; let i = index" class="row service-detail-list">
                 <div class="col-md-6 service-detail-list-child-container">
@@ -192,7 +195,7 @@
                         background-color: white;
                       ">
                       Add
-                      <span *ngIf="changeValue" class="progress-bar"></span>
+                      <span *ngIf="data.showAddCartButton" class="progress-bar"></span>
                     </div>
                     <div class="add-cart-button" *ngIf="!data.showAddCartButton" style="
                         cursor: pointer;
@@ -210,7 +213,7 @@
                         style="font-size: 15px">-</span><span style="margin-left: 5px; font-size: 15px"
                         class="cart-counter">{{ data.cartCount }}</span><span (click)="increment(data, i)"
                         style="margin-left: 5px; font-size: 15px" class="cart-counter">+</span>
-                      <span *ngIf="changeValue" class="progress-bar"></span>
+                      <span *ngIf="!data.showAddCartButton" class="progress-bar"></span>
                     </div>
                   </div>
                 </div>
@@ -219,7 +222,7 @@
           </div>
           <ng-container>
             <div class="right-side-container" style="
-                margin-top: 30px;
+                padding-top: 15px;
                 display: flex;
                 align-items: center;
                 margin-left: 50px;
@@ -337,7 +340,7 @@
     <span>{{ message }}</span>
   </div>
 </section>
-<div class="container-fluid mt-1 mx-0">
+<div class="container-fluid mt-3 mx-0" style="text-decoration: none;">
   <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245,245,245)">
     <div class="container p-4 pb-0">
       <section class="">
@@ -346,7 +349,7 @@
         </div>
         <div class="row">
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="headings mb-4 font-weight-bold">Company</h6>
+            <h5 class="headings mb-4 font-weight-bold">Company</h5>
             <p>
               <a class="text-dark">About us</a>
             </p>
@@ -370,7 +373,7 @@
           <hr class="w-100 clearfix d-md-none" />
 
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="headings mb-4 font-weight-bold">For customers</h6>
+            <h5 class="headings mb-4 font-weight-bold">For customers</h5>
             <p>
               <a class="text-dark">UC reviews</a>
             </p>
@@ -386,9 +389,9 @@
           </div>
           <hr class="w-100 clearfix d-md-none" />
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h6 class="headings mb-4 font-weight-bold">
+            <h5 class="headings mb-4 font-weight-bold">
               For Partners
-            </h6>
+            </h5>
             <p>
               <a class="text-dark">Register as a professional</a>
             </p>
@@ -396,7 +399,7 @@
           <hr class="w-100 clearfix d-md-none" />
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3"
             style="display: flex; align-items: center; flex-direction: column;">
-            <h6 class="headings mb-4 font-weight-bold">Social links</h6>
+            <h5 class="headings mb-4 font-weight-bold">Social links</h5>
             <div class="d-flex align-items-center">
               <div
                 style="margin: 0px 0px 0px 0px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
@@ -435,8 +438,8 @@
       <section class="p-3 pt-0">
         <div class="row d-flex align-items-center">
           <div class="col-md-7 col-lg-8 text-center text-md-start">
-            <div class="p-3">
-              © 2020 Copyright:
+            <div class="p-2">
+              © 2023 Copyright:
               <a class="text-dark" href="#">RedSky.com</a>
             </div>
           </div>

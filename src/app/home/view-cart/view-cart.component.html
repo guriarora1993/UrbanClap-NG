@@ -1,4 +1,4 @@
-<div class="uc-view-cart-main-container">
+<div class="uc-view-cart-main-container container">
     <div class="header-section">
         <img (click)="navigateToComponent()" src="../../../assets/arrow.png" width="15" alt="">
         <span>Summary</span>
@@ -16,18 +16,20 @@
         <div style="width: 60%;">
             <div class="selected-cart-information-container" *ngFor="let item of cartList; let i = index">
                 <div class="selected-cart-information-header">
-                    <div style="width: 250px;"><span style="font-size: 14px;margin-top: 10px;">{{item.serviceTitle}}</span></div>
+                    <div style="width: 250px;"><span
+                            style="font-size: 14px;margin-top: 10px;">{{item.serviceTitle}}</span></div>
                     <div class="right-content">
                         <div class="add-cart-button"
                             style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 70px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
-                            <span (click)="decrement(item,i)" class="cart-counter" style="font-size: 15px;">-</span><span
-                                style="margin-left: 5px; font-size: 15px;" class="cart-counter">{{item.cartCount}}</span><span
-                                (click)="increment(item,i)" style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
+                            <span (click)="decrement(item,i)" class="cart-counter"
+                                style="font-size: 15px;">-</span><span style="margin-left: 5px; font-size: 15px;"
+                                class="cart-counter">{{item.cartCount}}</span><span (click)="increment(item,i)"
+                                style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>
-                       <div style="width: 100px;">
-                        <span style="font-size: 14px;">₹{{item.serviceAmount}}</span>
-                       </div>
+                        <div style="width: 100px;">
+                            <span style="font-size: 14px;">₹{{item.serviceAmount}}</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -56,7 +58,8 @@
                 <span style="font-size: 14px; font-weight: 400;">₹{{totalAmount}}</span>
             </div>
             <div class="item-amount-description">
-                <span style="font-size: 14px; font-weight: 400; border-bottom: 2px dotted #bdbcbc;">Taxes and free</span>
+                <span style="font-size: 14px; font-weight: 400; border-bottom: 2px dotted #bdbcbc;">Taxes and
+                    free</span>
                 <span style="font-size: 14px; font-weight: 400;">₹{{taxOnService}}</span>
             </div>
             <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-top: 15px;"></div>
@@ -93,7 +96,7 @@
             <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-bottom: 10px;"></div>
             <div style="bottom: 10px; display: flex; align-items: center; justify-content: center;">
                 <button
-                    style="background-color: rgb(110,66,229); width: 330px; border-radius: 5px; margin-top: 150px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login/Sign
+                    style="background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px;padding: 10px; margin-top: 150px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login/Sign
                     up to proceed</button>
             </div>
         </div>

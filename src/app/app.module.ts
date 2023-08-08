@@ -10,6 +10,7 @@ import { FrequentCardsComponent } from './shared/frequent-cards/frequent-cards.c
 import { AppStoreModule } from './state/app.store';
 import { StoreModule } from '@ngrx/store';
 import { HelpComponent } from './home/help/help.component';
+import { ScrollScaleDirective } from './scroll-scale.directive';
 @NgModule({
   declarations: [
     AppComponent,
@@ -17,7 +18,8 @@ import { HelpComponent } from './home/help/help.component';
     HomeComponent,
     ViewCartComponent,
     FrequentCardsComponent,
-    HelpComponent
+    HelpComponent,
+    ScrollScaleDirective,
   ],
   imports: [BrowserModule, AppRoutingModule, SharedModule, AppStoreModule],
   providers: [],
