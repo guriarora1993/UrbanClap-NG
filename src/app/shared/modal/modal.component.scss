@@ -1,0 +1,15 @@
+/* Define the custom animation */
+@keyframes slide-up {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  
+  /* Apply the animation to the modal */
+  .modal.slide-up .modal-dialog {
+    animation: slide-up 0.5s ease-out;
+  }
+  

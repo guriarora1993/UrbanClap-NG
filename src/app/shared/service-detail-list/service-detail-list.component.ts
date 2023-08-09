@@ -5,10 +5,25 @@ import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
+import {
+  trigger,
+  state,
+  style,
+  transition,
+  animate,
+} from '@angular/animations';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
   styleUrls: ['./service-detail-list.component.scss'],
+  animations: [
+    trigger('accordionContent', [
+      state('collapsed', style({ height: '0', opacity: 0 })),
+      state('expanded', style({ height: '*', opacity: 1 })),
+      transition('collapsed => expanded', animate('300ms ease-out')),
+      transition('expanded => collapsed', animate('300ms ease-in')),
+    ]),
+  ],
 })
 export class ServiceDetailListComponent {
   @Input() screenName: any;
@@ -27,6 +42,12 @@ export class ServiceDetailListComponent {
   public changeValue: boolean = false;
   public isHome: boolean = false;
   public videoComplete: boolean = false;
+  public isOpen: boolean = false;
+
+  public toggleAccordion() {
+    this.isOpen = !this.isOpen;
+    this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
+  }
   // public selectedServicesNew: any;
   constructor(
     private elementRef: ElementRef,
@@ -41,7 +62,7 @@ export class ServiceDetailListComponent {
   }
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
-  progressPercentage: number = 0;
+  progressPercentage: any = 0;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -95,10 +116,9 @@ export class ServiceDetailListComponent {
         } else {
           this.progressPercentage = newProgress;
           if (this.progressPercentage >= 100) {
-            this.videoComplete = true
-          }
-          else{
-            this.videoComplete = false
+            this.videoComplete = true;
+          } else {
+            this.videoComplete = false;
           }
         }
       };
@@ -128,10 +148,10 @@ export class ServiceDetailListComponent {
 
   public showContent: boolean = false;
 
-  public toggleAccordion() {
-    this.showContent = !this.showContent;
-    this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
-  }
+  // public toggleAccordion() {
+  //   this.showContent = !this.showContent;
+  //   this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
+  // }
 
   public increment(item: any, index: number) {
     this.changeValue = true;
@@ -196,10 +216,6 @@ export class ServiceDetailListComponent {
   }
 
   public decrement(item: any, index: number) {
-    this.changeValue = true;
-    setTimeout(() => {
-      this.changeValue = false;
-    }, 1000);
     const cartCountLimit = 0;
     this.demoData[index].showAddCartButton = true;
     if (this.demoData[index].cartCount > cartCountLimit) {
@@ -218,7 +234,7 @@ export class ServiceDetailListComponent {
         } else {
           this.selectedServices[idx].cartCount = this.demoData[index].cartCount;
           this.selectedServices[idx].serviceAmount =
-            item.serviceAmount - this.demoData[index].serviceAmount;
+            this.demoData[index].cartCount * item.serviceAmount;
         }
       }
       const serviceAmountValues = this.selectedServices.map(
@@ -232,13 +248,22 @@ export class ServiceDetailListComponent {
         },
         0
       );
+      console.log('tOTAL ', totalAmount);
       this.totalAmountOfService = totalAmount;
     } else {
       this.demoData[index].showAddCartButton = true;
     }
   }
 
+  getCartCountByServiceName(serviceName: string): number {
+    const service = this.demoData.find(
+      (item) => item.serviceName === serviceName
+    );
+    return service ? service.cartCount : 0;
+  }
+
   public decrementSelectedServices(item: any, index: number) {
+    console.log('Left side ', item);
     this.changeValue = true;
     setTimeout(() => {
       this.changeValue = false;

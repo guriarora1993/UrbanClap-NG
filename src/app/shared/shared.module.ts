@@ -27,6 +27,7 @@ import { ModalComponent } from './modal/modal.component';
     CartButtonComponent,
     HeaderComponent,
     ModalComponent,
+    ModalComponent
     // FrequentCardsComponent,
   ],
   imports: [CommonModule],
@@ -42,6 +43,7 @@ import { ModalComponent } from './modal/modal.component';
     SkeltonComponent,
     ServiceDetailListComponent,
     HeaderComponent,
+    ModalComponent
   ],
 })
 export class SharedModule {}

@@ -8,9 +8,9 @@ import { SharedModule } from './shared/shared.module';
 import { ViewCartComponent } from './home/view-cart/view-cart.component';
 import { FrequentCardsComponent } from './shared/frequent-cards/frequent-cards.component';
 import { AppStoreModule } from './state/app.store';
-import { StoreModule } from '@ngrx/store';
 import { HelpComponent } from './home/help/help.component';
 import { ScrollScaleDirective } from './scroll-scale.directive';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +21,13 @@ import { ScrollScaleDirective } from './scroll-scale.directive';
     HelpComponent,
     ScrollScaleDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, SharedModule, AppStoreModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    SharedModule,
+    AppStoreModule,
+    BrowserAnimationsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

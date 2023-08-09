@@ -1,15 +1,19 @@
-<section class="header-section" *ngIf="!dataLoading">
+<section class="container" *ngIf="!dataLoading">
   <app-header></app-header>
-  <div class="container" style="margin-top: 20px">
+  <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
       <div class="col-md-4">
         <div class="tutorial-section-content">
           <h1 class="main-heading">{{screenName}}</h1>
           <div class="ratings-section">
-            <img src="../../../assets/star.png" alt="" width="10" />
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                fill="#572AC8"></path>
+            </svg>
             <span>4.87 (4.5M bookings)</span>
           </div>
-          <div class="container guide-button-container">
+          <div class="container guide-button-container" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
             <div class="child-container">
               <img src="../../../assets/blue-heart.png  " width="20" alt="" />
               <span>Massage Guide</span>
@@ -56,7 +60,7 @@
       <div class="col-md-8">
         <div style="position: relative;">
           <img *ngIf="videoComplete" src="../../../assets/play-video.png" width="100"
-            style="position: absolute;top: 200px;left: 370px;" alt="">
+            style="position: absolute;top: 230px;left: 390px;" alt="">
           <video #videoPlayer [muted]="true" autoplay="true" (click)="playPause()">
             <source
               src="https://content.urbanclap.com/videos/growth/luminosity/1655358691204-89c4a7/1655358691204-89c4a7.mp4"
@@ -204,7 +208,7 @@
                         position: absolute;
                         width: 70px;
                         padding: 5px;
-                        border-radius: 5px;
+                        border-radius: 8px;
                         left: 25px;
                         bottom: -10px;
                         background-color: white;
@@ -229,6 +233,9 @@
                 flex-direction: column;
                 position: sticky;
                 top: 0px;
+                height: 100%;
+                width: 100%;
+                /* background-color: seagreen; */
               ">
               <div class="empty-cart-container">
                 <div class="empty-cart-container-2" *ngIf="selectedServices.length <= 0">
@@ -237,50 +244,53 @@
                 </div>
                 <div class="selected-cart-item-list-container" *ngIf="selectedServices.length > 0">
                   <h4>Cart</h4>
-                  <ng-container *ngFor="let service of selectedServices; let item = index">
+                  <ng-container *ngFor="let service of demoData; let item = index">
                     <div class="item-list" style="
                         display: flex;
                         align-items: center;
                         margin-top: 15px;
                       ">
-                      <div style="width: 100px">
-                        <span style="color: black; width: 150px">{{
+                      <div style="width: 100px" *ngIf="service.cartCount > 0">
+                        <span style="color: black; width: 100%">{{
                           service.serviceTitle
                           }}</span>
                       </div>
-                      <div class="add-cart-button" style="
+                      <div *ngIf="service.cartCount > 0" class="add-cart-button" style="
                           cursor: pointer;
                           color: rgb(121, 79, 231);
                           border: 1px solid rgb(121, 79, 231);
                           width: 70px;
                           padding: 5px;
-                          border-radius: 5px;
+                          border-radius: 8px;
                           background-color: white;
+                          display: flex;
+                          align-items: center;
+                          justify-content: space-around;
                         ">
                         <span (click)="decrement(service, item)" style="color: rgb(121, 79, 231); font-size: 15px"
                           class="cart-counter">-</span><span style="
                             color: rgb(121, 79, 231);
-                            margin-left: 5px;
                             font-size: 15px;
-                          " class="cart-counter">{{ service.cartCount }}</span><span (click)="increment(service, item)"
-                          style="
-                            margin-left: 5px;
+                          " class="cart-counter" *ngIf="service.cartCount > 0">{{ service.cartCount }}</span><span
+                          (click)="increment(service, item)" style="
                             color: rgb(121, 79, 231);
                             font-size: 15px;
                           " class="cart-counter">+</span>
                       </div>
 
                       <div style="width: 50px">
-                        <span style="margin-left: 10px">₹{{ service.serviceAmount }}</span>
+                        <span style="margin-left: 10px" *ngIf="service.cartCount > 0">₹{{ service.serviceAmount
+                          }}</span>
                       </div>
                     </div>
                   </ng-container>
-                  <app-line></app-line>
+                  <div style="height: 3px; background-color: #f1f1f1; width: 100%;margin-left: 0; margin-top: 45px;">
+                  </div>
                   <div class="view-cart-button-container" style="
                       display: flex;
                       align-items: center;
                       justify-content: center;
-                      margin-top: 10px;
+                      padding: 10px;
                     ">
                     <div class="view-cart-button" (click)="
                         viewCartDetail(selectedServices, totalAmountOfService)
@@ -292,43 +302,69 @@
                 </div>
               </div>
               <div class="offer-list-container">
-                <div class="offer-list-child-container">
-                  <div class="percentage-icon-container">
-                    <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                <div class="accordion-item" [ngClass]="{ 'open': isOpen }">
+                  <div class="offer-list-child-container">
+                    <div class="percentage-icon-container">
+                      <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                    </div>
+                    <div class="offer-list-text-container">
+                      <span class="main-content">20% off on Kotak Silk cards</span>
+                      <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
+                    </div>
                   </div>
-                  <div class="offer-list-text-container">
-                    <span class="main-content">20% off on Kotak Silk cards</span>
-                    <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
-                  </div>
-                </div>
-                <div class="accordion-container">
-                  <button style="
-                      background-color: white;
-                      font-weight: bold;
-                      font-size: 0.7rem;
-                      color: rgb(121, 79, 231);
-                      display: flex;
-                      align-items: center;
-                    " (click)="toggleAccordion()" class="accordion-button">
-                    {{ showContent ? "ViewMoreOffers" : "View More Offers" }}
-                    <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
-                        transform: 'rotate(' + rotationAngle + 'deg)'
-                      }" alt="" />
-                  </button>
-                  <div *ngIf="showContent" class="accordion-content">
-                    <div class="accordion-item">
-                      <div *ngFor="let data of buttons" class="offer-list-child-container-content">
-                        <div class="percentage-icon-container">
-                          <img [src]="data.img" width="25" alt="" />
-                        </div>
-                        <div class="offer-list-text-container">
-                          <span class="main-content">{{ data.title }}</span>
-                          <span style="font-size: 14px; color: rgb(165, 163, 163)">{{ data.title }}</span>
-                        </div>
+                  <div class="content" [@accordionContent]="isOpen ? 'expanded' : 'collapsed'">
+                    <div class="offer-list-child-container">
+                      <div class="percentage-icon-container">
+                        <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                      </div>
+                      <div class="offer-list-text-container">
+                        <span class="main-content">20% off on Kotak Silk cards</span>
+                        <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
+                      </div>
+                    </div>
+                    <div class="offer-list-child-container">
+                      <div class="percentage-icon-container">
+                        <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                      </div>
+                      <div class="offer-list-text-container">
+                        <span class="main-content">20% off on Kotak Silk cards</span>
+                        <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
+                      </div>
+                    </div>
+                    <div class="offer-list-child-container">
+                      <div class="percentage-icon-container">
+                        <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                      </div>
+                      <div class="offer-list-text-container">
+                        <span class="main-content">20% off on Kotak Silk cards</span>
+                        <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
+                      </div>
+                    </div>
+                    <div class="offer-list-child-container">
+                      <div class="percentage-icon-container">
+                        <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                      </div>
+                      <div class="offer-list-text-container">
+                        <span class="main-content">20% off on Kotak Silk cards</span>
+                        <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
+                      </div>
+                    </div>
+                    <div class="offer-list-child-container">
+                      <div class="percentage-icon-container">
+                        <img src="../../../assets/percentage-icon.png" width="25" alt="" />
+                      </div>
+                      <div class="offer-list-text-container">
+                        <span class="main-content">20% off on Kotak Silk cards</span>
+                        <span style="font-size: 14px; color: rgb(165, 163, 163)">20% off up to INR 350</span>
                       </div>
                     </div>
                   </div>
+                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' : 'View More Offers' }}
+                    <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
+                        transform: 'rotate(' + rotationAngle + 'deg)'}" alt="" />
+                  </button>
                 </div>
+
               </div>
             </div>
           </ng-container>
@@ -448,4 +484,23 @@
     </div>
   </footer>
 </div>
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Test
+</button> -->
+
+<div class="modal fade slide-up" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div type="button" data-bs-dismiss="modal" aria-label="Close"
+    style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: 10px; left: 895px;">
+    <img src="../../../assets/icons8-close-480.png" width="20">
+  </div>
+  <div class="modal-dialog mt-5" style="border-radius: 10px;border-bottom-left-radius: 10px;">
+    <div class="modal-content">
+      <div style="overflow: scroll;" class="modal-body">
+        <img style="width: 100%; height: 100%;" src="../../../assets/modal-image.webp" alt="">
+      </div>
+    </div>
+  </div>
+</div>
+
 <app-skelton *ngIf="dataLoading"></app-skelton>
