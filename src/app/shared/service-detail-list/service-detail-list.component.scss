@@ -47,7 +47,10 @@
 .service-detail-list {
   display: flex;
   justify-content: space-between;
-  width: 450px;
+  width: 100%;
+  margin-top: 10px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgb(227, 227, 227);
 }
 
 .main-container {
@@ -80,9 +83,26 @@
   text-align: center;
   cursor: pointer;
 }
+.item-container {
+  position: relative;
+}
 .item-container .active {
   border: 2px solid black;
   padding: 3px;
+}
+.item-container::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: black;
+  transition: width 0.3s ease;
+}
+
+.item-container:hover::before {
+  width: 100%;
 }
 
 .offer-listcontainer {
@@ -107,9 +127,9 @@
   justify-content: center;
   border: 1px solid rgb(194, 192, 192);
   border-radius: 5px;
-  width: 100%;
-  height: 100%;
-  padding: 10px;
+  width: 330px;
+  padding: 16px;
+  height: auto;
   margin-top: 15px;
   span {
     font-size: 14px;
@@ -198,6 +218,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 300px;
 }
 
 .view-cart-button {
@@ -207,8 +228,12 @@
   align-items: center;
   justify-content: space-between;
   background-color: rgb(110, 66, 229);
-  border-radius: 5px;
-  padding: 8px;
+  border-radius: 8px;
+  padding: 16px 16px 16px 16px;
+  padding: 16px;
+  span {
+    color: white;
+  }
 }
 
 /* Add your desired styles here */
@@ -446,4 +471,10 @@ video {
   align-items: center;
   justify-content: space-around;
   margin-top: 10px;
+}
+
+.scroll-container {
+  max-height: 100vh; /* Adjust this value as needed */
+  overflow-y: auto;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
 }

@@ -43,12 +43,12 @@ export class ServiceDetailListComponent {
   public isHome: boolean = false;
   public videoComplete: boolean = false;
   public isOpen: boolean = false;
+  public progressPercentage: any = 0;
 
   public toggleAccordion() {
     this.isOpen = !this.isOpen;
     this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
   }
-  // public selectedServicesNew: any;
   constructor(
     private elementRef: ElementRef,
     private router: Router,
@@ -62,7 +62,6 @@ export class ServiceDetailListComponent {
   }
 
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
-  progressPercentage: any = 0;
 
   ngOnInit(): void {
     this.route.queryParams.subscribe((params) => {
@@ -78,7 +77,7 @@ export class ServiceDetailListComponent {
     );
   }
 
-  initVideo() {
+  public initVideo() {
     const video = this.videoPlayer.nativeElement;
     video.addEventListener('timeupdate', () => {
       this.updateProgress();
@@ -105,7 +104,7 @@ export class ServiceDetailListComponent {
     const video = this.videoPlayer.nativeElement;
     if (video) {
       const newProgress = (video.currentTime / video.duration) * 100;
-      const smoothnessFactor = 0.1; // Adjust this value for desired smoothness
+      const smoothnessFactor = 0.1;
 
       const animate = () => {
         this.progressPercentage +=
@@ -148,17 +147,11 @@ export class ServiceDetailListComponent {
 
   public showContent: boolean = false;
 
-  // public toggleAccordion() {
-  //   this.showContent = !this.showContent;
-  //   this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
-  // }
-
   public increment(item: any, index: number) {
     this.changeValue = true;
     setTimeout(() => {
       this.changeValue = false;
     }, 1000);
-    // this.demoData[index].showAddCartButton = true;
     const cartCountLimit = 3;
     if (this.demoData[index].cartCount < cartCountLimit) {
       this.demoData[index].cartCount++;
@@ -196,8 +189,6 @@ export class ServiceDetailListComponent {
             const serviceAmountValues = this.selectedServices.map(
               (item) => item.serviceAmount
             );
-
-            // Calculate the sum of serviceAmount values using reduce
             const totalAmount = serviceAmountValues.reduce(
               (accumulator, currentValue) => {
                 return accumulator + currentValue;
@@ -241,7 +232,6 @@ export class ServiceDetailListComponent {
         (item) => item.serviceAmount
       );
 
-      // Calculate the sum of serviceAmount values using reduce
       const totalAmount = serviceAmountValues.reduce(
         (accumulator, currentValue) => {
           return accumulator - currentValue;
@@ -254,14 +244,6 @@ export class ServiceDetailListComponent {
       this.demoData[index].showAddCartButton = true;
     }
   }
-
-  getCartCountByServiceName(serviceName: string): number {
-    const service = this.demoData.find(
-      (item) => item.serviceName === serviceName
-    );
-    return service ? service.cartCount : 0;
-  }
-
   public decrementSelectedServices(item: any, index: number) {
     console.log('Left side ', item);
     this.changeValue = true;
@@ -314,6 +296,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/packages.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Mens/Kids haircut',
@@ -323,6 +310,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/men&kids-haircut.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Face care',
@@ -332,6 +324,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/face-care.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Shave/beared',
@@ -341,6 +338,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/shaved-beared.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Hair colour',
@@ -350,6 +352,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/hair-color.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Massage',
@@ -359,6 +366,11 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/massage.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
   ];
   public demoData2 = [
@@ -420,10 +432,10 @@ export class ServiceDetailListComponent {
   // ₹
   public activeIndex: number = -1;
   public toggleScroll(index: number, serviceTitle: string, divId: any) {
-    const element = this.elementRef.nativeElement.querySelector(divId);
-
+    const divRef = `#service-${index}`;
+    const element = this.elementRef.nativeElement.querySelector(divRef);
     if (element) {
-      element.scrollIntoView({ top: 0, behavior: 'smooth' });
+      element.scrollIntoView({ top: 100, behavior: 'smooth' });
     }
     this.activeIndex = index;
   }
@@ -454,15 +466,6 @@ export class ServiceDetailListComponent {
       title: 'Massage',
     },
   ];
-
-  public scrollToTop(index: number) {
-    this.demoData.splice(0, 0, this.demoData.splice(index, 1)[0]);
-    setTimeout(() => {
-      const element = this.elementRef.nativeElement.querySelector(
-        `#div-${index}`
-      );
-    }, 0);
-  }
 
   public viewCartDetail(cartList: any, totalAmount: number) {
     this.dataLoading = true;

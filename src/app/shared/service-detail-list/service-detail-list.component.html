@@ -1,6 +1,6 @@
 <section class="container" *ngIf="!dataLoading">
   <app-header></app-header>
-  <div class="container-fluid" style="margin-top: 20px">
+  <div class="container-fluid" style="margin-top: 90px">
     <div class="row">
       <div class="col-md-4">
         <div class="tutorial-section-content">
@@ -26,7 +26,7 @@
             margin-top: 20px;
             border-radius: 10px;
             position: sticky;
-            top: 20px;
+            top: 100px;
           ">
           <div class="row">
             <div class="service-carts-heading">
@@ -42,12 +42,8 @@
             <div class="col-md-4" *ngFor="let service of serviceCardItems; let i = index">
               <div class="card mb-3 border-0">
                 <div class="card-body">
-                  <div class="item-container m-0 mx-2" (click)="
-                      [
-                        toggleScroll(i, service.title, '.service-detail-list'),
-                        scrollToTop(i)
-                      ]
-                    ">
+                  <div [ngClass]="i.toString()" class="item-container m-0 mx-1"
+                    (click)="toggleScroll(i, service.title, i)">
                     <img [ngClass]="{ active: activeIndex === i }" width="60" [src]="service.img" alt="" />
                     <span>{{ service.title }}</span>
                   </div>
@@ -77,7 +73,7 @@
             border-top: 1px solid rgb(237, 237, 237);
             border-left: 1px solid rgb(237, 237, 237);
             border-bottom: 1px solid rgb(227, 227, 227);
-            margin-top: 30px;
+            margin-top: 190px;
           ">
           <div style="
               display: flex;
@@ -85,10 +81,10 @@
               justify-content: space-between;
               padding: 0px 0px 0px 20px;
             ">
-            <div class="main-container" style="padding: 15px">
-              <span class="list-heading">Packages</span>
-              <div *ngFor="let data of demoData; let i = index" class="row service-detail-list">
-                <div class="col-md-6 service-detail-list-child-container">
+            <div class="main-container" style="padding: 15px;">
+              <div *ngFor="let data of demoData; let i = index" class="row service-detail-list" [id]="'service-' + i">
+                <span class="list-heading">{{data.serviceName}}</span>
+                <div class="col-md-8 service-detail-list-child-container">
                   <div style="margin-top: 20px">
                     <span style="
                         font-size: 12px;
@@ -107,13 +103,18 @@
                       ">{{ data.serviceTitle }}</span>
                   </div>
                   <div style="margin-top: 5px">
-                    <img width="10" src="../../../assets/star.png" alt="" />
-                    <span style="font-size: 12px; opacity: 0.6">{{
+                    <svg width="15" height="15" viewBox="0 0 20 20" fill="" xmlns="http://www.w3.org/2000/svg">
+                      <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
+                        fill="#572AC8"></path>
+                    </svg>
+                    <span style="font-size: 12px; opacity: 0.6;margin-left: 5px;">{{
                       data.reviews
                       }}</span>
                   </div>
-                  <div style="display: flex; align-items: center; margin-top: 10px">
-                    <span style="font-size: 12px; font-weight: 700">{{
+                  <div
+                    style="display: flex; align-items: center; margin-top: 10px; border-bottom: 2px dotted rgb(239, 235, 235);padding-bottom: 20px;">
+                    <span style="font-size: 12px; font-weight: 700">₹{{
                       data.serviceAmount
                       }}</span>
 
@@ -125,21 +126,21 @@
                       ">1 hr 5 mins</span>
                   </div>
                   <div class="edit-package-container" style="
-                      border-top: 3px dotted rgb(193, 188, 188);
                       margin-top: 20px;
                     ">
-                    <ul style="margin-top: 10px">
-                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
-                        Haircut
+                    <ul style="margin-top: 10px;padding-left: 1rem;">
+                      <li *ngFor="let desc of data.description" class="edit-packages-list"
+                        style="font-size: 12px; font-weight: 700">
+                        Haircut:
                         <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             line-height: 16px;
                             font-weight: 400;
-                          ">Haircut for men</span>
+                          ">{{desc}}</span>
                       </li>
-                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
-                        Shave/beared grooming
+                      <!-- <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
+                        Shave/beared grooming:
                         <span style="
                             opacity: 0.5;
                             font-size: 12px;
@@ -147,13 +148,13 @@
                           ">Beared trimming & styling</span>
                       </li>
                       <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
-                        Face care
+                        Face care:
                         <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             font-weight: 400;
                           ">Skin Brighting Facial</span>
-                      </li>
+                      </li> -->
                     </ul>
                     <button style="
                         cursor: pointer;
@@ -229,13 +230,11 @@
                 padding-top: 15px;
                 display: flex;
                 align-items: center;
-                margin-left: 50px;
+                margin-left: 25px;
                 flex-direction: column;
                 position: sticky;
-                top: 0px;
-                height: 100%;
+                top: 70px;
                 width: 100%;
-                /* background-color: seagreen; */
               ">
               <div class="empty-cart-container">
                 <div class="empty-cart-container-2" *ngIf="selectedServices.length <= 0">
@@ -248,9 +247,8 @@
                     <div class="item-list" style="
                         display: flex;
                         align-items: center;
-                        margin-top: 15px;
                       ">
-                      <div style="width: 100px" *ngIf="service.cartCount > 0">
+                      <div style="width: 150px" *ngIf="service.cartCount > 0">
                         <span style="color: black; width: 100%">{{
                           service.serviceTitle
                           }}</span>
@@ -283,14 +281,21 @@
                           }}</span>
                       </div>
                     </div>
+                    <ul style="margin-top: 5px; padding-left: 20px; font-size: 12px;font-weight: 400; opacity: 0.6;"
+                      *ngIf="service.cartCount > 0">
+                      <li *ngFor="let description of service.description">{{description}}</li>
+                    </ul>
+                    <p style="cursor: pointer; font-size: 14px;font-weight: 600; line-height: 20px; color: rgb(110,66, 229);"
+                      *ngIf="service.cartCount > 0">
+                      Edit
+                    </p>
                   </ng-container>
-                  <div style="height: 3px; background-color: #f1f1f1; width: 100%;margin-left: 0; margin-top: 45px;">
+                  <div style="margin-bottom: 10px; height: 3px; background-color: #f1f1f1; width: 100%;margin-left: 0;">
                   </div>
                   <div class="view-cart-button-container" style="
                       display: flex;
                       align-items: center;
                       justify-content: center;
-                      padding: 10px;
                     ">
                     <div class="view-cart-button" (click)="
                         viewCartDetail(selectedServices, totalAmountOfService)
@@ -359,7 +364,8 @@
                       </div>
                     </div>
                   </div>
-                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' : 'View More Offers' }}
+                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' : 'View
+                    More Offers' }}
                     <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
                         transform: 'rotate(' + rotationAngle + 'deg)'}" alt="" />
                   </button>
