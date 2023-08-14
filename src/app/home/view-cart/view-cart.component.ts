@@ -3,6 +3,7 @@ import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { DatabaseService } from '@app/services/database.service';
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
@@ -21,7 +22,11 @@ export class ViewCartComponent {
   public cartList: any[] = [];
   public grandTotal: number = 0;
   public taxOnService: number = 49.0;
-  constructor(private store: Store<{ app: AppState }>, private route: Router) {
+  constructor(
+    private store: Store<{ app: AppState }>,
+    private route: Router,
+    private database: DatabaseService
+  ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
     );
@@ -29,8 +34,23 @@ export class ViewCartComponent {
 
   ngOnInit() {
     this.totalAmount = parseFloat(localStorage.getItem('totalAmount') || '0');
-    this.cartList = JSON.parse(localStorage.getItem('cartList') || '[]');
-    this.grandTotal = this.totalAmount + this.taxOnService
+    this.grandTotal = this.totalAmount + this.taxOnService;
+    const fetchData = this.database
+      .getSelectedCarts('selectedService', 'addedCart')
+      .then((data) => {
+        this.cartList = data.cartList;
+        const totalAmount = this.calculateTotalAmount(this.cartList);
+        this.totalAmount = totalAmount || 0;
+        this.grandTotal = totalAmount + this.taxOnService || 0;
+      });
+  }
+
+  public calculateTotalAmount(dataArray: any) {
+    let totalAmount = 0;
+    for (const item of dataArray) {
+      totalAmount += item.serviceAmount;
+    }
+    return totalAmount;
   }
 
   public demoData = [
@@ -98,16 +118,21 @@ export class ViewCartComponent {
       const test =
         this.cartList[index].serviceAmount + this.demoData[index].serviceAmount;
       this.cartList[index].serviceAmount = test;
+      console.log("this.cartList[index].serviceAmount", this.cartList[index].serviceAmount)
+      this.totalAmount = this.totalAmount + this.demoData[index].serviceAmount
+      this.grandTotal = this.grandTotal + this.demoData[index].serviceAmount
     }
-    console.log(this.cartList)
   }
 
   public decrement(item: any, index: number) {
-    if (this.cartList[index].cartCount > 1) {
+    if (this.cartList[index].cartCount >= 1) {
       this.cartList[index].cartCount--;
       const test =
         this.cartList[index].serviceAmount - this.demoData[index].serviceAmount;
       this.cartList[index].serviceAmount = test;
+      console.log("this.cartList[index].serviceAmount", this.demoData[index].serviceAmount)
+      this.totalAmount = this.totalAmount - this.demoData[index].serviceAmount
+      this.grandTotal = this.grandTotal - this.demoData[index].serviceAmount
     } else {
       this.cartList.splice(index, 1);
     }

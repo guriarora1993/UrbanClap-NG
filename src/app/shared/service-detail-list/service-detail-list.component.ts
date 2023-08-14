@@ -12,6 +12,7 @@ import {
   transition,
   animate,
 } from '@angular/animations';
+import { DatabaseService } from '@app/services/database.service';
 @Component({
   selector: 'app-service-detail-list',
   templateUrl: './service-detail-list.component.html',
@@ -54,7 +55,8 @@ export class ServiceDetailListComponent {
     private router: Router,
     private store: Store<{ app: AppState }>,
     private toaster: LoaderService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private database: DatabaseService
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -68,6 +70,11 @@ export class ServiceDetailListComponent {
       const value = params['key'];
       this.screenName = value;
     });
+    // this.database.getSelectedCarts("selectedService","addedCart").then
+    // ((cartsDetails)=>{
+    //   this.selectedServices = cartsDetails.cartList
+    //   console.log("GGGGG ", this.demoData)
+    // })
   }
 
   ngAfterViewInit() {
@@ -238,14 +245,12 @@ export class ServiceDetailListComponent {
         },
         0
       );
-      console.log('tOTAL ', totalAmount);
       this.totalAmountOfService = totalAmount;
     } else {
       this.demoData[index].showAddCartButton = true;
     }
   }
   public decrementSelectedServices(item: any, index: number) {
-    console.log('Left side ', item);
     this.changeValue = true;
     setTimeout(() => {
       this.changeValue = false;
@@ -274,8 +279,6 @@ export class ServiceDetailListComponent {
       const serviceAmountValues = this.selectedServices.map(
         (item) => item.serviceAmount
       );
-
-      // Calculate the sum of serviceAmount values using reduce
       const totalAmount = serviceAmountValues.reduce(
         (accumulator, currentValue) => {
           return accumulator - currentValue;
@@ -468,9 +471,11 @@ export class ServiceDetailListComponent {
   ];
 
   public viewCartDetail(cartList: any, totalAmount: number) {
+    const selectedData = {
+      cartList,
+    };
     this.dataLoading = true;
-    localStorage.setItem('cartList', JSON.stringify(cartList));
-    localStorage.setItem('totalAmount', totalAmount.toString());
+    this.database.addServiceCart('selectedService', selectedData, 'addedCart');
     setTimeout(() => {
       if (this.counterValue != 0) {
         this.router.navigate(['/view-cart']);
@@ -485,5 +490,11 @@ export class ServiceDetailListComponent {
     setTimeout(() => {
       this.cartLimitOver = false;
     }, 3000);
+  }
+
+  closeModal() {
+    const modalContainer = document.getElementById('staticBackdrop');
+    modalContainer?.classList.remove('show');
+    // Additional logic to handle the modal backdrop removal if necessary
   }
 }

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "urban-clap-89fa0": {
+      "hosting": {
+        "urban": [
+          "urban-clap-89fa0"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "urban-clap-89fa0"
+  }
+}

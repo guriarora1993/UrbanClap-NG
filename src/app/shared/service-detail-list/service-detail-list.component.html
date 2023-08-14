@@ -277,7 +277,7 @@
                       </div>
 
                       <div style="width: 50px">
-                        <span style="margin-left: 10px" *ngIf="service.cartCount > 0">₹{{ service.serviceAmount
+                        <span style="margin-left: 10px" *ngIf="service.cartCount > 0">₹{{ service.serviceAmount * service.cartCount
                           }}</span>
                       </div>
                     </div>
@@ -285,7 +285,8 @@
                       *ngIf="service.cartCount > 0">
                       <li *ngFor="let description of service.description">{{description}}</li>
                     </ul>
-                    <p style="cursor: pointer; font-size: 14px;font-weight: 600; line-height: 20px; color: rgb(110,66, 229);"
+                    <p data-bs-toggle="modal" data-bs-target="#editModal"
+                      style="cursor: pointer; font-size: 14px;font-weight: 600; line-height: 20px; color: rgb(110,66, 229);"
                       *ngIf="service.cartCount > 0">
                       Edit
                     </p>
@@ -296,6 +297,7 @@
                       display: flex;
                       align-items: center;
                       justify-content: center;
+                      cursor: pointer;
                     ">
                     <div class="view-cart-button" (click)="
                         viewCartDetail(selectedServices, totalAmountOfService)
@@ -364,8 +366,8 @@
                       </div>
                     </div>
                   </div>
-                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' : 'View
-                    More Offers' }}
+                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' :
+                    'ViewMore Offers' }}
                     <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
                         transform: 'rotate(' + rotationAngle + 'deg)'}" alt="" />
                   </button>
@@ -382,7 +384,7 @@
     <span>{{ message }}</span>
   </div>
 </section>
-<div class="container-fluid mt-3 mx-0" style="text-decoration: none;">
+<div class="container-fluid mt-3 mx-0" style="text-decoration: none;" *ngIf="!dataLoading">
   <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245,245,245)">
     <div class="container p-4 pb-0">
       <section class="">
@@ -502,11 +504,81 @@
   </div>
   <div class="modal-dialog mt-5" style="border-radius: 10px;border-bottom-left-radius: 10px;">
     <div class="modal-content">
-      <div style="overflow: scroll;" class="modal-body">
+      <div style="border-radius: 10px;" class="modal-body">
         <img style="width: 100%; height: 100%;" src="../../../assets/modal-image.webp" alt="">
       </div>
     </div>
   </div>
 </div>
 
+<div class="modal fade slide-up" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div style="position: relative;">
+    <div (click)="closeModal()" type="button" data-bs-dismiss="modal" aria-label="Close"
+      style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: -40px; left: 935px;">
+      <img src="../../../assets/icons8-close-480.png" width="20">
+    </div>
+  <div class="modal-dialog mt-5">
+    <div class="modal-content" style="background-color: rgb(255,255,255);" *ngFor="let service of demoData; let item = index">
+      <div class="modal-body" *ngIf="service.cartCount > 0">
+        <div tabindex="0"
+          class="css-1dbjc4n r-15xlzsq r-wh77r2 r-17gur6a r-1loqt21 r-ymttw5 r-1otgn73 r-1i6wzkk r-lrvibr r-13qz1uu"
+          style="transition-duration: 0s;">
+          <div class="css-1dbjc4n r-1472mwg r-lrsllp"></div>
+          <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible;">
+            <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible;">
+              <div aria-disabled="true" tabindex="-1" class="css-1dbjc4n r-1i6wzkk r-lrvibr"
+                style="transition-duration: 0s;">
+                <div class="css-1dbjc4n r-13qz1uu">
+                  <div class="css-1dbjc4n r-1awozwy r-18u37iz r-1wtj0ep r-13qz1uu">
+                    <div class="css-1dbjc4n r-1habvwh r-13awgt0 r-eqz5dr r-1777fci r-13qz1uu">
+                      <h2 dir="auto" aria-level="2" role="heading"
+                        class="css-4rbku5 css-901oao css-cens5h r-12qh9nz r-b88u0q r-fdjqy7 r-13wfysu r-3twk1y r-13qz1uu"
+                        style="margin-left: 10px; -webkit-line-clamp: 2; color: rgb(15, 15, 15); font-size: 28px; line-height: 40px;">{{service.serviceName}}</h2>
+                      <div style="margin-left: 10px; display: flex; align-items: center;">
+                        <div>
+                          <svg width="15" style="margin-bottom: 15px;" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                              d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm9 0V6h2v5h5v2h-6a1 1 0 01-1-1z"
+                              fill="#0F0F0F"></path>
+                          </svg>
+                        </div>
+                        <div>
+                          <p dir="auto" role="paragraph"
+                            class="css-901oao r-1ej5qbt r-1enofrn r-16dba41 r-1cwl3u0 r-fdjqy7 r-13wfysu r-3twk1y"
+                            style="margin-left: 10px; color: rgb(15, 15, 15);">Service time: 60 mins</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="choose-service-main-container">
+          <h4 style="font-size: 1.5rem;margin: 20px 0px 0px 10px;">Hair cut</h4>
+          <ng-container *ngFor="let services of service.description; let optionId = index">
+            <div style="display: flex; align-items: center;margin-left: 10px;margin-top: 15px;">
+              <input class="custom-radio" id="option{{optionId}}" type="radio" name="option1">
+              <label style="margin-left: 10px;font-size: 14px;font-weight: 600;line-height: 24px;" for="option{{optionId}}">
+               {{services}}
+              </label>
+            </div>
+          </ng-container>
+          <div class="footer-main-container">
+            <div class="footer-child-container">
+              <p style="font-size: 14px; font-weight: 700;line-height: 24px;margin-top: 10px;">₹{{service.serviceAmount * service.cartCount}}</p>
+              <button>
+                Add to cart
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>
+</div>
 <app-skelton *ngIf="dataLoading"></app-skelton>

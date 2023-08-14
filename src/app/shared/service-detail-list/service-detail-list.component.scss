@@ -478,3 +478,110 @@ video {
   overflow-y: auto;
   overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
+.modal.slide-up .modal-dialog {
+  transform: translate(0, 100%);
+  animation: slideUp 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  to {
+    transform: translate(0, 0);
+  }
+}
+
+.r-15xlzsq {
+  background-color: rgb(255, 241, 229);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.r-13qz1uu {
+  width: 100%;
+}
+.r-ymttw5 {
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.r-1472mwg {
+  height: 24px;
+}
+
+.css-1dbjc4n {
+  -webkit-box-align: stretch;
+  -webkit-box-direction: normal;
+  -webkit-box-orient: vertical;
+  align-items: stretch;
+  border: 0px solid black;
+  box-sizing: border-box;
+  display: flex;
+  flex-basis: auto;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin: 0px;
+  min-height: 0px;
+  min-width: 0px;
+  padding: 0px;
+  position: relative;
+  z-index: 0;
+}
+
+.modal-body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  // height: 450px;
+  border-radius: 20px;
+}
+
+.choose-service-main-container {
+  border-bottom: 3px solid rgb(237, 237, 237);
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+}
+
+.footer-main-container {
+  position: fixed;
+  bottom: 0;
+  .footer-child-container{
+    width: 498px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(245, 245, 245);
+    padding: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    button{
+      background-color: #572AC8;
+      padding-top: 14px;
+      padding-bottom: 14px;
+      border-radius: 8px;
+      width: 250px;
+      color: #fff;
+      border: none;
+    }
+  }
+}
+
+.selected-service-btn{
+  width: 20px;
+  height: 20px;
+  background-color: red;
+}
+
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    color: var(--bs-modal-color);
+    pointer-events: auto;
+    background-color: var(--bs-modal-bg);
+    background-clip: padding-box;
+   border: none;
+    border-radius: var(--bs-modal-border-radius);
+    outline: 0;
+}
