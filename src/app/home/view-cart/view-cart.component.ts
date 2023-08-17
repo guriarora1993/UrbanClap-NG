@@ -1,15 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { DatabaseService } from '@app/services/database.service';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginModalComponent } from '@app/shared/login-modal/login-modal.component';
+import { LoaderService } from '@app/services/loader.service';
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
   styleUrls: ['./view-cart.component.scss'],
 })
 export class ViewCartComponent {
+  @ViewChild('phoneNumber', { static: false }) phoneNumber:
+    | ElementRef<HTMLInputElement>
+    | undefined;
   public message: string = "You can't add anymore of this item";
   public cartLimitOver: boolean = false;
   public isSpanDisabled: boolean = false;
@@ -22,10 +27,13 @@ export class ViewCartComponent {
   public cartList: any[] = [];
   public grandTotal: number = 0;
   public taxOnService: number = 49.0;
+  public isPhone: boolean = false;
+  public numberExist: boolean = false;
   constructor(
     private store: Store<{ app: AppState }>,
     private route: Router,
-    private database: DatabaseService
+    private dialog: MatDialog,
+    private modal: LoaderService
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -35,14 +43,11 @@ export class ViewCartComponent {
   ngOnInit() {
     this.totalAmount = parseFloat(localStorage.getItem('totalAmount') || '0');
     this.grandTotal = this.totalAmount + this.taxOnService;
-    const fetchData = this.database
-      .getSelectedCarts('selectedService', 'addedCart')
-      .then((data) => {
-        this.cartList = data.cartList;
-        const totalAmount = this.calculateTotalAmount(this.cartList);
-        this.totalAmount = totalAmount || 0;
-        this.grandTotal = totalAmount + this.taxOnService || 0;
-      });
+    this.cartList = JSON.parse(localStorage.getItem('selectedCarts') || '[]');
+    this.demoData = JSON.parse(localStorage.getItem('demoData') || '[]');
+    const totalAmount = this.calculateTotalAmount(this.cartList);
+    this.totalAmount = totalAmount || 0;
+    this.grandTotal = totalAmount + this.taxOnService || 0;
   }
 
   public calculateTotalAmount(dataArray: any) {
@@ -115,26 +120,49 @@ export class ViewCartComponent {
       this.showToaster();
     } else {
       this.cartList[index].cartCount++;
+      this.demoData[index].cartCount++;
+
       const test =
         this.cartList[index].serviceAmount + this.demoData[index].serviceAmount;
       this.cartList[index].serviceAmount = test;
-      console.log("this.cartList[index].serviceAmount", this.cartList[index].serviceAmount)
-      this.totalAmount = this.totalAmount + this.demoData[index].serviceAmount
-      this.grandTotal = this.grandTotal + this.demoData[index].serviceAmount
+
+      this.totalAmount = this.totalAmount + this.demoData[index].serviceAmount;
+      this.grandTotal = this.grandTotal + this.demoData[index].serviceAmount;
     }
   }
 
   public decrement(item: any, index: number) {
     if (this.cartList[index].cartCount >= 1) {
       this.cartList[index].cartCount--;
+      this.demoData[index].cartCount--;
+      if (this.cartList[index].cartCount <= 0) {
+        localStorage.setItem('selectedCarts', JSON.stringify(this.cartList));
+        localStorage.setItem('demoData', JSON.stringify(this.demoData));
+        localStorage.removeItem('cartExist');
+      }
+      /*
+      Change actual demoData here
+      */
+      if (this.demoData[index].cartCount < 1) {
+        localStorage.setItem('selectedCarts', JSON.stringify(this.cartList));
+        localStorage.setItem('demoData', JSON.stringify(this.demoData));
+        localStorage.removeItem('cartExist');
+        this.demoData[index].showAddCartButton = true;
+      } else {
+        this.demoData[index].showAddCartButton = false;
+      }
       const test =
         this.cartList[index].serviceAmount - this.demoData[index].serviceAmount;
       this.cartList[index].serviceAmount = test;
-      console.log("this.cartList[index].serviceAmount", this.demoData[index].serviceAmount)
-      this.totalAmount = this.totalAmount - this.demoData[index].serviceAmount
-      this.grandTotal = this.grandTotal - this.demoData[index].serviceAmount
+      this.totalAmount = this.totalAmount - this.demoData[index].serviceAmount;
+      this.grandTotal = this.grandTotal - this.demoData[index].serviceAmount;
+      if (this.cartList[index].cartCount <= 0) {
+        this.cartList.splice(index, 1);
+      }
     } else {
       this.cartList.splice(index, 1);
+      localStorage.setItem('selectedCarts', JSON.stringify(this.cartList));
+      localStorage.setItem('demoData', JSON.stringify(this.demoData));
     }
     if (this.cartList.length <= 0) {
       this.emptyCart = true;
@@ -150,6 +178,65 @@ export class ViewCartComponent {
   }
 
   public navigateToComponent() {
+    localStorage.setItem('selectedCarts', JSON.stringify(this.cartList));
+    localStorage.setItem('demoData', JSON.stringify(this.demoData));
+    const cartExist = true;
+    localStorage.setItem('cartExist', JSON.stringify(cartExist));
     this.route.navigate(['/service-detail-list']);
+  }
+
+  public cartExist: boolean = false;
+  public cartExist2: boolean = false;
+  addMoreCards() {
+    const newCart = {
+      serviceName: 'Head massage',
+      serviceTitle: 'Facial + Makeup + Relaxing face massage',
+      reviews: '9.85(80k reviews)',
+      serviceAmount: 450,
+      serviceImage: '../../../assets/shaved-beared.webp',
+      showAddCartButton: true,
+      cartCount: 1,
+    };
+    this.cartList.push(newCart);
+    this.cartExist = true;
+    const addedAmount = newCart.serviceAmount + this.totalAmount;
+    this.totalAmount = addedAmount;
+    this.grandTotal = this.totalAmount + this.taxOnService;
+  }
+  public addMoreCards2() {
+    const newCart2 = {
+      serviceName: 'Body massage',
+      serviceTitle: 'Facial + Makeup + Relaxing face massage',
+      reviews: '9.85(80k reviews)',
+      serviceAmount: 350,
+      serviceImage: '../../../assets/shaved-beared.webp',
+      showAddCartButton: true,
+      cartCount: 1,
+    };
+    this.cartList.push(newCart2);
+    this.cartExist2 = true;
+    const addedAmount = newCart2.serviceAmount + this.totalAmount;
+    this.totalAmount = addedAmount;
+    this.grandTotal = this.totalAmount + this.taxOnService;
+  }
+
+  public openModal(): void {
+    this.modal.openModal();
+  }
+
+  public getPhoneNumber(value: any) {
+    value !== '' || null || undefined
+      ? (this.isPhone = true)
+      : (this.isPhone = false);
+    if (value.length >= 10) {
+      this.numberExist = true;
+    } else {
+      this.numberExist = false;
+    }
+  }
+
+  public clearInput(inputElement: HTMLInputElement): void {
+    inputElement.value = '';
+    this.numberExist = false;
   }
 }

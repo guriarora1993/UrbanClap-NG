@@ -33,13 +33,14 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      flex-wrap: wrap;
+      margin-top: 35px;
+      padding-bottom: 20px;
+      border-bottom: 4px solid #f1f1f1;
+      width: 700px;
       .right-content {
         display: flex;
         align-items: center;
         justify-content: space-around;
-        margin-right: 80px;
-        margin-top: 10px;
         span {
           margin-left: 20px;
         }
@@ -64,6 +65,9 @@
   .right-section-container {
     width: 40%;
     margin-top: 15px;
+    position: sticky;
+    top: 90px;
+    height: 100%;
     .item-amount-description {
       display: flex;
       align-items: center;
@@ -99,15 +103,15 @@
     flex-direction: column;
     margin-top: 30px;
     span {
-      font-size: 0.7rem;
+      font-size: 14px;
       margin-top: 10px;
     }
     button {
       color: rgb(121, 79, 231);
       background-color: white;
       border: 1px solid rgb(218, 217, 217);
-      font-size: 0.7rem;
-      padding: 5px;
+      font-size: 14px;
+      padding: 10px;
       border-radius: 5px;
       margin-top: 15px;
     }
@@ -130,4 +134,168 @@
 .toast.show {
   top: 20px; /* Slide in to 20px from the top */
   opacity: 1;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  .frequent-card-main-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(237, 237, 237);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 2px;
+    padding: 5px;
+    cursor: pointer;
+    span,
+    button {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    img {
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+}
+
+@media (max-width: 544px) {
+}
+.main-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .close-button-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+  .child-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    .heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      color: rgb(15, 15, 15);
+      margin-bottom: 30px;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgb(227, 227, 227);
+      border-radius: 8px;
+      width: 100%;
+      transition: border-color 0.3s ease-in-out;
+      padding: 6px;
+
+      input {
+        border: none;
+        margin-left: 10px;
+      }
+      input::placeholder {
+        color: rgb(227, 227, 227);
+      }
+      .country-code-select-container {
+        display: flex;
+        align-items: center;
+        border-right: 1px solid rgb(227, 227, 227);
+        padding: 6px;
+        color: rgb(176, 176, 176);
+        width: 20%;
+      }
+
+      .phone-number-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .whats-app-notification-selector {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 20px;
+      }
+    }
+    .button-container {
+      border-top: 1px solid rgb(237, 237, 237);
+      width: 100%;
+      margin-top: 20px;
+      .proceed-btn {
+        width: 100%;
+        padding: 15px;
+        border: none;
+        color: rgb(207, 207, 207);
+        background-color: rgb(237, 237, 237);
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+/* Add this CSS to your existing styles */
+.slide-up-from-bottom .modal-dialog {
+  animation: slideUpFromBottom 0.3s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.proceed-btn.active {
+  background-color: green; /* Change to your desired background color */
+}
+
+.regular-checkbox {
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox:checked {
+  background-color: black;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+    inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  color: black;
+}
+
+.regular-checkbox:checked:after {
+  content: "\2714";
+  font-size: 14px;
+  position: absolute;
+  top: -1px;
+  left: 3px;
+  color: white;
 }

@@ -1,0 +1,90 @@
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  margin: auto;
+  padding: 10px;
+  .close-button-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+  .child-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    width: 500px;
+    height: 250px;
+    .heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      color: rgb(15, 15, 15);
+      margin-bottom: 40px;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgb(227, 227, 227);
+      border-radius: 8px;
+      width: 90%;
+      input {
+        border: none;
+        margin-left: 10px;
+      }
+      input::placeholder {
+        color: rgb(227, 227, 227);
+      }
+      .country-code-select-container {
+        display: flex;
+        align-items: center;
+        border-right: 1px solid rgb(227, 227, 227);
+        padding: 10px;
+        color: rgb(176, 176, 176);
+      }
+    }
+
+    .whats-app-notification-selector {
+      display: flex;
+      align-items: center;
+      margin-top: 40px;
+      cursor: pointer;
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 20px;
+      }
+    }
+    .button-container {
+      border-top: 1px solid rgb(237, 237, 237);
+      width: 100%;
+      margin-top: 10px;
+      .proceed-btn {
+        width: 100%;
+        margin: auto;
+        padding: 10px;
+        border: none;
+        color: rgb(207, 207, 207);
+        background-color: rgb(237, 237, 237);
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+/* Add this CSS to your existing styles */
+.slide-up-from-bottom .modal-dialog {
+  animation: slideUpFromBottom 0.3s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}

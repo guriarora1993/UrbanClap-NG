@@ -1,11 +1,11 @@
 <div class="uc-view-cart-main-container container">
-    <div class="header-section">
+    <div class="header-section"
+        style="position: sticky; top: 0px; background-color: rgb(255,255,255);border-bottom: 2px solid #f1f1f1;">
         <img style="cursor: pointer;" (click)="navigateToComponent()" src="../../../assets/arrow.png" width="15" alt="">
         <span>Summary</span>
     </div>
-    <div style="height: 2px; background-color: #f1f1f1; width: 100%; margin-top: 5px;"></div>
     <div class="empty-cart-screen-main-content" *ngIf="emptyCart">
-        <img src="../../../assets/shoping-cart.png" alt="">
+        <img src="../../../assets/shoping-cart.png" alt="" style="margin-right: 20px;">
         <div class="empty-cart-screen-text-container">
             <h4>Hey, it feels so empty here</h4>
             <span>Lets add some services</span>
@@ -13,42 +13,49 @@
         </div>
     </div>
     <div class="section-main-container" *ngIf="!emptyCart">
-        <div style="width: 60%;">
+        <div style="width: 65%; margin-right: 40px;">
             <div class="selected-cart-information-container" *ngFor="let item of cartList; let i = index">
                 <div class="selected-cart-information-header">
                     <div style="width: 250px;"><span
-                            style="font-size: 14px;margin-top: 10px;">{{item.serviceTitle}}</span></div>
+                            style="font-size: 14px;margin-top: 10px;">{{item.serviceTitle}}</span>
+                    </div>
                     <div class="right-content">
                         <div class="add-cart-button"
-                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 70px; padding: 5px;  border-radius: 5px; left: 10px; bottom: -10px; background-color: white;">
+                            style="cursor: pointer; color: rgb(121,79,231); border: 1px solid rgb(121,79,231); width: 80px; padding: 5px 5px 5px 5px;  border-radius: 10px; left: 10px; bottom: -10px; background-color: rgb(245,242,253);">
                             <span (click)="decrement(item,i)" class="cart-counter"
-                                style="font-size: 15px;">-</span><span style="margin-left: 5px; font-size: 15px;"
+                                style="font-size: 15px; font-weight: 400;">-</span><span
+                                style="margin-left: 10px; font-size: 17px;"
                                 class="cart-counter">{{item.cartCount}}</span><span (click)="increment(item,i)"
-                                style=" margin-left: 5px; font-size: 15px;" class="cart-counter">+</span>
+                                style=" margin-left: 10px; font-size: 17px;font-weight: 400;"
+                                class="cart-counter">+</span>
                             <span class="progress-bar"></span>
                         </div>
-                        <div style="width: 100px;">
+                        <div>
                             <span style="font-size: 14px;">₹{{item.serviceAmount}}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- <div style="width: 32vw; border: 1px dotted rgb(227, 223, 223); margin-top: 20px;"></div>
-            <div class="cart-service-list">
-                <ul style="margin: 15px;">
-                    <li class="list-item">Threading: Eyebrow x1</li>
-                    <li class="list-item">Pedicure: Elysian Chocolate & Vanila x1</li>
-                    <li class="list-item">Facial: Elysian firming wine glow x1</li>
-                    <li class="list-item">Waxing: Full arms + full legs + under-arms</li>
-                </ul>
-                <button
-                    style="color: rgb(82, 81, 81); cursor: pointer; width: 100px; font-weight: bold; font-size: 0.6rem; padding: 8px; border: 1px solid rgb(193, 188, 188); border-radius: 5px; background-color: white; margin-top: 10px;">Edit
-                    package</button>
-            </div> -->
-            <div style="height: 2px; background-color: #f1f1f1; width: 32vw; height: 4px; margin-top: 20px;"></div>
             <div class="frequently-cards-container">
                 <span>Frequently added together</span>
-                <app-frequent-cards></app-frequent-cards>
+                <div class="main-container">
+                    <div *ngIf="!cartExist2" class="frequent-card-main-container">
+                        <img style="width: 140px;" width="100" src="../../../assets/frequent-card-2.webp" alt="">
+                        <span style="margin-left: 5px; font-size: 14px; font-weight: 400;" class="title">Body
+                            massage</span>
+                        <span style="margin-left: 5px; font-size: 12px;">₹450</span>
+                        <button (click)="addMoreCards2()"
+                            style="margin: 5px; padding: 3px; border-radius: 5px;font-size: 14px; font-weight: 400; width: 60px; border: 1px solid rgb(197, 196, 196); color:rgb(121,79,231); background-color: white;">Add</button>
+                    </div>
+                    <div *ngIf="!cartExist" class="frequent-card-main-container" style="margin-left: 10px;">
+                        <img style="width: 140px;" width="100" src="../../../assets/frequent-card-2.webp" alt="">
+                        <span style="margin-left: 5px; font-size: 14px; font-weight: 400;" class="title">Head
+                            massage</span>
+                        <span style="margin-left: 5px; font-size: 12px;">₹350</span>
+                        <button (click)="addMoreCards()"
+                            style="margin: 5px; padding: 3px; border-radius: 5px;font-size: 14px; font-weight: 400; width: 60px; border: 1px solid rgb(197, 196, 196); color:rgb(121,79,231); background-color: white;">Add</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="right-section-container">
@@ -95,8 +102,8 @@
             <div style="height: 3px; background-color: rgb(237,237,237); width: 100%; margin-top: 25px;"></div>
             <div style="height: 2px; background-color: rgb(237,237,237); width: 100%; margin-bottom: 10px;"></div>
             <div style="bottom: 10px; display: flex; align-items: center; justify-content: center;">
-                <button
-                    style="background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px;padding: 10px; margin-top: 150px; padding: 10px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login/Sign
+                <button data-bs-toggle="modal" data-bs-target="#loginModal"
+                    style="background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px; margin-top: 140px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login/Sign
                     up to proceed</button>
             </div>
         </div>
@@ -104,4 +111,55 @@
 </div>
 <div class="toast" [ngClass]="{ 'show': cartLimitOver }">
     <span>{{ message }}</span>
+</div>
+
+<div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false"
+    tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div style="position: relative;margin-top: 180px;">
+        <div type="button" data-bs-dismiss="modal" aria-label="Close"
+            style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 390px;z-index: 1000;">
+            <img src="../../../assets/icons8-close-480.png" width="20">
+        </div>
+        <div class="modal-dialog mt-5">
+            <div class="modal-content"
+                style="background-color: rgb(255,255,255); height: 260px;border-radius: 20px;width: 530px;">
+                <div class="modal-body">
+                    <div class="main-container">
+                        <div class="child-container">
+                            <h3 class="heading">Login/Sign up</h3>
+                            <div class="input-container">
+                                <div class="country-code-select-container">
+                                    <span>+91</span><svg style="width: 20px;margin-left: 5px;"
+                                        xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#B0B0B0"
+                                        viewBox="0 0 16 16">
+                                        <path fill="#B0B0B0" fill-rule="evenodd"
+                                            d="M8 9.94L3.53 5.47 2.47 6.53l5 5a.75.75 0 001.06 0l5-5-1.06-1.06L8 9.94z"
+                                            clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="phone-number-input">
+                                    <input maxlength="10" minlength="10" #phoneNumber
+                                        (input)="getPhoneNumber(phoneNumber.value)" type="number"
+                                        placeholder="Enter mobile number">
+                                    <img (click)="clearInput(phoneNumber)" style="cursor: pointer;" *ngIf="isPhone"
+                                        src="../../../assets/close-icon.png" width="25" alt="">
+                                </div>
+                            </div>
+                            <div class="whats-app-notification-selector">
+                                <input class="regular-checkbox" id="whatsapp" type="checkbox"><label
+                                    for="whatsapp"><span>Get order updates on
+                                        WhatsApp</span></label>
+                            </div>
+
+                            <div class="button-container">
+                                <button [disabled]="!numberExist" class="proceed-btn"
+                                    [style.background-color]="numberExist ? 'rgb(110,66,229)' : ''">Proceed</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

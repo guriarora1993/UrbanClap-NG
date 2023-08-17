@@ -1,6 +1,5 @@
 import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from '@app/services/loader.service';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
@@ -45,7 +44,7 @@ export class ServiceDetailListComponent {
   public videoComplete: boolean = false;
   public isOpen: boolean = false;
   public progressPercentage: any = 0;
-
+  public isCartExist: boolean = false;
   public toggleAccordion() {
     this.isOpen = !this.isOpen;
     this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
@@ -54,7 +53,6 @@ export class ServiceDetailListComponent {
     private elementRef: ElementRef,
     private router: Router,
     private store: Store<{ app: AppState }>,
-    private toaster: LoaderService,
     private route: ActivatedRoute,
     private database: DatabaseService
   ) {
@@ -70,11 +68,33 @@ export class ServiceDetailListComponent {
       const value = params['key'];
       this.screenName = value;
     });
-    // this.database.getSelectedCarts("selectedService","addedCart").then
-    // ((cartsDetails)=>{
-    //   this.selectedServices = cartsDetails.cartList
-    //   console.log("GGGGG ", this.demoData)
-    // })
+    const myBooleanValue = localStorage.getItem('cartExist');
+    if (myBooleanValue !== null) {
+      const cartExist = JSON.stringify(myBooleanValue);
+      if (cartExist) {
+        this.whenServiceSelected();
+      }
+    } else {
+      console.log('Cart does not exist');
+    }
+  }
+
+  public whenServiceSelected() {
+    this.selectedServices = JSON.parse(
+      localStorage.getItem('selectedCarts') || '[]'
+    );
+    this.demoData = JSON.parse(localStorage.getItem('demoData') || '[]');
+    this.totalAmountOfService = this.calculateTotalAmount(
+      this.selectedServices
+    );
+  }
+
+  public calculateTotalAmount(dataArray: any) {
+    let totalAmount = 0;
+    for (const item of dataArray) {
+      totalAmount += item.serviceAmount;
+    }
+    return totalAmount;
   }
 
   ngAfterViewInit() {
@@ -91,7 +111,7 @@ export class ServiceDetailListComponent {
     });
   }
 
-  playPause() {
+  public playPause() {
     const video = this.videoPlayer.nativeElement;
     if (video.paused) {
       video.play();
@@ -107,7 +127,7 @@ export class ServiceDetailListComponent {
     }
   }
 
-  updateProgressSmoothly() {
+  public updateProgressSmoothly() {
     const video = this.videoPlayer.nativeElement;
     if (video) {
       const newProgress = (video.currentTime / video.duration) * 100;
@@ -133,7 +153,7 @@ export class ServiceDetailListComponent {
     }
   }
 
-  buttons = [
+  public buttons = [
     {
       title: '20% off on Kotak Silk cards',
       img: '../../../assets/percentage-icon.png',
@@ -220,6 +240,9 @@ export class ServiceDetailListComponent {
       this.demoData[index].cartCount--;
       if (this.demoData[index].cartCount < 1) {
         this.demoData[index].showAddCartButton = true;
+        // alert(this.selectedServices[index].cartCount)
+        localStorage.setItem('demoData', JSON.stringify(this.demoData));
+        localStorage.removeItem('cartExist');
       } else {
         this.demoData[index].showAddCartButton = false;
       }
@@ -248,6 +271,11 @@ export class ServiceDetailListComponent {
       this.totalAmountOfService = totalAmount;
     } else {
       this.demoData[index].showAddCartButton = true;
+      localStorage.setItem(
+        'selectedCarts',
+        JSON.stringify(this.selectedServices)
+      );
+      localStorage.setItem('demoData', JSON.stringify(this.demoData));
     }
   }
   public decrementSelectedServices(item: any, index: number) {
@@ -261,6 +289,8 @@ export class ServiceDetailListComponent {
       this.demoData[index].cartCount--;
       if (this.demoData[index].cartCount < 1) {
         this.demoData[index].showAddCartButton = true;
+        localStorage.setItem('demoData', JSON.stringify(this.demoData));
+        localStorage.removeItem('cartExist');
       } else {
         this.demoData[index].showAddCartButton = false;
       }
@@ -381,55 +411,85 @@ export class ServiceDetailListComponent {
       serviceName: 'Packages',
       serviceTitle: 'Combo + Beared grooming + Relaxing head massage',
       reviews: '1.85(85k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 400,
       serviceImage: '../../../assets/packages.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Mens/Kids haircut',
       serviceTitle: 'Haircut + Beared grooming + Relaxing head massage',
       reviews: '2.85(5k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 500,
       serviceImage: '../../../assets/men&kids-haircut.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Face care',
       serviceTitle: 'Facial + Makeup + Relaxing face massage',
       reviews: '0.85(85k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 300,
       serviceImage: '../../../assets/face-care.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Shave/beared',
       serviceTitle: 'Facial + Makeup + Relaxing face massage',
       reviews: '9.85(80k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 600,
       serviceImage: '../../../assets/shaved-beared.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Hair colour',
-      serviceTitle: 'Smooth + colouring + Relaxing head massage',
+      serviceTitle: 'Smooth + colouring + Beared setting',
       reviews: '41.85(812k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 800,
       serviceImage: '../../../assets/hair-color.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
     {
       serviceName: 'Massage',
       serviceTitle: 'Smooth + colouring + Relaxing head massage',
       reviews: '400.85(811k reviews)',
-      serviceAmount: 100,
+      serviceAmount: 200,
       serviceImage: '../../../assets/massage.webp',
       showAddCartButton: true,
       cartCount: 0,
+      description: [
+        'Beared trimming & styling',
+        'Haircut for men',
+        '10 min relaxing massage',
+      ],
     },
   ];
   // ₹
@@ -476,6 +536,11 @@ export class ServiceDetailListComponent {
     };
     this.dataLoading = true;
     this.database.addServiceCart('selectedService', selectedData, 'addedCart');
+    localStorage.setItem(
+      'selectedCarts',
+      JSON.stringify(this.selectedServices)
+    );
+    localStorage.setItem('demoData', JSON.stringify(this.demoData));
     setTimeout(() => {
       if (this.counterValue != 0) {
         this.router.navigate(['/view-cart']);
@@ -492,9 +557,8 @@ export class ServiceDetailListComponent {
     }, 3000);
   }
 
-  closeModal() {
-    const modalContainer = document.getElementById('staticBackdrop');
+  public closeModal() {
+    const modalContainer = document.getElementById('editModal');
     modalContainer?.classList.remove('show');
-    // Additional logic to handle the modal backdrop removal if necessary
   }
 }

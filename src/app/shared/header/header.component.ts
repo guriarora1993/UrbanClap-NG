@@ -7,7 +7,7 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class HeaderComponent {
 
-  progressPercentage: number = 0;
+  public progressPercentage: number = 0;
 
   constructor() {}
 

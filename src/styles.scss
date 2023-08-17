@@ -32,3 +32,17 @@ input::-webkit-inner-spin-button {
   -ms-user-select: none; /* Internet Explorer/Edge */
   user-select: none;
 }
+
+
+.modal-backdrop {
+  --bs-backdrop-zindex: 1050;
+  --bs-backdrop-bg: #000;
+  --bs-backdrop-opacity: 0.8;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: var(--bs-backdrop-zindex);
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bs-backdrop-bg);
+}
