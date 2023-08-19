@@ -17,4 +17,8 @@ export class LoaderService {
     this.modalService.open(LoginModalComponent);
   }
 
+  closeModal():void{
+    this.modalService.dismissAll()
+  }
+
 }

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { ViewCartComponent } from './home/view-cart/view-cart.component';
+import { LoginModalComponent } from './shared/login-modal/login-modal.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path:'login',
+    component: LoginModalComponent
   },
   {
     path: 'service-detail-list',

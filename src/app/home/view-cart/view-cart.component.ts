@@ -1,20 +1,29 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  AfterViewInit,
+  OnInit,
+} from '@angular/core';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog';
-import { LoginModalComponent } from '@app/shared/login-modal/login-modal.component';
 import { LoaderService } from '@app/services/loader.service';
+import { variables } from '../../constants/constants';
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
   styleUrls: ['./view-cart.component.scss'],
 })
-export class ViewCartComponent {
-  @ViewChild('phoneNumber', { static: false }) phoneNumber:
-    | ElementRef<HTMLInputElement>
-    | undefined;
+export class ViewCartComponent implements AfterViewInit, OnInit {
+  @ViewChild('phoneNumber') phoneNumber: ElementRef<HTMLInputElement>;
+
+  ngAfterViewInit() {}
+
+  navigate() {
+    this.route.navigate(['/login']);
+  }
   public message: string = "You can't add anymore of this item";
   public cartLimitOver: boolean = false;
   public isSpanDisabled: boolean = false;
@@ -29,11 +38,18 @@ export class ViewCartComponent {
   public taxOnService: number = 49.0;
   public isPhone: boolean = false;
   public numberExist: boolean = false;
+  public input4: any;
+  public otp: boolean = false;
+  public phoneNumberExist: boolean = false;
+  public maxPhoneLimit: number = 10;
+  public otp_Value = variables.OTP;
+  public shouldDismiss: boolean = false;
+  public otpNumberExist: boolean = false;
   constructor(
     private store: Store<{ app: AppState }>,
     private route: Router,
-    private dialog: MatDialog,
-    private modal: LoaderService
+    private modal: LoaderService,
+    private element: ElementRef
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -229,14 +245,62 @@ export class ViewCartComponent {
       ? (this.isPhone = true)
       : (this.isPhone = false);
     if (value.length >= 10) {
+      // this.box1.nativeElement.focus()
       this.numberExist = true;
+      this.inputEnable = true;
     } else {
       this.numberExist = false;
+      this.inputEnable = false;
+    }
+  }
+
+  public submitLoginCred(cred: any) {
+    if (cred.length == 10) {
+      this.phoneNumberExist = true;
+    } else {
+      this.phoneNumberExist = false;
     }
   }
 
   public clearInput(inputElement: HTMLInputElement): void {
     inputElement.value = '';
     this.numberExist = false;
+  }
+
+  @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
+  inputValues: string[] = ['', '', '', '']; // Store input values
+  inputActive: number = 0; // Store the index of the active input
+  public inputEnable: boolean = false;
+  onInput(index: number, event: any, value: any) {
+    this.inputValues[index] = event.target.value;
+    if (index == 3) {
+      this.otp = true;
+    } else {
+      this.otp = false;
+    }
+    if (event.target.value.length > 0) {
+      this.inputActive = index < 3 ? index + 1 : index;
+    }
+  }
+
+  public inputFilled(index: number): boolean {
+    return index === 0 || this.inputValues[index - 1].length > 0;
+  }
+
+  public signUp(optVal1: any, optVal2: any, optVal3: any, optVal4: any) {
+    const userOtp = optVal1
+      .toString()
+      .concat(optVal2.toString(), optVal3.toString(), optVal4.toString());
+    if (userOtp == this.otp_Value) {
+      this.otpNumberExist = false;
+      this.shouldDismiss = true;
+    } else {
+      this.otpNumberExist = true;
+      this.shouldDismiss = false;
+    }
+  }
+
+  public navigateToModal(){
+    this.route.navigate(["login"])
   }
 }
