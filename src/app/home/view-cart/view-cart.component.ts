@@ -2,8 +2,8 @@ import {
   Component,
   ElementRef,
   ViewChild,
-  AfterViewInit,
   OnInit,
+  ChangeDetectorRef,
 } from '@angular/core';
 import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
@@ -16,10 +16,8 @@ import { variables } from '../../constants/constants';
   templateUrl: './view-cart.component.html',
   styleUrls: ['./view-cart.component.scss'],
 })
-export class ViewCartComponent implements AfterViewInit, OnInit {
+export class ViewCartComponent implements OnInit {
   @ViewChild('phoneNumber') phoneNumber: ElementRef<HTMLInputElement>;
-
-  ngAfterViewInit() {}
 
   navigate() {
     this.route.navigate(['/login']);
@@ -38,18 +36,33 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
   public taxOnService: number = 49.0;
   public isPhone: boolean = false;
   public numberExist: boolean = false;
-  public input4: any;
+  public otp4: any = null;
   public otp: boolean = false;
   public phoneNumberExist: boolean = false;
   public maxPhoneLimit: number = 10;
   public otp_Value = variables.OTP;
   public shouldDismiss: boolean = false;
   public otpNumberExist: boolean = false;
+  public timeUp: boolean = false;
+  public inputValues: string[] = ['', '', '', ''];
+  public inputActive: number | null = 0;
+  public inputEnable: boolean = false;
+  public seconds: number = 30;
+  public interval: any;
+  public cartExist: boolean = false;
+  public cartExist2: boolean = false;
+  public isInputFocused: boolean = false;
+  public modalOpen: boolean = false;
+  public openTest: boolean = false;
+  @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
+  @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
+  @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
+  @ViewChild('input3') input3!: ElementRef<HTMLInputElement>;
+  @ViewChild('input4') input4!: ElementRef<HTMLInputElement>;
   constructor(
     private store: Store<{ app: AppState }>,
     private route: Router,
-    private modal: LoaderService,
-    private element: ElementRef
+    private cdr: ChangeDetectorRef
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -200,10 +213,7 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
     localStorage.setItem('cartExist', JSON.stringify(cartExist));
     this.route.navigate(['/service-detail-list']);
   }
-
-  public cartExist: boolean = false;
-  public cartExist2: boolean = false;
-  addMoreCards() {
+  public addMoreCards() {
     const newCart = {
       serviceName: 'Head massage',
       serviceTitle: 'Facial + Makeup + Relaxing face massage',
@@ -237,7 +247,9 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
   }
 
   public openModal(): void {
-    this.modal.openModal();
+    this.openTest = true;
+    const test = this.cdr.detectChanges();
+    console.log('output is ', test);
   }
 
   public getPhoneNumber(value: any) {
@@ -245,7 +257,6 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
       ? (this.isPhone = true)
       : (this.isPhone = false);
     if (value.length >= 10) {
-      // this.box1.nativeElement.focus()
       this.numberExist = true;
       this.inputEnable = true;
     } else {
@@ -257,6 +268,7 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
   public submitLoginCred(cred: any) {
     if (cred.length == 10) {
       this.phoneNumberExist = true;
+      this.startTimer();
     } else {
       this.phoneNumberExist = false;
     }
@@ -266,21 +278,45 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
     inputElement.value = '';
     this.numberExist = false;
   }
+  public onInput(
+    currentInput: HTMLInputElement,
+    nextInput: HTMLInputElement | null,
+    prevInput: HTMLInputElement | null
+  ) {
+    const value = currentInput.value;
+    this.otp4 !== null || undefined ? (this.otp = true) : (this.otp = false);
+    value.length < 4
+      ? (this.otpNumberExist = false)
+      : (this.otpNumberExist = true);
+    if (value) {
+      if (nextInput) {
+        nextInput.focus();
+      }
+    } else if (prevInput) {
+      prevInput.focus();
+    }
+  }
 
-  @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
-  inputValues: string[] = ['', '', '', '']; // Store input values
-  inputActive: number = 0; // Store the index of the active input
-  public inputEnable: boolean = false;
-  onInput(index: number, event: any, value: any) {
-    this.inputValues[index] = event.target.value;
-    if (index == 3) {
-      this.otp = true;
-    } else {
-      this.otp = false;
-    }
-    if (event.target.value.length > 0) {
-      this.inputActive = index < 3 ? index + 1 : index;
-    }
+  public onFocus(index: number, event: FocusEvent, input: HTMLInputElement) {
+    this.inputActive = index;
+    input.select();
+  }
+
+  public startTimer() {
+    this.interval = setInterval(() => {
+      if (this.seconds > 0) {
+        this.seconds--;
+      } else {
+        clearInterval(this.interval);
+        this.timeUp = true;
+      }
+    }, 1000);
+  }
+
+  public resendCode() {
+    this.timeUp = false;
+    this.seconds = 30;
+    this.startTimer();
   }
 
   public inputFilled(index: number): boolean {
@@ -300,7 +336,12 @@ export class ViewCartComponent implements AfterViewInit, OnInit {
     }
   }
 
-  public navigateToModal(){
-    this.route.navigate(["login"])
+  public navigateToModal() {
+    this.route.navigate(['login']);
+  }
+
+  public closeModal() {
+    const modal = new bootstrap.Modal(document.getElementById('myModal'));
+    modal.hide();
   }
 }

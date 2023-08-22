@@ -1,7 +1,18 @@
-.section-main-container {
+.parent-container {
   width: 100%;
   display: flex;
+  justify-content: space-between;
+}
+
+.section-main-container {
+  margin-left: 30px;
+  margin-top: 20px;
+  display: flex;
   justify-content: space-around;
+  flex-direction: column;
+  border-radius: 8px;
+  padding: 10px;
+  width: 40%;
 }
 @media (max-width: 1080px) {
   .section-main-container {
@@ -35,8 +46,8 @@
       justify-content: space-between;
       margin-top: 35px;
       padding-bottom: 20px;
-      border-bottom: 4px solid #f1f1f1;
-      width: 700px;
+      border-bottom: 1px solid #f1f1f1;
+      width: 100%;
       .right-content {
         display: flex;
         align-items: center;
@@ -63,16 +74,21 @@
   }
 
   .right-section-container {
-    width: 40%;
+    width: 100%;
     margin-top: 15px;
     position: sticky;
     top: 90px;
     height: 100%;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 8px;
+    padding: 10px;
     .item-amount-description {
       display: flex;
       align-items: center;
       justify-content: space-between;
       margin-top: 20px;
+      border-bottom: 1px dotted rgb(227, 227, 227);
+      padding-bottom: 20px;
     }
   }
 }
@@ -89,6 +105,9 @@
   align-items: center;
   justify-content: flex-start;
   margin-top: 20px;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 8px;
+  padding: 15px;
 }
 
 .empty-cart-screen-main-content {
@@ -138,15 +157,17 @@
 
 .main-container {
   display: flex;
-  flex-wrap: wrap;
   .frequent-card-main-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    align-items: center;
     border: 1px solid rgb(237, 237, 237);
     border-radius: 5px;
     margin-top: 10px;
-    margin-left: 2px;
-    padding: 5px;
+    padding: 20px;
+    width: 300px;
+    margin-left: 10px;
     cursor: pointer;
     span,
     button {
@@ -185,7 +206,7 @@
       width: 50px;
       height: 50px;
       border-radius: 10px;
-      border: 1px solid rgb(220,40,04);
+      border: 1px solid rgb(220, 40, 04);
       text-align: center;
     }
 
@@ -198,11 +219,11 @@
     }
   }
 
-  .validation-error-container{
+  .validation-error-container {
     display: flex;
     align-items: center;
     margin-top: 10px;
-    span{
+    span {
       margin-left: 5px;
     }
   }
@@ -245,10 +266,8 @@
     .input-container {
       display: flex;
       align-items: center;
-      border: 1px solid rgb(227, 227, 227);
       border-radius: 8px;
       width: 100%;
-      transition: border-color 0.3s ease-in-out;
       padding: 6px;
 
       input {
@@ -261,9 +280,11 @@
       .country-code-select-container {
         display: flex;
         align-items: center;
-        border-right: 1px solid rgb(227, 227, 227);
-        padding: 6px;
+        border: 1px solid rgb(227, 227, 227);
+        padding: 10px;
         color: rgb(176, 176, 176);
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
         width: 20%;
       }
 
@@ -272,6 +293,17 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
+        border: 1px solid rgb(227, 227, 227);
+        padding: 10px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+      .phone-number-input.focused {
+        border: 1px solid rgb(121, 79, 231);
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        transition: border-color 0.3s ease-in-out;
+        padding: 10px;
       }
     }
 
@@ -356,4 +388,46 @@
   top: -1px;
   left: 3px;
   color: white;
+}
+
+.login-container {
+  margin-top: 20px;
+  margin-left: 50px;
+  width: 55%;
+  height: 380px;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 8px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 10px;
+  position: sticky;
+  top: 100px;
+}
+
+.grand-total-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 8px;
+}
+
+.al-address-section-container {
+  .al-option-list-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    cursor: pointer;
+    .title-and-detail {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px;
+    }
+  }
 }
