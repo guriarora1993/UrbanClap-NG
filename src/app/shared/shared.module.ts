@@ -14,6 +14,7 @@ import { HeaderComponent } from './header/header.component';
 import { ModalComponent } from './modal/modal.component';
 import { LoginModalComponent } from './login-modal/login-modal.component';
 // import { FrequentCardsComponent } from './frequent-cards/frequent-cards.component';
+import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     LocationModalComponent,
@@ -32,7 +33,7 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
     LoginModalComponent
     // FrequentCardsComponent,
   ],
-  imports: [CommonModule],
+  imports: [CommonModule,FormsModule],
   exports: [
     LocationModalComponent,
     CardSectionComponent,

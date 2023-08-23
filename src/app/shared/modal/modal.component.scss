@@ -2,10 +2,12 @@
   animation: slideUpFromBottom 0.3s ease-out;
   transform-origin: center bottom;
 }
+
 @keyframes slideUpFromBottom {
   from {
     transform: translateY(100%);
   }
+
   to {
     transform: translateY(0);
   }
@@ -19,13 +21,16 @@
     border-radius: 8px;
     justify-content: space-between;
     padding: 10px;
+
     input {
       border: none;
       margin-left: 10px;
     }
+
     input:focus {
       border-color: rgb(121, 79, 231);
     }
+
     input::placeholder {
       opacity: 0.6;
       font-size: 14px;
@@ -38,6 +43,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+
   .text-container {
     display: flex;
     align-items: center;
@@ -61,9 +67,11 @@
     flex-direction: column;
     margin-left: 20px;
     width: 100%;
+
     .detail-container {
       border-bottom: 1px solid rgb(237, 237, 237);
     }
+
     .change-location-btn {
       border: none;
       width: 90px;
@@ -79,6 +87,7 @@
 
     .inputs-container {
       margin-top: 20px;
+
       .details-input {
         display: flex;
         align-items: center;
@@ -86,9 +95,11 @@
         border: 1px solid rgb(237, 237, 237);
         padding: 10px;
         border-radius: 8px;
+
         input {
           border: none;
         }
+
         input::placeholder {
           opacity: 0.7;
           font-size: 14px;
@@ -105,6 +116,7 @@
       align-items: flex-start;
       flex-direction: column;
       justify-content: space-between;
+
       button {
         width: 70px;
         padding: 8px;
@@ -114,10 +126,12 @@
         font-size: 14px;
         font-weight: 400;
       }
+
       .active-button {
         border: 1px solid black;
         background-color: rgb(245, 245, 245);
       }
+
       .other-container-search {
         width: 400px;
         padding: 10px;
@@ -127,10 +141,12 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
+
         input {
           border: none;
           width: 100%;
         }
+
         input::placeholder {
           opacity: 0.7;
           font-size: 14px;
@@ -170,10 +186,154 @@
     // height: 500px;
     overflow-y: auto;
   }
+
   .image-container {
     width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: center;
+  }
+}
+
+.save-location-detail-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-bottom: 1px solid rgb(237, 237, 237);
+
+  .add-more-address {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+}
+
+.added-locations {
+  margin-top: 20px;
+
+  .saved-locations {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.proceed-btn {
+  width: 100%;
+  margin-top: 20px;
+
+  button {
+    width: 100%;
+    border: 1px solid rgb(237, 237, 237);
+    background-color: rgb(237, 237, 237);
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border: 1px solid #f9f9f9;
+  border-radius: 30px;
+  top: 22px;
+  right: 0px;
+}
+
+.dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.show-dropdown {
+  display: block;
+}
+
+// .dropdown:hover .dropdown-content {
+//   display: block;
+//   border-radius: 10;
+// }
+
+.delete-address-container{
+  .notify-section-content{
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(227, 227, 227);
+  }
+  .buttons-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    .delete-section-button{
+      width: 400px;
+      border: 1px solid rgb(227, 227, 227);
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      color: rgb(121, 79, 231);
+      font-size: 14px;
+      line-height: 28px;
+      font-weight: 400;
+      margin: 5px;
+    }
+  }
+}
+
+.input-container{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid rgb(227, 227, 227);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  input{
+    border: none;
+  }
+  input::placeholder{
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+.coupons-main-container{
+  .content-container{
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    border-bottom:1px solid rgb(227, 227, 227);
+    padding-bottom: 20px;
+    margin-top: 30px;
+  }
+}
+
+.conditions-container{
+  ul{
+    text-align: left;
+    margin-left: -12px;
+    li{
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: rgb(84,84,84);
+      margin-top: 20px;
+    }
   }
 }

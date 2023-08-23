@@ -54,6 +54,8 @@ export class ViewCartComponent implements OnInit {
   public isInputFocused: boolean = false;
   public modalOpen: boolean = false;
   public openTest: boolean = false;
+  public savedAddress: any =[];
+  public addressAdded: boolean = false;
   @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
   @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
   @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
@@ -77,6 +79,13 @@ export class ViewCartComponent implements OnInit {
     const totalAmount = this.calculateTotalAmount(this.cartList);
     this.totalAmount = totalAmount || 0;
     this.grandTotal = totalAmount + this.taxOnService || 0;
+    if(localStorage.getItem("savedAddress") !== null || undefined){
+      this.savedAddress = JSON.parse(localStorage.getItem("savedAddress") || "[]")
+      console.log("local address is ", this.savedAddress)
+    }
+    else{
+      console.log("Length ", this.savedAddress.length)
+    }
   }
 
   public calculateTotalAmount(dataArray: any) {

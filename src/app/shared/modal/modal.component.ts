@@ -27,10 +27,44 @@ export class ModalComponent implements AfterViewInit {
   public valueExist: boolean = false;
   public isInputFocused3: boolean = false;
   public otherToggle: boolean = false;
+  public savedAddress: any = [];
+  public addressLocally: any = [];
+  public isDropdownOpen: boolean = false;
+  public radioSelected: boolean = false;
+  public buttonBackgroundColor: string = 'white';
+  public buttonColor: string = 'black';
+  public currentAddress: any = [];
+  public dropdownStates: boolean[] = [];
   constructor(private cdRef: ChangeDetectorRef) {}
+
+  public toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  public onRadioChange(check: any) {
+    if (check == 'on') {
+      this.buttonBackgroundColor = 'rgb(121, 79, 231)';
+      this.buttonColor = 'white';
+    } else {
+      this.buttonBackgroundColor = 'white';
+      this.buttonColor = 'black';
+    }
+  }
+
   ngOnInit() {
     this.isOpen = this.modalOpen;
     this.activeButton = 'home';
+    if (localStorage.getItem('listOfAddedAddress') !== null || undefined) {
+      this.addressLocally = JSON.parse(
+        localStorage.getItem('listOfAddedAddress') || '[]'
+        );
+        this.dropdownStates = new Array(this.addressLocally).fill(false);
+      this.currentAddress = JSON.parse(
+        localStorage.getItem('savedAddress') || '[]'
+      );
+    } else {
+      console.log('Address not exist');
+    }
   }
 
   ngAfterViewInit(): void {
@@ -48,9 +82,29 @@ export class ModalComponent implements AfterViewInit {
       : (this.inputExist = false);
   }
   public getHomeDetail(value: string) {
+    console.log('value is ', value);
     value != '' || null || undefined
       ? (this.homeVal = true)
       : (this.homeVal = false);
+  }
+
+  public submitAddress(home: string, landMark: String) {
+    if (home !== '' || null || undefined) {
+      if(this.currentAddress.length >= 0 ){
+        this.currentAddress.push({home, landMark})
+        setTimeout(() => {
+          localStorage.setItem('listOfAddedAddress', JSON.stringify(this.currentAddress));
+          window.location.reload()
+        }, 1000);
+      }
+      this.savedAddress.push({ home, landMark });
+      setTimeout(() => {
+        localStorage.setItem('savedAddress', JSON.stringify(this.savedAddress));
+        window.location.reload()
+      }, 1000);
+    } else {
+      console.log('valie is empty');
+    }
   }
 
   public getlandMarkDetail(value: string) {
@@ -78,5 +132,14 @@ export class ModalComponent implements AfterViewInit {
     value != '' || null || undefined
       ? (this.valueExist = true)
       : (this.valueExist = false);
+  }
+
+  public deleteAddress(){
+    localStorage.removeItem("listOfAddedAddress")
+    window.location.reload()
+  }
+
+  public back(){
+    window.location.reload()
   }
 }
