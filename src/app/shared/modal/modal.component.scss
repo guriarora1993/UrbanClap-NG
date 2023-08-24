@@ -244,7 +244,7 @@
   position: absolute;
   background-color: #f9f9f9;
   min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
   border: 1px solid #f9f9f9;
   border-radius: 30px;
@@ -271,18 +271,20 @@
 //   border-radius: 10;
 // }
 
-.delete-address-container{
-  .notify-section-content{
+.delete-address-container {
+  .notify-section-content {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid rgb(227, 227, 227);
   }
-  .buttons-container{
+
+  .buttons-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    .delete-section-button{
+
+    .delete-section-button {
       width: 400px;
       border: 1px solid rgb(227, 227, 227);
       background-color: white;
@@ -297,7 +299,7 @@
   }
 }
 
-.input-container{
+.input-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -305,35 +307,50 @@
   padding: 10px;
   border-radius: 8px;
   margin-top: 20px;
-  input{
+
+  input {
     border: none;
   }
-  input::placeholder{
+
+  input::placeholder {
     font-size: 14px;
     font-weight: 400;
   }
 }
-.coupons-main-container{
-  .content-container{
+
+.coupons-main-container {
+  .content-container {
     display: flex;
     align-items: center;
-    justify-content:space-between;
-    border-bottom:1px solid rgb(227, 227, 227);
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(227, 227, 227);
     padding-bottom: 20px;
     margin-top: 30px;
   }
 }
 
-.conditions-container{
-  ul{
+.conditions-container {
+  ul {
     text-align: left;
     margin-left: -12px;
-    li{
+
+    li {
       font-size: 12px;
       font-weight: 400;
       line-height: 16px;
-      color: rgb(84,84,84);
+      color: rgb(84, 84, 84);
       margin-top: 20px;
     }
   }
+}
+
+ input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Makes it circular */
+}
+
+input[type="radio"]:checked {
+  background-color: #007bff; /* Change the color when selected */
+  border-color: #007bff; /* Change the border color when selected */
 }

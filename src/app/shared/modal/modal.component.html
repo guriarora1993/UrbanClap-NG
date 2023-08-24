@@ -85,14 +85,16 @@
             </div>
             <div class="inputs-container" style="width: 400px;">
               <div class="details-input" [ngClass]="{'focused': isInputFocused}">
-                <input (blur)="isInputFocused = false" (focus)="isInputFocused = true" #homeDetail
+                <input [(ngModel)]="homeDetailValue" (ngModelChange)="onHomeDetailChange($event)"
+                  (blur)="isInputFocused = false" (focus)="isInputFocused = true" #homeDetail
                   (input)="getHomeDetail(homeDetail.value)" type="text" placeholder="House/Flat Number" name="house"
                   id="">
                 <img (click)="clearInput(homeDetail)" *ngIf="homeVal" src="../../../assets/close-icon.png" width="20"
                   alt="">
               </div>
               <div class="details-input mt-3" [ngClass]="{'focused': isInputFocused2}">
-                <input (focus)="isInputFocused2 = true" (blur)="isInputFocused2 = false" #landMarkDetail
+                <input [(ngModel)]="landMarkValue" (ngModelChange)="onLandMarkChange($event)"
+                  (focus)="isInputFocused2 = true" (blur)="isInputFocused2 = false" #landMarkDetail
                   (input)="getlandMarkDetail(landMarkDetail.value)" type="text" placeholder="Landmark (Optional)"
                   name="landmark" id="">
                 <img (click)="clearInput(landMarkDetail)" *ngIf="landVal" src="../../../assets/close-icon.png"
@@ -119,7 +121,8 @@
                   width="20" alt="">
               </div>
             </div>
-            <button data-bs-dismiss="modal" (click)="submitAddress(homeDetail.value,landMarkDetail.value)"
+            <button data-bs-dismiss="modal"
+              (click)="submitAddress(homeDetail.value,landMarkDetail.value,updateAddressIndex)"
               [style.color]="homeVal ? 'white' : ''" [style.background-color]="homeVal ? 'rgb(110,66,229)' : ''"
               class="submit-btn">Save and proceed to slots </button>
           </div>
@@ -154,9 +157,11 @@
             </div>
           </div>
           <div class="added-locations" *ngIf="addressLocally.length > 0">
-            <div style="margin-top: 40px;" class="saved-locations" *ngFor="let address of addressLocally">
+            <div style="margin-top: 20px;" class="saved-locations"
+              *ngFor="let address of addressLocally; let i = index">
               <div style="display: flex;align-items: center;">
-                <input type="radio" #radioInput [(ngModel)]="radioSelected" (change)="onRadioChange(radioInput.value)">
+                <input type="radio" id="selectedAddress" name="selectedAddress" [value]="address"
+                  (change)="getAddressInputValue(address)">
                 <div style="margin-left: 20px;"> <span style="font: 14px;font-weight: 700;line-height: 20px;"><span
                       style="font-size: 14px;font-weight: 700;">Home</span> -
                   </span><span style="font-size: 12px;font-weight: 400;line-height: 20px;">{{address.home}},
@@ -164,16 +169,16 @@
                 </div>
               </div>
               <div class="dropdown">
-                <svg style="cursor: pointer;" (click)="toggleDropdown()" xmlns="http://www.w3.org/2000/svg" width="20"
+                <svg style="cursor: pointer;" (click)="toggleDropdown(i)" xmlns="http://www.w3.org/2000/svg" width="20"
                   height="100%" fill="#0F0F0F" viewBox="0 0 16 16">
                   <path fill="#0F0F0F" fill-rule="evenodd"
                     d="M8 5a1 1 0 110-2 1 1 0 010 2zM7 8a1 1 0 102 0 1 1 0 00-2 0zm0 4a1 1 0 102 0 1 1 0 00-2 0z"
                     clip-rule="evenodd"></path>
                 </svg>
-                <div class="dropdown-content" [ngClass]="{'show-dropdown': isDropdownOpen}">
-                  <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                <div [id]="i" class="dropdown-content" [ngClass]="{'show-dropdown': isDropdownOpen[i]}">
+                  <button (click)="updateAddress(i)" data-bs-toggle="modal" data-bs-target="#mapModal"
                     style="font-size: 14px;font-weight: 400;">Edit</button>
-                  <button data-bs-toggle="modal" data-bs-target="#deleteAddress"
+                  <button (click)="removeAddressSelected(i)" data-bs-toggle="modal" data-bs-target="#deleteAddress"
                     style="font-size: 14px;font-weight: 400;">Delete</button>
                 </div>
               </div>
@@ -181,7 +186,7 @@
             </div>
           </div>
           <div class="proceed-btn">
-            <button data-bs-toggle="modal" data-bs-target="#updateAddress"
+            <button (click)="changeCurrentAddress()" data-bs-toggle="modal" data-bs-target="#updateAddress"
               [style.backgroundColor]="buttonBackgroundColor" [style.color]="buttonColor">Proceed</button>
           </div>
         </div>
@@ -247,8 +252,8 @@
             </div>
             <div class="buttons-container">
               <button (click)="back()" data-bs-dismiss="modal" class="delete-section-button">No, go back</button>
-              <button data-bs-dismiss="modal" style="background-color: rgb(121, 79, 231);color: white;"
-                class="delete-section-button">Yes,
+              <button (click)="finalSubmit()" data-bs-dismiss="modal"
+                style="background-color: rgb(121, 79, 231);color: white;" class="delete-section-button">Yes,
                 Update</button>
             </div>
           </div>
@@ -275,8 +280,9 @@
         <div class="modal-body">
           <h3 style="font-size: 20px;line-height: 28px;font-weight: 600;">Coupons & Offers</h3>
           <div class="input-container">
-            <input type="text" placeholder="Enter Coupon Code">
-            <span style="font-size: 14px;font-weight: 600;line-height: 20px;color: rgb(176,176,176);">Apply</span>
+            <input #couponId (change)="getCouponId(couponId.value)" type="text" placeholder="Enter Coupon Code">
+            <button [disabled]="idExist"  data-bs-toggle="modal" data-bs-target="#viewCoupons"
+              style="font-size: 14px;font-weight: 600;line-height: 20px;color: rgb(121, 79, 231);border: none;background-color: white;">Apply</button>
           </div>
           <div class="coupons-main-container">
             <div class="content-container">
@@ -323,8 +329,8 @@
 
 <!--Term&ConditionModal-->
 
-<div class="modal fade slide-up-from-bottom mt-5 " id="termConditions" data-bs-backdrop="static" data-bs-keyboard="false"
-  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade slide-up-from-bottom mt-5 " id="termConditions" data-bs-backdrop="static"
+  data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div style="position: relative;margin-top: 100px;">
     <div class="modal-dialog">
       <div class="modal-content"
@@ -335,19 +341,62 @@
         </div>
         <div class="modal-body">
           <div class="conditions-container">
-            <h3 style="font-size: 20px;line-height: 28px;color: rgb(15,15,15);font-weight: 600;">Term And Conditions</h3>
-          <ul>
-            <li>15% off up to ₹250 on Kotak </li>
-            <li>Offer is valid only on the eligible cards </li>
-            <li>Minimun list price of INR 799 on Kotak Credits Cards</li>
-            <li>Offer is applicable only on Tuesdays </li>
-            <li>Offer is valid only once per user every month </li>
+            <h3 style="font-size: 20px;line-height: 28px;color: rgb(15,15,15);font-weight: 600;">Term And Conditions
+            </h3>
+            <ul>
+              <li>15% off up to ₹250 on Kotak </li>
+              <li>Offer is valid only on the eligible cards </li>
+              <li>Minimun list price of INR 799 on Kotak Credits Cards</li>
+              <li>Offer is applicable only on Tuesdays </li>
+              <li>Offer is valid only once per user every month </li>
 
-          </ul>
+            </ul>
           </div>
-         <div style="border-top: 1px solid rgb(227,227,227); padding: 10px;">
-          <button data-bs-dismiss="modal" style="width: 100%;border: 1px solid rgb(121, 79, 231);background-color: rgb(121, 79, 231);padding: 15px;color: white;font-size: 14px;font-weight: 500;border-radius: 8px;">Okay!got it</button>
-         </div>
+          <div style="border-top: 1px solid rgb(227,227,227); padding: 10px;">
+            <button data-bs-dismiss="modal"
+              style="width: 100%;border: 1px solid rgb(121, 79, 231);background-color: rgb(121, 79, 231);padding: 15px;color: white;font-size: 14px;font-weight: 500;border-radius: 8px;">Okay!got
+              it</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!--viewCoupons-->
+<div class="modal fade slide-up-from-bottom mt-5 " id="viewCoupons" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div style="position: relative;margin-top: 100px;">
+    <div class="modal-dialog">
+      <div class="modal-content"
+        style="background-color: rgb(255,255,255); height: 100%;border-radius: 20px;width: 510px;">
+        <div type="button" data-bs-dismiss="modal"
+          style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;z-index: 1000;">
+          <img src="../../../assets/icons8-close-480.png" width="20">
+        </div>
+        <div class="modal-body">
+          <div class="about-coupons-detail-container">
+            <svg width="50" height="100%" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M21.55 3.898a4 4 0 014.9 0l2.124 1.646a4 4 0 002.574.836l2.686-.083a4 4 0 013.964 2.88l.75 2.58a4 4 0 001.591 2.19l2.222 1.511a4 4 0 011.514 4.66l-.909 2.53a4 4 0 000 2.705l.91 2.529a4 4 0 01-1.515 4.66l-2.222 1.511a4 4 0 00-1.59 2.19l-.751 2.58a4 4 0 01-3.964 2.88l-2.686-.083a4 4 0 00-2.574.836l-2.124 1.646a4 4 0 01-4.9 0l-2.124-1.646a4 4 0 00-2.573-.836l-2.687.083a4 4 0 01-3.963-2.88l-.752-2.58a4 4 0 00-1.59-2.19l-2.222-1.511a4 4 0 01-1.514-4.66l.909-2.53a4 4 0 000-2.705l-.909-2.529a4 4 0 011.514-4.66l2.222-1.512a4 4 0 001.59-2.188l.752-2.58a4 4 0 013.963-2.88l2.687.082a4 4 0 002.573-.836l2.124-1.646z"
+                fill="#AFAFAF"></path>
+              <circle cx="17" cy="17" r="3" fill="#fff"></circle>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M35.06 16.06L16.677 34.447l-2.121-2.122L32.94 13.94l2.12 2.12z" fill="#fff"></path>
+              <circle cx="36" cy="36" r="10" fill="#DC2804"></circle>
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M36 34.586l-3.293-3.293-1.414 1.414L34.586 36l-3.293 3.293 1.414 1.414L36 37.415l3.293 3.292 1.414-1.414L37.414 36l3.293-3.292-1.414-1.414L36 34.586z"
+                fill="#fff"></path>
+            </svg>
+            <h3 style="margin-top: 20px;margin-bottom: 30px; font-size: 20px;line-height: 28px;font-weight: 600;">
+              - This coupon doesn't exist</h3>
+          </div>
+          <div style="border-top: 1px solid rgb(227,227,227);">
+            <button data-bs-dismiss="modal"
+              style="width: 100%;border: 1px solid rgb(121, 79, 231);background-color: rgb(121, 79, 231);padding: 15px;color: white;font-size: 14px;font-weight: 500;border-radius: 8px;">Okay!got
+              it</button>
+          </div>
         </div>
       </div>
     </div>

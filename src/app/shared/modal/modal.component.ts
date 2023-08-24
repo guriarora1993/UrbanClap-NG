@@ -5,6 +5,8 @@ import {
   ElementRef,
   Input,
   ViewChild,
+  EventEmitter,
+  Output
 } from '@angular/core';
 
 @Component({
@@ -14,6 +16,7 @@ import {
 })
 export class ModalComponent implements AfterViewInit {
   @Input() modalOpen: boolean;
+  @Output() booleanEvent = new EventEmitter<boolean>();
   @ViewChild('modalOpenerBtn') modalOpenerBtn: ElementRef | undefined;
   public isOpen: boolean = false;
   public inputExist: boolean = false;
@@ -29,22 +32,33 @@ export class ModalComponent implements AfterViewInit {
   public otherToggle: boolean = false;
   public savedAddress: any = [];
   public addressLocally: any = [];
-  public isDropdownOpen: boolean = false;
+  public isDropdownOpen: boolean[] = [];
   public radioSelected: boolean = false;
   public buttonBackgroundColor: string = 'white';
   public buttonColor: string = 'black';
   public currentAddress: any = [];
   public dropdownStates: boolean[] = [];
+  public updatedAddress: any = [];
+  public homeDetailValue: string = '';
+  public landMarkValue: string = '';
+  public isInputFocused4: boolean = false;
+  public updateAddressIndex: any;
+  public updateSavedAddress: any = [];
+  public updateVal: any = [];
+  public deletedAddressIndex: any;
+  public idExist: boolean = false;
+  public couponId: any 
   constructor(private cdRef: ChangeDetectorRef) {}
 
-  public toggleDropdown() {
-    this.isDropdownOpen = !this.isDropdownOpen;
+  public toggleDropdown(i: number) {
+    this.isDropdownOpen[i] = !this.isDropdownOpen[i];
   }
 
-  public onRadioChange(check: any) {
-    if (check == 'on') {
+  public getAddressInputValue(value: string) {
+    if (value != '' || null || undefined) {
       this.buttonBackgroundColor = 'rgb(121, 79, 231)';
       this.buttonColor = 'white';
+      this.updateSavedAddress = value;
     } else {
       this.buttonBackgroundColor = 'white';
       this.buttonColor = 'black';
@@ -57,13 +71,18 @@ export class ModalComponent implements AfterViewInit {
     if (localStorage.getItem('listOfAddedAddress') !== null || undefined) {
       this.addressLocally = JSON.parse(
         localStorage.getItem('listOfAddedAddress') || '[]'
-        );
-        this.dropdownStates = new Array(this.addressLocally).fill(false);
+      );
+      console.log('start ', this.currentAddress);
+    } else {
+      console.log('Address not exist');
+    }
+
+    if (localStorage.getItem('savedAddress') !== null || undefined) {
       this.currentAddress = JSON.parse(
         localStorage.getItem('savedAddress') || '[]'
       );
     } else {
-      console.log('Address not exist');
+      console.log('main address not exist');
     }
   }
 
@@ -82,28 +101,42 @@ export class ModalComponent implements AfterViewInit {
       : (this.inputExist = false);
   }
   public getHomeDetail(value: string) {
-    console.log('value is ', value);
     value != '' || null || undefined
       ? (this.homeVal = true)
       : (this.homeVal = false);
   }
 
-  public submitAddress(home: string, landMark: String) {
+  public submitAddress(home: string, landMark: String, index: any) {
     if (home !== '' || null || undefined) {
-      if(this.currentAddress.length >= 0 ){
-        this.currentAddress.push({home, landMark})
-        setTimeout(() => {
-          localStorage.setItem('listOfAddedAddress', JSON.stringify(this.currentAddress));
-          window.location.reload()
-        }, 1000);
+      if (index !== undefined || null) {
+        this.addressLocally[index].home = home;
+        this.addressLocally[index].landMark = landMark;
+      } else {
+        if (this.currentAddress.length == 0) {
+          this.savedAddress.push({ home, landMark });
+          setTimeout(() => {
+            console.log('savedAddress ', this.savedAddress);
+            localStorage.setItem(
+              'savedAddress',
+              JSON.stringify(this.savedAddress)
+            );
+            localStorage.setItem(
+              'listOfAddedAddress',
+              JSON.stringify(this.savedAddress)
+            );
+            window.location.reload();
+          }, 1000);
+        } else {
+          this.addressLocally.push({ home, landMark });
+          setTimeout(() => {
+            localStorage.setItem(
+              'listOfAddedAddress',
+              JSON.stringify(this.addressLocally)
+            );
+            window.location.reload();
+          }, 2000);
+        }
       }
-      this.savedAddress.push({ home, landMark });
-      setTimeout(() => {
-        localStorage.setItem('savedAddress', JSON.stringify(this.savedAddress));
-        window.location.reload()
-      }, 1000);
-    } else {
-      console.log('valie is empty');
     }
   }
 
@@ -134,12 +167,71 @@ export class ModalComponent implements AfterViewInit {
       : (this.valueExist = false);
   }
 
-  public deleteAddress(){
-    localStorage.removeItem("listOfAddedAddress")
-    window.location.reload()
+  public removeAddressSelected(index: number) {
+    this.deletedAddressIndex = index;
   }
 
-  public back(){
-    window.location.reload()
+  public deleteAddress() {
+    this.addressLocally.splice(this.deletedAddressIndex, 1);
+    setTimeout(() => {
+      localStorage.setItem(
+        'listOfAddedAddress',
+        JSON.stringify(this.addressLocally)
+      );
+      window.location.reload();
+      console.log('deleted succes fully');
+    }, 2000);
+    if(this.addressLocally.length == 0){
+      localStorage.removeItem("savedAddress")
+      window.location.reload()
+    }
+  }
+
+  public back() {
+    window.location.reload();
+  }
+
+  /*
+   For set the detail of address to mapModal for updation
+  */
+  public updateAddress(addressIndex: any) {
+    console.log('addressIndex ', addressIndex);
+    if (addressIndex !== null || undefined) {
+      this.homeDetailValue = this.addressLocally[addressIndex].home || '';
+      this.landMarkValue = this.addressLocally[addressIndex].landMark || '';
+      this.updateAddressIndex = addressIndex;
+    }
+  }
+
+  public finalSubmit() {
+    const data = this.updateVal.push(this.updateSavedAddress);
+    setTimeout(() => {
+      localStorage.setItem('savedAddress', JSON.stringify(this.updateVal));
+      window.location.reload();
+    }, 1000);
+  }
+  /*
+   For get input value change in mapModal
+  */
+  public onHomeDetailChange(newValue: string) {
+    this.homeDetailValue = newValue;
+  }
+
+  public onLandMarkChange(newValue: string) {
+    this.landMarkValue = newValue;
+  }
+
+  public changeCurrentAddress() {
+    // localStorage.setItem("savedAddress",JSON.stringify(this.updateSavedAddress))
+  }
+
+  public getCouponId(id: any){
+    if(id !== null || undefined || ""){
+      this.idExist = false
+      this.couponId = id;
+    }
+    else{
+      this.idExist = true
+    }
   }
 }

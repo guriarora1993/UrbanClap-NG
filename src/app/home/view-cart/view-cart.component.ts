@@ -56,6 +56,7 @@ export class ViewCartComponent implements OnInit {
   public openTest: boolean = false;
   public savedAddress: any =[];
   public addressAdded: boolean = false;
+  public dataLoading: boolean = false;
   @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
   @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
   @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
@@ -72,6 +73,10 @@ export class ViewCartComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(()=>{
+      this.dataLoading = false
+    },2000)
+    this.dataLoading = true
     this.totalAmount = parseFloat(localStorage.getItem('totalAmount') || '0');
     this.grandTotal = this.totalAmount + this.taxOnService;
     this.cartList = JSON.parse(localStorage.getItem('selectedCarts') || '[]');
