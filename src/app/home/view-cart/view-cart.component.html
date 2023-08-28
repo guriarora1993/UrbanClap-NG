@@ -80,7 +80,7 @@
                         <div>
                         </div>
                     </div>
-                    <button *ngIf="savedAddress.length > 0" data-bs-toggle="modal"
+                    <button data-bs-toggle="modal" data-bs-target="#slotSection" *ngIf="savedAddress.length > 0" data-bs-toggle="modal"
                     style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Select time & date</button>
                     <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;"></div>
                     <div class="al-option-list-container">
@@ -310,4 +310,3 @@
 </div>
 <app-modal></app-modal>
 <app-loader *ngIf="dataLoading"></app-loader>
-<!-- for open search modal automatic  value set true -->

@@ -344,13 +344,171 @@
   }
 }
 
- input[type="radio"] {
+input[type="radio"] {
   width: 20px;
   height: 20px;
   border-radius: 50%; /* Makes it circular */
 }
 
 input[type="radio"]:checked {
-  background-color: #007bff; /* Change the color when selected */
-  border-color: #007bff; /* Change the border color when selected */
+  background-color: #2e3133; /* Change the color when selected */
+  border-color: #2d2e2f; /* Change the border color when selected */
+}
+
+.slot-section-container {
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    padding-bottom: 15px;
+    cursor: pointer;
+    .left-side-container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        margin-left: 10px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+      }
+    }
+  }
+
+  .section-container {
+    .text-content {
+      margin-top: 20px;
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        color: rgb(148, 147, 147);
+      }
+    }
+
+    .slots-options-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgb(227, 227, 227);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      .left-content {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+    .slots-options-list-calender {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      .left-content {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .notice-container {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    padding: 10px;
+    cursor: pointer;
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.calender-container {
+  .date-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    .date-container-child {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgb(227, 227, 227);
+      padding: 15px;
+      display: flex;
+      border-radius: 8px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+}
+.date-container-child.active {
+  background-color: rgb(245, 242, 253);
+  border-color: rgb(121, 79, 231) !important;
+}
+
+.timing-section {
+  padding: 10px;
+  .time-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    div {
+      button {
+        width: 120px;
+        border: none;
+        background-color: white;
+        border: 1px solid rgb(227, 227, 227);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
+
+      button.active {
+        background-color: rgb(245, 242, 253);
+        border-color: rgb(121, 79, 231) !important;
+      }
+    }
+  }
+}
+
+.slot-proceed-btn {
+  width: 100%;
+  border: 1px solid rgb(121, 79, 231);
+  background-color: rgb(121, 79, 231);
+  padding: 15px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+.slot-proceed-btn.active {
+  background-color: rgb(237, 237, 237);
+  border-color: rgb(237, 237, 237);
+  color: rgb(138, 137, 137);
+}
+
+.get-service-container.active{
+  height: 270px;
+  overflow-y: scroll;
 }

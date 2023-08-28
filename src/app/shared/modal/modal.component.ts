@@ -6,7 +6,7 @@ import {
   Input,
   ViewChild,
   EventEmitter,
-  Output
+  Output,
 } from '@angular/core';
 
 @Component({
@@ -47,7 +47,27 @@ export class ModalComponent implements AfterViewInit {
   public updateVal: any = [];
   public deletedAddressIndex: any;
   public idExist: boolean = false;
-  public couponId: any 
+  public couponId: any;
+  public dateSelected: boolean[] = [];
+  public dates: Date[] = [];
+  public timeSlots: string[] = [];
+  public isTimeSelected: boolean[] = [];
+  public slotSelected: boolean = true;
+  public serviceGetLater: boolean = false;
+  public selectedDateOfSlot: any;
+  public selectedTimeOfSlot: any;
+  public slotsData = [
+    {
+      img: '../../../assets/slot-express-img.png',
+      titleHeading: 'When should the professional arrive?',
+      titleContent: 'Your service will take approx. 1 hr',
+    },
+    {
+      img: '../../../assets/slot-get-service-later.png',
+      titleHeading: 'Get service later',
+      titleContent: 'Service at the earliest available time slot',
+    },
+  ];
   constructor(private cdRef: ChangeDetectorRef) {}
 
   public toggleDropdown(i: number) {
@@ -66,6 +86,8 @@ export class ModalComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    this.generateTimeSlots();
+   setTimeout(()=>{ this.selectedDateFxn(0,this.dates[0]);},2000)
     this.isOpen = this.modalOpen;
     this.activeButton = 'home';
     if (localStorage.getItem('listOfAddedAddress') !== null || undefined) {
@@ -83,6 +105,13 @@ export class ModalComponent implements AfterViewInit {
       );
     } else {
       console.log('main address not exist');
+    }
+
+    const today = new Date();
+    for (let i = 0; i < 3; i++) {
+      const date = new Date();
+      date.setDate(today.getDate() + i);
+      this.dates.push(date);
     }
   }
 
@@ -181,9 +210,9 @@ export class ModalComponent implements AfterViewInit {
       window.location.reload();
       console.log('deleted succes fully');
     }, 2000);
-    if(this.addressLocally.length == 0){
-      localStorage.removeItem("savedAddress")
-      window.location.reload()
+    if (this.addressLocally.length == 0) {
+      localStorage.removeItem('savedAddress');
+      window.location.reload();
     }
   }
 
@@ -225,13 +254,72 @@ export class ModalComponent implements AfterViewInit {
     // localStorage.setItem("savedAddress",JSON.stringify(this.updateSavedAddress))
   }
 
-  public getCouponId(id: any){
-    if(id !== null || undefined || ""){
-      this.idExist = false
+  public getCouponId(id: any) {
+    if (id !== null || undefined || '') {
+      this.idExist = false;
       this.couponId = id;
+    } else {
+      this.idExist = true;
     }
-    else{
-      this.idExist = true
+  }
+
+  public selectedDateFxn(i: number,date: any) {
+    this.dateSelected = new Array(this.dates.length).fill(false);
+    this.dateSelected[i] = true;
+    this.selectedDateOfSlot = date;
+  }
+
+  public selectedTimeFxn(i: number,time: any) {
+    this.selectedTimeOfSlot = time
+    this.isTimeSelected = new Array(this.dates.length).fill(false);
+    this.isTimeSelected[i] = true;
+    if (this.isTimeSelected[i]) {
+      this.slotSelected = false;
+    } else {
+      this.slotSelected = true;
     }
+  }
+
+  public getDayName(date: Date): string {
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    return days[date.getDay()];
+  }
+
+  public generateTimeSlots(): void {
+    const currentTime = new Date();
+    const initialTime = new Date(currentTime.getTime() + 1.5 * 60 * 60 * 1000); // Add 1.5 hours
+
+    const interval = 30 * 60 * 1000; // 30 minutes in milliseconds
+
+    for (let i = 0; i < 16; i++) {
+      // Generate 16 time slots for 8 hours
+      const time = new Date(initialTime.getTime() + i * interval);
+      this.timeSlots.push(this.formatTimeSlot(time));
+    }
+  }
+
+  public formatTimeSlot(time: Date): string {
+    const hours = time.getHours();
+    const minutes = time.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = hours % 12 === 0 ? 12 : hours % 12;
+    const formattedMinutes = minutes === 0 ? '00' : minutes < 30 ? '00' : '30';
+    return `${formattedHours}:${formattedMinutes} ${ampm}`;
+  }
+
+  public getSelectedSlot(index: number) {
+    if (index == 0) {
+      this.slotSelected = false;
+      this.serviceGetLater = false
+    } else {
+      this.slotSelected = true;
+      this.serviceGetLater = true;
+    }
+  }
+
+  public submitSlot(){
+    console.log("Working")
+    console.log("Date is ", this.selectedDateOfSlot)
+    console.log("Time is ", this.selectedTimeOfSlot)
   }
 }
