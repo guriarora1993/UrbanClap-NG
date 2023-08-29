@@ -97,12 +97,12 @@ export class ServiceDetailListComponent {
     return totalAmount;
   }
 
-  ngAfterViewInit() {
-    this.updateProgress();
-    this.videoPlayer.nativeElement.addEventListener('timeupdate', () =>
-      this.updateProgressSmoothly()
-    );
-  }
+  // ngAfterViewInit() {
+  //   this.updateProgress();
+  //   this.videoPlayer.nativeElement.addEventListener('timeupdate', () =>
+  //     this.updateProgressSmoothly()
+  //   );
+  // }
 
   public initVideo() {
     const video = this.videoPlayer.nativeElement;

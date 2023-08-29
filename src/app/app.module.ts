@@ -19,6 +19,8 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { PaymentSectionComponent } from './home/payment-section/payment-section.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +30,7 @@ import { FormsModule } from '@angular/forms';
     FrequentCardsComponent,
     HelpComponent,
     ScrollScaleDirective,
+    PaymentSectionComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ import { FormsModule } from '@angular/forms';
     provideFirestore(() => getFirestore()),
     MatDialogModule,
     NgbModule,
-    FormsModule
+    FormsModule,
+    DatePipe
   ],
   providers: [],
   bootstrap: [AppComponent],

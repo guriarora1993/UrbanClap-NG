@@ -1,3 +1,4 @@
+import { PaymentSectionComponent } from './home/payment-section/payment-section.component';
 import { ServiceDetailListComponent } from './shared/service-detail-list/service-detail-list.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -27,6 +28,10 @@ const routes: Routes = [
   {
     path: "modal",
     component: ModalComponent
+  },
+  {
+    path: "payment",
+    component: PaymentSectionComponent
   },
   {
     path: 'service-detail-list',

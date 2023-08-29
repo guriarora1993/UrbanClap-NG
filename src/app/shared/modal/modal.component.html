@@ -408,7 +408,7 @@
 
 <div class="modal fade slide-up-from-bottom mt-5 " id="slotSection" data-bs-backdrop="static" data-bs-keyboard="false"
   tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div style="position: relative;margin-top: 40px;">
+  <div style="position: relative;margin-top: 40px; margin-bottom: 50px;">
     <div class="modal-dialog">
       <div class="modal-content"
         style="background-color: rgb(255,255,255); height: 100%;border-radius: 20px;width: 510px;">
@@ -450,7 +450,8 @@
                 </div>
                 <input (change)="getSelectedSlot(0)" style="cursor: pointer;" type="radio" name="slot" id="">
               </div>
-              <div [ngClass]="{'active':serviceGetLater}" class="get-service-container mt-3" style="border: 1px solid rgb(227,227,227); border-radius:8px;">
+              <div [ngClass]="{'active':serviceGetLater}" class="get-service-container mt-3"
+                style="border: 1px solid rgb(227,227,227); border-radius:8px;">
                 <div class="slots-options-list-calender">
                   <div class="left-content">
                     <img src="../../../assets/slot-get-service-later.png" width="35" alt="">
@@ -491,9 +492,10 @@
                     d="M2.77 4C1.781 4 1 4.806 1 5.778v12.444C1 19.194 1.782 20 2.77 20h18.46c.988 0 1.77-.806 1.77-1.778V5.778C23 4.806 22.218 4 21.23 4H2.77zM3 8V6h18v2H3zm0 2v8h18v-8H3z"
                     fill="#545454"></path>
                 </svg>
-                <p>Free cancellation till 3 hrs before the booked slot, post that 50 chargeable</p>
+                <p>Free cancellation till 3 hrs before the booked slot, post that ₹50 chargeable</p>
               </div>
-              <button (click)="submitSlot()" [ngClass]="{'active':slotSelected}" class="slot-proceed-btn mt-5" data-bs-dismiss="modal">Proceed
+              <button (click)="submitSlot()" [ngClass]="{'active':slotSelected}" class="slot-proceed-btn mt-5"
+                data-bs-dismiss="modal">Proceed
                 to checkout
                 it</button>
             </div>
@@ -503,3 +505,92 @@
     </div>
   </div>
 </div>
+
+
+
+<!--payment-section-modal-add-card-->
+<div class="modal fade slide-up-from-bottom mt-5" id="addCard" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog mt-5"
+    style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%; width: auto;">
+    <div class="modal-content"
+      style="background-color: rgb(255,255,255); border-radius: 20px; width: auto;height: 350px;margin-top: 150px;"
+      id="map-modal">
+      <div type="button" data-bs-dismiss="modal" aria-label="Close"
+        style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: -40px; right: 0;">
+        <img src="../../../assets/icons8-close-480.png" width="20">
+      </div>
+      <div class="modal-body">
+        <div class="content-container">
+          <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Add a new card</span>
+          <div class="card-number-container" [ngClass]="{'active':cardFieldExist}">
+            <input (focus)="cardFieldExist = true" (blur)="cardFieldExist = false" type="number"
+              placeholder="Card number" name="" id="">
+            <img src="../../../assets/add-card-image.png" width="20" alt="">
+          </div>
+          <div style="display: flex;align-items: center;">
+            <div class="card-number-expiry" [ngClass]="{'active':expiryExist}">
+              <input (focus)="expiryExist = true" (blur)="expiryExist = false" type="number" placeholder="MM/YY" name=""
+                id="">
+            </div>
+            <div class="card-number-cvv" [ngClass]="{'active':cvvExist}">
+              <input (focus)="cvvExist = true" (blur)="cvvExist = false" type="number" placeholder="CVV" name="" id="">
+            </div>
+          </div>
+          <div class="save-cred-permission-container">
+            <input type="checkbox" name="security-permission" id="security-permission">
+            <label for="security-permission">
+              <span style="font-size: 12px;font-weight: 400;line-height: 16px;margin-left: 10px;">Save the card details
+                securely for future use except CVV</span>
+            </label>
+          </div>
+          <div class="footer-section">
+            <span>₹500</span>
+            <button>Save and proceed</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--UPI-ID-MODAL-->
+<div class="modal fade slide-up-from-bottom mt-5" id="upiId" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog mt-5"
+    style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%; width: auto;">
+    <div class="modal-content"
+      style="background-color: rgb(255,255,255); border-radius: 20px; width: auto;height: 350px;margin-top: 150px;"
+      id="map-modal">
+      <div type="button" data-bs-dismiss="modal" aria-label="Close"
+        style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: -40px; right: 0;">
+        <img src="../../../assets/icons8-close-480.png" width="20">
+      </div>
+      <div class="modal-body">
+        <div class="content-container">
+          <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Pay via UPI</span>
+          <div class="card-number-container" [ngClass]="{'active':cardFieldExist}">
+            <input (focus)="cardFieldExist = true" (blur)="cardFieldExist = false" type="number"
+              placeholder="Your UPI ID" name="" id="">
+            <img src="../../../assets/add-card-image.png" width="20" alt="">
+          </div>
+          <div class="save-cred-permission-container">
+            <input type="checkbox" name="security-permission" id="security-permission">
+            <label for="security-permission">
+              <span style="font-size: 12px;font-weight: 400;line-height: 16px;margin-left: 10px;">Save my UPI ID
+                securely</span>
+            </label>
+          </div>
+          <div class="footer-section">
+            <span>₹500</span>
+            <button>Proceed to pay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Open this modal on click on upi payment section in payment section container-->

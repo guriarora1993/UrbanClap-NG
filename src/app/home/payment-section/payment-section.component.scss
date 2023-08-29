@@ -1,0 +1,69 @@
+.main-container {
+  width: 100vw;
+  height: 100%;
+  background-color: rgb(229, 229, 229);
+  .payment-methods-container {
+    background-color: #ffffff;
+    width: 40%;
+    margin: auto;
+    .header-section {
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid rgb(229, 229, 229);
+      padding: 20px;
+      position: sticky;
+      top: 0px;
+      background-color: white;
+      .text-content {
+        margin-left: 20px;
+        h3 {
+          font-size: 20px;
+          line-height: 28px;
+          font-weight: 600;
+          margin-bottom: -8px;
+        }
+        span {
+          font-weight: 400;
+          font-size: 12px;
+          line-height: 16px;
+        }
+      }
+    }
+    .methods-section-container {
+      .methods-section-content-container {
+        display: flex;
+        flex-direction: column;
+        padding: 20px;
+        .accordian-container {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          cursor: pointer;
+          span {
+            margin-left: 10px;
+            line-height: 24px;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.methods-section-content-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  .accordian-container {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    span {
+      margin-left: 10px;
+      line-height: 24px;
+      font-weight: 400;
+      font-size: 14px;
+    }
+  }
+}

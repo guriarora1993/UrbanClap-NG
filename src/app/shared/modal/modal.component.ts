@@ -8,7 +8,6 @@ import {
   EventEmitter,
   Output,
 } from '@angular/core';
-
 @Component({
   selector: 'app-modal',
   templateUrl: './modal.component.html',
@@ -56,6 +55,11 @@ export class ModalComponent implements AfterViewInit {
   public serviceGetLater: boolean = false;
   public selectedDateOfSlot: any;
   public selectedTimeOfSlot: any;
+  public selectedSlotIndex: number;
+  public getServiveLater: string = "Service in 60-75 minutes";
+  public cardFieldExist: boolean = false;
+  public expiryExist: boolean = false;
+  public cvvExist: boolean = false;
   public slotsData = [
     {
       img: '../../../assets/slot-express-img.png',
@@ -68,7 +72,9 @@ export class ModalComponent implements AfterViewInit {
       titleContent: 'Service at the earliest available time slot',
     },
   ];
-  constructor(private cdRef: ChangeDetectorRef) {}
+  constructor(
+    private cdRef: ChangeDetectorRef,
+    ) {}
 
   public toggleDropdown(i: number) {
     this.isDropdownOpen[i] = !this.isDropdownOpen[i];
@@ -212,6 +218,8 @@ export class ModalComponent implements AfterViewInit {
     }, 2000);
     if (this.addressLocally.length == 0) {
       localStorage.removeItem('savedAddress');
+      localStorage.removeItem('serviceLater');
+      localStorage.removeItem('serviceDate');
       window.location.reload();
     }
   }
@@ -308,6 +316,7 @@ export class ModalComponent implements AfterViewInit {
   }
 
   public getSelectedSlot(index: number) {
+    this.selectedSlotIndex = index
     if (index == 0) {
       this.slotSelected = false;
       this.serviceGetLater = false
@@ -318,8 +327,25 @@ export class ModalComponent implements AfterViewInit {
   }
 
   public submitSlot(){
-    console.log("Working")
-    console.log("Date is ", this.selectedDateOfSlot)
-    console.log("Time is ", this.selectedTimeOfSlot)
+    if(this.selectedSlotIndex !== 0){
+    const currentDate = this.selectedDateOfSlot; 
+    const dateString = currentDate.toDateString();
+    const parts = dateString.split(' ');
+    const formattedDate = `${parts[0]} ${parts[1]} ${parts[2]}`;
+    const serviceDate = {
+      date: formattedDate,
+      time: this.selectedTimeOfSlot
+    }
+    localStorage.setItem("serviceDate", JSON.stringify(serviceDate))
+    localStorage.removeItem("serviceLater")
+    window.location.reload()
+    }
+    else{
+      localStorage.setItem("serviceLater", this.getServiveLater)
+      localStorage.removeItem("serviceDate")
+      window.location.reload()
+
+    }
   }
+
 }

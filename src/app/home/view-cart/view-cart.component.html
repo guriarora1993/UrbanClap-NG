@@ -35,7 +35,8 @@
                                 style="color: rgb(84, 84, 84); font-size: 14px;line-height: 20px;font-weight: 400;">+919882748459</span>
                         </div>
                     </div>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;"></div>
+                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div>
                     <div class="al-option-list-main-container" *ngIf="savedAddress.length <= 0">
                         <div class="al-option-list-container">
                             <div style="display: flex;align-items: center;justify-content: flex-start;">
@@ -49,7 +50,7 @@
                             </div>
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                            style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Select
+                            style="background-color: rgb(110,66,229);margin-bottom: 15px;margin-left: 10px; width: 90%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Select
                             an address</button>
                     </div>
                     <div class="saved-address-container" *ngFor="let item of savedAddress">
@@ -58,7 +59,7 @@
                                 <img src="../../../assets/uc-location-icon.png" width="40" alt="">
                                 <div class="title-and-detail">
                                     <span
-                                        style="color: rgb(116, 115, 115); line-height: 20px;font-weight: 600;font-size: 14px;">Address</span>
+                                        style="color: black; line-height: 20px;font-weight: 600;font-size: 14px;">Address</span>
                                     <span style="line-height: 20px;font-size: 14px;font-weight: 400;"><span
                                             style="font-size: 14px;font-weight: 600;line-height: 20px;">Home -
                                         </span>{{item.home}},{{item.landMark}}</span>
@@ -67,8 +68,9 @@
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#locationSave" class="edit-btn">Edit</button>
                     </div>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;"></div>
-                    <div class="al-option-list-container">
+                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div>
+                    <div class="al-option-list-container" *ngIf="selectedDate.length <= 0 && !serviceLater">
                         <div data-bs-toggle="modal" data-bs-target="#mapModal"
                             style="display: flex;align-items: center;justify-content: flex-start;">
                             <img src="../../../assets/slot-icon.png" width="40" alt="">
@@ -80,10 +82,44 @@
                         <div>
                         </div>
                     </div>
-                    <button data-bs-toggle="modal" data-bs-target="#slotSection" *ngIf="savedAddress.length > 0" data-bs-toggle="modal"
-                    style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Select time & date</button>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;"></div>
-                    <div class="al-option-list-container">
+                    <button *ngIf="savedAddress.length > 0 && !serviceLaterExist && selectedDate.length <= 0"
+                        data-bs-toggle="modal" data-bs-target="#slotSection" data-bs-toggle="modal"
+                        style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Select
+                        time & date</button>
+                    <div class="saved-address-container" *ngFor="let item of selectedDate">
+                        <div class="al-option-list-container" *ngIf="selectedDate.length > 0 && !serviceLater">
+                            <div style="display: flex;align-items: center;justify-content: flex-start;">
+                                <img src="../../../assets/slot-enable-img.png" width="40" alt="">
+                                <div class="title-and-detail">
+                                    <span
+                                        style="color: black; line-height: 20px;font-weight: 600;font-size: 14px;">Slot</span>
+                                    <span style="line-height: 20px;font-size: 14px;font-weight: 400;"><span
+                                            style="font-size: 14px;font-weight: 600;line-height: 20px;">
+                                        </span>{{item.date}} - {{item.time}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button data-bs-toggle="modal" data-bs-target="#slotSection" class="edit-btn">Edit</button>
+                    </div>
+                    <div class="saved-address-container" *ngIf="serviceLaterExist">
+                        <div class="al-option-list-container">
+                            <div style="display: flex;align-items: center;justify-content: flex-start;">
+                                <img src="../../../assets/slot-enable-img.png" width="40" alt="">
+                                <div class="title-and-detail">
+                                    <span
+                                        style="color: black; line-height: 20px;font-weight: 600;font-size: 14px;">Slot</span>
+                                    <span style="line-height: 20px;font-size: 14px;font-weight: 400;"><span
+                                            style="font-size: 14px;font-weight: 600;line-height: 20px;">
+                                        </span>{{serviceLater}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <button data-bs-toggle="modal" data-bs-target="#slotSection" class="edit-btn">Edit</button>
+                    </div>
+                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div>
+                    <div *ngIf="!slotExist" class="al-option-list-container"
+                        style="display: flex;flex-direction: column;align-items: flex-start;margin-bottom: 30px;">
                         <div data-bs-toggle="modal" data-bs-target="#locationSave"
                             style="display: flex;align-items: center;justify-content: flex-start;margin-bottom: 20px;">
                             <img src="../../../assets/payment-icon.webp" width="40" alt="">
@@ -95,6 +131,26 @@
                         </div>
                         <div>
                         </div>
+                    </div>
+                    <div *ngIf="slotExist" class="al-option-list-container"
+                        style="display: flex;flex-direction: column;align-items: flex-start;margin-bottom: 30px;">
+                        <div data-bs-toggle="modal" data-bs-target="#locationSave"
+                            style="display: flex;align-items: center;justify-content: flex-start;margin-bottom: 20px;">
+                            <img src="../../../assets/payment-icon.webp" width="40" alt="">
+                            <div class="title-and-detail">
+                                <span style="color:black; line-height: 20px;font-weight: 600;font-size: 14px;">Payment
+                                    Method</span>
+                            </div>
+                        </div>
+                        <div>
+                        </div>
+                        <button (click)="navigateToPayment()"
+                            style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Pay
+                            ₹{{grandTotal}}</button>
+                    </div>
+                    <div class="term-condition-container">
+                        <p>By proceeding, you agree to our <a href="">T&C</a>,<a href="">Privacy.</a>and <a
+                                href="">Cancellation Policy.</a> </p>
                     </div>
                 </div>
             </div>
@@ -123,11 +179,13 @@
                         </div>
                     </div>
                     <div class="frequently-cards-container">
-                        <span style="font-size: 14px;font-weight: 600;line-height: 24px;">Frequently added together</span>
+                        <span style="font-size: 14px;font-weight: 600;line-height: 24px;">Frequently added
+                            together</span>
                         <div class="main-container" style="display: flex;flex-direction: row;">
                             <div *ngIf="!cartExist2" class="frequent-card-main-container">
                                 <div style="position: relative;">
-                                    <img style="width: 80px;" width="100" src="../../../assets/frequent-card-2.webp" alt="">
+                                    <img style="width: 80px;" width="100" src="../../../assets/frequent-card-2.webp"
+                                        alt="">
                                     <button (click)="addMoreCards2()"
                                         style="bottom:-20px; right: 0px; position: absolute; margin: 5px; border-radius: 5px;font-size: 14px; font-weight: 400; width: 70px; height: 30px; border: 1px solid rgb(197, 196, 196); color:rgb(121,79,231); background-color: white;">Add</button>
                                 </div>
@@ -139,7 +197,8 @@
                             </div>
                             <div *ngIf="!cartExist" class="frequent-card-main-container">
                                 <div style="position: relative;">
-                                    <img style="width: 80px;" width="100" src="../../../assets/frequent-card-2.webp" alt="">
+                                    <img style="width: 80px;" width="100" src="../../../assets/frequent-card-2.webp"
+                                        alt="">
                                     <button (click)="addMoreCards2()"
                                         style="bottom:-20px; right: 0px; position: absolute; margin: 5px; border-radius: 5px;font-size: 14px; font-weight: 400; width: 70px; height: 30px; border: 1px solid rgb(197, 196, 196); color:rgb(121,79,231); background-color: white;">Add</button>
                                 </div>
@@ -161,7 +220,7 @@
                     </div>
                 </div>
                 <div class="service-preference-bottom-section" data-bs-toggle="modal" data-bs-target="#couponsModal">
-    
+
                     <div class="percentage-icon">
                         <img src="../../../assets/percentage-icon.png" width="20" alt="">
                     </div>
@@ -182,11 +241,12 @@
                         <span style="font-size: 14px; font-weight: 400;">₹{{taxOnService}}</span>
                     </div>
                     <div class="item-amount-description">
-                        <span style="font-size: 14px;line-height: 20px;font-weight: 700; font-weight: bold;">Total</span>
+                        <span
+                            style="font-size: 14px;line-height: 20px;font-weight: 700; font-weight: bold;">Total</span>
                         <span style="font-size: 14px; font-weight: bold;">₹{{grandTotal}}</span>
                     </div>
                 </div>
-    
+
                 <div class="grand-total-container">
                     <span style="font-size: 16px; font-weight: 600;line-height: 24px;">Amount to pay</span>
                     <div style="display: flex; justify-content: space-between; flex-direction: column;">
@@ -202,8 +262,8 @@
     <div class="toast" [ngClass]="{ 'show': cartLimitOver }">
         <span>{{ message }}</span>
     </div>
-    <div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static"
+        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div style="position: relative;margin-top: 180px;">
             <div type="button" data-bs-dismiss="modal"
                 style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 460px;z-index: 1000;">
@@ -241,7 +301,7 @@
                                         for="whatsapp"><span style="position: absolute;top: -4px;">Get order updates on
                                             WhatsApp</span></label>
                                 </div>
-    
+
                                 <div class="button-container">
                                     <button (click)="submitLoginCred(phoneNumber.value)" [disabled]="!numberExist"
                                         class="proceed-btn"
@@ -249,33 +309,38 @@
                                 </div>
                             </div>
                         </div>
-    
+
                         <div *ngIf="phoneNumberExist" class="opt-main-container">
                             <span
                                 style="cursor: pointer; font-size: 14px;font-weight: 600;text-decoration: underline;line-height: 20px;">Edit
                                 number</span>
-                            <h3 style="margin-top: 20px; font-size: 20px; line-height: 28px; font-weight: 600;">Verification
+                            <h3 style="margin-top: 20px; font-size: 20px; line-height: 28px; font-weight: 600;">
+                                Verification
                                 code</h3>
-                            <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have sent
+                            <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have
+                                sent
                                 you a 4 digit code on +9187654321</span>
                             <div class="opt-input-field-container">
                                 <input maxlength="1" #input1 [class.active]="inputActive === 0"
                                     (input)="onInput(input1, input2, null)" [class.otp-input]="!otpNumberExist"
                                     [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
                                     (focus)="onFocus(0,$event, input1)" (blur)="inputActive = null">
-                                <input style="margin-left: 8px;" maxlength="1" #input2 [class.active]="inputActive === 1"
-                                    (input)="onInput(input2, input3, input1)" [class.otp-input]="!otpNumberExist"
+                                <input style="margin-left: 8px;" maxlength="1" #input2
+                                    [class.active]="inputActive === 1" (input)="onInput(input2, input3, input1)"
+                                    [class.otp-input]="!otpNumberExist"
                                     [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
                                     (focus)="onFocus(1,$event, input2)" (blur)="inputActive = null">
-                                <input style="margin-left: 8px;" maxlength="1" #input3 [class.active]="inputActive === 2"
-                                    (input)="onInput(input3, input4, input2)" [class.otp-input]="!otpNumberExist"
+                                <input style="margin-left: 8px;" maxlength="1" #input3
+                                    [class.active]="inputActive === 2" (input)="onInput(input3, input4, input2)"
+                                    [class.otp-input]="!otpNumberExist"
                                     [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
                                     (focus)="onFocus(2,$event, input3)" (blur)="inputActive = null">
-    
+
                                 <input [(ngModel)]="otp4" style="margin-left: 8px;" maxlength="1" #input4
                                     [class.active]="inputActive === 3" (input)="onInput(input4, null, input3)"
-                                    [class.otp-input]="!otpNumberExist" [class.otp-input-validation-error]="otpNumberExist"
-                                    inputmode="numeric" (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
+                                    [class.otp-input]="!otpNumberExist"
+                                    [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                                    (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
                             </div>
                             <div class="validation-error-container" *ngIf="otpNumberExist">
                                 <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804"

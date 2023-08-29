@@ -54,9 +54,13 @@ export class ViewCartComponent implements OnInit {
   public isInputFocused: boolean = false;
   public modalOpen: boolean = false;
   public openTest: boolean = false;
-  public savedAddress: any =[];
+  public savedAddress: any = [];
   public addressAdded: boolean = false;
   public dataLoading: boolean = false;
+  public serviceLater: any;
+  public selectedDate: any = [];
+  public serviceLaterExist: boolean = false;
+  public slotExist: boolean = false;
   @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
   @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
   @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
@@ -73,10 +77,10 @@ export class ViewCartComponent implements OnInit {
   }
 
   ngOnInit() {
-    setTimeout(()=>{
-      this.dataLoading = false
-    },2000)
-    this.dataLoading = true
+    setTimeout(() => {
+      this.dataLoading = false;
+    }, 2000);
+    this.dataLoading = true;
     this.totalAmount = parseFloat(localStorage.getItem('totalAmount') || '0');
     this.grandTotal = this.totalAmount + this.taxOnService;
     this.cartList = JSON.parse(localStorage.getItem('selectedCarts') || '[]');
@@ -84,13 +88,32 @@ export class ViewCartComponent implements OnInit {
     const totalAmount = this.calculateTotalAmount(this.cartList);
     this.totalAmount = totalAmount || 0;
     this.grandTotal = totalAmount + this.taxOnService || 0;
-    if(localStorage.getItem("savedAddress") !== null || undefined){
-      this.savedAddress = JSON.parse(localStorage.getItem("savedAddress") || "[]")
-      console.log("local address is ", this.savedAddress)
+    if (localStorage.getItem('savedAddress') !== null || undefined) {
+      this.savedAddress = JSON.parse(
+        localStorage.getItem('savedAddress') || '[]'
+      );
+    } else {
+      console.log('Length ', this.savedAddress.length);
     }
-    else{
-      console.log("Length ", this.savedAddress.length)
+    const storeDate = localStorage.getItem('serviceDate');
+    const serviceLater = localStorage.getItem('serviceLater');
+    if (storeDate !== null) {
+      this.selectedDate.push(JSON.parse(storeDate));
+      this.slotExist = true;
+    } else {
+      if (serviceLater !== null) {
+        this.slotExist = true;
+        this.serviceLaterExist = true;
+        this.serviceLater = serviceLater;
+      } else {
+        this.serviceLaterExist = false;
+        this.slotExist = false;
+      }
     }
+
+    setTimeout(() => {
+      console.log('Star', this.serviceLaterExist);
+    }, 5000);
   }
 
   public calculateTotalAmount(dataArray: any) {
@@ -357,5 +380,13 @@ export class ViewCartComponent implements OnInit {
   public closeModal() {
     const modal = new bootstrap.Modal(document.getElementById('myModal'));
     modal.hide();
+  }
+
+  public navigateToPayment() {
+    this.dataLoading = true;
+    setTimeout(() => {
+      this.route.navigate(['/payment']);
+      this.dataLoading = false;
+    }, 1000);
   }
 }
