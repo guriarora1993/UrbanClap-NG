@@ -11,10 +11,10 @@
             <div class="methods-section-container">
                 <div>
                     <div style="border-bottom: 4px solid rgb(227,227,227);" class="methods-section-content-container"
-                        *ngFor="let methods of methodsContent">
+                        *ngFor="let methods of methodsContent;let i = index">
                         <p style="font-size: 16px;line-height: 24px;font-weight: 700;">{{methods.methodTitle}}</p>
                         <div style="display: flex;align-items: center;justify-content: space-between;">
-                            <div class="accordian-container" data-bs-toggle="modal" data-bs-target="#addCard">
+                            <div class="accordian-container" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + i">
                                 <div style="border:  1px solid rgb(227,227,227);border-radius: 8px;">
                                     <img [src]="methods.img" width="30" alt="">
                                 </div>

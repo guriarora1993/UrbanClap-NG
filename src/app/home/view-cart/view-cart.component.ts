@@ -40,7 +40,7 @@ export class ViewCartComponent implements OnInit {
   public otp: boolean = false;
   public phoneNumberExist: boolean = false;
   public maxPhoneLimit: number = 10;
-  public otp_Value = variables.OTP;
+  public otp_Value = variables.LOGIN_OTP;
   public shouldDismiss: boolean = false;
   public otpNumberExist: boolean = false;
   public timeUp: boolean = false;

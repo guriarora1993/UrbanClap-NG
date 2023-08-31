@@ -418,14 +418,14 @@
         </div>
         <div class="modal-body">
           <div class="slot-section-container">
-            <div class="header-section">
-              <div class="left-side-container">
+            <div class="header-section" data-bs-toggle="modal" data-bs-target="#locationSave">
+              <div class="left-side-container" *ngFor="let data of currentLocation">
                 <svg width="18" height="100%" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" clip-rule="evenodd"
                     d="M9.898 17.865l-.002-.001-.004-.003-.015-.011a5.939 5.939 0 01-.243-.18 18.886 18.886 0 01-2.66-2.507C5.534 13.509 4 11.105 4 8.326a6.326 6.326 0 1112.651 0c0 2.78-1.535 5.183-2.973 6.837a18.878 18.878 0 01-2.66 2.506 10.317 10.317 0 01-.244.181l-.015.01-.004.004h-.002s0 .002-.427-.608l.426.61a.745.745 0 01-.854 0zm.428-.61l-.428.61.428-.61zm0-7.255a2.233 2.233 0 100-4.465 2.233 2.233 0 000 4.465z"
                     fill="#6E42E5"></path>
                 </svg>
-                <p style="margin-bottom: 0px;">location-name</p>
+                <p style="margin-bottom: 0px;">{{data.home}}</p>
               </div>
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="100%" fill="none" viewBox="0 0 16 16">
                 <path fill="#0F0F0F" fill-rule="evenodd"
@@ -509,7 +509,7 @@
 
 
 <!--payment-section-modal-add-card-->
-<div class="modal fade slide-up-from-bottom mt-5" id="addCard" data-bs-backdrop="static" data-bs-keyboard="false"
+<div class="modal fade slide-up-from-bottom mt-5" id="modal0" data-bs-backdrop="static" data-bs-keyboard="false"
   tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog mt-5"
     style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%; width: auto;">
@@ -523,18 +523,32 @@
       <div class="modal-body">
         <div class="content-container">
           <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Add a new card</span>
-          <div class="card-number-container" [ngClass]="{'active':cardFieldExist}">
-            <input (focus)="cardFieldExist = true" (blur)="cardFieldExist = false" type="number"
-              placeholder="Card number" name="" id="">
+          <div class="card-number-container" [ngClass]="{'active':cardFieldExist,'errorOccur':numberNotExist}">
+            <input maxlength="16" #cardNumber (input)="getCardNumber(cardNumber.value)" (focus)="cardFieldExist = true"
+              (blur)="cardFieldExist = false" type="number" placeholder="Card number" name="" id="">
             <img src="../../../assets/add-card-image.png" width="20" alt="">
           </div>
-          <div style="display: flex;align-items: center;">
-            <div class="card-number-expiry" [ngClass]="{'active':expiryExist}">
-              <input (focus)="expiryExist = true" (blur)="expiryExist = false" type="number" placeholder="MM/YY" name=""
-                id="">
+          <span *ngIf="numberNotExist"
+            style="font-size: 12px;line-height: 16px;font-weight: 400;color: rgb(179, 35, 6);">Please enter a valid
+            card</span>
+          <div style="display: flex;">
+            <div>
+              <div class="card-number-expiry" [ngClass]="{'active':expiryExist,'errorOccur': expiryNotExist}">
+                <input (input)="getCardExpiry(cardExpiry.value)" #cardExpiry maxlength="5" [(ngModel)]="formattedDate"
+                  (ngModelChange)="formatInput($event)" (focus)="expiryExist = true" (blur)="expiryExist = false"
+                  type="text" placeholder="MM/YY" name="" id="">
+              </div>
+              <span *ngIf="expiryNotExist"
+                style="color: rgb(179, 35, 6);font-size: 12px;font-weight: 400;line-height: 16px;">Invalid date.</span>
             </div>
-            <div class="card-number-cvv" [ngClass]="{'active':cvvExist}">
-              <input (focus)="cvvExist = true" (blur)="cvvExist = false" type="number" placeholder="CVV" name="" id="">
+            <div>
+              <div class="card-number-cvv" [ngClass]="{'active':cvvExist, 'errorOccur': cvvIncorrect}">
+                <input #cardCvv (input)="getCvvCode(cardCvv.value)" (focus)="cvvExist = true" (blur)="cvvExist = false"
+                  type="number" placeholder="CVV" name="" id="">
+              </div>
+              <span *ngIf="cvvIncorrect"
+                style="margin-left: 30px; color: rgb(179, 35, 6);font-size: 12px;font-weight: 400;line-height: 16px;">Incorrect
+                CVV.</span>
             </div>
           </div>
           <div class="save-cred-permission-container">
@@ -546,7 +560,8 @@
           </div>
           <div class="footer-section">
             <span>₹500</span>
-            <button>Save and proceed</button>
+            <button (click)="submitCardCredential(cardExpiry.value)" class="addCard-btn"
+              [ngClass]="{'active': credentialExist}">Save and proceed</button>
           </div>
         </div>
       </div>
@@ -557,7 +572,50 @@
 
 
 <!--UPI-ID-MODAL-->
-<div class="modal fade slide-up-from-bottom mt-5" id="upiId" data-bs-backdrop="static" data-bs-keyboard="false"
+<div class="modal fade slide-up-from-bottom mt-5" id="modal2" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog mt-5" style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%;">
+    <div class="modal-content"
+      style="background-color: rgb(255,255,255); border-radius: 20px; width: auto;height: 280px;margin-top: 150px;"
+      id="map-modal">
+      <div type="button" data-bs-dismiss="modal" aria-label="Close"
+        style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: -40px; right: 0;">
+        <img src="../../../assets/icons8-close-480.png" width="20">
+      </div>
+      <div class="modal-body">
+        <div class="content-container">
+          <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Pay via UPI</span>
+          <div class="card-number-container" [ngClass]="{'active':cardFieldExist,'errorOccur':wrongUpiIdError}">
+            <input #payViaUpi (change)="getUpiIdVal(payViaUpi.value)" (focus)="cardFieldExist = true"
+              (blur)="cardFieldExist = false" type="number" placeholder="Your UPI ID" name="" id="">
+          </div>
+          <span style="color: rgb(179, 35, 6);font-weight: 400;line-height: 16px;font-size: 12px;"
+            *ngIf="wrongUpiIdError">Invalid UPI ID. Please try again.</span>
+          <span *ngIf="!wrongUpiIdError" style="font-weight: 400;line-height: 16px;font-size: 12px;">Eg.
+            12345678@upi</span>
+          <div class="save-cred-permission-container">
+            <input maxlength="50" type="checkbox" name="security-permission" id="securityPermission">
+            <label for="securityPermission">
+              <span style="font-size: 12px;font-weight: 400;line-height: 16px;margin-left: 10px;">Save my UPI ID
+                securely</span>
+            </label>
+          </div>
+          <div class="footer-section">
+            <span>₹500</span>
+            <button (click)="submitUpiId(payViaUpi.value)">Proceed to pay</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Open this modal on click on upi payment section in payment section container-->
+
+
+<!--Paytm OTP verfication modal-->
+
+<div class="modal fade slide-up-from-bottom mt-5" id="modal1" data-bs-backdrop="static" data-bs-keyboard="false"
   tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog mt-5"
     style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%; width: auto;">
@@ -569,23 +627,60 @@
         <img src="../../../assets/icons8-close-480.png" width="20">
       </div>
       <div class="modal-body">
-        <div class="content-container">
-          <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Pay via UPI</span>
-          <div class="card-number-container" [ngClass]="{'active':cardFieldExist}">
-            <input (focus)="cardFieldExist = true" (blur)="cardFieldExist = false" type="number"
-              placeholder="Your UPI ID" name="" id="">
-            <img src="../../../assets/add-card-image.png" width="20" alt="">
+        <div class="opt-main-container">
+          <span><img src="../../../assets/paytm.png" width="35" alt=""></span>
+          <h6 style="margin-top: 40px; font-size: 16px; line-height: 24px; font-weight: 700;">Link Paytm</h6>
+          <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">Please enter the 6-digit
+            OTP sent by Paytm on +919882748459</span>
+          <div class="opt-input-field-container">
+            <input maxlength="1" #input1 [class.active]="inputActive === 0" (input)="onInput(input1, input2, null)"
+              [class.otp-input]="!otpNumberExist" [class.otp-input-validation-error]="otpNumberExist"
+              inputmode="numeric" (focus)="onFocus(0,$event, input1)" (blur)="inputActive = null">
+            <input style="margin-left: 8px;" maxlength="1" #input2 [class.active]="inputActive === 1"
+              (input)="onInput(input2, input3, input1)" [class.otp-input]="!otpNumberExist"
+              [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+              (focus)="onFocus(1,$event, input2)" (blur)="inputActive = null">
+            <input style="margin-left: 8px;" maxlength="1" #input3 [class.active]="inputActive === 2"
+              (input)="onInput(input3, input4, input2)" [class.otp-input]="!otpNumberExist"
+              [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+              (focus)="onFocus(2,$event, input3)" (blur)="inputActive = null">
+
+            <input [(ngModel)]="otp4" style="margin-left: 8px;" maxlength="1" #input4 [class.active]="inputActive === 3"
+              (input)="onInput(input4, input5, input3)" [class.otp-input]="!otpNumberExist"
+              [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+              (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
+
+            <input [(ngModel)]="otp5" style="margin-left: 8px;" maxlength="1" #input5 [class.active]="inputActive === 4"
+              (input)="onInput(input5, input6, input4)" [class.otp-input]="!otpNumberExist"
+              [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+              (focus)="onFocus(4,$event, input5)" (blur)="inputActive = null">
+
+            <input [(ngModel)]="otp6" style="margin-left: 8px;" maxlength="1" #input6 [class.active]="inputActive === 5"
+              (input)="onInput(input5, null, input4)" [class.otp-input]="!otpNumberExist"
+              [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+              (focus)="onFocus(5,$event, input6)" (blur)="inputActive = null">
           </div>
-          <div class="save-cred-permission-container">
-            <input type="checkbox" name="security-permission" id="security-permission">
-            <label for="security-permission">
-              <span style="font-size: 12px;font-weight: 400;line-height: 16px;margin-left: 10px;">Save my UPI ID
-                securely</span>
-            </label>
+          <div class="validation-error-container" *ngIf="otpNumberExist">
+            <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804" viewBox="0 0 16 16">
+              <path fill="#DC2804" fill-rule="evenodd"
+                d="M8 2.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM1.25 8a6.75 6.75 0 1113.5 0 6.75 6.75 0 01-13.5 0zm6 1V5h1.5v4h-1.5zm1.5 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                clip-rule="evenodd"></path>
+            </svg>
+            <span style="color: rgb(230,90,96);font-weight: 400;font-size: 12px;line-height: 16px;">You've
+              entered Incorrect OTP.Please try again</span>
           </div>
-          <div class="footer-section">
-            <span>₹500</span>
-            <button>Proceed to pay</button>
+          <div class="timer-container" style="margin-top: 15px;">
+            <span (click)="resendCode()" *ngIf="timeUp"
+              style="cursor: pointer; font-size: 14px;color: rgb(121, 79, 231);">Resend
+              code</span>
+            <span *ngIf="!timeUp" style="font-size: 14px; font-weight: 600;line-height: 20px;">00:{{seconds}}</span>
+          </div>
+          <div class="button-container">
+            <span style="font-weight: 700;line-height: 20px;font-size: 14px;">₹1,750</span>
+            <button [attr.data-bs-dismiss]="shouldDismiss ? 'modal' : null"
+              (click)="signUp(input1.value,input2.value,input3.value,input4.value,input5.value,input6.value)"
+              [disabled]="!otp" class="proceed-btn"
+              [style.background-color]="otp ? 'rgb(110,66,229)' : ''">Verify</button>
           </div>
         </div>
       </div>
@@ -593,4 +688,41 @@
   </div>
 </div>
 
-<!--Open this modal on click on upi payment section in payment section container-->
+
+<!--Netbanking-modal-->
+
+<div class="modal fade slide-up-from-bottom mt-5" id="modal3" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog mt-5"
+    style="border-radius: 15px;border-bottom-left-radius: 10px;max-width: 40%; width: auto;">
+    <div class="modal-content"
+      style=" background-color: rgb(255,255,255); border-radius: 20px; width: auto;height: 450px;margin-top: 100px;"
+      id="map-modal">
+      <div type="button" data-bs-dismiss="modal" aria-label="Close"
+        style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: -40px; right: 0;">
+        <img src="../../../assets/icons8-close-480.png" width="20">
+      </div>
+      <div class="modal-body">
+        <div class="content-container">
+          <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Select Bank</span>
+          <div class="card-number-container" [ngClass]="{'active':cardFieldExist,'errorOccur':numberNotExist}">
+            <input (focus)="cardFieldExist = true" (blur)="cardFieldExist = false" type="text"
+              placeholder="Search by bank name" name="" id="">
+          </div>
+          <div class="bank-list-main-container">
+            <div class="container" *ngFor="let detail of bankInfo">
+              <div class="bank-list-left-content" style="display: flex; align-items: center;">
+                <div style="border: 1px solid rgb(227,227,227);border-radius: 8px; padding: 3px;">
+                  <img [src]="detail.logo" width="30" alt="">
+                </div>
+                <span
+                  style="line-height: 24px;font-size: 14px;font-weight: 400;margin-left: 20px;">{{detail.bankName}}</span>
+              </div>
+              <img src="../../../assets/arrow-icon.png" width="19" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
