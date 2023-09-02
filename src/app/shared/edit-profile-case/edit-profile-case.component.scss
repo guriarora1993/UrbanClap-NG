@@ -1,0 +1,50 @@
+.edit-case-main-container {
+  width: 40%;
+  margin: auto;
+  .content-container {
+    padding: 10px;
+    h2 {
+      font-size: 25px;
+      line-height: 40px;
+      font-weight: 700;
+      margin-top: 30px;
+    }
+    p {
+      font-size: 14px;
+      line-height: 24px;
+      font-weight: 400;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #572acb;
+      border-radius: 8px;
+      width: 170px;
+      color: white;
+      padding: 8px;
+      font-size: 14px;
+      border: none;
+    }
+  }
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    padding: 15px;
+    margin-top: 20px;
+    .feedback-icons {
+      display: flex;
+      align-items: center;
+      svg {
+        cursor: pointer;
+      }
+    }
+    span {
+      line-height: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+  }
+}

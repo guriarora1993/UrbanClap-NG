@@ -83,6 +83,12 @@ export class ModalComponent implements AfterViewInit {
   public cvvCode = variables.CVV_CODE;
   public credentialExist: boolean = false;
   public currentLocation: any;
+  public totalAmount: any;
+  public inputEnable: boolean = false;
+  public phoneNumberExist: boolean = false;
+  public numberExist: boolean = false;
+  public isPhone: boolean = false;
+
   public bankInfo = [
     {
       logo: '../../../assets/axis-bank.png',
@@ -139,6 +145,7 @@ export class ModalComponent implements AfterViewInit {
   }
 
   ngOnInit() {
+    this.totalAmount = localStorage.getItem("totalAmount")
     if (localStorage.getItem('savedAddress') !== null || undefined) {
       this.currentLocation = JSON.parse(
         localStorage.getItem('savedAddress') || '[]'
@@ -447,7 +454,7 @@ export class ModalComponent implements AfterViewInit {
 
   public resendCode() {
     this.timeUp = false;
-    this.seconds = 30;
+    this.seconds = 60;
     this.startTimer();
   }
 
@@ -528,6 +535,60 @@ export class ModalComponent implements AfterViewInit {
       this.expiryNotExist = false;
     } else {
       this.expiryNotExist = true;
+    }
+  }
+  
+  public signUp2(optVal1: any, optVal2: any, optVal3: any, optVal4: any) {
+    const userOtp = optVal1
+      .toString()
+      .concat(optVal2.toString(), optVal3.toString(), optVal4.toString());
+    if (userOtp == this.otp_Value) {
+      this.otpNumberExist = false;
+      this.shouldDismiss = true;
+    } else {
+      this.otpNumberExist = true;
+      this.shouldDismiss = false;
+    }
+  }
+
+  public submitLoginCred(cred: any) {
+    if (cred.length == 10) {
+      this.phoneNumberExist = true;
+      this.startTimer();
+    } else {
+      this.phoneNumberExist = false;
+    }
+  }
+
+  public getPhoneNumber(value: any) {
+    value !== '' || null || undefined
+      ? (this.isPhone = true)
+      : (this.isPhone = false);
+    if (value.length >= 10) {
+      this.numberExist = true;
+      this.inputEnable = true;
+    } else {
+      this.numberExist = false;
+      this.inputEnable = false;
+    }
+  }
+
+  public onInputNew(
+    currentInput: HTMLInputElement,
+    nextInput: HTMLInputElement | null,
+    prevInput: HTMLInputElement | null
+  ) {
+    const value = currentInput.value;
+    this.otp4 !== null || undefined ? (this.otp = true) : (this.otp = false);
+    value.length < 4
+      ? (this.otpNumberExist = false)
+      : (this.otpNumberExist = true);
+    if (value) {
+      if (nextInput) {
+        nextInput.focus();
+      }
+    } else if (prevInput) {
+      prevInput.focus();
     }
   }
 }

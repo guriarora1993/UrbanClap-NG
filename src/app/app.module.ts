@@ -21,6 +21,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PaymentSectionComponent } from './home/payment-section/payment-section.component';
+import { HomeModule } from './home/home.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,7 @@ import { PaymentSectionComponent } from './home/payment-section/payment-section.
     FrequentCardsComponent,
     HelpComponent,
     ScrollScaleDirective,
-    PaymentSectionComponent
+    PaymentSectionComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +46,8 @@ import { PaymentSectionComponent } from './home/payment-section/payment-section.
     MatDialogModule,
     NgbModule,
     FormsModule,
-    DatePipe
+    DatePipe,
+    HomeModule
   ],
   providers: [],
   bootstrap: [AppComponent],

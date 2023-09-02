@@ -13,6 +13,7 @@ export class HomeComponent {
   public searchInput: boolean = false;
   public navigateToService: boolean = false;
   public isHome: boolean = true;
+  public userCredExist: boolean = false;
   constructor(private sidebarService: SidebarService, private router: Router) {}
   ngOnInit() {
     this.sidebarService.getSidebarVisible().subscribe((visible) => {

@@ -38,9 +38,10 @@
                     </div>
                     <span [class]="errorClass" *ngIf="invalidNumber">Invalid number</span>
                 </div>
-                <button class="submit-button">Continue</button>
+                <button  [disabled]="isButtonDisabled" (click)="submitPhoneCred(phoneValue.value)"  data-bs-toggle="modal" data-bs-target="#otpModal"  class="btn btn-lg submit-button">Continue</button>
             </div>
         </div>
     </div>
 </div>
 <app-skelton *ngIf="navigateToService"></app-skelton>
+<app-modal></app-modal>

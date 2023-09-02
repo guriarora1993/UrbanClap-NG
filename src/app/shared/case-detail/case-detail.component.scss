@@ -1,0 +1,48 @@
+.case-detail-container {
+  width: 40%;
+  margin: auto;
+  .top-section-content {
+    h2 {
+      font-size: 25px;
+      line-height: 40px;
+      font-weight: 700;
+      margin-top: 30px;
+    }
+
+    p {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: rgb(84, 84, 84);
+      margin-top: 20px;
+    }
+
+    ul,
+    li {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 24px;
+      color: rgb(84, 84, 84);
+    }
+  }
+
+  .feedback-container {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(245, 245, 245);
+    padding: 15px;
+    .feedback-icons {
+      display: flex;
+      align-items: center;
+      svg {
+        cursor: pointer;
+      }
+    }
+    span {
+      line-height: 20px;
+      font-weight: 400;
+      font-size: 14px;
+      margin-top: 30px;
+    }
+  }
+}

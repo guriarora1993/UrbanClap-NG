@@ -16,15 +16,15 @@
         </div>
         <div class="parent-container container">
             <div class="login-container">
-                <!-- <div style="display: flex; flex-direction: column;">
+                <div style="display: flex; flex-direction: column;">
                     <span style="font-size: 14px; font-weight: 600; line-height: 20px;">Account</span>
                     <span
                         style="margin-top: 5px; font-size: 14px;color: rgb(84, 84, 84); line-height: 20px;font-weight: 400;">To
                         book the service, please login or sign up</span>
                 </div>
                 <button data-bs-toggle="modal" data-bs-target="#loginModal"
-                    style="background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px; padding: 12px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login</button> -->
-                <div class="al-address-section-container">
+                    style="margin-top: 20px; background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login</button>
+                <div *ngIf="userCredExist" class="al-address-section-container">
                     <div class="al-option-list-container">
                         <img src="../../../assets/uc-location-icon.png" width="40" alt="">
                         <div class="title-and-detail">
@@ -144,7 +144,7 @@
                         </div>
                         <div>
                         </div>
-                        <button (click)="navigateToPayment()"
+                        <button (click)="navigateToPayment(grandTotal)"
                             style="background-color: rgb(110,66,229);margin-bottom: 15px; width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Pay
                             ₹{{grandTotal}}</button>
                     </div>
@@ -265,13 +265,13 @@
     <div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static"
         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div style="position: relative;margin-top: 180px;">
-            <div type="button" data-bs-dismiss="modal"
-                style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 460px;z-index: 1000;">
-                <img src="../../../assets/icons8-close-480.png" width="20">
-            </div>
             <div class="modal-dialog mt-5">
                 <div class="modal-content"
-                    style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
+                style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
+                <div type="button" data-bs-dismiss="modal"
+                    style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;">
+                    <img src="../../../assets/icons8-close-480.png" width="20">
+                </div>
                     <div class="modal-body">
                         <div *ngIf="!phoneNumberExist" class="main-container">
                             <div class="child-container">

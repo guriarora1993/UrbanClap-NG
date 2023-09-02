@@ -61,6 +61,7 @@ export class ViewCartComponent implements OnInit {
   public selectedDate: any = [];
   public serviceLaterExist: boolean = false;
   public slotExist: boolean = false;
+  public userCredExist: boolean = false;
   @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
   @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
   @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
@@ -382,7 +383,8 @@ export class ViewCartComponent implements OnInit {
     modal.hide();
   }
 
-  public navigateToPayment() {
+  public navigateToPayment(amount: any) {
+    localStorage.setItem("totalAmount",amount)
     this.dataLoading = true;
     setTimeout(() => {
       this.route.navigate(['/payment']);

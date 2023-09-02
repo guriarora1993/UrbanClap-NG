@@ -17,7 +17,7 @@ export class SidebarComponent {
   public errorClass: string = 'invalidError';
   public loginPage: boolean = false;
   public navigateToService: Boolean = false;
-
+  public isButtonDisabled: boolean = true;
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -47,6 +47,11 @@ export class SidebarComponent {
   }
 
   public phoneNumber(value: any) {
+    if (value.length == 10) {
+      this.isButtonDisabled = false;
+    } else {
+      this.isButtonDisabled = true;
+    }
     value.length > 10
       ? ((this.loginContainer = 'login-container-error'),
         (this.errorClass = 'invalidErrorOccur'),
@@ -67,4 +72,6 @@ export class SidebarComponent {
       });
     }, 2000);
   }
+
+  submitPhoneCred(number: any) {}
 }

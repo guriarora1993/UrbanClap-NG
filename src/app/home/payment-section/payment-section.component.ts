@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./payment-section.component.scss'],
 })
 export class PaymentSectionComponent {
+  public totalAmount: any
   constructor(
     private route: Router
   )
@@ -35,5 +36,10 @@ export class PaymentSectionComponent {
 
   public goBack(){
     this.route.navigate(["view-cart"])
+  }
+
+  ngOnInit(){
+    this.totalAmount = localStorage.getItem("totalAmount");
+    console.log("sss ", this.totalAmount)
   }
 }

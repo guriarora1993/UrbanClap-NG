@@ -1,11 +1,39 @@
-.help-main-container{
-    width: 90%;
-    margin: auto;
-
-    .help-header-section{
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        
+.help-main-container {
+  width: 42%;
+  .help-header-section {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 15px;
+    .help-header-main-heading {
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 48px;
+      margin-top: 40px;
     }
+  }
+}
+.help-section-container {
+  padding: 10px;
+  .help-options-list {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    padding-bottom: 20px;
+    cursor: pointer;
+    .left-content-of-list {
+      display: flex;
+      align-items: center;
+      span {
+        margin-left: 20px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+      }
+    }
+  }
 }

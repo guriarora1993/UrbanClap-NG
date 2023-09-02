@@ -10,8 +10,11 @@
                     <div class="header-content-list">
                         <ul class="navbar-list">
                             <li class="navbar-list-item registration">Register As A Professional </li>
+                            <li class="navbar-list-item help" *ngIf="userCredExist">My Bookings</li>
                             <li class="navbar-list-item help">Help</li>
-                            <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)">Login / Sign up
+                            <li class="navbar-list-item login" (click)="toggleSidebar(loginContent)" *ngIf="!userCredExist">Login / Sign up
+                            </li>
+                            <li class="navbar-list-item login" *ngIf="userCredExist">Logout - user
                             </li>
                         </ul>
                     </div>

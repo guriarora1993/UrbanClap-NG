@@ -16,6 +16,9 @@ import { LoginModalComponent } from './login-modal/login-modal.component';
 // import { FrequentCardsComponent } from './frequent-cards/frequent-cards.component';
 import { FormsModule } from '@angular/forms';
 import { LoaderComponent } from './loader/loader.component';
+import { CasesComponent } from './cases/cases.component';
+import { CaseDetailComponent } from './case-detail/case-detail.component';
+import { EditProfileCaseComponent } from './edit-profile-case/edit-profile-case.component';
 @NgModule({
   declarations: [
     LocationModalComponent,
@@ -32,8 +35,10 @@ import { LoaderComponent } from './loader/loader.component';
     ModalComponent,
     ModalComponent,
     LoginModalComponent,
-    LoaderComponent
-    // FrequentCardsComponent,
+    LoaderComponent,
+    CasesComponent,
+    CaseDetailComponent,
+    EditProfileCaseComponent
   ],
   imports: [CommonModule,FormsModule],
   exports: [
@@ -50,7 +55,10 @@ import { LoaderComponent } from './loader/loader.component';
     HeaderComponent,
     ModalComponent,
     LoginModalComponent,
-    LoaderComponent
+    LoaderComponent,
+    CasesComponent,
+    CaseDetailComponent,
+    EditProfileCaseComponent
   ],
 })
 export class SharedModule {}
