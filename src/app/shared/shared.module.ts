@@ -19,6 +19,7 @@ import { LoaderComponent } from './loader/loader.component';
 import { CasesComponent } from './cases/cases.component';
 import { CaseDetailComponent } from './case-detail/case-detail.component';
 import { EditProfileCaseComponent } from './edit-profile-case/edit-profile-case.component';
+import { ToasterComponent } from './toaster/toaster.component';
 @NgModule({
   declarations: [
     LocationModalComponent,
@@ -38,9 +39,10 @@ import { EditProfileCaseComponent } from './edit-profile-case/edit-profile-case.
     LoaderComponent,
     CasesComponent,
     CaseDetailComponent,
-    EditProfileCaseComponent
+    EditProfileCaseComponent,
+    ToasterComponent,
   ],
-  imports: [CommonModule,FormsModule],
+  imports: [CommonModule, FormsModule],
   exports: [
     LocationModalComponent,
     CardSectionComponent,
@@ -58,7 +60,8 @@ import { EditProfileCaseComponent } from './edit-profile-case/edit-profile-case.
     LoaderComponent,
     CasesComponent,
     CaseDetailComponent,
-    EditProfileCaseComponent
+    EditProfileCaseComponent,
+    ToasterComponent,
   ],
 })
 export class SharedModule {}

@@ -1,6 +1,5 @@
 import { Component, ElementRef, Renderer2, ViewChild } from '@angular/core';
 import { variables } from '@app/constants/constants';
-import { LoaderService } from '@app/services/loader.service';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-login-modal',
@@ -41,7 +40,6 @@ export class LoginModalComponent {
   public otpNumberExist: boolean = false;
   constructor(
     private route: Router,
-    private modal: LoaderService,
     private elementRef: ElementRef,
     private renderer: Renderer2
   ) {}
@@ -224,10 +222,6 @@ export class LoginModalComponent {
     const addedAmount = newCart2.serviceAmount + this.totalAmount;
     this.totalAmount = addedAmount;
     this.grandTotal = this.totalAmount + this.taxOnService;
-  }
-
-  public openModal(): void {
-    this.modal.openModal();
   }
 
   public getPhoneNumber(value: any) {

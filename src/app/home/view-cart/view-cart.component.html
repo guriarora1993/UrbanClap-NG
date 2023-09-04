@@ -16,13 +16,13 @@
         </div>
         <div class="parent-container container">
             <div class="login-container">
-                <div style="display: flex; flex-direction: column;">
+                <div *ngIf="!userCredExist" style="display: flex; flex-direction: column;">
                     <span style="font-size: 14px; font-weight: 600; line-height: 20px;">Account</span>
                     <span
                         style="margin-top: 5px; font-size: 14px;color: rgb(84, 84, 84); line-height: 20px;font-weight: 400;">To
                         book the service, please login or sign up</span>
                 </div>
-                <button data-bs-toggle="modal" data-bs-target="#loginModal"
+                <button *ngIf="!userCredExist" data-bs-toggle="modal" data-bs-target="#loginModal"
                     style="margin-top: 20px; background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login</button>
                 <div *ngIf="userCredExist" class="al-address-section-container">
                     <div class="al-option-list-container">
@@ -264,14 +264,14 @@
     </div>
     <div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static"
         data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div style="position: relative;margin-top: 180px;">
+        <div style="position: relative;margin-top: 130px;">
             <div class="modal-dialog mt-5">
                 <div class="modal-content"
-                style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
-                <div type="button" data-bs-dismiss="modal"
-                    style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;">
-                    <img src="../../../assets/icons8-close-480.png" width="20">
-                </div>
+                    style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
+                    <div type="button" data-bs-dismiss="modal"
+                        style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;">
+                        <img src="../../../assets/icons8-close-480.png" width="20">
+                    </div>
                     <div class="modal-body">
                         <div *ngIf="!phoneNumberExist" class="main-container">
                             <div class="child-container">
@@ -319,7 +319,7 @@
                                 code</h3>
                             <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have
                                 sent
-                                you a 4 digit code on +9187654321</span>
+                                you a 4 digit code on {{enteredNumber}}</span>
                             <div class="opt-input-field-container">
                                 <input maxlength="1" #input1 [class.active]="inputActive === 0"
                                     (input)="onInput(input1, input2, null)" [class.otp-input]="!otpNumberExist"
@@ -375,3 +375,4 @@
 </div>
 <app-modal></app-modal>
 <app-loader *ngIf="dataLoading"></app-loader>
+<app-toaster></app-toaster>

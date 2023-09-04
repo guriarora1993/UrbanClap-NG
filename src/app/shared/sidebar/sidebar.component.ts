@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { variables } from '@app/constants/constants';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SidebarService } from 'src/app/services/sidebar.service';
 import { Router } from '@angular/router';
 import { HomeComponent } from '@app/home/home.component';
@@ -8,6 +9,8 @@ import { HomeComponent } from '@app/home/home.component';
   styleUrls: ['./sidebar.component.scss'],
 })
 export class SidebarComponent {
+  @Input() childVariable: boolean;
+  @Output() variableChanged = new EventEmitter<boolean>();
   public sidebarVisible = false;
   public sidebarHeading: string = '';
   public animationName: string = '';
@@ -18,6 +21,19 @@ export class SidebarComponent {
   public loginPage: boolean = false;
   public navigateToService: Boolean = false;
   public isButtonDisabled: boolean = true;
+  public inputActive: number | null = 0;
+  public otpNumberExist: boolean = false;
+  public otp: boolean = false;
+  public otp4: any = null;
+  public seconds: number = 30;
+  public timeUp: boolean = false;
+  public interval: any;
+  public phoneNumberExist: boolean = false;
+  public enteredNumber: number;
+  public isOtpExist: boolean = true;
+  public otp_Value = variables.LOGIN_OTP;
+  public shouldDismiss: boolean = false;
+
   constructor(
     private sidebarService: SidebarService,
     private router: Router,
@@ -73,5 +89,98 @@ export class SidebarComponent {
     }, 2000);
   }
 
-  submitPhoneCred(number: any) {}
+  public submitPhoneCred(number: any) {
+    if (number.length >= 10) {
+      this.phoneNumberExist = true;
+      this.enteredNumber = number;
+      this.startTimer();
+    } else {
+      this.phoneNumberExist = false;
+    }
+  }
+
+  public onFocus(index: number, event: FocusEvent, input: HTMLInputElement) {
+    this.inputActive = index;
+    input.select();
+  }
+
+  public onInputNew(
+    currentInput: HTMLInputElement,
+    nextInput: HTMLInputElement | null,
+    prevInput: HTMLInputElement | null
+  ) {
+    const value = currentInput.value;
+    this.otp4 !== null || undefined
+      ? ((this.otp = true), (this.isOtpExist = false))
+      : ((this.otp = false), (this.isOtpExist = true));
+    value.length < 4
+      ? (this.otpNumberExist = false)
+      : (this.otpNumberExist = true);
+    if (value) {
+      if (nextInput) {
+        nextInput.focus();
+      }
+    } else if (prevInput) {
+      prevInput.focus();
+    }
+  }
+
+  public onInput(
+    currentInput: HTMLInputElement,
+    nextInput: HTMLInputElement | null,
+    prevInput: HTMLInputElement | null
+  ) {
+    const value = currentInput.value;
+    this.otp4 !== null || undefined ? (this.otp = true) : (this.otp = false);
+    value.length < 4
+      ? (this.otpNumberExist = false)
+      : (this.otpNumberExist = true);
+    if (value) {
+      if (nextInput) {
+        nextInput.focus();
+      }
+    } else if (prevInput) {
+      prevInput.focus();
+    }
+  }
+
+  public resendCode() {
+    this.timeUp = false;
+    this.seconds = 60;
+    this.startTimer();
+    this.otpNumberExist = false;
+  }
+
+  public startTimer() {
+    this.interval = setInterval(() => {
+      if (this.seconds > 0) {
+        this.seconds--;
+      } else {
+        clearInterval(this.interval);
+        this.timeUp = true;
+      }
+    }, 1000);
+  }
+
+  public submitOtp(optVal1: any, optVal2: any, optVal3: any, optVal4: any) {
+    const userOtp = optVal1
+      .toString()
+      .concat(optVal2.toString(), optVal3.toString(), optVal4.toString());
+    if (userOtp == this.otp_Value) {
+      this.otpNumberExist = false;
+      this.shouldDismiss = true;
+      this.closeToggleSidebar();
+      const user = 'true';
+      localStorage.setItem('userExist', user);
+      this.childVariable = true;
+      this.variableChanged.emit(this.childVariable);
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+    } else {
+      this.otpNumberExist = true;
+      this.shouldDismiss = false;
+      this.timeUp = true;
+    }
+  }
 }

@@ -14,11 +14,17 @@ export class HomeComponent {
   public navigateToService: boolean = false;
   public isHome: boolean = true;
   public userCredExist: boolean = false;
+  public childVariable: boolean = false;
   constructor(private sidebarService: SidebarService, private router: Router) {}
   ngOnInit() {
     this.sidebarService.getSidebarVisible().subscribe((visible) => {
       this.sidebarVisible = visible;
     });
+    if (localStorage.getItem('userExist') !== null || undefined || '') {
+      this.userCredExist = true;
+    } else {
+      this.userCredExist = false;
+    }
   }
 
   public isNavbarVisible = false;
@@ -328,5 +334,38 @@ export class HomeComponent {
 
   public clearInput() {
     this.searchVal.nativeElement.value = '';
+  }
+
+  public navigateToHelp() {
+    this.router.navigate(['help']);
+  }
+
+  public navigateToBooking() {
+    this.router.navigate(['booking']);
+  }
+
+  public cartLimitOver: boolean = false;
+  public message: string = 'Welcome back! You are now logged in';
+
+  public showToaster() {
+    this.cartLimitOver = true;
+    setTimeout(() => {
+      this.closeToaster();
+    }, 3000);
+  }
+
+  private closeToaster() {
+    this.cartLimitOver = false;
+  }
+
+  public onVariableChange(newValue: boolean) {
+    if (newValue === true) {
+      this.showToaster();
+    }
+  }
+
+  public logOut() {
+    localStorage.removeItem('userExist');
+    window.location.reload();
   }
 }

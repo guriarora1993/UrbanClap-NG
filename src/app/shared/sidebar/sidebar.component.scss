@@ -1,3 +1,6 @@
+* {
+  background-color: white;
+}
 .sidebar {
   height: 100%;
   // background-color: rgb(240, 240, 240);
@@ -11,7 +14,7 @@
 .sidebar.open {
   width: 345px;
   transform: translateX(0);
-  background-color: rgb(240, 240, 240);
+  background-color: white;
   height: 100%;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
@@ -129,7 +132,7 @@
           input::placeholder {
             color: #bfbcbc;
             margin-right: 5px;
-            font-size: 16px;
+            font-size: 14px;
           }
         }
       }
@@ -139,7 +142,7 @@
     }
 
     .invalidErrorOccur {
-      font-size: 14px;
+      font-size: 12px;
       color: red;
     }
     .submit-button {
@@ -202,7 +205,7 @@
     input::placeholder {
       color: #bfbcbc;
       margin-right: 5px;
-      font-size: 16px;
+      font-size: 12px;
     }
   }
 }
@@ -233,4 +236,71 @@
   span {
     font-size: 14px;
   }
+}
+
+.opt-input-field-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  .otp-input {
+    width: 50px;
+    height: 50px;
+    border-radius: 6px;
+    border: 1px solid rgb(227, 227, 227);
+    text-align: center;
+  }
+
+  .otp-input-validation-error {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: 1px solid rgb(220, 40, 04);
+    text-align: center;
+  }
+
+  .otp-input.active {
+    border: 1px solid rgb(121, 79, 231);
+  }
+
+  .otp {
+    margin-left: 8px;
+  }
+}
+
+.validation-error-container {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+
+  span {
+    margin-left: 5px;
+  }
+}
+
+.button-container {
+  width: 100%;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .proceed-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    color: rgb(207, 207, 207);
+    background-color: rgb(237, 237, 237);
+    border-radius: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+}
+
+.otpcontainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
 }

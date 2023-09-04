@@ -68,9 +68,7 @@ export class HelpComponent {
     {
       sectionHeading: 'Getting started with UC',
       subHeading: 'About us',
-      questionsList: [
-        'What is Urban Company?',
-      ],
+      questionsList: ['What is Urban Company?'],
     },
     {
       subHeading: 'Bookings',
@@ -79,7 +77,7 @@ export class HelpComponent {
         'Can I re-book the same professional if I like their service?',
         'How to book my preferred professional?',
         'Do I have to order a minimum value of service before I can place the booking?',
-        'Does Urban Company charge any cancellation fee?'
+        'Does Urban Company charge any cancellation fee?',
       ],
     },
   ];
@@ -118,31 +116,35 @@ export class HelpComponent {
 
   public ucSafety = [
     {
-      sectionHeading:"Know more about Urban Company's safety measures",
-      sectionInfo: "At Urban Company, the safety of the customers and professionals is taken exteremly seriously. To ensure this,we have taken the following precautionary measures: ",
-      points: ['We conduct background verification on all our professionals', 'In case of any critical support, SOS button is available in app for both our customers and professionals']
-    }
-  ]
+      sectionHeading: "Know more about Urban Company's safety measures",
+      sectionInfo:
+        'At Urban Company, the safety of the customers and professionals is taken exteremly seriously. To ensure this,we have taken the following precautionary measures: ',
+      points: [
+        'We conduct background verification on all our professionals',
+        'In case of any critical support, SOS button is available in app for both our customers and professionals',
+      ],
+    },
+  ];
 
   public openListOptions(index: number) {
     if (index == 0) {
       this.dataPassToContainer = this.accountCase;
       this.navigate = true;
-    } else if (index == 1){
-      this.dataPassToContainer = this.getStarted
+    } else if (index == 1) {
+      this.dataPassToContainer = this.getStarted;
       this.navigate = true;
-    }else if (index == 2) {
+    } else if (index == 2) {
       this.dataPassToContainer = this.paymentsCredits;
       this.navigate = true;
-    } else if (index == 3){
-      this.dataPassToContainer = this.ucMembership
+    } else if (index == 3) {
+      this.dataPassToContainer = this.ucMembership;
       this.navigate = true;
-    } else if (index == 4){
-      this.caseDetailData = this.ucSafety
-      this.navigate = true
-      this.navigateToCaseDetail = true
-    } else if(index == 5){
-      this.dataPassToContainer = this.warranty
+    } else if (index == 4) {
+      this.caseDetailData = this.ucSafety;
+      this.navigate = true;
+      this.navigateToCaseDetail = true;
+    } else if (index == 5) {
+      this.dataPassToContainer = this.warranty;
       this.navigate = true;
     }
   }
@@ -150,7 +152,7 @@ export class HelpComponent {
   public toggleBooleanValue() {
     this.navigate = !this.navigate;
     this.navigateToCaseDetail = !this.navigateToCaseDetail;
-    this.dataPassToContainer = ""
-    this.caseDetailData = "" /* Issue there for show data */
+    this.dataPassToContainer = '';
+    this.caseDetailData = '';
   }
 }

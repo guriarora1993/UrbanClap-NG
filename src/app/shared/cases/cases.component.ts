@@ -178,6 +178,103 @@ export class CasesComponent {
     },
   ];
 
+  public memberShipBenifits = [
+    {
+      sectionHeading: 'What are the benefits of the membership?',
+      sectionTitle:
+        'UC Plus membership comes with a range of benefits that are designed just for you, As a valued member of our community, you will enjoy our ever expanding list of exclusive perks.To Learn more, click the button below.',
+      buttonText: 'Check UC Plus',
+    },
+  ];
+
+  public ucPlusDiscount = [
+    {
+      sectionHeading:
+        'What is the maximun discount that I can get by using UC Plus?',
+      sectionTitle:
+        'There is no limit on the number of bookings under the membership. But as per our fair usage policy, the total discount you can avail is limited to 6 times the membership price paid. If you want to know more, please click on the below button',
+      buttonText: 'Check UC Plus',
+    },
+  ];
+
+  public refundGuarantee = [
+    {
+      sectionHeading: 'How does the 100% money-back guarantee work?',
+      sectionInfo:
+        'If a UC Plus member saves less than the membership price, we refund the remaining balance as UC cash. This is refund is calculated at the end of membership period.',
+      points: [],
+    },
+  ];
+
+  public buyMemberShip = [
+    {
+      sectionHeading: 'How do I buy the membership?',
+      sectionInfo: 'To buy UC Plus membership: ',
+      points: [
+        'Select the service of you choice',
+        'During checkout you have an option to between annual and half-yearly membership plans',
+        'Once your booking is placed successfully, UC Plus membership will be activated',
+      ],
+    },
+  ];
+
+  public payMembershipCash = [
+    {
+      sectionHeading: 'Can I pay for membership with cash on delivery?',
+      sectionInfo:
+        'No, the membership can only be activated when payment is made online. Once the membership activated, you can place the next set of bookings using cash on Delivery method as well.',
+      points: [],
+    },
+  ];
+
+  public shareMembership = [
+    {
+      sectionHeading: 'Can I share membership with family?',
+      sectionTitle:
+        'Only you can avail benefits of the UC Plus membership as it is linked with your UC account only. However, you can book the services for others from your account and still receive same benefits under your name. If you do not have UC plus membership and want to subscribe for it, please check:',
+      buttonText: 'Check UC Plus',
+    },
+  ];
+
+  public cancelMembership = [
+    {
+      sectionHeading: 'How do I cancel my membership plan',
+      sectionInfo:
+        'UC Plus membership once activated, cannot be cancelled.We offer you a money back guarantee with this membership. If you are unable to avail discounts equal to the price of the membership, we refund the difference as UC credits in the wallet at the end of membership period.',
+    },
+  ];
+
+  public pauseMembership = [
+    {
+      sectionHeading: 'Can I pause my membership?',
+      sectionInfo:
+        'No, the membership, once activated cannot be paused.We offer you a money back guarantee with this membership. If you are unable to avail discounts equal to the price of the membership, we refund the difference as UC credits in the wallet at the end of membership period.',
+    },
+  ];
+
+  public warrantyUnderUc = [
+    {
+      sectionHeading: 'Which services are covered under UC warranty?',
+      sectionInfo: 'UC warranty covers: ',
+      points: [
+        'Appliance repairs like AC, RO, Washing machine repairs etc.',
+        'Pest control services',
+        'Painting services',
+        'And any new issue that ocuur post the service are not cover by UC',
+        'And any item/service that is not mentioned on the invoice',
+      ],
+    },
+  ];
+
+  public servicesUnderUC = [
+    {
+      sectionHeading: 'Do I have to pay for the service under warranty?',
+      sectionInfo:
+        'No. You can book a free revisit from the booking screen if the same issue persists during warranty. Our professionals will visit your place again to solve the problem with your utmost satisfaction.',
+      points: [],
+    },
+  ];
+
   public back() {
     this.toggleParentBoolean.emit();
   }
@@ -248,11 +345,84 @@ export class CasesComponent {
     } else if (index == 6 && sectionId == 'Payment & UC Credits') {
       this.updatedProfileData = this.savedPayments;
       this.updatedProfile = true;
+    } else if (
+      index == 0 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfileData = this.memberShipBenifits;
+      this.updatedProfile = true;
+    } else if (
+      index == 1 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfileData = this.ucPlusDiscount;
+      this.updatedProfile = true;
+    } else if (
+      index == 2 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfile = true;
+      this.caseDetailData = this.refundGuarantee;
+      this.navigateToCaseDetail = true;
+    } else if (
+      index == 3 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfile = true;
+      this.caseDetailData = this.buyMemberShip;
+      this.navigateToCaseDetail = true;
+    } else if (
+      index == 4 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfile = true;
+      this.caseDetailData = this.payMembershipCash;
+      this.navigateToCaseDetail = true;
+    } else if (
+      index == 5 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Purchase'
+    ) {
+      this.updatedProfileData = this.shareMembership;
+      this.updatedProfile = true;
+    } else if (
+      index == 0 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Modification'
+    ) {
+      this.updatedProfile = true;
+      this.caseDetailData = this.cancelMembership;
+      this.navigateToCaseDetail = true;
+    } else if (
+      index == 1 &&
+      sectionId == 'UC Plus membership' &&
+      questionId == 'Modification'
+    ) {
+      this.updatedProfile = true;
+      this.caseDetailData = this.pauseMembership;
+      this.navigateToCaseDetail = true;
+    } else if (index == 0 && sectionId == 'Warranty') {
+      this.updatedProfile = true;
+      this.caseDetailData = this.warrantyUnderUc;
+      this.navigateToCaseDetail = true;
+    } else if (index == 1 && sectionId == 'Warranty') {
+      this.updatedProfile = true;
+      this.caseDetailData = this.servicesUnderUC;
+      this.navigateToCaseDetail = true;
     }
   }
 
   public changeBooleanVal() {
     this.updatedProfile = !this.updatedProfile;
+    this.updatedProfileData = '';
+    this.caseDetailData = '';
+    console.log('updatedProfile ', this.updatedProfile);
+    console.log('navigateToCaseDetail ', this.navigateToCaseDetail);
   }
 
   public toggleBooleanValue() {

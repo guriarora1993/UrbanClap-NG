@@ -6,32 +6,42 @@ import { SharedModule } from './shared/shared.module';
 import { ViewCartComponent } from './home/view-cart/view-cart.component';
 import { LoginModalComponent } from './shared/login-modal/login-modal.component';
 import { ModalComponent } from './shared/modal/modal.component';
+import { HelpComponent } from './home/help/help.component';
+import { BookingsComponent } from './home/bookings/bookings.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'service-detail-list',
-    component: ServiceDetailListComponent
+    component: ServiceDetailListComponent,
   },
   {
-    path:'view-cart',
-    component: ViewCartComponent
+    path: 'view-cart',
+    component: ViewCartComponent,
   },
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then((m) => m.HomeModule),
   },
   {
-    path:'login',
-    component: LoginModalComponent
+    path: 'login',
+    component: LoginModalComponent,
   },
   {
-    path: "modal",
-    component: ModalComponent
+    path: 'modal',
+    component: ModalComponent,
   },
   {
-    path: "payment",
-    component: PaymentSectionComponent
+    path: 'payment',
+    component: PaymentSectionComponent,
+  },
+  {
+    path: 'help',
+    component: HelpComponent,
+  },
+  {
+    path: 'booking',
+    component: BookingsComponent,
   },
   {
     path: 'service-detail-list',

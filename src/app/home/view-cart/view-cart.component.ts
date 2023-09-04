@@ -9,8 +9,8 @@ import { AppState } from '@app/state/app.reducer';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-import { LoaderService } from '@app/services/loader.service';
 import { variables } from '../../constants/constants';
+import { ToasterService } from '@app/services/toaster.service';
 @Component({
   selector: 'app-view-cart',
   templateUrl: './view-cart.component.html',
@@ -62,6 +62,7 @@ export class ViewCartComponent implements OnInit {
   public serviceLaterExist: boolean = false;
   public slotExist: boolean = false;
   public userCredExist: boolean = false;
+  public enteredNumber: any;
   @ViewChild('input0', { static: false }) input0: ElementRef | undefined;
   @ViewChild('input1') input1!: ElementRef<HTMLInputElement>;
   @ViewChild('input2') input2!: ElementRef<HTMLInputElement>;
@@ -70,7 +71,8 @@ export class ViewCartComponent implements OnInit {
   constructor(
     private store: Store<{ app: AppState }>,
     private route: Router,
-    private cdr: ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private toast: ToasterService
   ) {
     this.addedCartsCount = this.store.select(
       (state: { app: AppState }) => state.app.count
@@ -78,6 +80,11 @@ export class ViewCartComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('userExist') !== null || undefined || '') {
+      this.userCredExist = true;
+    } else {
+      this.userCredExist = false;
+    }
     setTimeout(() => {
       this.dataLoading = false;
     }, 2000);
@@ -306,6 +313,7 @@ export class ViewCartComponent implements OnInit {
   public submitLoginCred(cred: any) {
     if (cred.length == 10) {
       this.phoneNumberExist = true;
+      this.enteredNumber = cred;
       this.startTimer();
     } else {
       this.phoneNumberExist = false;
@@ -355,6 +363,7 @@ export class ViewCartComponent implements OnInit {
     this.timeUp = false;
     this.seconds = 30;
     this.startTimer();
+    this.otpNumberExist = false;
   }
 
   public inputFilled(index: number): boolean {
@@ -368,9 +377,16 @@ export class ViewCartComponent implements OnInit {
     if (userOtp == this.otp_Value) {
       this.otpNumberExist = false;
       this.shouldDismiss = true;
+      const user = 'true';
+      localStorage.setItem('userExist', user);
+      this.toast.showToast('Welcome back! You are now logged in');
+      setTimeout(() => {
+        window.location.reload();
+      }, 3000);
     } else {
       this.otpNumberExist = true;
       this.shouldDismiss = false;
+      this.timeUp = true;
     }
   }
 
@@ -384,7 +400,7 @@ export class ViewCartComponent implements OnInit {
   }
 
   public navigateToPayment(amount: any) {
-    localStorage.setItem("totalAmount",amount)
+    localStorage.setItem('totalAmount', amount);
     this.dataLoading = true;
     setTimeout(() => {
       this.route.navigate(['/payment']);
