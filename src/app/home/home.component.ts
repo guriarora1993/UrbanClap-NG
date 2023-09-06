@@ -19,6 +19,7 @@ export class HomeComponent {
   ngOnInit() {
     this.sidebarService.getSidebarVisible().subscribe((visible) => {
       this.sidebarVisible = visible;
+      console.log("Home 1 ", this.sidebarVisible)
     });
     if (localStorage.getItem('userExist') !== null || undefined || '') {
       this.userCredExist = true;
@@ -367,5 +368,10 @@ export class HomeComponent {
   public logOut() {
     localStorage.removeItem('userExist');
     window.location.reload();
+  }
+
+  public openInNewTab(routePath: string) {
+    const url = window.location.origin + routePath;
+    window.open(url, '_blank');
   }
 }

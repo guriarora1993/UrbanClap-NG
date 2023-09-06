@@ -20,6 +20,7 @@ import { CasesComponent } from './cases/cases.component';
 import { CaseDetailComponent } from './case-detail/case-detail.component';
 import { EditProfileCaseComponent } from './edit-profile-case/edit-profile-case.component';
 import { ToasterComponent } from './toaster/toaster.component';
+import { DetailCardComponent } from './detail-card/detail-card.component';
 @NgModule({
   declarations: [
     LocationModalComponent,
@@ -41,6 +42,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     CaseDetailComponent,
     EditProfileCaseComponent,
     ToasterComponent,
+    DetailCardComponent,
   ],
   imports: [CommonModule, FormsModule],
   exports: [
@@ -62,6 +64,7 @@ import { ToasterComponent } from './toaster/toaster.component';
     CaseDetailComponent,
     EditProfileCaseComponent,
     ToasterComponent,
+    DetailCardComponent
   ],
 })
 export class SharedModule {}

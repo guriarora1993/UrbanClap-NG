@@ -9,7 +9,9 @@
                     </div>
                     <div class="header-content-list">
                         <ul class="navbar-list">
-                            <li class="navbar-list-item registration">Register As A Professional </li>
+                            <li class="navbar-list-item registration" (click)="openInNewTab('/professional-page')">
+                                Register As A Professional</li>
+
                             <li *ngIf="userCredExist" class="navbar-list-item help" (click)="navigateToBooking()">My
                                 Bookings</li>
                             <li class="navbar-list-item help" (click)="navigateToHelp()">Help</li>

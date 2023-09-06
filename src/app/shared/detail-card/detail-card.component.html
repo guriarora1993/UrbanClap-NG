@@ -1,0 +1,23 @@
+<div class="detail-card-main-container">
+    <span style="font-size: 26px;font-weight: 700;line-height: 39px;font-style: normal;color: #222;">Our Leadership
+        Team</span>
+    <div class="card-container">
+        <div class="profile-section" *ngFor="let detail of founderData">
+            <div class="profile-image-container">
+                <img [src]="detail.profileImage" alt="">
+            </div>
+            <span
+                style="margin-top: 8px; font-size: 18px;font-weight: 600;line-height: 31px;font-style: normal;color: #555;">{{detail.founderName}}</span>
+            <span
+                style="font-style: normal;font-size: 14px;line-height: 24px;margin-bottom: 2px;">{{detail.founderRole}}</span>
+            <div class="social-media-platforms-container">
+                <a href="https://www.linkedin.com/home"> <img src="../../../assets/linkdin-png.png" alt=""></a>
+                <a href="https://twitter.com/i/flow/login?redirect_after_login=%2Fra9z"> <img src="../../../assets/tweet-png.png" alt=""></a>
+            </div>
+
+            <div class="about-the-person-container">
+                <p style="font-size: 18px;font-weight: 400;line-height: 31px;color: #555;">{{detail.about}}</p>
+            </div>
+        </div>
+    </div>
+</div>

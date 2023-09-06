@@ -8,6 +8,8 @@ import { LoginModalComponent } from './shared/login-modal/login-modal.component'
 import { ModalComponent } from './shared/modal/modal.component';
 import { HelpComponent } from './home/help/help.component';
 import { BookingsComponent } from './home/bookings/bookings.component';
+import { ProfessionalPageComponent } from './home/professional-page/professional-page.component';
+import { AboutComponent } from './home/about/about.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -42,6 +44,14 @@ const routes: Routes = [
   {
     path: 'booking',
     component: BookingsComponent,
+  },
+  {
+    path:"professional-page",
+    component: ProfessionalPageComponent
+  },
+  {
+    path:"about",
+    component: AboutComponent
   },
   {
     path: 'service-detail-list',

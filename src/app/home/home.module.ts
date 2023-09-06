@@ -5,6 +5,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '@app/shared/shared.module';
 import { BookingsComponent } from './bookings/bookings.component';
 import { ProfessionalPageComponent } from './professional-page/professional-page.component';
+import { AboutComponent } from './about/about.component';
 const routes: Routes = [
   {
     path: '',
@@ -13,8 +14,8 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [BookingsComponent, ProfessionalPageComponent],
+  declarations: [BookingsComponent, ProfessionalPageComponent, AboutComponent],
   imports: [CommonModule, RouterModule.forChild(routes), SharedModule],
-  exports: [BookingsComponent, ProfessionalPageComponent],
+  exports: [BookingsComponent, ProfessionalPageComponent, AboutComponent],
 })
 export class HomeModule {}

@@ -18,6 +18,7 @@ export class SidebarService {
 
   public toggleSidebar(data: any) {
     this.sidebarContent = data
+    console.log("Inside service ", !this.sidebarVisible.value)
     this.sidebarVisible.next(!this.sidebarVisible.value);
   }
 

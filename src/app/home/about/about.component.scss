@@ -1,0 +1,120 @@
+.abount-parent-container {
+  background-color: rgb(247, 248, 250);
+  height: 100%;
+  .about-header-section {
+    #header-container {
+      background-color: white;
+      padding: 30px;
+      border: 1px solid rgb(227, 227, 227);
+    }
+  }
+
+  .who-we-are-container {
+    background-color: white;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 5px;
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 30px;
+
+    .information-content-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      margin-top: 60px;
+    }
+  }
+
+  .box-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* Three columns */
+    gap: 10px;
+    margin-top: 40px;
+  }
+
+  .investors-deatil-container {
+    width: 90%;
+    margin: auto;
+    .img-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr); /* Three columns */
+      gap: 10px;
+    }
+  }
+
+  .investors-deatil {
+    margin-top: 60px;
+    button {
+      background-color: black;
+      border: none;
+      font-size: 18px;
+      color: white;
+      padding: 15px 45px 15px 45px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+  }
+}
+
+.header-main-container {
+  padding: 11px;
+  .navbar-list {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-weight: bold;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    .navbar-list-item {
+      list-style: none;
+      color: black;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .registration {
+      text-decoration: underline;
+      text-transform: capitalize;
+      text-decoration-thickness: 2px;
+      padding-bottom: 2px;
+      margin-right: 32px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 20px;
+      height: 100%;
+      font-weight: bold;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .help {
+      text-transform: capitalize;
+      margin-right: 32px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 20px;
+      height: 100%;
+      font-weight: bold;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .login {
+      text-transform: capitalize;
+      margin-right: 32px;
+      cursor: pointer;
+      font-size: 14px;
+      line-height: 20px;
+      height: 100%;
+      font-weight: bold;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+  }
+}
