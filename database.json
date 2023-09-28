@@ -1,0 +1,38 @@
+{
+  "cricketers": [
+    {
+      "id": 1,
+      "name": "Virat Kohli"
+    },
+    {
+      "id": 2,
+      "name": "Rohit Sharma"
+    },
+    {
+      "id": 3,
+      "name": "Kane Williamson"
+    },
+    {
+      "id": 4,
+      "name": "Steve Smith"
+    },
+    {
+      "id": 5,
+      "name": "Joe Root"
+    },
+    {
+      "name": "sachin chobey",
+      "id": 6
+    },
+    {
+      "name": "sachin ",
+      "role": "developer",
+      "id": 7
+    },
+    {
+      "name": "anjali",
+      "role": "developer",
+      "id": 8
+    }
+  ]
+}

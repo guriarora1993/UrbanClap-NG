@@ -729,76 +729,68 @@
 
 
 <!--Login OTP verfication Modal-->
-<div class="modal fade slide-up-from-bottom mt-5 " id="otpModal" data-bs-backdrop="static"
-data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-<div style="position: relative;margin-top: 100px;">
+<div class="modal fade slide-up-from-bottom mt-5 " id="otpModal" data-bs-backdrop="static" data-bs-keyboard="false"
+  tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div style="position: relative;margin-top: 100px;">
     <div class="modal-dialog mt-5">
-        <div class="modal-content"
+      <div class="modal-content"
         style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
         <div type="button" data-bs-dismiss="modal"
-            style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;">
-            <img src="../../../assets/icons8-close-480.png" width="20">
+          style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 0px;">
+          <img src="../../../assets/icons8-close-480.png" width="20">
         </div>
-            <div class="modal-body">
-              <div class="opt-main-container">
-                <span
-                    style="cursor: pointer; font-size: 14px;font-weight: 600;text-decoration: underline;line-height: 20px;">Edit
-                    number</span>
-                <h3 style="margin-top: 20px; font-size: 20px; line-height: 28px; font-weight: 600;">
-                    Verification
-                    code</h3>
-                <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have
-                    sent
-                    you a 4 digit code on +9187654321</span>
-                <div class="opt-input-field-container">
-                    <input maxlength="1" #input1 [class.active]="inputActive === 0"
-                        (input)="onInputNew(input1, input2, null)" [class.otp-input]="!otpNumberExist"
-                        [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
-                        (focus)="onFocus(0,$event, input1)" (blur)="inputActive = null">
-                    <input style="margin-left: 8px;" maxlength="1" #input2
-                        [class.active]="inputActive === 1" (input)="onInput(input2, input3, input1)"
-                        [class.otp-input]="!otpNumberExist"
-                        [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
-                        (focus)="onFocus(1,$event, input2)" (blur)="inputActive = null">
-                    <input style="margin-left: 8px;" maxlength="1" #input3
-                        [class.active]="inputActive === 2" (input)="onInput(input3, input4, input2)"
-                        [class.otp-input]="!otpNumberExist"
-                        [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
-                        (focus)="onFocus(2,$event, input3)" (blur)="inputActive = null">
-              
-                    <input [(ngModel)]="otp4" style="margin-left: 8px;" maxlength="1" #input4
-                        [class.active]="inputActive === 3" (input)="onInput(input4, null, input3)"
-                        [class.otp-input]="!otpNumberExist"
-                        [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
-                        (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
-                </div>
-                <div class="validation-error-container" *ngIf="otpNumberExist">
-                    <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804"
-                        viewBox="0 0 16 16">
-                        <path fill="#DC2804" fill-rule="evenodd"
-                            d="M8 2.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM1.25 8a6.75 6.75 0 1113.5 0 6.75 6.75 0 01-13.5 0zm6 1V5h1.5v4h-1.5zm1.5 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span
-                        style="color: rgb(230,90,96);font-weight: 400;font-size: 12px;line-height: 16px;">You've
-                        entered Incorrect OTP.Please try again</span>
-                </div>
-                <div class="timer-container" style="margin-top: 15px;">
-                    <span (click)="resendCode()" *ngIf="timeUp"
-                        style="cursor: pointer; font-size: 14px;color: rgb(121, 79, 231);">Resend
-                        code</span>
-                    <span *ngIf="!timeUp"
-                        style="font-size: 14px; font-weight: 600;line-height: 20px;">00:{{seconds}}</span>
-                </div>
-                <div class="button-container" [attr.data-bs-dismiss]="shouldDismiss ? 'modal' : null">
-                    <button (click)="signUp2(input1.value,input2.value,input3.value,input4.value)"
-                        [disabled]="!otp" class="proceed-btn"
-                        [style.background-color]="otp ? 'rgb(110,66,229)' : ''">Sign
-                        up</button>
-                </div>
-              </div>
+        <div class="modal-body">
+          <div class="opt-main-container">
+            <span
+              style="cursor: pointer; font-size: 14px;font-weight: 600;text-decoration: underline;line-height: 20px;">Edit
+              number</span>
+            <h3 style="margin-top: 20px; font-size: 20px; line-height: 28px; font-weight: 600;">
+              Verification
+              code</h3>
+            <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have
+              sent
+              you a 4 digit code on +9187654321</span>
+            <div class="opt-input-field-container">
+              <input maxlength="1" #input1 [class.active]="inputActive === 0" (input)="onInputNew(input1, input2, null)"
+                [class.otp-input]="!otpNumberExist" [class.otp-input-validation-error]="otpNumberExist"
+                inputmode="numeric" (focus)="onFocus(0,$event, input1)" (blur)="inputActive = null">
+              <input style="margin-left: 8px;" maxlength="1" #input2 [class.active]="inputActive === 1"
+                (input)="onInput(input2, input3, input1)" [class.otp-input]="!otpNumberExist"
+                [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                (focus)="onFocus(1,$event, input2)" (blur)="inputActive = null">
+              <input style="margin-left: 8px;" maxlength="1" #input3 [class.active]="inputActive === 2"
+                (input)="onInput(input3, input4, input2)" [class.otp-input]="!otpNumberExist"
+                [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                (focus)="onFocus(2,$event, input3)" (blur)="inputActive = null">
+
+              <input [(ngModel)]="otp4" style="margin-left: 8px;" maxlength="1" #input4
+                [class.active]="inputActive === 3" (input)="onInput(input4, null, input3)"
+                [class.otp-input]="!otpNumberExist" [class.otp-input-validation-error]="otpNumberExist"
+                inputmode="numeric" (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
             </div>
+            <div class="validation-error-container" *ngIf="otpNumberExist">
+              <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804" viewBox="0 0 16 16">
+                <path fill="#DC2804" fill-rule="evenodd"
+                  d="M8 2.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM1.25 8a6.75 6.75 0 1113.5 0 6.75 6.75 0 01-13.5 0zm6 1V5h1.5v4h-1.5zm1.5 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                  clip-rule="evenodd"></path>
+              </svg>
+              <span style="color: rgb(230,90,96);font-weight: 400;font-size: 12px;line-height: 16px;">You've
+                entered Incorrect OTP.Please try again</span>
+            </div>
+            <div class="timer-container" style="margin-top: 15px;">
+              <span (click)="resendCode()" *ngIf="timeUp"
+                style="cursor: pointer; font-size: 14px;color: rgb(121, 79, 231);">Resend
+                code</span>
+              <span *ngIf="!timeUp" style="font-size: 14px; font-weight: 600;line-height: 20px;">00:{{seconds}}</span>
+            </div>
+            <div class="button-container" [attr.data-bs-dismiss]="shouldDismiss ? 'modal' : null">
+              <button (click)="signUp2(input1.value,input2.value,input3.value,input4.value)" [disabled]="!otp"
+                class="proceed-btn" [style.background-color]="otp ? 'rgb(110,66,229)' : ''">Sign
+                up</button>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
-</div>
+  </div>
 </div>

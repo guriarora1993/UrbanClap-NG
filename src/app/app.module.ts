@@ -22,6 +22,8 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { PaymentSectionComponent } from './home/payment-section/payment-section.component';
 import { HomeModule } from './home/home.module';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { UcInterceptorInterceptor } from './interceptors/uc-interceptor.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,9 +49,16 @@ import { HomeModule } from './home/home.module';
     NgbModule,
     FormsModule,
     DatePipe,
-    HomeModule
+    HomeModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UcInterceptorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

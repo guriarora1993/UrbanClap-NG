@@ -40,6 +40,5 @@ export class PaymentSectionComponent {
 
   ngOnInit(){
     this.totalAmount = localStorage.getItem("totalAmount");
-    console.log("sss ", this.totalAmount)
   }
 }

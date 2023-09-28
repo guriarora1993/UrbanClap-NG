@@ -4,10 +4,10 @@
   .sub-container {
     display: flex;
     flex-direction: column;
-    width: 1136px;
+    width: 100%;
     margin: 0 auto;
     .cities-list-main {
-      width: 1005px;
+      width: 100%;
       li {
         list-style: none;
         margin: 10px;
@@ -91,12 +91,16 @@
   background: #000;
   z-index: 3;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .BdwL79Y_ .rdJkzakS {
   display: flex;
   flex-direction: column;
-  width: 1136px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -121,7 +125,7 @@
 .BdwL79Y_ .rdJkzakS {
   display: flex;
   flex-direction: column;
-  width: 1136px;
+  width: 100%;
   margin: 0 auto;
 }
 

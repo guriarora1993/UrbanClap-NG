@@ -1,39 +1,45 @@
-<div class="main-container" *ngIf="!userJoined">
-    <div class="header-section container">
-        <div class="brand-logo-container">
-            <img src="../../../assets/app-logo-dark.webp"  alt="">
-        </div>
-        <div class="header-elements-container">
-            <li><a href="#">Book a service</a></li>
-            <li><a href="#" routerLink="/about">About us</a></li>
-            <li>
-                <div class="select-location-container"><img src="../../../assets/indian-flag.png" width="20" alt="">
-                    <select>
-                        <option *ngFor="let item of list" [value]="item">{{item}}</option>
-                    </select>
-                </div>
-            </li>
+<div class="main-container" style="font-size: 11px;" *ngIf="!userJoined">
+    <div style="background-color: rgb(255,255,255);position: sticky;top: 0;">
+        <div class="header-section container" style="background-color: rgb(255,255,255);">
+            <div class="brand-logo-container">
+                <img src="../../../assets/rg-urban-logo.png" style="width: 130px;" alt="">
+            </div>
+            <div class="header-elements-container">
+                <li><a href="#">Book a service</a></li>
+                <li><a href="#" routerLink="/about">About us</a></li>
+                <li>
+                    <div class="select-location-container"><img src="../../../assets/indian-flag.png" width="20" alt="">
+                        <select>
+                            <option *ngFor="let item of list" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                </li>
+            </div>
         </div>
     </div>
     <div class="section1-container">
         <div class="section1-content-container container">
-            <div style="display: flex; align-items: center;justify-content: space-between;">
+            <div class="section1-container-content"
+                style="display: flex; align-items: center;justify-content: space-between;">
                 <div class="left-text-content">
                     <h1 style="font-size: 39px;line-height: 48px;color: #222222;font-style: normal;font-weight: bold;">
                         Earn More. Earn Respect. Safety Ensured.</h1>
                     <p
                         style="margin-top: 18px;font-size: 24px;line-height: 37px;color: #555555;font-style: normal;font-weight: normal;">
-                        Join 40,000+ partners across India, USA, Singapore</p>
+                        Join 40,000+ partners across India, USA, Singapore UAE and many more</p>
                 </div>
                 <div class="right-image-container">
-                    <img src="../../../assets/rgister-as-professional-1.png"  alt="">
+                    <img style="object-fit: contain;width: 100%;height: 100%;"
+                        src="../../../assets/rgister-as-professional-1.png" alt="">
                 </div>
             </div>
             <div class="whatsapp-information-container">
-                <p style="font-size: 24px;line-height: 32px;color: rgb(242,236,255);font-weight: 500;">Share your
+                <p class="whatsapp-information-container-title"
+                    style="margin-top: 10px; font-size: 24px;line-height: 32px;color: rgb(242,236,255);font-weight: 500;">
+                    Share your
                     WhatsApp number and we'll reach out via our Whatsapp Business Account</p>
                 <div class="input-section-main-container">
-                    <div class="input-main-container">
+                    <div style="margin-top: 5px;" class="input-main-container">
                         <div [class]="loginContainer">
                             <div class="phone-input-section" style="display: flex; align-items: center;">
                                 <img width="25" style="margin:0px 5px 0px 5px;" src="../../../assets/indian-flag.png"
@@ -44,45 +50,52 @@
                             </div>
                             <div class="phone-input-section">
                                 <input maxlength="10" #phoneValue (input)="phoneNumber(phoneValue.value)"
-                                    class="phone-input" type="text" placeholder="Your phone number">
+                                    class="phone-input" inputmode="numeric"  pattern="[0-9]*" placeholder="Your phone number">
                             </div>
                         </div>
                         <span [class]="errorClass" *ngIf="invalidNumber">Invalid number</span>
                     </div>
-                    <button (click)="submitPhoneCred(phoneValue.value)">Join Us</button>
+                    <button style="margin-top: 5px;" (click)="submitPhoneCred(phoneValue.value)">Join Us</button>
                 </div>
+                    <span *ngIf="numberNotExist" style="font-weight: 600;color: #f7bcbc;font-size: 14px;margin-top: 10px;">Please provide working WhatsApp phone number!!</span>
             </div>
         </div>
     </div>
 
     <div class="section2-container">
         <div class="heading-section">
-            <span style="font-size: 25px;line-height: 49px;text-align: center;font-weight: bold;">Join Urban Company to
+            <span class="heading-section-title"
+                style="font-size: 36px;line-height: 49px;text-align: center;font-weight: bold;color: #222222;">Join
+                Urban Company to
                 change your life</span> <br>
-            <span
-                style="font-size: 14px;line-height: 24px;font-weight: normal;font-style: normal;text-align: center;">Urban
-                Company is an app-based marketplace the empowers professionals like you to become your own boss </span>
+            <p class="heading-section-subtitle"
+                style="font-size: 18px;line-height: 24px;font-weight: normal;font-style: normal;margin-top: 15px!important; color: #777777;">
+                Urban
+                Company is an app-based marketplace the empowers professionals like you to become your own boss </p>
             <div class="list-container">
                 <ul>
                     <li
                         style="background-position: right!important; background: no-repeat url(../../../assets/rg-list1-bg.svg);">
-                        <span
-                            style="font-size: 30px;font-weight: 500;line-height: 49px;color: #018b2e;">40,000+</span><br><span
-                            style="font-style: normal;font-size: 12px;line-height: 27px;color: #222222;font-weight: bold;">Partners
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">40,000+</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Partners
                             already on board</span>
                     </li>
                     <li
                         style="background-position: right!important; background: no-repeat url(../../../assets/rg-list2-bg.svg);">
-                        <span
-                            style="font-size: 30px;font-weight: 500;line-height: 49px;color: #018b2e;">₹1547Cr</span><br><span
-                            style="font-style: normal;font-size: 12px;line-height: 27px;color: #222222;font-weight: bold;">Paid
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">₹1547Cr</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Paid
                             out to partners in 2022</span>
                     </li>
                     <li
                         style="background-position: right!important; background: no-repeat url(../../../assets/rg-list3-bg.svg);">
-                        <span
-                            style="font-size: 30px;font-weight: 500;line-height: 49px;color: #018b2e;">1,250,000+</span><br><span
-                            style="font-style: normal;font-size: 12px;line-height: 27px;color: #222222;font-weight: bold;">Services
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">1,250,000+</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Services
                             delivered each month</span>
                     </li>
                 </ul>

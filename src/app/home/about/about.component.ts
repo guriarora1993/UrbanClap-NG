@@ -12,7 +12,6 @@ export class AboutComponent {
   ngOnInit():void{
     this.sidebarService.getSidebarVisible().subscribe((visible) => {
       this.sidebarVisible = visible;
-      console.log("1 sidebarVisible ", this.sidebarVisible)
     });
   }
   public userCredExist: boolean = false;
@@ -131,7 +130,6 @@ export class AboutComponent {
   ];
 
   public toggleSidebar(data: any) {
-    console.log("sidebar ", data)
     this.sidebarService.toggleSidebar(data);
   }
 

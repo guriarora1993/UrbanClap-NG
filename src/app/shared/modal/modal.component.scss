@@ -348,12 +348,14 @@ input[type="radio"] {
   width: 20px;
   height: 20px;
   border-radius: 50%; /* Makes it circular */
+  cursor: pointer;
 }
 
 input[type="radio"]:checked {
   background-color: #2e3133; /* Change the color when selected */
   border-color: #2d2e2f; /* Change the border color when selected */
-  accent-color: red;
+  accent-color: #2d2e2f;
+  cursor: pointer;
 }
 
 .slot-section-container {
@@ -517,9 +519,13 @@ input[type="radio"]:checked {
 .get-service-container.active {
   height: 270px;
   width: 100%;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
+.content-area::-webkit-scrollbar {
+  display: none;
+}
 .content-container {
   .card-number-container {
     display: flex;
@@ -860,7 +866,6 @@ input[type="radio"]:checked {
     }
   }
 }
-
 
 .regular-checkbox {
   -webkit-appearance: none;

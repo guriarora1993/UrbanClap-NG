@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="parent-container container">
-            <div class="login-container">
+            <div class="login-container" *ngIf="!emptyCart">
                 <div *ngIf="!userCredExist" style="display: flex; flex-direction: column;">
                     <span style="font-size: 14px; font-weight: 600; line-height: 20px;">Account</span>
                     <span

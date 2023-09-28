@@ -17,7 +17,7 @@ export class ProfessionalPageComponent {
   public enteredNumber: number;
   public userJoined: boolean = false;
   public dataLoading: boolean = false;
-
+  public numberNotExist: boolean = false;
   public phoneNumber(value: any) {
     if (value.length == 10) {
       this.isButtonDisabled = false;
@@ -37,7 +37,11 @@ export class ProfessionalPageComponent {
     if (number.length >= 10) {
       this.userJoined = true;
       this.dataLoading = true;
-    } else {
+      this.numberNotExist = false;
+    } else if(number == ""){
+      this.numberNotExist = true;
+    } 
+    else {
       this.userJoined = false;
     }
   }
@@ -46,4 +50,5 @@ export class ProfessionalPageComponent {
     this.userJoined = false;
     this.dataLoading = false;
   }
+  
 }

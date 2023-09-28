@@ -44,9 +44,10 @@ video {
   display: flex;
   align-items: center;
   border: 1px solid rgb(222, 226, 230);
-  border-radius: 4px;
+  border-radius: 10px;
   margin-top: 10px;
   width: 350px;
+  margin-left: 10px;
   img {
     margin-left: 10px;
   }
@@ -96,3 +97,9 @@ video {
   padding-left: 0;
   padding-right: 0;
 }
+
+// @media (max-width:1300px) {
+//   .form-select{
+//     display: none;
+//   }
+// }

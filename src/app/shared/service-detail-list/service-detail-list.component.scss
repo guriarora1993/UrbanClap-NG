@@ -16,7 +16,7 @@
 
     .add-video-container {
       video {
-        width: 800px;
+        width: 100%;
         border-radius: 5px;
         margin-top: 20px;
       }
@@ -140,7 +140,6 @@
 }
 
 .offer-list-container {
-  padding: 10px;
   margin-bottom: 10px;
   .offer-list-child-container {
     width: 100%;
@@ -348,12 +347,12 @@
 }
 
 video {
-  width: 891px;
+  width: 100%;
   height: 515px;
   object-fit: cover;
   border-radius: 10px;
   cursor: pointer;
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 
 @media (max-width: 1360px) {
@@ -368,14 +367,13 @@ video {
 .progress-container {
   position: absolute;
   bottom: 22px;
-  width: 881px;
-  left: 15px;
+  width: 90%;
   margin: auto;
-  height: 4px;
+  height: 6px;
   z-index: 2;
-  font-size: 10px;
   background-color: #f0f0f0ab;
   border-radius: 10px;
+  margin-left: 50px;
 }
 
 .progress-bar {
@@ -403,15 +401,6 @@ video {
   line-height: 40px;
   font-weight: 700;
 }
-
-// @media (max-width: 132px){
-//   .parent-container{
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: center;
-//     background-color: red;
-//   }
-// }
 
 .container-fluid {
   margin-left: 0;
@@ -535,7 +524,7 @@ video {
   margin: 0;
   box-sizing: border-box;
   // height: 450px;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .choose-service-main-container {
@@ -548,7 +537,7 @@ video {
   position: fixed;
   bottom: 0;
   .footer-child-container {
-    width: 498px;
+    width: 510px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -584,6 +573,142 @@ video {
   background-color: var(--bs-modal-bg);
   background-clip: padding-box;
   border: none;
-  border-radius: var(--bs-modal-border-radius);
+  // border-radius: var(--bs-modal-border-radius);
   outline: 0;
+}
+
+.content-area::-webkit-scrollbar {
+  display: none;
+}
+
+.header-section-container {
+  display: flex;
+  align-items: center;
+}
+
+.section-content-container {
+  margin-top: 20px;
+  .guideline-points {
+    border-bottom: 1px solid rgb(227, 227, 227);
+    padding: 10px 0px 30px 0px;
+  }
+}
+
+.confirmation-button {
+  margin-top: 10px;
+  button {
+    background-color: rgb(110, 66, 229);
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 15px;
+    color: white;
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  border-radius: 100px;
+}
+
+input[type="radio"]:checked {
+  background-color: #2e3133; /* Change the color when selected */
+  border-color: #2d2e2f; /* Change the border color when selected */
+  accent-color: #2d2e2f;
+  cursor: pointer;
+}
+
+.accordion-flush .accordion-item .accordion-button,
+.accordion-flush .accordion-item .accordion-button.collapsed {
+  width: 100%;
+}
+
+.accordion-button:not(.collapsed) {
+  color: var(--bs-accordion-active-color);
+  background-color: white;
+  box-shadow: inset 0 calc(-1 * var(--bs-accordion-border-width)) 0
+    var(--bs-accordion-border-color);
+}
+
+.reviews-detail-section {
+  margin-left: 10px;
+}
+
+.reviews-description-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+  .uc-service-list-top-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  video {
+    margin-top: 30px !important;
+  }
+
+  .uc-service-list-top-section-child-container {
+    width: 80% !important;
+  }
+
+  .video-container {
+    margin-left: 0px !important;
+  }
+
+  .parent-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .service-detail-list {
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .image-card {
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .parent-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .service-detail-list {
+    display: flex;
+    justify-content: center !important;
+    width: 100%;
+    margin-top: 10px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .image-card {
+    margin-top: 10px !important;
+  }
 }

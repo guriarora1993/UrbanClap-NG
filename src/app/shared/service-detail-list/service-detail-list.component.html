@@ -1,10 +1,11 @@
-<section class="container-fluid" *ngIf="!dataLoading">
+<section *ngIf="!dataLoading">
   <app-header></app-header>
-  <div class="container-fluid" style="margin-top: 90px">
-    <div class="row" style="margin-left: 50px;">
-      <div class="col-md-3">
+  <div style="margin-top: 120px; width: 100%;">
+    <div class="uc-service-list-top-section"
+      style="display: flex; justify-content: space-around;margin-top: 130px;width: 90%;margin: auto;">
+      <div class="uc-service-list-top-section-child-container" style="width: 30%">
         <div class="tutorial-section-content">
-          <h1 class="main-heading">{{screenName}}</h1>
+          <h1 class="main-heading">{{ screenName }}</h1>
           <div class="ratings-section">
             <svg width="20" height="20" viewBox="0 0 20 20" fill="" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" clip-rule="evenodd"
@@ -53,10 +54,10 @@
           </div>
         </div>
       </div>
-      <div class="col-md-9">
-        <div style="position: relative;">
+      <div class="video-container" style="margin-left: 30px">
+        <div style="position: relative">
           <img *ngIf="videoComplete" src="../../../assets/play-video.png" width="100"
-            style="position: absolute;top: 230px;left: 390px;" alt="">
+            style="position: absolute; top: 230px; left: 390px" alt="" />
           <video #videoPlayer [muted]="true" autoplay="true" (click)="playPause()">
             <source
               src="https://content.urbanclap.com/videos/growth/luminosity/1655358691204-89c4a7/1655358691204-89c4a7.mp4"
@@ -81,9 +82,9 @@
               justify-content: space-between;
               padding: 0px 0px 0px 20px;
             ">
-            <div class="main-container" style="padding: 15px;">
+            <div class="main-container" style="padding: 15px">
               <div *ngFor="let data of demoData; let i = index" class="row service-detail-list" [id]="'service-' + i">
-                <span class="list-heading">{{data.serviceName}}</span>
+                <span class="list-heading">{{ data.serviceName }}</span>
                 <div class="col-md-8 service-detail-list-child-container">
                   <div style="margin-top: 20px">
                     <span style="
@@ -108,15 +109,16 @@
                         d="M18.333 10a8.333 8.333 0 11-16.667 0 8.333 8.333 0 0116.667 0zm-7.894-4.694A.476.476 0 009.999 5a.476.476 0 00-.438.306L8.414 8.191l-2.977.25a.48.48 0 00-.414.342.513.513 0 00.143.532l2.268 2.033-.693 3.039a.51.51 0 00.183.518.458.458 0 00.528.022L10 13.298l2.548 1.629a.458.458 0 00.527-.022.51.51 0 00.184-.518l-.693-3.04 2.268-2.032a.513.513 0 00.143-.532.48.48 0 00-.415-.342l-2.976-.25-1.147-2.885z"
                         fill="#572AC8"></path>
                     </svg>
-                    <span style="font-size: 12px; opacity: 0.6;margin-left: 5px;">{{
-                      data.reviews
-                      }}</span>
+                    <span style="font-size: 12px; opacity: 0.6; margin-left: 5px">{{ data.reviews }}</span>
                   </div>
-                  <div
-                    style="display: flex; align-items: center; margin-top: 10px; border-bottom: 2px dotted rgb(239, 235, 235);padding-bottom: 20px;">
-                    <span style="font-size: 12px; font-weight: 700">₹{{
-                      data.serviceAmount
-                      }}</span>
+                  <div style="
+                      display: flex;
+                      align-items: center;
+                      margin-top: 10px;
+                      border-bottom: 2px dotted rgb(239, 235, 235);
+                      padding-bottom: 20px;
+                    ">
+                    <span style="font-size: 12px; font-weight: 700">₹{{ data.serviceAmount }}</span>
 
                     <span style="
                         font-size: 12px;
@@ -125,54 +127,49 @@
                         margin-left: 5px;
                       ">1 hr 5 mins</span>
                   </div>
-                  <div class="edit-package-container" style="
-                      margin-top: 20px;
-                    ">
-                    <ul style="margin-top: 10px;padding-left: 1rem;">
-                      <li *ngFor="let desc of data.description" class="edit-packages-list"
-                        style="font-size: 12px; font-weight: 700">
-                        Haircut:
-                        <span style="
+                  <div class="edit-package-container" style="margin-top: 20px">
+                    <div *ngIf="data.viewExist == false">
+                      <ul style="margin-top: 10px; padding-left: 1rem">
+                        <li *ngFor="let desc of data.description; let i = index" class="edit-packages-list"
+                          style="font-size: 12px; font-weight: 700">
+                          <ng-container *ngIf="data && data.title && data.title[i]">
+                            {{ data.title[i] }}:
+                          </ng-container>
+                          <span style="
                             opacity: 0.5;
                             font-size: 12px;
                             line-height: 16px;
                             font-weight: 400;
-                          ">{{desc}}</span>
-                      </li>
-                      <!-- <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
-                        Shave/beared grooming:
-                        <span style="
-                            opacity: 0.5;
-                            font-size: 12px;
-                            font-weight: 400;
-                          ">Beared trimming & styling</span>
-                      </li>
-                      <li class="edit-packages-list" style="font-size: 12px; font-weight: 700">
-                        Face care:
-                        <span style="
-                            opacity: 0.5;
-                            font-size: 12px;
-                            font-weight: 400;
-                          ">Skin Brighting Facial</span>
-                      </li> -->
-                    </ul>
-                    <button style="
-                        cursor: pointer;
-                        width: 150px;
-                        padding: 5px;
-                        font-weight: bold;
+                        ">{{ desc }}</span>
+                        </li>
+
+
+                      </ul>
+                      <button data-bs-toggle="modal" data-bs-target="#editModal" (click)="editPackage(i)" style="
+                          cursor: pointer;
+                          width: 160px;
+                          padding: 5px;
+                          font-weight: bold;
+                          font-size: 14px;
+                          font-weight: 600;
+                          line-height: 20px;
+                          color: rgb(15, 15, 15);
+                          padding: 10px;
+                          border: 1px solid rgb(193, 188, 188);
+                          border-radius: 5px;
+                          background-color: white;
+                          margin-top: 10px;
+                        ">
+                        Edit your package
+                      </button>
+                    </div>
+                    <span data-bs-toggle="modal" data-bs-target="#detailModal" *ngIf="data.viewExist == true" style="
                         font-size: 14px;
                         font-weight: 600;
                         line-height: 20px;
-                        color: rgb(15, 15, 15);
-                        padding: 5px;
-                        border: 1px solid rgb(193, 188, 188);
-                        border-radius: 5px;
-                        background-color: white;
-                        margin-top: 10px;
-                      ">
-                      Edit your package
-                    </button>
+                        color: rgb(110, 66, 229);
+                        cursor: pointer;
+                      ">View Details</span>
                   </div>
                 </div>
                 <div class="col-md-4 card-container">
@@ -212,7 +209,7 @@
                         border-radius: 10px;
                         left: 20px;
                         bottom: -10px;
-                        background-color: rgb(245,242,253);
+                        background-color: rgb(245, 242, 253);
                       ">
                       <span (click)="decrementSelectedServices(data, i)" class="cart-counter"
                         style="font-size: 17px">-</span><span style="margin-left: 5px; font-size: 17px"
@@ -243,10 +240,7 @@
                 <div class="selected-cart-item-list-container" *ngIf="selectedServices.length > 0">
                   <h4>Cart</h4>
                   <ng-container *ngFor="let service of demoData; let item = index">
-                    <div class="item-list" style="
-                        display: flex;
-                        align-items: center;
-                      ">
+                    <div class="item-list" style="display: flex; align-items: center">
                       <div style="width: 150px" *ngIf="service.cartCount > 0">
                         <span style="color: black; width: 100%">{{
                           service.serviceTitle
@@ -259,40 +253,52 @@
                           width: 80px;
                           padding: 5px;
                           border-radius: 10px;
-                          background-color: rgb(245,242,253);
+                          background-color: rgb(245, 242, 253);
                           display: flex;
                           align-items: center;
                           justify-content: space-around;
                         ">
                         <span (click)="decrement(service, item)" style="color: rgb(121, 79, 231); font-size: 17px"
-                          class="cart-counter">-</span><span style="
-                            color: rgb(121, 79, 231);
-                            font-size: 17px;
-                          " class="cart-counter" *ngIf="service.cartCount > 0">{{ service.cartCount }}</span><span
-                          (click)="increment(service, item)" style="
-                            color: rgb(121, 79, 231);
-                            font-size: 17px;
-                          " class="cart-counter">+</span>
+                          class="cart-counter">-</span><span style="color: rgb(121, 79, 231); font-size: 17px"
+                          class="cart-counter" *ngIf="service.cartCount > 0">{{ service.cartCount }}</span><span
+                          (click)="increment(service, item)" style="color: rgb(121, 79, 231); font-size: 17px"
+                          class="cart-counter">+</span>
                       </div>
 
                       <div style="width: 50px">
-                        <span style="margin-left: 10px" *ngIf="service.cartCount > 0">₹{{ service.serviceAmount *
-                          service.cartCount
+                        <span style="margin-left: 10px" *ngIf="service.cartCount > 0">₹{{
+                          service.serviceAmount * service.cartCount
                           }}</span>
                       </div>
                     </div>
-                    <ul style="margin-top: 5px; padding-left: 20px; font-size: 12px;font-weight: 400; opacity: 0.6;"
-                      *ngIf="service.cartCount > 0">
-                      <li *ngFor="let description of service.description">{{description}}</li>
+                    <ul style="
+                        margin-top: 5px;
+                        padding-left: 20px;
+                        font-size: 12px;
+                        font-weight: 400;
+                        opacity: 0.6;
+                      " *ngIf="service.cartCount > 0">
+                      <li *ngFor="let description of service.description">
+                        {{ description }}
+                      </li>
                     </ul>
-                    <p data-bs-toggle="modal" data-bs-target="#editModal"
-                      style="cursor: pointer; font-size: 14px;font-weight: 600; line-height: 20px; color: rgb(110,66, 229);"
-                      *ngIf="service.cartCount > 0">
+                    <p data-bs-toggle="modal" data-bs-target="#editModal" style="
+                        cursor: pointer;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 20px;
+                        color: rgb(110, 66, 229);
+                      " *ngIf="service.cartCount > 0">
                       Edit
                     </p>
                   </ng-container>
-                  <div style="margin-bottom: 10px; height: 3px; background-color: #f1f1f1; width: 100%;margin-left: 0;">
-                  </div>
+                  <div style="
+                      margin-bottom: 10px;
+                      height: 3px;
+                      background-color: #f1f1f1;
+                      width: 100%;
+                      margin-left: 0;
+                    "></div>
                   <div class="view-cart-button-container" style="
                       display: flex;
                       align-items: center;
@@ -301,9 +307,7 @@
                       position: sticky;
                       bottom: 10px;
                     ">
-                    <div class="view-cart-button" (click)="
-                        viewCartDetail(selectedServices, totalAmountOfService)
-                      ">
+                    <div data-bs-toggle="modal" data-bs-target="#guidelinesModal" class="view-cart-button">
                       <span>₹{{ totalAmountOfService }}</span>
                       <span>View Cart</span>
                     </div>
@@ -311,7 +315,7 @@
                 </div>
               </div>
               <div class="offer-list-container">
-                <div class="accordion-item" [ngClass]="{ 'open': isOpen }">
+                <div class="accordion-item" [ngClass]="{ open: isOpen }">
                   <div class="offer-list-child-container">
                     <div class="percentage-icon-container">
                       <img src="../../../assets/percentage-icon.png" width="25" alt="" />
@@ -368,13 +372,14 @@
                       </div>
                     </div>
                   </div>
-                  <button class="accordion-button" (click)="toggleAccordion()">{{ isOpen ? 'View Less Offers' :
-                    'ViewMore Offers' }}
+                  <button style="margin-left: 18px;color: rgb(123,81,231);" class="accordion-button"
+                    (click)="toggleAccordion()">
+                    {{ isOpen ? "View Less Offers" : "View More Offers" }}
                     <img src="../../../assets/accordian-close.png" width="15" style="margin-left: 5px" [ngStyle]="{
-                        transform: 'rotate(' + rotationAngle + 'deg)'}" alt="" />
+                        transform: 'rotate(' + rotationAngle + 'deg)'
+                      }" alt="" />
                   </button>
                 </div>
-
               </div>
             </div>
           </ng-container>
@@ -386,12 +391,12 @@
     <span>{{ message }}</span>
   </div>
 </section>
-<div class="container-fluid mt-3 mx-0" style="text-decoration: none;" *ngIf="!dataLoading">
-  <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245,245,245)">
-    <div class="container p-4 pb-0">
+<div class="container-fluid mt-3 mx-0" style="text-decoration: none" *ngIf="!dataLoading">
+  <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245, 245, 245)">
+    <div class="container-fluid p-4 pb-0">
       <section class="">
-        <div class="app-logo" style="margin:0px 0px 35px 35px;">
-          <img src="../../../assets/app-logo-footer.webp" alt="">
+        <div class="app-logo" style="margin: 0px 0px 35px 35px">
+          <img src="../../../assets/app-logo-footer.webp" alt="" />
         </div>
         <div class="row">
           <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
@@ -435,52 +440,77 @@
           </div>
           <hr class="w-100 clearfix d-md-none" />
           <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
-            <h5 class="headings mb-4 font-weight-bold">
-              For Partners
-            </h5>
+            <h5 class="headings mb-4 font-weight-bold">For Partners</h5>
             <p>
               <a class="text-dark">Register as a professional</a>
             </p>
           </div>
           <hr class="w-100 clearfix d-md-none" />
           <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3"
-            style="display: flex; align-items: center; flex-direction: column;">
+            style="display: flex; align-items: center; flex-direction: column">
             <h5 class="headings mb-4 font-weight-bold">Social links</h5>
             <div class="d-flex align-items-center">
-              <div
-                style="margin: 0px 0px 0px 0px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+              <div style="
+                  margin: 0px 0px 0px 0px;
+                  padding: 5px;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-color: #fff;
+                  border: 1px solid rgb(227, 227, 227);
+                ">
                 <img src="../../../assets/twitter-white-bg.png"
-                  style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                  style="width: 100%; object-fit: contain; border-radius: 50%" alt="" />
               </div>
-              <div
-                style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+              <div style="
+                  margin: 0px 0px 0px 5px;
+                  padding: 5px;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-color: #fff;
+                  border: 1px solid rgb(227, 227, 227);
+                ">
                 <img src="../../../assets/facebook-white-bg.png"
-                  style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                  style="width: 100%; object-fit: contain; border-radius: 50%" alt="" />
               </div>
-              <div
-                style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+              <div style="
+                  margin: 0px 0px 0px 5px;
+                  padding: 5px;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-color: #fff;
+                  border: 1px solid rgb(227, 227, 227);
+                ">
                 <img src="../../../assets/instagram-white-bg.png"
-                  style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                  style="width: 100%; object-fit: contain; border-radius: 50%" alt="" />
               </div>
-              <div
-                style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+              <div style="
+                  margin: 0px 0px 0px 5px;
+                  padding: 5px;
+                  width: 40px;
+                  height: 40px;
+                  border-radius: 50%;
+                  background-color: #fff;
+                  border: 1px solid rgb(227, 227, 227);
+                ">
                 <img src="../../../assets/whatsapp-white-bg.png"
-                  style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                  style="width: 100%; object-fit: contain; border-radius: 50%" alt="" />
               </div>
-
             </div>
-            <div style="width: 120px; height: 40px;" class="mt-3">
-              <img style="width: 100%; height: 100%; object-fit: cover;" src="../../../assets/app-store-icon.png"
-                alt="">
+            <div style="width: 120px; height: 40px" class="mt-3">
+              <img style="width: 100%; height: 100%; object-fit: cover" src="../../../assets/app-store-icon.png"
+                alt="" />
             </div>
-            <div style="width: 120px; height: 40px;" class="mt-3">
-              <img style="width: 100%; height: 100%; object-fit: cover;" src="../../../assets/google-play-icon.png"
-                alt="">
+            <div style="width: 120px; height: 40px" class="mt-3">
+              <img style="width: 100%; height: 100%; object-fit: cover" src="../../../assets/google-play-icon.png"
+                alt="" />
             </div>
           </div>
         </div>
       </section>
-      <hr class="my-3">
+      <hr class="my-3" />
       <section class="p-3 pt-0">
         <div class="row d-flex align-items-center">
           <div class="col-md-7 col-lg-8 text-center text-md-start">
@@ -494,20 +524,27 @@
     </div>
   </footer>
 </div>
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Test
-</button> -->
-
 <div class="modal fade slide-up" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div type="button" data-bs-dismiss="modal" aria-label="Close"
-    style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute; z-index: 10; top: 10px; left: 895px;">
-    <img src="../../../assets/icons8-close-480.png" width="20">
-  </div>
-  <div class="modal-dialog mt-5" style="border-radius: 10px;border-bottom-left-radius: 10px;">
-    <div class="modal-content">
-      <div style="border-radius: 10px;" class="modal-body">
-        <img style="width: 100%; height: 100%;" src="../../../assets/modal-image.webp" alt="">
+  <div class="modal-dialog mt-5">
+    <div class="modal-content" style="margin-top: 100px; position: relative; height: 550px">
+      <div type="button" data-bs-dismiss="modal" aria-label="Close" style="
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #fff;
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          position: absolute;
+          z-index: 10;
+          top: -40px;
+          right: 0;
+        ">
+        <img src="../../../assets/icons8-close-480.png" width="20" />
+      </div>
+      <div style="border-radius: 10px" class="modal-body">
+        <img style="width: 100%; height: 100%" src="../../../assets/modal-image.webp" alt="" />
       </div>
     </div>
   </div>
@@ -515,43 +552,87 @@
 
 <div class="modal fade slide-up" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div style="position: relative;">
-    <div (click)="closeModal()" type="button" data-bs-dismiss="modal" aria-label="Close"
-      style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 470px;z-index: 1000;">
-      <img src="../../../assets/icons8-close-480.png" width="20">
-    </div>
+  <div>
     <div class="modal-dialog mt-5">
-      <div class="modal-content" style="background-color: rgb(255,255,255);"
-        *ngFor="let service of demoData; let item = index">
-        <div class="modal-body" *ngIf="service.cartCount > 0">
-          <div tabindex="0"
-            class="css-1dbjc4n r-15xlzsq r-wh77r2 r-17gur6a r-1loqt21 r-ymttw5 r-1otgn73 r-1i6wzkk r-lrvibr r-13qz1uu"
-            style="transition-duration: 0s;">
-            <div class="css-1dbjc4n r-1472mwg r-lrsllp"></div>
-            <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible;">
-              <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible;">
-                <div aria-disabled="true" tabindex="-1" class="css-1dbjc4n r-1i6wzkk r-lrvibr"
-                  style="transition-duration: 0s;">
-                  <div class="css-1dbjc4n r-13qz1uu">
-                    <div class="css-1dbjc4n r-1awozwy r-18u37iz r-1wtj0ep r-13qz1uu">
-                      <div class="css-1dbjc4n r-1habvwh r-13awgt0 r-eqz5dr r-1777fci r-13qz1uu">
-                        <h2 dir="auto" aria-level="2" role="heading"
-                          class="css-4rbku5 css-901oao css-cens5h r-12qh9nz r-b88u0q r-fdjqy7 r-13wfysu r-3twk1y r-13qz1uu"
-                          style="margin-left: 10px; -webkit-line-clamp: 2; color: rgb(15, 15, 15); font-size: 28px; line-height: 40px;">
-                          {{service.serviceName}}</h2>
-                        <div style="margin-left: 10px; display: flex; align-items: center;">
-                          <div>
-                            <svg width="15" style="margin-bottom: 15px;" viewBox="0 0 24 24" fill="none"
-                              xmlns="http://www.w3.org/2000/svg">
-                              <path fill-rule="evenodd" clip-rule="evenodd"
-                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm9 0V6h2v5h5v2h-6a1 1 0 01-1-1z"
-                                fill="#0F0F0F"></path>
-                            </svg>
-                          </div>
-                          <div>
-                            <p dir="auto" role="paragraph"
-                              class="css-901oao r-1ej5qbt r-1enofrn r-16dba41 r-1cwl3u0 r-fdjqy7 r-13wfysu r-3twk1y"
-                              style="margin-left: 10px; color: rgb(15, 15, 15);">Service time: 60 mins</p>
+      <div class="modal-content" style="
+          margin-top: 100px;
+          background-color: rgb(255, 255, 255);
+          height: 510px;
+          width: 510px;
+          border-radius: 15px;
+          position: relative;
+        ">
+        <div (click)="closeModal()" type="button" data-bs-dismiss="modal" aria-label="Close" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            top: -40px;
+            right: 0px;
+            z-index: 10000;
+          ">
+          <img src="../../../assets/icons8-close-480.png" width="20" />
+        </div>
+        <div class="content-area" style="
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            height: 550px;
+            overflow-y: scroll;
+            border-radius: 15px;
+          ">
+          <div class="modal-body">
+            <div *ngFor="let service of editPackageData; let item = index">
+              <div tabindex="0"
+                class="css-1dbjc4n r-15xlzsq r-wh77r2 r-17gur6a r-1loqt21 r-ymttw5 r-1otgn73 r-1i6wzkk r-lrvibr r-13qz1uu"
+                style="transition-duration: 0s">
+                <div class="css-1dbjc4n r-1472mwg r-lrsllp"></div>
+                <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible">
+                  <div class="css-1dbjc4n r-13qz1uu" style="overflow: visible">
+                    <div aria-disabled="true" tabindex="-1" class="css-1dbjc4n r-1i6wzkk r-lrvibr"
+                      style="transition-duration: 0s">
+                      <div class="css-1dbjc4n r-13qz1uu">
+                        <div class="css-1dbjc4n r-1awozwy r-18u37iz r-1wtj0ep r-13qz1uu">
+                          <div class="css-1dbjc4n r-1habvwh r-13awgt0 r-eqz5dr r-1777fci r-13qz1uu">
+                            <h2 dir="auto" aria-level="2" role="heading"
+                              class="css-4rbku5 css-901oao css-cens5h r-12qh9nz r-b88u0q r-fdjqy7 r-13wfysu r-3twk1y r-13qz1uu"
+                              style="
+                                margin-left: 10px;
+                                -webkit-line-clamp: 2;
+                                color: rgb(15, 15, 15);
+                                font-size: 28px;
+                                line-height: 40px;
+                              ">
+                              {{ service.serviceTitle }}
+                            </h2>
+                            <div style="
+                                margin-left: 10px;
+                                display: flex;
+                                align-items: center;
+                              ">
+                              <div>
+                                <svg width="15" style="margin-bottom: 15px" viewBox="0 0 24 24" fill="none"
+                                  xmlns="http://www.w3.org/2000/svg">
+                                  <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12zm9 0V6h2v5h5v2h-6a1 1 0 01-1-1z"
+                                    fill="#0F0F0F"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <p dir="auto" role="paragraph"
+                                  class="css-901oao r-1ej5qbt r-1enofrn r-16dba41 r-1cwl3u0 r-fdjqy7 r-13wfysu r-3twk1y"
+                                  style="
+                                    margin-left: 10px;
+                                    color: rgb(15, 15, 15);
+                                  ">
+                                  Service time: 60 mins
+                                </p>
+                              </div>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -559,25 +640,373 @@
                   </div>
                 </div>
               </div>
+              <div class="choose-service-main-container">
+                <h4 style="font-size: 1.5rem; margin: 20px 0px 0px 10px">
+                  Hair cut
+                </h4>
+                <ng-container *ngFor="
+                    let services of service.description;
+                    let optionId = index
+                  ">
+                  <div style="
+                      cursor: pointer;
+                      display: flex;
+                      align-items: center;
+                      margin-left: 10px;
+                      margin-top: 15px;
+                      padding: 12px 0px;
+                    ">
+                    <input class="custom-radio" id="option{{ optionId }}" type="radio" name="option1" />
+                    <label style="
+                        cursor: pointer;
+                        margin-left: 10px;
+                        font-size: 14px;
+                        font-weight: 600;
+                        line-height: 24px;
+                      " for="option{{ optionId }}">
+                      {{ services }}
+                    </label>
+                  </div>
+                </ng-container>
+                <div class="footer-main-container">
+                  <div class="footer-child-container">
+                    <p style="
+                        font-size: 14px;
+                        font-weight: 700;
+                        line-height: 24px;
+                        margin-top: 10px;
+                      ">
+                      ₹{{service.serviceAmount}}
+                    </p>
+                    <button>Add to cart</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="choose-service-main-container">
-            <h4 style="font-size: 1.5rem;margin: 20px 0px 0px 10px;">Hair cut</h4>
-            <ng-container *ngFor="let services of service.description; let optionId = index">
-              <div style="display: flex; align-items: center;margin-left: 10px;margin-top: 15px;">
-                <input class="custom-radio" id="option{{optionId}}" type="radio" name="option1">
-                <label style="margin-left: 10px;font-size: 14px;font-weight: 600;line-height: 24px;"
-                  for="option{{optionId}}">
-                  {{services}}
-                </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--View-detail-Modal-->
+
+<div class="modal fade slide-up" id="detailModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div>
+    <div class="modal-dialog mt-5">
+      <div class="modal-content" style="
+          border-radius: 15px;
+          margin-top: 100px;
+          background-color: rgb(255, 255, 255);
+          height: 510px;
+          width: 510px;
+          position: relative;
+        ">
+        <div (click)="closeModal()" type="button" data-bs-dismiss="modal" aria-label="Close" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            top: -40px;
+            right: 0px;
+            z-index: 10000;
+          ">
+          <img src="../../../assets/icons8-close-480.png" width="20" />
+        </div>
+        <div class="content-area" style="
+            border-radius: 35px;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            height: 550px;
+            overflow-y: scroll;
+            border: 8px;
+          ">
+          <div class="modal-body">
+            <div class="view-detail-content-area">
+              <div class="header-content-view-detail" style="
+                  display: flex;
+                  align-items: center;
+                  justify-content: space-between;
+                  padding: 20px;
+                ">
+                <div class="left-content">
+                  <span style="
+                      font-size: 20px;
+                      font-weight: 600;
+                      line-height: 28px;
+                      color: rgb(15, 15, 15);
+                    ">Haircuts for kids</span>
+                  <div>
+                    <img src="../../../assets/star.png" width="10" alt="" />
+                    <span style="
+                        font-size: 12px;
+                        font-weight: 400;
+                        line-height: 16px;
+                      ">4.85(138.8k)</span>
+                  </div>
+                  <div style="display: flex; align-items: center">
+                    <span style="
+                        font-weight: 700;
+                        font-size: 12px;
+                        line-height: 16px;
+                      ">₹1299</span>
+                    <span style="
+                        font-size: 12px;
+                        font-weight: 400;
+                        margin-left: 20px;
+                      ">30 mins</span>
+                  </div>
+                </div>
+                <div class="right-content">
+                  <button style="
+                      width: 80px;
+                      border-radius: 8px;
+                      font-size: 14px;
+                      font-weight: 400;
+                      color: rgb(110, 66, 229);
+                      background-color: white;
+                      border: 1px solid rgb(227, 227, 227);
+                      padding: 5px;
+                    ">
+                    Add
+                  </button>
+                </div>
               </div>
-            </ng-container>
-            <div class="footer-main-container">
-              <div class="footer-child-container">
-                <p style="font-size: 14px; font-weight: 700;line-height: 24px;margin-top: 10px;">
-                  ₹{{service.serviceAmount * service.cartCount}}</p>
-                <button>
-                  Add to cart
+              <div class="ad-img-1" style="width: 100%; height: 100%">
+                <img src="../../../assets/view-detail-img.webp" style="object-fit: contain; width: 100%; height: 100%"
+                  alt="" />
+                <div class="process-main-container">
+                  <h2 style="
+                        font-size: 36px;
+                        font-weight: 600;
+                        line-height: 44px;
+                        margin-left: 20px;
+                      ">
+                    About the process
+                  </h2>
+                  <div style="
+                        margin-left: 30px;
+                        background-color: rgb(227, 227, 227);
+                        width: 2px;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                      ">
+                    <div *ngFor="let process of processContent">
+                      <div style="
+                            text-align: center;
+                            font-size: 12px;
+                            line-height: 16px;
+                            font-weight: 600;
+                            height: 25px;
+                            border-radius: 50%;
+                            background-color: #f5f5f5;
+                            justify-content: center;
+                            width: 25px;
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                          " [style.margin-bottom.px]="process.gap">
+                        {{process.index}}
+                        <div style="position: absolute;left: 40px;top: 0px;width: 350px;text-align: left;">
+                          <span style="font-size: 14px;font-weight: 600;line-height: 20px;">{{process.title}}</span>
+                          <br>
+                          <span
+                            style="font-size: 14px;line-height: 24px;font-weight: 400;color: rgb(84, 84, 84);">{{process.subTitle}}</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <img src="../../../assets/view-detail-img-2.webp" style="object-fit: contain; width: 100%; height: 100%"
+                  alt="" />
+              </div>
+              <div class="accordion accordion-flush" id="accordionFlushExample">
+                <span
+                  style="margin-left: 10px; font-size: 16px; line-height: 24px; color: rgb(15, 15, 15); font-weight: 700;">Frequently
+                  asked questions</span>
+                <div class="accordion-item" *ngFor="let item of questionsList; let i = index">
+                  <h2 class="accordion-header" id="flush-heading{{i}}">
+                    <button style="font-size: 14px; font-weight: 600; line-height: 20px; color: rgb(15, 15, 15);"
+                      class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      [attr.data-bs-target]="'#flush-collapse' + i" aria-expanded="false"
+                      [attr.aria-controls]="'flush-collapse' + i">
+                      {{item.question}}
+                    </button>
+                  </h2>
+                  <div style="margin-left: -10px;" [id]="'flush-collapse' + i" class="accordion-collapse collapse"
+                    [attr.aria-labelledby]="'flush-heading' + i" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">{{item.answer}}</div>
+                  </div>
+                </div>
+              </div>
+              <div style="width: 100%;background-color: rgb(227, 227, 227);height: 2px;"></div>
+              <div class="reviews-detail-section">
+                <span style="font-size: 28px;line-height: 40px;color: rgb(15, 15, 15);font-weight: 700;">Customer
+                  reviews </span>
+                <div class="review-content-section-container">
+                  <div class="total-reviews-detail"
+                    style="margin: 30px 0px; flex-direction: column; display: flex;align-items: flex-start;justify-content:flex-start column;">
+                    <div style="display: flex;align-items: center;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12.923 2.616a1 1 0 00-1.846 0l-2.41 5.795-6.257.502a1 1 0 00-.571 1.756l4.767 4.084-1.457 6.105a1 1 0 001.494 1.086L12 18.672l5.357 3.272a1 1 0 001.494-1.086l-1.457-6.105 4.767-4.084a1 1 0 00-.57-1.756l-6.257-.502-2.41-5.795z"
+                          fill="#0F0F0F"></path>
+                      </svg>
+                      <span style="font-size: 36px;font-weight: 600;line-height: 44px;margin-left: 5px;">4.86</span>
+                    </div>
+                    <span style="font-size: 14px;font-weight: 400;line-height: 20px;">356.4k reviews</span>
+                  </div>
+                  <div class="reviews-description-container" *ngFor="let data of reviewList">
+                    <div class="star-ratings" style="display: flex;align-items: center;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                          d="M12.923 2.616a1 1 0 00-1.846 0l-2.41 5.795-6.257.502a1 1 0 00-.571 1.756l4.767 4.084-1.457 6.105a1 1 0 001.494 1.086L12 18.672l5.357 3.272a1 1 0 001.494-1.086l-1.457-6.105 4.767-4.084a1 1 0 00-.57-1.756l-6.257-.502-2.41-5.795z"
+                          fill="#0F0F0F"></path>
+                      </svg>
+                      <span
+                        style="margin-left: 5px; font-size: 14px;font-weight: 600;color: rgb(15, 15, 15);">{{data.star}}</span>
+                    </div>
+                    <div style="margin: 0px 10px; width: 80%;height: 5px;background-color: rgb(227, 227, 227);"
+                      class="review-progress-bar-container">
+                      <div [style.width.px]="data.percentage" style="height: 5px;background-color: rgb(15,15,15);">
+                      </div>
+                    </div>
+                    <div class="review-count-container">
+                      <span>{{data.count}}</span>
+                    </div>
+                  </div>
+                  <div class="feedback-contents">
+                    <div class="fd-child-container" *ngFor="let item of feedbackList">
+                      <div class="fd-left-content"
+                        style="width: 95%;margin-top: 40px; margin-bottom: 10px; display: flex;align-items: center;justify-content: space-between;">
+                        <div style="display: flex;align-items: center;">
+                          <img src="../../../assets/person.png" width="50" alt="">
+                          <div style="margin-left: 15px;">
+                            <span
+                              style="font-size: 14px;font-weight: 600;line-height: 20px;color: rgb(15,15,15);">{{item.name}}</span>
+                            <br>
+                            <span style="font-size: 12px;font-weight: 400;line-height: 20px;">{{item.when}}</span>
+                          </div>
+                        </div>
+                        <div style="display: flex;align-items: center;">
+                          <svg width="15" height="15" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                              d="M12.923 2.616a1 1 0 00-1.846 0l-2.41 5.795-6.257.502a1 1 0 00-.571 1.756l4.767 4.084-1.457 6.105a1 1 0 001.494 1.086L12 18.672l5.357 3.272a1 1 0 001.494-1.086l-1.457-6.105 4.767-4.084a1 1 0 00-.57-1.756l-6.257-.502-2.41-5.795z"
+                              fill="#0F0F0F"></path>
+                          </svg>
+                          <span
+                            style="font-size: 14px;line-height: 20px;font-weight: 600;margin-left: 5px;">{{item.stars}}</span>
+                        </div>
+                      </div>
+                      <span
+                        style=" font-size: 14px;font-weight: 400;line-height: 24px;color: rgb(15, 15, 15);">{{item.feedback}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Term&safety guidelines-->
+
+<div class="modal fade slide-up" id="guidelinesModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div>
+    <div class="modal-dialog mt-5">
+      <div class="modal-content" style="
+          border-radius: 35px;
+          margin-top: 130px;
+          background-color: rgb(255, 255, 255);
+          height: 450px;
+          position: relative;
+        ">
+        <div (click)="closeModal()" type="button" data-bs-dismiss="modal" aria-label="Close" style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            position: absolute;
+            cursor: pointer;
+            top: -40px;
+            right: 0px;
+            z-index: 10000;
+          ">
+          <img src="../../../assets/icons8-close-480.png" width="20" />
+        </div>
+        <div class="content-area">
+          <div class="modal-body" style="padding: 20px">
+            <div class="header-section-container">
+              <div class="left-content">
+                <img src="../../../assets/guidelines-image.webp" alt="" />
+              </div>
+              <div class="right-content" style="margin-left: 20px">
+                <span style="
+                    font-size: 16px;
+                    font-weight: 700;
+                    line-height: 24px;
+                    color: rgb(15, 15, 15);
+                  ">Safety and Health Guidelines</span>
+                <p style="
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: rgb(84, 84, 84);
+                    padding-top: 4px;
+                  ">
+                  For your safety, please confirm before proceeding ahead with
+                  massage booking
+                </p>
+              </div>
+            </div>
+            <div class="section-content-container">
+              <div class="guideline-points">
+                <span style="
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: rgb(84, 84, 84);
+                  ">If you have an ongoing medical condition or have undergone
+                  surgery recently, please consult with your doctor before
+                  taking a massage.</span>
+              </div>
+              <div class="guideline-points">
+                <span style="
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: rgb(84, 84, 84);
+                  ">Please inform the therapist of any injuries, chronic pain
+                  areas and allergies related to oils/ingredients before your
+                  massage.</span>
+              </div>
+              <div class="guideline-points">
+                <span style="
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: rgb(84, 84, 84);
+                  ">We do not recommend taking a full body massage during
+                  pregnancy.</span>
+              </div>
+
+              <div class="confirmation-button">
+                <button data-bs-dismiss="modal" (click)="
+                    viewCartDetail(selectedServices, totalAmountOfService)
+                  ">
+                  I understand and confirm
                 </button>
               </div>
             </div>

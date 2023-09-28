@@ -19,7 +19,6 @@ export class HomeComponent {
   ngOnInit() {
     this.sidebarService.getSidebarVisible().subscribe((visible) => {
       this.sidebarVisible = visible;
-      console.log("Home 1 ", this.sidebarVisible)
     });
     if (localStorage.getItem('userExist') !== null || undefined || '') {
       this.userCredExist = true;

@@ -45,6 +45,7 @@ export class ServiceDetailListComponent {
   public isOpen: boolean = false;
   public progressPercentage: any = 0;
   public isCartExist: boolean = false;
+  public editPackageData: any = [];
   public toggleAccordion() {
     this.isOpen = !this.isOpen;
     this.rotationAngle = this.rotationAngle === 180 ? 360 : 180;
@@ -83,6 +84,7 @@ export class ServiceDetailListComponent {
     this.selectedServices = JSON.parse(
       localStorage.getItem('selectedCarts') || '[]'
     );
+    console.log('selected Items are ', this.selectedServices);
     this.demoData = JSON.parse(localStorage.getItem('demoData') || '[]');
     this.totalAmountOfService = this.calculateTotalAmount(
       this.selectedServices
@@ -97,12 +99,12 @@ export class ServiceDetailListComponent {
     return totalAmount;
   }
 
-  // ngAfterViewInit() {
-  //   this.updateProgress();
-  //   this.videoPlayer.nativeElement.addEventListener('timeupdate', () =>
-  //     this.updateProgressSmoothly()
-  //   );
-  // }
+  ngAfterViewInit() {
+    this.updateProgress();
+    this.videoPlayer.nativeElement.addEventListener('timeupdate', () =>
+      this.updateProgressSmoothly()
+    );
+  }
 
   public initVideo() {
     const video = this.videoPlayer.nativeElement;
@@ -240,7 +242,6 @@ export class ServiceDetailListComponent {
       this.demoData[index].cartCount--;
       if (this.demoData[index].cartCount < 1) {
         this.demoData[index].showAddCartButton = true;
-        // alert(this.selectedServices[index].cartCount)
         localStorage.setItem('demoData', JSON.stringify(this.demoData));
         localStorage.removeItem('cartExist');
       } else {
@@ -320,6 +321,201 @@ export class ServiceDetailListComponent {
       this.demoData[index].showAddCartButton = true;
     }
   }
+
+  public processContent = [
+    {
+      index: '1',
+      title: 'Consultation',
+      subTitle:
+        'Professional understands customer needs and hair condition to suggest suitable options',
+      gap: '60',
+    },
+    {
+      index: '2',
+      title: 'Set-up',
+      subTitle:
+        'Sanitisation of tools and placement of cape, mirror, floor, sheet',
+      gap: '50',
+    },
+    {
+      index: '3',
+      title: 'Parting & sectioning',
+      subTitle:
+        'Detangling of hair followed by dividing it into small sections',
+      gap: '50',
+    },
+    {
+      index: '4',
+      title: 'Hair cut',
+      subTitle:
+        'Spraying of water, followed by cutting of hair as per the desired hair style with the cape on',
+      gap: '50',
+    },
+    {
+      index: '5',
+      title: 'Confirmation',
+      subTitle:
+        'Rechecking of the output with customer and working on suggestions (if any) for desired results',
+      gap: '50',
+    },
+    {
+      index: '6',
+      title: 'Clean up',
+      subTitle:
+        'Removal of all the hair strands, sanitisation of tools and clean up of the surrounding area',
+      gap: '50',
+    },
+  ];
+
+  public feedbackList = [
+    {
+      name: 'Kritika',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:5
+    },
+    {
+      name: 'Satish',
+      when: 'Sep 2023',
+      feedback: 'Good Staff and service',
+      stars:4
+    },
+    {
+      name: 'Virat Kohli',
+      when: 'Sep 2023',
+      feedback: 'Cleaning is Good',
+      stars:5
+    },
+    {
+      name: 'Chahal',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:3
+    },
+    {
+      name: 'Ishan',
+      when: 'Sep 2023',
+      feedback: 'Nice Experiance',
+      stars:5
+    },
+    {
+      name: 'Thanku @ajay',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:2
+    },
+    {
+      name: 'Sachin Chobey',
+      when: 'Sep 2023',
+      feedback: 'Good Servive and nice behaviour',
+      stars:5
+    },
+    {
+      name: 'Anjali Pandey',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:4
+    },
+    {
+      name: 'Smith',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:5
+    },
+    {
+      name: 'Jhonson',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:3
+    },
+    {
+      name: 'David',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:5
+    },
+    {
+      name: 'Mitchel',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:2,
+    },
+    {
+      name: 'Lathon',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:5
+    },
+    {
+      name: 'Williamson',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:4
+    },
+    {
+      name: 'Trent',
+      when: 'Sep 2023',
+      feedback: 'Good Experiance',
+      stars:3
+    },
+    {
+      name: 'Azam',
+      when: 'Sep 2023',
+      feedback: 'bad Experiance',
+      stars:1
+    },
+  ];
+
+  public reviewList = [
+    {
+      star: 5,
+      percentage: '80',
+      count: '120.6k',
+    },
+    {
+      star: 4,
+      percentage: '70',
+      count: '100.6k',
+    },
+    {
+      star: 3,
+      percentage: '70',
+      count: '80.60k',
+    },
+    {
+      star: 2,
+      percentage: '50',
+      count: '50.60k',
+    },
+    {
+      star: 1,
+      percentage: '10',
+      count: '06.00k',
+    },
+  ];
+
+  public questionsList = [
+    {
+      question: 'Is hair wash include in the service?',
+      answer: 'No, you can book the hair wash service separately',
+    },
+    {
+      question:
+        'Will the professional bring salon cape, hand mirror and other required material?',
+      answer:
+        'Yes, the professional will bring all the tools required for the service. Please ensure you have a comfortable chair handy',
+    },
+    {
+      question: 'Will there be hair all over my place after the service?',
+      answer:
+        'No, our professional will clean the service area to ensure a mess-free service delivery.',
+    },
+    {
+      question: 'Do UC salon professionals carry capes?',
+      answer: 'Yes, we bring our own re-usable capes for all services.',
+    },
+  ];
+
   public demoData = [
     {
       serviceName: 'Packages',
@@ -330,10 +526,12 @@ export class ServiceDetailListComponent {
       showAddCartButton: true,
       cartCount: 0,
       description: [
-        'Beared trimming & styling',
         'Haircut for men',
+        'Beared trimming & styling',
         '10 min relaxing massage',
       ],
+      title: ['Haircut', 'Beared grooming', 'Massage'],
+      viewExist: false,
     },
     {
       serviceName: 'Mens/Kids haircut',
@@ -348,6 +546,7 @@ export class ServiceDetailListComponent {
         'Haircut for men',
         '10 min relaxing massage',
       ],
+      viewExist: true,
     },
     {
       serviceName: 'Face care',
@@ -362,6 +561,7 @@ export class ServiceDetailListComponent {
         'Haircut for men',
         '10 min relaxing massage',
       ],
+      viewExist: true,
     },
     {
       serviceName: 'Shave/beared',
@@ -376,6 +576,7 @@ export class ServiceDetailListComponent {
         'Haircut for men',
         '10 min relaxing massage',
       ],
+      viewExist: true,
     },
     {
       serviceName: 'Hair colour',
@@ -385,11 +586,9 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/hair-color.webp',
       showAddCartButton: true,
       cartCount: 0,
-      description: [
-        'Beared trimming & styling',
-        'Haircut for men',
-        '10 min relaxing massage',
-      ],
+      description: ['Hair Cut', 'Deep black (shade 1)'],
+      title: ['Haircut', 'Garnier colors'],
+      viewExist: false,
     },
     {
       serviceName: 'Massage',
@@ -399,11 +598,9 @@ export class ServiceDetailListComponent {
       serviceImage: '../../../assets/massage.webp',
       showAddCartButton: true,
       cartCount: 0,
-      description: [
-        'Beared trimming & styling',
-        'Haircut for men',
-        '10 min relaxing massage',
-      ],
+      description: ['Massage', 'Head massage'],
+      title: ['Neck & shoulder', 'Hair strengthening'],
+      viewExist: false,
     },
   ];
   public demoData2 = [
@@ -530,6 +727,7 @@ export class ServiceDetailListComponent {
     },
   ];
 
+  public editableService: any = [];
   public viewCartDetail(cartList: any, totalAmount: number) {
     const selectedData = {
       cartList,
@@ -560,5 +758,15 @@ export class ServiceDetailListComponent {
   public closeModal() {
     const modalContainer = document.getElementById('editModal');
     modalContainer?.classList.remove('show');
+  }
+
+  public editService(serviceId: any) {
+    // const titleData = JSON.stringify(this.demoData[serviceId].serviceTitle.split("+"));
+    // this.demoData[serviceId].serviceTitle = titleData;
+    this.editableService.push(this.demoData[serviceId]);
+  }
+
+  public editPackage(index: any) {
+    this.editPackageData = [this.demoData[index]];
   }
 }
