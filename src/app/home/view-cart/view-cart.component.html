@@ -1,7 +1,7 @@
 <div *ngIf="!dataLoading">
     <div class="uc-view-cart-main-container container">
         <div class="header-section container"
-            style="position: sticky; top: 0px; background-color: rgb(255,255,255);border-bottom: 2px solid #f1f1f1;">
+            style="z-index: 1; position: sticky; top: 0px; background-color: rgb(255,255,255);border-bottom: 2px solid #f1f1f1;">
             <img style="cursor: pointer;" (click)="navigateToComponent()" src="../../../assets/payment-header-logo.png"
                 width="40" alt="">
             <span>Checkout</span>
@@ -24,7 +24,7 @@
                 </div>
                 <button *ngIf="!userCredExist" data-bs-toggle="modal" data-bs-target="#loginModal"
                     style="margin-top: 20px; background-color: rgb(110,66,229); width: 100%;border: none; border-radius: 10px; padding: 15px;color: rgba(255, 255, 255, 0.87); font-size: 14px;font-weight: 400;">Login</button>
-                <div *ngIf="userCredExist" class="al-address-section-container">
+                <div *ngIf="userCredExist" style="width: 100%;" class="al-address-section-container">
                     <div class="al-option-list-container">
                         <img src="../../../assets/uc-location-icon.png" width="40" alt="">
                         <div class="title-and-detail">
@@ -35,8 +35,8 @@
                                 style="color: rgb(84, 84, 84); font-size: 14px;line-height: 20px;font-weight: 400;">+919882748459</span>
                         </div>
                     </div>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
-                    </div>
+                    <!-- <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div> -->
                     <div class="al-option-list-main-container" *ngIf="savedAddress.length <= 0">
                         <div class="al-option-list-container">
                             <div style="display: flex;align-items: center;justify-content: flex-start;">
@@ -68,8 +68,8 @@
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#locationSave" class="edit-btn">Edit</button>
                     </div>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
-                    </div>
+                    <!-- <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div> -->
                     <div class="al-option-list-container" *ngIf="selectedDate.length <= 0 && !serviceLater">
                         <div data-bs-toggle="modal" data-bs-target="#mapModal"
                             style="display: flex;align-items: center;justify-content: flex-start;">
@@ -116,8 +116,8 @@
                         </div>
                         <button data-bs-toggle="modal" data-bs-target="#slotSection" class="edit-btn">Edit</button>
                     </div>
-                    <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
-                    </div>
+                    <!-- <div style="width: 560px; height: 1px;background-color: rgb(237,237,237);margin: 0;padding: 0;">
+                    </div> -->
                     <div *ngIf="!slotExist" class="al-option-list-container"
                         style="display: flex;flex-direction: column;align-items: flex-start;margin-bottom: 30px;">
                         <div data-bs-toggle="modal" data-bs-target="#locationSave"
@@ -155,10 +155,10 @@
                 </div>
             </div>
             <div class="section-main-container" *ngIf="!emptyCart">
-                <div style="border: 1px solid rgb(237,237,237);padding: 10px;border-radius: 8px;">
+                <div style="width: 100%; border: 1px solid rgb(237,237,237);padding: 10px;border-radius: 8px;">
                     <div class="selected-cart-information-container" *ngFor="let item of cartList; let i = index">
                         <div class="selected-cart-information-header">
-                            <div style="width: 190px;"><span
+                            <div style="width: 190px;"><span class="serviceTitle"
                                     style="font-size: 14px;margin-top: 10px;">{{item.serviceTitle}}</span>
                             </div>
                             <div class="right-content">
