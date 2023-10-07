@@ -11,15 +11,12 @@ import { AppStoreModule } from './state/app.store';
 import { HelpComponent } from './home/help/help.component';
 import { ScrollScaleDirective } from './scroll-scale.directive';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-<<<<<<< HEAD
-=======
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideDatabase,getDatabase } from '@angular/fire/database';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
->>>>>>> 10ed98dc9245dc69eb5662940878387b63b25cac
-import { MatDialogModule } from '@angular/material/dialog'; 
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
+import { MatDialogModule } from '@angular/material/dialog';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { DatePipe } from '@angular/common';
@@ -44,13 +41,10 @@ import { UcInterceptorInterceptor } from './interceptors/uc-interceptor.intercep
     SharedModule,
     AppStoreModule,
     BrowserAnimationsModule,
-<<<<<<< HEAD
-=======
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
->>>>>>> 10ed98dc9245dc69eb5662940878387b63b25cac
     MatDialogModule,
     NgbModule,
     FormsModule,
@@ -67,4 +61,4 @@ import { UcInterceptorInterceptor } from './interceptors/uc-interceptor.intercep
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
