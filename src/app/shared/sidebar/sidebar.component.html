@@ -1,0 +1,96 @@
+<div class="parent-container" *ngIf="!navigateToService">
+    <div class="sidebar" [ngClass]="{'open': sidebarVisible}" [class]="animationName">
+        <div class="main-container-sidebar">
+            <div class="sidebar-header">
+                <img *ngIf="!loginPage" style="cursor: pointer; font-size: 16px; margin-left: 16px;"
+                    (click)="closeToggleSidebar()" width="15" src="../../../assets/arrow.png" alt="">
+                <img *ngIf="loginPage" style="cursor: pointer; font-size: 16px; margin-left: 16px;"
+                    (click)="closeToggleSidebar()" width="15" src="../../../assets/icons8-close-480.png" alt="">
+                <span style="font-size: 16px; margin-left: 16px;">{{sidebarHeading}}</span>
+            </div>
+            <div style="margin-top: 2px;" class="sidebar-content-main-container" *ngIf="!loginPage">
+                <div class="sidebar-container" *ngFor="let item of sidebarContent" (click)="navigateTo('Urban-Clap')">
+                    <div class="section-left-content">
+                        <img width="100" [src]="item.img" alt="">
+                    </div>
+                    <div class="section-right-content">
+                        <span>{{item.title}}</span>
+                        <img style="cursor: pointer;margin-right: 15px;" width="20" src="../../../assets/arrow-icon.png"
+                            alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="login-main-container" *ngIf="loginPage" style="background-color: white;">
+                <div *ngIf="!phoneNumberExist" style="display: flex; align-items: center;flex-direction: column;">
+                    <div class="input-main-container">
+                        <div [class]="loginContainer">
+                            <div class="phone-input-section" style="display: flex; align-items: center;">
+                                <img width="25" style="margin:0px 8px 0px 8px;" src="../../../assets/indian-flag.png"
+                                    alt="">
+                                <select class="country-code" style="margin-right: 8px;">
+                                    <option *ngFor="let code of countryCodes">{{ code }}</option>
+                                </select>
+                            </div>
+                            <div class="phone-input-section">
+                                <input maxlength="10" #phoneValue (input)="phoneNumber(phoneValue.value)"
+                                    class="phone-input" type="text" placeholder="Your phone number">
+                            </div>
+                        </div>
+                        <span [class]="errorClass" *ngIf="invalidNumber">Invalid number</span>
+                    </div>
+                    <button [disabled]="isButtonDisabled" (click)="submitPhoneCred(phoneValue.value)"
+                        class="btn btn-lg submit-button">Continue</button>
+                </div>
+                <div class="otpcontainer mt-5" *ngIf="phoneNumberExist">
+                    <div class="otp-header-section">
+                        <h2 style="font-size: 18px;line-height: 26px;">Enter verification code</h2>
+                        <span style="font-size: 12px;color: #757575;line-height: 20px;">We have sent you a 4 digit OTP
+                            on {{enteredNumber}}</span>
+                    </div>
+                    <div class="opt-input-field-container">
+                        <input maxlength="1" #input1 [class.active]="inputActive === 0"
+                            (input)="onInputNew(input1, input2, null)" [class.otp-input]="!otpNumberExist"
+                            [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                            (focus)="onFocus(0,$event, input1)" (blur)="inputActive = null">
+                        <input style="margin-left: 8px;" maxlength="1" #input2 [class.active]="inputActive === 1"
+                            (input)="onInputNew(input2, input3, input1)" [class.otp-input]="!otpNumberExist"
+                            [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                            (focus)="onFocus(1,$event, input2)" (blur)="inputActive = null">
+                        <input style="margin-left: 8px;" maxlength="1" #input3 [class.active]="inputActive === 2"
+                            (input)="onInputNew(input3, input4, input2)" [class.otp-input]="!otpNumberExist"
+                            [class.otp-input-validation-error]="otpNumberExist" inputmode="numeric"
+                            (focus)="onFocus(2,$event, input3)" (blur)="inputActive = null">
+
+                        <input [(ngModel)]="otp4" style="margin-left: 8px;" maxlength="1" #input4
+                            [class.active]="inputActive === 3" (input)="onInputNew(input4, null, input3)"
+                            [class.otp-input]="!otpNumberExist" [class.otp-input-validation-error]="otpNumberExist"
+                            inputmode="numeric" (focus)="onFocus(3,$event, input4)" (blur)="inputActive = null">
+                    </div>
+                    <div class="validation-error-container" *ngIf="otpNumberExist">
+                        <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804"
+                            viewBox="0 0 16 16">
+                            <path fill="#DC2804" fill-rule="evenodd"
+                                d="M8 2.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM1.25 8a6.75 6.75 0 1113.5 0 6.75 6.75 0 01-13.5 0zm6 1V5h1.5v4h-1.5zm1.5 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z"
+                                clip-rule="evenodd"></path>
+                        </svg>
+                        <span style="color: rgb(230,90,96);font-weight: 400;font-size: 12px;line-height: 16px;">You've
+                            entered Incorrect OTP.Please try again</span>
+                    </div>
+                    <div class="timer-container" style="margin-top: 15px;">
+                        <span (click)="resendCode()" *ngIf="timeUp"
+                            style="cursor: pointer; font-size: 14px;color: rgb(121, 79, 231);">Resend
+                            code</span>
+                        <span *ngIf="!timeUp"
+                            style="font-size: 14px; font-weight: 600;line-height: 20px;color: #49ad49;">00:{{seconds}}</span>
+                    </div>
+                    <button [attr.data-bs-dismiss]="shouldDismiss ? 'modal' : null" [disabled]="isOtpExist"
+                        (click)="submitOtp(input1.value,input2.value,input3.value,input4.value)"
+                        class="btn btn-lg submit-button mt-3">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-skelton *ngIf="navigateToService"></app-skelton>
+<app-modal></app-modal>

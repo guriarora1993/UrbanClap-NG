@@ -1,0 +1,23 @@
+<div *ngIf="!navigate" class="container help-main-container">
+    <div class="container help-header-section">
+        <img routerLink="/home" style="margin-top: 20px; cursor: pointer;" class="help-section-back-arrow"
+            src="../../../assets/arrow.png" alt="" width="15">
+        <h1 class="help-header-main-heading">How can we help you?</h1>
+    </div>
+    <div class="help-section-container">
+        <span style="font-size: 20px;font-weight: 500;line-height: 28px;">All topics</span>
+        <div (click)="openListOptions(i)" class="help-options-list" *ngFor="let option of optionList; let i = index">
+            <div class="left-content-of-list">
+                <svg width="20" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" [attr.d]="option.svg" fill="#0F0F0F"></path>
+                </svg>
+                <span>{{option.title}}</span>
+            </div>
+            <img src="../../../assets/arrow-icon.png" width="15" alt="">
+        </div>
+    </div>
+</div>
+<app-cases *ngIf="navigate" [optionsList]="dataPassToContainer"
+    (toggleParentBoolean)="toggleBooleanValue()"></app-cases>
+<app-case-detail *ngIf="navigateToCaseDetail" [content]="caseDetailData"
+    (toggleParentBoolean)="toggleBooleanValue()"></app-case-detail>

@@ -1,0 +1,226 @@
+<div class="main-container" style="font-size: 11px;" *ngIf="!userJoined">
+    <div style="background-color: rgb(255,255,255);position: sticky;top: 0;">
+        <div class="header-section container" style="background-color: rgb(255,255,255);">
+            <div class="brand-logo-container">
+                <img src="../../../assets/rg-urban-logo.png" style="width: 130px;" alt="">
+            </div>
+            <div class="header-elements-container">
+                <li><a href="#">Book a service</a></li>
+                <li><a href="#" routerLink="/about">About us</a></li>
+                <li>
+                    <div class="select-location-container"><img src="../../../assets/indian-flag.png" width="20" alt="">
+                        <select>
+                            <option *ngFor="let item of list" [value]="item">{{item}}</option>
+                        </select>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </div>
+    <div class="section1-container">
+        <div class="section1-content-container container">
+            <div class="section1-container-content"
+                style="display: flex; align-items: center;justify-content: space-between;">
+                <div class="left-text-content">
+                    <h1 style="font-size: 39px;line-height: 48px;color: #222222;font-style: normal;font-weight: bold;">
+                        Earn More. Earn Respect. Safety Ensured.</h1>
+                    <p
+                        style="margin-top: 18px;font-size: 24px;line-height: 37px;color: #555555;font-style: normal;font-weight: normal;">
+                        Join 40,000+ partners across India, USA, Singapore UAE and many more</p>
+                </div>
+                <div class="right-image-container">
+                    <img style="object-fit: contain;width: 100%;height: 100%;"
+                        src="../../../assets/rgister-as-professional-1.png" alt="">
+                </div>
+            </div>
+            <div class="whatsapp-information-container">
+                <p class="whatsapp-information-container-title"
+                    style="margin-top: 10px; font-size: 24px;line-height: 32px;color: rgb(242,236,255);font-weight: 500;">
+                    Share your
+                    WhatsApp number and we'll reach out via our Whatsapp Business Account</p>
+                <div class="input-section-main-container">
+                    <div style="margin-top: 5px;" class="input-main-container">
+                        <div [class]="loginContainer">
+                            <div class="phone-input-section" style="display: flex; align-items: center;">
+                                <img width="25" style="margin:0px 5px 0px 5px;" src="../../../assets/indian-flag.png"
+                                    alt="">
+                                <select class="country-code" style="margin-right: 8px;">
+                                    <option *ngFor="let code of countryCodes">{{ code }}</option>
+                                </select>
+                            </div>
+                            <div class="phone-input-section">
+                                <input maxlength="10" #phoneValue (input)="phoneNumber(phoneValue.value)"
+                                    class="phone-input" inputmode="numeric"  pattern="[0-9]*" placeholder="Your phone number">
+                            </div>
+                        </div>
+                        <span [class]="errorClass" *ngIf="invalidNumber">Invalid number</span>
+                    </div>
+                    <button style="margin-top: 5px;" (click)="submitPhoneCred(phoneValue.value)">Join Us</button>
+                </div>
+                    <span *ngIf="numberNotExist" style="font-weight: 600;color: #f7bcbc;font-size: 14px;margin-top: 10px;">Please provide working WhatsApp phone number!!</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="section2-container">
+        <div class="heading-section">
+            <span class="heading-section-title"
+                style="font-size: 36px;line-height: 49px;text-align: center;font-weight: bold;color: #222222;">Join
+                Urban Company to
+                change your life</span> <br>
+            <p class="heading-section-subtitle"
+                style="font-size: 18px;line-height: 24px;font-weight: normal;font-style: normal;margin-top: 15px!important; color: #777777;">
+                Urban
+                Company is an app-based marketplace the empowers professionals like you to become your own boss </p>
+            <div class="list-container">
+                <ul>
+                    <li
+                        style="background-position: right!important; background: no-repeat url(../../../assets/rg-list1-bg.svg);">
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">40,000+</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Partners
+                            already on board</span>
+                    </li>
+                    <li
+                        style="background-position: right!important; background: no-repeat url(../../../assets/rg-list2-bg.svg);">
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">₹1547Cr</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Paid
+                            out to partners in 2022</span>
+                    </li>
+                    <li
+                        style="background-position: right!important; background: no-repeat url(../../../assets/rg-list3-bg.svg);">
+                        <span class="count-title"
+                            style="font-size: 42px;font-weight: 500;line-height: 49px;color: #018b2e;">1,250,000+</span><br><span
+                            class="count-subtitle"
+                            style="font-style: normal;font-size: 17px;line-height: 27px;color: #222222;font-weight: bold;">Services
+                            delivered each month</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+    <div class="container-fluid mt-3 mx-0" style="text-decoration: none;">
+        <footer class="text-center text-lg-start text-dark" style="background-color: rgb(245,245,245)">
+            <div class="container p-4 pb-0">
+                <section class="">
+                    <div class="app-logo" style="margin:0px 0px 35px 35px;">
+                        <img src="../../../assets/app-logo-footer.webp" alt="">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="headings mb-4 font-weight-bold">Company</h5>
+                            <p>
+                                <a class="text-dark">About us</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Terms & conditions</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Privacy policy</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Anti-discrimication policy</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">UC impact</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Carrers</a>
+                            </p>
+                        </div>
+
+                        <hr class="w-100 clearfix d-md-none" />
+
+                        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="headings mb-4 font-weight-bold">For customers</h5>
+                            <p>
+                                <a class="text-dark">UC reviews</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Categories near you</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Blog</a>
+                            </p>
+                            <p>
+                                <a class="text-dark">Contact us</a>
+                            </p>
+                        </div>
+                        <hr class="w-100 clearfix d-md-none" />
+                        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                            <h5 class="headings mb-4 font-weight-bold">
+                                For Partners
+                            </h5>
+                            <p>
+                                <a class="text-dark">Register as a professional</a>
+                            </p>
+                        </div>
+                        <hr class="w-100 clearfix d-md-none" />
+                        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3"
+                            style="display: flex; align-items: center; flex-direction: column;">
+                            <h5 class="headings mb-4 font-weight-bold">Social links</h5>
+                            <div class="d-flex align-items-center">
+                                <div
+                                    style="margin: 0px 0px 0px 0px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                                    <img src="../../../assets/twitter-white-bg.png"
+                                        style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                                </div>
+                                <div
+                                    style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                                    <img src="../../../assets/facebook-white-bg.png"
+                                        style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                                </div>
+                                <div
+                                    style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                                    <img src="../../../assets/instagram-white-bg.png"
+                                        style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                                </div>
+                                <div
+                                    style="margin: 0px 0px 0px 5px;padding: 5px; width: 40px;height: 40px; border-radius: 50%;background-color: #fff;border: 1px solid rgb(227,227,227);">
+                                    <img src="../../../assets/whatsapp-white-bg.png"
+                                        style="width: 100%; object-fit: contain; border-radius: 50%;" alt="">
+                                </div>
+
+                            </div>
+                            <div style="width: 120px; height: 40px;" class="mt-3">
+                                <img style="width: 100%; height: 100%; object-fit: cover;"
+                                    src="../../../assets/app-store-icon.png" alt="">
+                            </div>
+                            <div style="width: 120px; height: 40px;" class="mt-3">
+                                <img style="width: 100%; height: 100%; object-fit: cover;"
+                                    src="../../../assets/google-play-icon.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <hr class="my-3">
+                <section class="p-3 pt-0">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-md-7 col-lg-8 text-center text-md-start">
+                            <div class="p-2">
+                                © 2023 Copyright:
+                                <a class="text-dark" href="#">RedSky.com</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+    </div>
+</div>
+<div class="join-us-container" *ngIf="userJoined">
+    <!-- <app-loader ></app-loader> -->
+    <div class="main-container" *ngIf="dataLoading">
+        <img (click)="close()" width="40" src="../../../assets/close-icon.png"
+            style="cursor: pointer; position: absolute;top: -50px;right: -10px;" alt="">
+        <img src="../../../assets/done-png.svg" alt="">
+        <span
+            style="width: 70%;margin-left: 30px; font-size: 18px;font-style: normal;line-height: 32px;color: #555555;">Thank
+            you, we have received your details. Our team will get in touch with you on WhatsApp soon. Also you can
+            download the Urban Company Partner app from</span>
+    </div>
+</div>

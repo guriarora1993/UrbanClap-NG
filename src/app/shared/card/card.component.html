@@ -1,0 +1,11 @@
+<div class="card-main-container">
+    <div class="card-container" *ngFor="let item of cardDetails">
+        <div class="card">
+            <img width="200" [src]="item.image" alt="">
+        </div>
+        <div class="card-content-container">
+            <span class="heading">{{item.heading}}</span>
+            <span class="sub-heading">{{item.subHeading}}</span>
+        </div>
+    </div>
+</div>

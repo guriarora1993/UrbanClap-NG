@@ -1,0 +1,304 @@
+* {
+  text-decoration: none;
+}
+.main-container {
+  width: 100%;
+  margin: auto;
+  .header-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    .header-elements-container {
+      width: auto;
+      display: flex;
+      align-items: center;
+
+      li {
+        list-style: none;
+        margin: 0px 25px 0px 25px;
+        a {
+          text-decoration: none;
+          font-style: normal;
+          font-weight: normal;
+          font-size: 16px;
+          line-height: 22px;
+          color: #555555;
+        }
+        .select-location-container {
+          border: none;
+          background-color: rgb(243, 243, 243);
+          width: 100%;
+          padding: 10px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          border-radius: 3px;
+          select {
+            border: none;
+            background-color: rgb(243, 243, 243);
+            font-size: 14px;
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+  }
+
+  .section1-container {
+    background-image: url(../../../assets/register-as-pro-bgImage.jpeg);
+    .section1-content-container {
+      width: 100%;
+      margin: auto;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding-bottom: 45px;
+    }
+    .whatsapp-information-container {
+      width: 100%;
+      height: 100%;
+      padding: 40px;
+      margin: auto;
+      background-color: rgb(138, 80, 254);
+      border-radius: 8px;
+      color: white;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+
+      .input-main-container {
+        .login-container {
+          display: flex;
+          border: 1px solid #e2e2e2;
+          height: 50px;
+          border-radius: 4px;
+          box-sizing: border-box;
+          background-color: rgb(164, 120, 253);
+          width: 300px;
+          .phone-input-section {
+            background-color: rgb(164, 120, 253);
+            border-radius: 4px;
+            select {
+              height: 100%;
+              box-sizing: border-box;
+              border: none;
+              border-right: 1px solid #e2e2e2;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              font-size: 16px;
+              background-color: rgb(164, 120, 253);
+              color: #bfbcbc;
+            }
+            input {
+              height: 100%;
+              border: none;
+              background-color: rgb(164, 120, 253);
+              color: #bfbcbc;
+              font-size: 16px;
+            }
+            input::placeholder {
+              color: #bfbcbc;
+              margin-right: 10px;
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .invalidError {
+        font-size: 14px;
+      }
+
+      .invalidErrorOccur {
+        font-size: 12px;
+        color: red;
+      }
+    }
+  }
+}
+
+.input-section-main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  button {
+    background-color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    height: 50px;
+    width: 120px;
+    line-height: 25px;
+    margin-left: 18px;
+    color: rgb(0, 80, 255);
+    font-weight: bold;
+    font-style: normal;
+  }
+}
+
+.section2-container {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+  .heading-section {
+    margin-top: 30px;
+    text-align: center;
+  }
+
+  .list-container {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    ul {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+    li {
+      list-style: none;
+      padding: 10px 0px 10px 0px;
+      text-align: center;
+      margin: 10px;
+    }
+  }
+}
+
+.container-fluid {
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.text-dark {
+  font-size: 14px;
+}
+
+.join-us-container {
+  margin-top: 50px;
+  .main-container {
+    position: relative;
+    width: 70%;
+    display: flex;
+    align-items: center;
+    background-color: rgb(252, 244, 254);
+    border: 1px solid rgb(227, 227, 227);
+    padding: 20px;
+  }
+}
+
+@media (max-width: 500px) {
+  .left-text-content {
+    h1 {
+      font-size: 25px !important;
+    }
+    p {
+      font-size: 15px !important;
+    }
+  }
+  .section1-container-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .heading-section-title {
+    font-size: 25px !important;
+  }
+  .heading-section-subtitle {
+    font-size: 15px !important;
+  }
+
+  .count-title {
+    font-size: 35px !important;
+  }
+
+  .count-subtitle {
+    font-size: 15px !important;
+  }
+
+  .whatsapp-information-container-title {
+    font-size: 15px !important;
+  }
+
+  .login-container {
+    display: flex;
+    border: 1px solid #e2e2e2;
+    height: 45px !important;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: rgb(164, 120, 253);
+    width: 270px !important;
+  }
+
+  input::placeholder {
+    color: #bfbcbc;
+    margin-right: 10px;
+    font-size: 12px !important ;
+  }
+
+  .input-section-main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    button {
+      background-color: #ffffff;
+      border: none;
+      border-radius: 4px;
+      font-size: 15px;
+      height: 45px;
+      width: 110px;
+      line-height: 25px;
+      margin-left: 18px;
+      color: rgb(0, 80, 255);
+      font-weight: bold;
+      font-style: normal;
+    }
+  }
+}
+
+.login-container-error{
+  display: flex;
+  border: 1px solid #e2e2e2;
+  height: 50px;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: rgb(164, 120, 253);
+  width: 300px;
+  .phone-input-section {
+    background-color: rgb(164, 120, 253);
+    border-radius: 4px;
+    select {
+      height: 100%;
+      box-sizing: border-box;
+      border: none;
+      border-right: 1px solid #e2e2e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      background-color: rgb(164, 120, 253);
+      color: #bfbcbc;
+    }
+    input {
+      height: 100%;
+      border: none;
+      background-color: rgb(164, 120, 253);
+      color: #bfbcbc;
+      font-size: 16px;
+    }
+    input::placeholder {
+      color: #bfbcbc;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+  }
+}

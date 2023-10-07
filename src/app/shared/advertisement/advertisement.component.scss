@@ -1,0 +1,19 @@
+.main-container {
+  width: 65vw;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .content-container {
+    margin: 20px;
+    padding: 20px;
+    .advertisement-sub-title {
+      margin-top: 10px;
+      color: #c8c8c8;
+    }
+  }
+}
+.reverse-row {
+  flex-direction: row-reverse;
+}

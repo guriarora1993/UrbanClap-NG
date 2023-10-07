@@ -1,0 +1,19 @@
+<div *ngIf="!updatedProfile" class="container option-list-content">
+    <div *ngIf="!sectionHeadingExist" class="header-section">
+        <img style="cursor: pointer;" (click)="back()" src="../../../assets/arrow.png" width="15" alt="">
+        <h1>{{sectionHeading}}</h1>
+    </div>
+    <div *ngFor="let data of optionsList">
+        <h3 style="font-size: 20px;font-weight: 600;line-height: 28px; margin-top: 30px;">{{data.subHeading}}</h3>
+        <ng-container *ngFor="let question of data.questionsList; let questionIndex = index">
+            <div class="cases-list-container" (click)="openQuestion(questionIndex,sectionHeading,data.subHeading)">
+                <span style="font-weight: 400;font-size: 14px;line-height: 24px;">{{question}}</span>
+                <img src="../../../assets/arrow-icon.png" width="18" alt="">
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<app-edit-profile-case *ngIf="updatedProfile" (toggleCaseBoolean)="changeBooleanVal()" [caseData]="updatedProfileData"></app-edit-profile-case>
+<app-case-detail *ngIf="navigateToCaseDetail" [content]="caseDetailData"
+    (toggleParentBoolean)="toggleBooleanValue()"></app-case-detail>

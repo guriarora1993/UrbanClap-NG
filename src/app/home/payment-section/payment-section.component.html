@@ -1,0 +1,72 @@
+<div class="main-container">
+    <div class="payment-methods-container">
+        <div style="border-bottom: 1px solid rgb(227,227,227);">
+            <div class="header-section">
+                <img style="cursor: pointer;" (click)="goBack()" src="../../../assets/arrow.png" width="15" alt="">
+                <div class="text-content">
+                    <h3>Select payment method</h3>
+                    <span>Amount to pay: ₹{{totalAmount}}</span>
+                </div>
+            </div>
+            <div class="methods-section-container">
+                <div>
+                    <div style="border-bottom: 4px solid rgb(227,227,227);" class="methods-section-content-container"
+                        *ngFor="let methods of methodsContent;let i = index">
+                        <p style="font-size: 16px;line-height: 24px;font-weight: 700;">{{methods.methodTitle}}</p>
+                        <div style="display: flex;align-items: center;justify-content: space-between;">
+                            <div class="accordian-container" data-bs-toggle="modal" [attr.data-bs-target]="'#modal' + i">
+                                <div style="border:  1px solid rgb(227,227,227);border-radius: 8px;">
+                                    <img [src]="methods.img" width="30" alt="">
+                                </div>
+                                <span>{{methods.methodName}}</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="100%" fill="#757575"
+                                viewBox="0 0 16 16">
+                                <path fill="#757575" fill-rule="evenodd"
+                                    d="M9.94 8L5.47 3.53l1.06-1.06 5 5a.75.75 0 010 1.06l-5 5-1.06-1.06L9.94 8z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="border-bottom: 4px solid rgb(227,227,227);" class="methods-section-content-container">
+                <div style="display: flex;flex-direction: column;">
+                    <span style="font-size: 16px;line-height: 24px;font-weight: 700;">Pay after service</span>
+                    <span
+                        style="line-height: 16px;font-weight: 400;font-size: 12px;color: rgb(210, 152, 34);">Unavailable
+                        due to subscription purchase</span>
+                </div>
+                <div
+                    style="display: flex;align-items: center;justify-content: space-between;margin-top: 30px;opacity: 0.4;">
+                    <div class="accordian-container">
+                        <div style="border:  1px solid rgb(227,227,227);border-radius: 8px;">
+                            <img src="../../../assets/online-payment-png.png" width="30" alt="">
+                        </div>
+                        <span>Pay online after service</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="100%" fill="#757575" viewBox="0 0 16 16">
+                        <path fill="#757575" fill-rule="evenodd"
+                            d="M9.94 8L5.47 3.53l1.06-1.06 5 5a.75.75 0 010 1.06l-5 5-1.06-1.06L9.94 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div
+                    style="display: flex;align-items: center;justify-content: space-between;margin-top: 30px;opacity: 0.4;">
+                    <div class="accordian-container">
+                        <div style="border:  1px solid rgb(227,227,227);border-radius: 8px;">
+                            <img src="../../../assets/cash-payment-png.png" width="30" alt="">
+                        </div>
+                        <span>Pay with cash after service</span>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="100%" fill="#757575" viewBox="0 0 16 16">
+                        <path fill="#757575" fill-rule="evenodd"
+                            d="M9.94 8L5.47 3.53l1.06-1.06 5 5a.75.75 0 010 1.06l-5 5-1.06-1.06L9.94 8z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-modal></app-modal>

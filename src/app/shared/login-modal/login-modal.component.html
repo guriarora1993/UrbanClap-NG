@@ -1,0 +1,82 @@
+<div class="modal fade slide-up-from-bottom mt-5 " id="loginModal" data-bs-backdrop="static" data-bs-keyboard="false"
+tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div style="position: relative;margin-top: 180px;">
+    <div type="button" data-bs-dismiss="modal" 
+    style="display: flex; align-items: center;justify-content: center; background-color: #fff; width: 32px; height: 32px; border-radius: 50%; position: absolute;cursor: pointer; top: -40px; right: 390px;z-index: 1000;">
+    <img src="../../../assets/icons8-close-480.png" width="20">
+</div>
+<div class="modal-dialog mt-5">
+    <div class="modal-content"
+    style="background-color: rgb(255,255,255); height: auto;border-radius: 20px;width: 510px;">
+    <div class="modal-body">
+        <div *ngIf="!phoneNumberExist" class="main-container">
+            <div class="child-container">
+                <h3 class="heading">Login/Sign up</h3>
+                <div class="input-container">
+                    <div class="country-code-select-container">
+                        <span>+91</span><svg style="width: 20px;margin-left: 5px;"
+                                xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="#B0B0B0"
+                                viewBox="0 0 16 16">
+                                        <path fill="#B0B0B0" fill-rule="evenodd"
+                                            d="M8 9.94L3.53 5.47 2.47 6.53l5 5a.75.75 0 001.06 0l5-5-1.06-1.06L8 9.94z"
+                                            clip-rule="evenodd">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div class="phone-number-input">
+                                    <input [disabled]="inputEnable" #phoneNumber
+                                    (input)="getPhoneNumber(phoneNumber.value)" type="number"
+                                    placeholder="Enter mobile number">
+                                    <img (click)="clearInput(phoneNumber)" style="cursor: pointer;" *ngIf="isPhone"
+                                    src="../../../assets/close-icon.png" width="25" alt="">
+                                </div>
+                            </div>
+                            <div class="whats-app-notification-selector">
+                                <input class="regular-checkbox" id="whatsapp" type="checkbox"><label
+                                for="whatsapp"><span style="position: absolute;top: -4px;">Get order updates on
+                                    WhatsApp</span></label>
+                                </div>
+                                
+                                <div class="button-container">
+                                    <button (click)="submitLoginCred(phoneNumber.value)" [disabled]="!numberExist"
+                                    class="proceed-btn"
+                                    [style.background-color]="numberExist ? 'rgb(110,66,229)' : ''">Proceed</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div *ngIf="phoneNumberExist" class="opt-main-container">
+                            <span
+                            style="cursor: pointer; font-size: 14px;font-weight: 600;text-decoration: underline;line-height: 20px;">Edit
+                            number</span>
+                            <h3 style="margin-top: 20px; font-size: 20px; line-height: 28px; font-weight: 600;">Verification
+                                code</h3>
+                                <span style="margin-top: 2px; line-height: 24px;font-size: 14px;font-weight: 400;">We have sent
+                                    you a 4 digit code on +9187654321</span>
+                                    <div class="opt-input-field-container">
+                                        <input #box1 [disabled]="!inputFilled(0)"
+                                        [class.active]="inputActive === 0" (input)="onInput(0, $event,box1.value)"
+                                        [class.otp-input]="!otpNumberExist"  [class.otp-input-validation-error]="otpNumberExist" type="number">
+                                        <input style="margin-left: 8px;" #box2 [disabled]="!inputFilled(1)" [class.active]="inputActive === 1"
+                                        (input)="onInput(1, $event,box2.value)" [class.otp-input]="!otpNumberExist"  [class.otp-input-validation-error]="otpNumberExist" type="number">
+                                        <input style="margin-left: 8px;" #box3 [disabled]="!inputFilled(2)" [class.active]="inputActive === 2"
+                                        (input)="onInput(2, $event,box3.value)" [class.otp-input]="!otpNumberExist"  [class.otp-input-validation-error]="otpNumberExist" type="number">
+                                        <input style="margin-left: 8px;" #box4  [disabled]="!inputFilled(3)"
+                                        [class.active]="inputActive === 3" (input)="onInput(3, $event,box3.value)"
+                                        [class.otp-input]="!otpNumberExist"  [class.otp-input-validation-error]="otpNumberExist" type="number">
+                                    </div>
+                       <div class="validation-error-container" *ngIf="otpNumberExist">
+                        <svg width="15" xmlns="http://www.w3.org/2000/svg" height="100%" fill="#DC2804" viewBox="0 0 16 16"><path fill="#DC2804" fill-rule="evenodd" d="M8 2.75a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zM1.25 8a6.75 6.75 0 1113.5 0 6.75 6.75 0 01-13.5 0zm6 1V5h1.5v4h-1.5zm1.5 1.75a.75.75 0 11-1.5 0 .75.75 0 011.5 0z" clip-rule="evenodd"></path></svg>
+                        <span style="color: rgb(230,90,96);font-weight: 400;font-size: 12px;line-height: 16px;">You've entered Incorrect OTP.Please try again</span>
+                    </div>
+                    <span style="cursor: pointer; font-size: 14px;margin-top: 15px;color: rgb(121, 79, 231);">Resend
+                        code</span>
+                        <div class="button-container" [attr.data-bs-dismiss]="shouldDismiss ? 'modal' : null">
+                            <button (click)="signUp(box1.value,box2.value,box3.value,box4.value)" [disabled]="!otp" class="proceed-btn"
+                            [style.background-color]="otp ? 'rgb(110,66,229)' : ''">Sign up</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,359 @@
+.section-main-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+@media (max-width: 1080px) {
+  .section-main-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+}
+.uc-view-cart-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    span {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 28px;
+      margin: 20px;
+    }
+  }
+
+  .selected-cart-information-container {
+    .selected-cart-information-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 35px;
+      padding-bottom: 20px;
+      border-bottom: 4px solid #f1f1f1;
+      width: 700px;
+      .right-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        span {
+          margin-left: 20px;
+        }
+      }
+    }
+  }
+  .cart-service-list {
+    .list-item {
+      font-size: 0.6rem;
+      padding: 5px;
+      color: rgb(120, 120, 120);
+    }
+  }
+
+  .frequently-cards-container {
+    margin-top: 20px;
+    span {
+      font-weight: 600;
+    }
+  }
+
+  .right-section-container {
+    width: 40%;
+    margin-top: 15px;
+    position: sticky;
+    top: 90px;
+    height: 100%;
+    .item-amount-description {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+  }
+}
+
+.add-cart-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+}
+
+.service-preference-bottom-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 20px;
+}
+
+.empty-cart-screen-main-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  .empty-cart-screen-text-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 30px;
+    span {
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    button {
+      color: rgb(121, 79, 231);
+      background-color: white;
+      border: 1px solid rgb(218, 217, 217);
+      font-size: 14px;
+      padding: 10px;
+      border-radius: 5px;
+      margin-top: 15px;
+    }
+  }
+}
+
+.toast {
+  width: auto;
+  position: fixed;
+  top: -100px; /* Start from the top, just outside the screen */
+  right: 40%; /* Start from the right side, 20px from the right edge */
+  background-color: rgb(179, 35, 6);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 40px;
+  opacity: 0;
+  transition: opacity 0.3s, top 1s;
+}
+
+.toast.show {
+  top: 20px; /* Slide in to 20px from the top */
+  opacity: 1;
+}
+
+.main-container {
+  display: flex;
+  flex-wrap: wrap;
+  .frequent-card-main-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgb(237, 237, 237);
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-left: 2px;
+    padding: 5px;
+    cursor: pointer;
+    span,
+    button {
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    img {
+      border-top-right-radius: 5px;
+      border-top-left-radius: 5px;
+    }
+  }
+}
+
+@media (max-width: 544px) {
+}
+
+.opt-main-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+
+  .opt-input-field-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    .otp-input {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid rgb(227, 227, 227);
+      text-align: center;
+    }
+
+    .otp-input-validation-error {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid rgb(220,40,04);
+      text-align: center;
+    }
+
+    .otp-input.active {
+      border: 1px solid rgb(121, 79, 231);
+    }
+
+    .otp {
+      margin-left: 8px;
+    }
+  }
+
+  .validation-error-container{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    span{
+      margin-left: 5px;
+    }
+  }
+  .button-container {
+    border-top: 1px solid rgb(237, 237, 237);
+    width: 100%;
+    margin-top: 20px;
+    .proceed-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      color: rgb(207, 207, 207);
+      background-color: rgb(237, 237, 237);
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+  }
+}
+.main-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  .close-button-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+  .child-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    .heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      color: rgb(15, 15, 15);
+      margin-bottom: 30px;
+    }
+    .input-container {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgb(227, 227, 227);
+      border-radius: 8px;
+      width: 100%;
+      transition: border-color 0.3s ease-in-out;
+      padding: 6px;
+
+      input {
+        border: none;
+        margin-left: 10px;
+      }
+      input::placeholder {
+        color: rgb(227, 227, 227);
+      }
+      .country-code-select-container {
+        display: flex;
+        align-items: center;
+        border-right: 1px solid rgb(227, 227, 227);
+        padding: 6px;
+        color: rgb(176, 176, 176);
+        width: 20%;
+      }
+
+      .phone-number-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+    }
+
+    .whats-app-notification-selector {
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 20px;
+      }
+    }
+    .button-container {
+      border-top: 1px solid rgb(237, 237, 237);
+      width: 100%;
+      margin-top: 20px;
+      .proceed-btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        color: rgb(207, 207, 207);
+        background-color: rgb(237, 237, 237);
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+/* Add this CSS to your existing styles */
+.slide-up-from-bottom .modal-dialog {
+  animation: slideUpFromBottom 0.3s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.proceed-btn.active {
+  background-color: green; /* Change to your desired background color */
+}
+
+.regular-checkbox {
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox:checked {
+  background-color: black;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+    inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  color: black;
+}
+
+.regular-checkbox:checked:after {
+  content: "\2714";
+  font-size: 14px;
+  position: absolute;
+  top: -1px;
+  left: 3px;
+  color: white;
+}

@@ -1,0 +1,904 @@
+.slide-up-from-bottom .modal-dialog {
+  animation: slideUpFromBottom 0.3s ease-out;
+  transform-origin: center bottom;
+}
+
+@keyframes slideUpFromBottom {
+  from {
+    transform: translateY(100%);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+}
+
+.content-container-address-section {
+  .search-bar-section {
+    display: flex;
+    align-items: center;
+    border: 1px solid rgb(237, 237, 237);
+    border-radius: 8px;
+    justify-content: space-between;
+    padding: 10px;
+
+    input {
+      border: none;
+      margin-left: 10px;
+    }
+
+    input:focus {
+      border-color: rgb(121, 79, 231);
+    }
+
+    input::placeholder {
+      opacity: 0.6;
+      font-size: 14px;
+    }
+  }
+}
+
+.empty-location-contant {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  .text-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+}
+
+.select-location-from-map-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .map-container {
+    width: 100%;
+    height: 400px;
+  }
+
+  .address-detail-form-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 100%;
+
+    .detail-container {
+      border-bottom: 1px solid rgb(237, 237, 237);
+    }
+
+    .change-location-btn {
+      border: none;
+      width: 90px;
+      background-color: white;
+      border-radius: 8px;
+      border: 1px solid rgb(237, 237, 237);
+      color: rgb(121, 79, 231);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      padding: 5px;
+    }
+
+    .inputs-container {
+      margin-top: 20px;
+
+      .details-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgb(237, 237, 237);
+        padding: 10px;
+        border-radius: 8px;
+
+        input {
+          border: none;
+        }
+
+        input::placeholder {
+          opacity: 0.7;
+          font-size: 14px;
+        }
+      }
+
+      .details-input.focused {
+        border-color: rgb(121, 79, 231);
+      }
+    }
+
+    .type-buttons {
+      display: flex;
+      align-items: flex-start;
+      flex-direction: column;
+      justify-content: space-between;
+
+      button {
+        width: 70px;
+        padding: 8px;
+        background-color: white;
+        border: 1px solid rgb(237, 237, 237);
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      .active-button {
+        border: 1px solid black;
+        background-color: rgb(245, 245, 245);
+      }
+
+      .other-container-search {
+        width: 400px;
+        padding: 10px;
+        border: 1px solid rgb(237, 237, 237);
+        border-radius: 8px;
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        input {
+          border: none;
+          width: 100%;
+        }
+
+        input::placeholder {
+          opacity: 0.7;
+          font-size: 14px;
+        }
+      }
+
+      .other-container-search.focused {
+        border-color: rgb(121, 79, 231);
+      }
+    }
+  }
+
+  .submit-btn {
+    width: 400px;
+    position: sticky;
+    margin-top: 50px;
+    border: 1px solid rgb(237, 237, 237);
+    border-radius: 8px;
+    padding: 12px;
+    background-color: rgb(237, 237, 237);
+    font-size: 14px;
+    color: rgb(169, 168, 168);
+  }
+}
+
+/* Increase modal width */
+// .modal-dialog {
+//   max-width: 65%;
+//   width: auto;
+// }
+
+/* Increase modal height */
+
+#map-modal {
+  .modal-content {
+    max-height: 80vh;
+    // height: 500px;
+    overflow-y: auto;
+  }
+
+  .image-container {
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.save-location-detail-container {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  border-bottom: 1px solid rgb(237, 237, 237);
+
+  .add-more-address {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+}
+
+.added-locations {
+  margin-top: 20px;
+
+  .saved-locations {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.proceed-btn {
+  width: 100%;
+  margin-top: 20px;
+
+  button {
+    width: 100%;
+    border: 1px solid rgb(237, 237, 237);
+    background-color: rgb(237, 237, 237);
+    padding: 10px;
+    border-radius: 8px;
+  }
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  border-radius: 10px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border: 1px solid #f9f9f9;
+  border-radius: 30px;
+  top: 22px;
+  right: 0px;
+}
+
+.dropdown-content button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  text-align: left;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+}
+
+.show-dropdown {
+  display: block;
+}
+
+// .dropdown:hover .dropdown-content {
+//   display: block;
+//   border-radius: 10;
+// }
+
+.delete-address-container {
+  .notify-section-content {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(227, 227, 227);
+  }
+
+  .buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+
+    .delete-section-button {
+      width: 400px;
+      border: 1px solid rgb(227, 227, 227);
+      background-color: white;
+      border-radius: 8px;
+      padding: 10px;
+      color: rgb(121, 79, 231);
+      font-size: 14px;
+      line-height: 28px;
+      font-weight: 400;
+      margin: 5px;
+    }
+  }
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  // border: 1px solid rgb(227, 227, 227);
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+
+  input {
+    border: none;
+  }
+
+  input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+  }
+}
+
+.coupons-main-container {
+  .content-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    padding-bottom: 20px;
+    margin-top: 30px;
+  }
+}
+
+.conditions-container {
+  ul {
+    text-align: left;
+    margin-left: -12px;
+
+    li {
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 16px;
+      color: rgb(84, 84, 84);
+      margin-top: 20px;
+    }
+  }
+}
+
+input[type="radio"] {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%; /* Makes it circular */
+  cursor: pointer;
+}
+
+input[type="radio"]:checked {
+  background-color: #2e3133; /* Change the color when selected */
+  border-color: #2d2e2f; /* Change the border color when selected */
+  accent-color: #2d2e2f;
+  cursor: pointer;
+}
+
+.slot-section-container {
+  .header-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(227, 227, 227);
+    padding-bottom: 15px;
+    cursor: pointer;
+    .left-side-container {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      p {
+        margin-left: 10px;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 16px;
+      }
+    }
+  }
+
+  .section-container {
+    .text-content {
+      margin-top: 20px;
+      h3 {
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 28px;
+      }
+      p {
+        font-size: 14px;
+        line-height: 24px;
+        font-weight: 400;
+        color: rgb(148, 147, 147);
+      }
+    }
+
+    .slots-options-list {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border: 1px solid rgb(227, 227, 227);
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      .left-content {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+    .slots-options-list-calender {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 8px;
+      padding: 10px;
+      cursor: pointer;
+      .left-content {
+        display: flex;
+        align-items: center;
+        p {
+          margin-left: 10px;
+        }
+      }
+    }
+  }
+
+  .notice-container {
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+    padding: 10px;
+    cursor: pointer;
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 20px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.calender-container {
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  padding-right: 17px;
+  box-sizing: content-box;
+  .date-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    .date-container-child {
+      width: 60px;
+      height: 60px;
+      border: 1px solid rgb(227, 227, 227);
+      padding: 15px;
+      display: flex;
+      border-radius: 8px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+  }
+}
+.date-container-child.active {
+  background-color: rgb(245, 242, 253);
+  border-color: rgb(121, 79, 231) !important;
+}
+
+.timing-section {
+  padding: 10px;
+  .time-content {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 16px;
+    div {
+      button {
+        width: 120px;
+        border: none;
+        background-color: white;
+        border: 1px solid rgb(227, 227, 227);
+        border-radius: 8px;
+        padding: 10px;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 20px;
+      }
+
+      button.active {
+        background-color: rgb(245, 242, 253);
+        border-color: rgb(121, 79, 231) !important;
+      }
+    }
+  }
+}
+
+.slot-proceed-btn {
+  width: 100%;
+  border: 1px solid rgb(121, 79, 231);
+  background-color: rgb(121, 79, 231);
+  padding: 15px;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+}
+.slot-proceed-btn.active {
+  background-color: rgb(237, 237, 237);
+  border-color: rgb(237, 237, 237);
+  color: rgb(138, 137, 137);
+}
+
+.get-service-container.active {
+  height: 270px;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.content-area::-webkit-scrollbar {
+  display: none;
+}
+.content-container {
+  .card-number-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid rgb(227, 227, 227);
+    padding: 12px;
+    border-radius: 8px;
+    margin-top: 20px;
+    input {
+      border: none;
+    }
+    input::placeholder {
+      font-size: 14px;
+      font-weight: 400;
+      opacity: 0.6;
+    }
+  }
+
+  .card-number-container.active {
+    border-color: rgb(121, 79, 231);
+    background-color: #f5f5f5;
+    input {
+      background-color: #f5f5f5;
+    }
+  }
+  .card-number-container.errorOccur {
+    border-color: rgb(179, 35, 6);
+    background-color: white;
+    input {
+      background-color: white;
+    }
+  }
+
+  .card-number-expiry {
+    border: 1px solid rgb(227, 227, 227);
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+    width: 120px;
+    input {
+      border: none;
+      width: 100px;
+    }
+    input::placeholder {
+      font-size: 14px;
+      font-weight: 400;
+      opacity: 0.4;
+    }
+  }
+  .card-number-expiry.active {
+    border-color: rgb(121, 79, 231);
+    background-color: #f5f5f5;
+    input {
+      background-color: #f5f5f5;
+    }
+  }
+
+  .card-number-expiry.errorOccur {
+    border-color: rgb(179, 35, 6);
+    background-color: white;
+    input {
+      background-color: white;
+    }
+  }
+}
+.card-number-cvv {
+  border: 1px solid rgb(227, 227, 227);
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+  width: 120px;
+  margin-left: 30px;
+  input {
+    border: none;
+    width: 100px;
+  }
+  input::placeholder {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.4;
+  }
+}
+.card-number-cvv.errorOccur {
+  border-color: rgb(179, 35, 6);
+  background-color: white;
+  input {
+    background-color: white;
+  }
+}
+.card-number-cvv.active {
+  border-color: rgb(121, 79, 231);
+  background-color: #f5f5f5;
+  input {
+    background-color: #f5f5f5;
+  }
+}
+
+.save-cred-permission-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  input[type="checkbox"] {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%; /* Makes it circular */
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #08794b; /* Change the color when selected */
+    border-color: #08794b; /* Change the border color when selected */
+  }
+}
+.footer-section {
+  width: 100%;
+  margin-left: -16px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 5px;
+  margin-top: 30px;
+  border-top: 1px solid rgb(227, 227, 227);
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+  button {
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 8px;
+    padding: 15px;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+    width: 250px;
+    background-color: rgb(237, 237, 237);
+    color: #cbcbcb;
+  }
+
+  .addCard-btn.active {
+    background-color: rgb(121, 79, 231);
+    color: white;
+  }
+  span {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+  }
+}
+
+.opt-main-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+
+  .opt-input-field-container {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+
+    .otp-input {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid rgb(227, 227, 227);
+      text-align: center;
+    }
+
+    .otp-input-validation-error {
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      border: 1px solid rgb(220, 40, 04);
+      text-align: center;
+    }
+
+    .otp-input.active {
+      border: 1px solid rgb(121, 79, 231);
+    }
+
+    .otp {
+      margin-left: 8px;
+    }
+  }
+
+  .validation-error-container {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+
+    span {
+      margin-left: 5px;
+    }
+  }
+
+  .button-container {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .proceed-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      color: rgb(207, 207, 207);
+      background-color: rgb(237, 237, 237);
+      border-radius: 10px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+  }
+}
+
+.bank-list-main-container {
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    cursor: pointer;
+  }
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%; /* Makes it circular */
+  }
+
+  input[type="checkbox"]:checked {
+    background-color: #2e3133; /* Change the color when selected */
+    border-color: #2d2e2f; /* Change the border color when selected */
+  }
+  .close-button-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .child-container {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+
+    .heading {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 28px;
+      color: rgb(15, 15, 15);
+      margin-bottom: 30px;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      border-radius: 8px;
+      width: 100%;
+      padding: 6px;
+
+      input {
+        border: none;
+        margin-left: 10px;
+      }
+
+      input::placeholder {
+        color: rgb(227, 227, 227);
+      }
+
+      .country-code-select-container {
+        display: flex;
+        align-items: center;
+        // border: 1px solid rgb(227, 227, 227);
+        border-bottom: 1px solid rgb(227, 227, 227);
+        border-top: 1px solid rgb(227, 227, 227);
+        border-left: 1px solid rgb(227, 227, 227);
+        padding: 12px;
+        color: rgb(176, 176, 176);
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+        width: 20%;
+      }
+
+      .phone-number-input {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        border: 1px solid rgb(227, 227, 227);
+        padding: 12px;
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+      }
+
+      .phone-number-input.focused {
+        border: 1px solid rgb(121, 79, 231);
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        transition: border-color 0.3s ease-in-out;
+        padding: 10px;
+      }
+    }
+
+    .whats-app-notification-selector {
+      cursor: pointer;
+      width: 100%;
+      margin-top: 20px;
+      position: relative;
+
+      span {
+        font-size: 14px;
+        font-weight: 400;
+        margin-left: 20px;
+      }
+    }
+
+    .button-container {
+      border-top: 1px solid rgb(237, 237, 237);
+      width: 100%;
+      margin-top: 20px;
+
+      .proceed-btn {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        color: rgb(207, 207, 207);
+        background-color: rgb(237, 237, 237);
+        border-radius: 10px;
+        margin-top: 10px;
+      }
+    }
+  }
+}
+
+.regular-checkbox {
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 9px;
+  border-radius: 5px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox:active,
+.regular-checkbox:checked:active {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.regular-checkbox:checked {
+  background-color: black;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05),
+    inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05),
+    inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+  color: black;
+}
+
+.regular-checkbox:checked:after {
+  content: "\2714";
+  font-size: 14px;
+  position: absolute;
+  top: -1px;
+  left: 3px;
+  color: white;
+}
